@@ -1,13 +1,17 @@
+$scale-var: 1600 / 2560;
+
 .chat-and-history {
     width: 100%;
     margin: 0 !important;
     padding: 0 !important;
+    position: relative;
     .nav {
         margin: 0 !important;
         padding: 0 !important;
-        width: 71px;
+        width: 71px * $scale-var;
         .nav-item {
-            height: 214px;
+            width: 100%;
+            height: 214px * $scale-var;
             a {
                 background-color: #363663;
                 color: white;
@@ -17,7 +21,7 @@
                 text-align: center;
                 position: relative;
                 font-family: Nurom;
-                font-size: 27px;
+                font-size: 27px * $scale-var;
                 font-weight: bold;
                 div {
                     writing-mode: tb-rl;
@@ -26,12 +30,15 @@
                     left: 50%;
                     top: 50%;
                     display: flex;
+                    justify-content: space-around;
+                    align-items: center;
                     svg {
                         vertical-align: middle;
                         transform: rotate(90deg);
                         margin: 0;
-                        font-size: 34px;
-                        padding-right: 10px;
+                        font-size: 27px * $scale-var;
+                        margin-bottom: 5px;
+                        margin-left: 2px;
                     }
                 }
             }
@@ -44,8 +51,8 @@
         .setting {
             background-color: #131324;
             color: #5C52C5;
-            width: 71px;
-            height: 71px;
+            width: 71px * $scale-var;
+            height: 71px * $scale-var;
             position: relative;
             svg {
                 width: 60%;
@@ -57,5 +64,24 @@
             }
         }
     }
-    
+    .tab-content {
+        position: absolute;
+        overflow: hidden;
+        left: 71px * $scale-var;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        .tab-pane {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            visibility: hidden;
+        }
+        .active {
+            visibility: visible;
+        }
+    }
 }

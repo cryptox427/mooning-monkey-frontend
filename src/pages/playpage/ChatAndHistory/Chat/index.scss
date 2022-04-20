@@ -1,0 +1,125 @@
+$scale-var: 1600 / 2560;
+
+.chat{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    .current-language {
+        font-family: Nurom;
+        z-index: 1;
+        position: relative;
+        font-weight: bold;
+        font-size: 24px * $scale-var;
+        color: white;
+        text-align: center;
+        margin-top: 20px * $scale-var;
+    }   
+    .chat-talks {
+        position: absolute;
+        left: 31px * $scale-var;
+        top: 0;
+        right: 228px * $scale-var;
+        bottom: 80px * $scale-var;
+        display: flex;
+        .chat-talks-content {
+            position: relative;
+            width: 100%;
+            .mask {
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 200px * $scale-var;
+                background: linear-gradient(180deg, #2B2C65 18.75%, rgba(44, 42, 100, 0.35) 100%);
+            }
+            .talks {
+                position: absolute;
+                bottom: 0;
+                .talk-cell {
+                    display: flex;
+                    .time {
+                        color: #86858F;
+                        font-family: Poppins-Medium;
+                        font-size: 22px * $scale-var;
+                        margin-right: 5px;
+                    }
+                    .person-name {
+                        color: #F001F4;
+                        font-family: Poppins-Medium;
+                        font-size: 22px * $scale-var;
+                        margin-right: 5px;
+                    }
+                    .talk-content {
+                        color: white;
+                        font-family: Poppins-Medium;
+                        font-size: 22px * $scale-var;
+                    }
+                }
+            }
+        }
+        
+    }
+    .send-message {
+        height: 63px * $scale-var;
+        position: absolute;
+        left: 27px * $scale-var;
+        
+        right: 84px * $scale-var;
+        bottom: 14px * $scale-var;
+        display: flex;
+        background: #36356C;
+        .message-write-content {
+            position: absolute;
+            color: white;
+            
+            left: 120px * $scale-var;
+            right: 80px * $scale-var;
+            transform: translateY(-50%);
+            top: 50%;
+            background-color: rgba(0, 0, 0, 0);
+            border: none;
+            
+
+        }
+        .message-write-content::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+            color: white;
+            opacity: 1; /* Firefox */
+        }
+        .message-write-content:focus {
+            border: none;
+            outline: none;
+        }
+        .paper-clip {
+            position: absolute;
+            color: white;
+            width: 21px * $scale-var;
+            left: 70px * $scale-var;
+            transform: translateY(-50%);
+            top: 50%;
+        }
+        .emoji {
+            position: absolute;
+            left: 21px * $scale-var;
+            width: 28px * $scale-var;
+            transform: translateY(-50%);
+            top: 50%;
+        }
+        .send-button {
+            color: white;
+            position: absolute;
+            right: 25px * $scale-var;
+            transform: translateY(-50%);
+            top: 50%;
+        }
+        .plus-button {
+            color: white;
+            position: absolute;
+            right: -45px * $scale-var;
+            transform: translateY(-50%);
+            top: 50%;
+        }
+    }
+    /* Rectangle 114 */
+
+
+
+}

@@ -2,6 +2,7 @@ import { Col, Row, Nav, Tab } from 'react-bootstrap';
 import { BsFillChatDotsFill, BsClockHistory } from 'react-icons/bs';
 import { AiFillSetting } from 'react-icons/ai';
 
+import Chat from './Chat';
 import ContainerComponent from "../../../components/ContainerComponent";
 import './index.scss';
 
@@ -29,7 +30,7 @@ const ChatAndHistory = (props) => {
                         
                     <Tab.Content>
                         <Tab.Pane eventKey="chat">
-                        
+                            <Chat/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="history">
                         
