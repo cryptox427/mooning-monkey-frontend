@@ -1,0 +1,104 @@
+$scale-var: 1600 / 2560;
+
+.left-sidebar {
+    .pro-sidebar {
+        background: linear-gradient(350.48deg, rgba(255, 1, 199, 0.11) 4.34%, rgba(13, 12, 30, 0.45) 31.98%);
+        min-width: 320px;
+        .sidebar-content {
+            margin-top: 38px * $scale-var;
+            padding: 0;
+            .pro-menu {
+                margin-top: 0;
+                padding: 0;
+            }
+        }
+        
+        .monkey-sidebar-item {
+            margin-left: 27px;
+            margin-top: 0;
+            padding: 0;
+            margin-bottom: 7px * $scale-var;
+            background-color: rgba(0, 0, 0, 0);
+            .sc-Azgjq {
+                padding: 0;
+                .item-content {   
+                    position: relative;
+                    display: flex;
+                    .icon {
+                        font-size: 20px;
+                        width: 43px;
+                        height: 43px;
+                        margin-right: 10px;
+                        padding: 11px;
+                    }
+                    .detail-str {
+                        font-family: Nurom;
+                        font-size: 20px;
+                        font-weight: bold;
+                        position: absolute;
+                        left: 66px;
+                        transform: translateY(-50%);
+                        top: 50%;
+                    }   
+                }
+            }
+            
+            
+        }
+        .normal {
+            .icon {
+                background-color: rgba(0, 0, 0, 0);
+                color: #515189;
+            }
+            .detail-str {
+                color: white;
+            }
+        }
+        .selected {
+            .icon {
+                background-color: #201C4A;
+                color: #F001F4;
+            }
+            .detail-str {
+                color: #F001F4;
+            }
+        }
+    }
+    .toggled {
+        min-width: 155px * $scale-var;
+    }
+    .display-button {
+        position: fixed !important;
+        top: 10px;
+        left: 80px;
+        border: none;
+        .icon-suffix {
+            margin: 0 !important;
+            border: none;
+        }
+        .head-div {
+            .right-icon {
+                display: none;    
+            }
+            .left-icon {
+                display: block;
+            }
+        }
+        .toggled {
+            .right-icon {
+                display: block !important;    
+            }
+            .left-icon {
+                display: none !important;
+            }
+        }
+    }
+    .sidebar-btn-wrapper {
+        .sidebar-foot-btn {
+            width: 30px;
+            height: 20px;
+            margin: 5px;
+            color: #7050CB;
+        }
+    }
+}

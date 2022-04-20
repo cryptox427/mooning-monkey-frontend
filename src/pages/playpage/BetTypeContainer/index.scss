@@ -1,0 +1,184 @@
+.bet-type {
+	align-items: center;
+	.title {
+		color: #5C52C6;
+		font-family: Nurom;
+		font-weight: bold;
+		font-size: 20px;
+		margin-bottom: 10px;
+	}
+	.manual-auto-toggle {
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		border: none;
+		.select-button {
+			width: 50% !important;
+			text-align: center;
+		}
+	}
+
+	.nav-tabs {
+		.nav-item {
+			width: 50%;
+			height: 47px;
+			border: none;
+			.nav-link {
+				height: 100%;
+				width: 100%;
+				background-color: #322C76 !important;
+				border: none;
+				border-radius: 0;
+				font-family: Nurom;
+				font-weight: 23px;
+				color: white !important;
+			}
+			.active {
+				background-color: #F001F4 !important;
+			}
+		}
+		
+	}
+	.tab-content {
+		width: 100%;
+		.tab-pane {
+			margin-top: 30px;
+			width: 100%;
+		}
+	}
+	.multi {
+		display: flex;
+	}
+	.bet-detail {
+		width: 100%;
+		position: relative;
+		.title {
+			color: white;
+			font-family: Poppins-Regular;
+			font-size: 12px ;
+			height: 18px;
+			text-align: left;
+			font-weight: normal;
+			position: absolute;
+			left: 20px;
+			top: 5px;
+		}
+		.main-description {
+			color: white;
+			font-family: Nurom;
+			font-weight: bold;
+			font-size: 21px;
+			position: absolute;
+			left: 20px;
+			top: 30px;
+		}
+		.sub-detail-content {
+			position: absolute;
+			right: 20px;
+			transform: translateY(-50%);
+			top: 50%;
+			display: flex;
+			justify-content: right;
+			.detail {
+				margin-left: 5px;
+				font-family: Poppins-Regular;
+				font-size: 17px;
+				color: white;
+			}
+		}
+	}
+	.bet-amount {
+		margin-top: 20px;
+		background-color: #3C3C97;
+		width: 100%;
+		height: 70px;
+	}
+	.bet-info-detail {
+		margin-top: 10px;
+		background-color: #3C3C97;
+		width: 100%;
+		color: white;
+		height: 70px;
+		position: relative;
+	}
+	.total-bet {
+		margin-top: 10px;
+		background-color: #3C3C97;
+		width: 100%;
+		color: white;
+		height: 70px;
+	}
+	.auto-cashout {
+		margin-top: 10px;
+		background-color: #3C3C97;
+		width: 100%;
+		color: white;
+		height: 70px;
+	}
+	.play-button {
+		margin-top: 20px;
+		background-color: #F843EA;
+		width: 100%;
+		color: white;
+		height: 52px;
+		text-align: center;
+		position: relative;
+		white-space: nowrap;
+		span {
+			text-align: center;
+			font-family: Nurom;
+			font-size: 22px;
+			font-weight: bold;
+			transform: translate(-50%, -50%);
+			top: 50%;
+			left: 50%;
+			position: absolute;
+		}
+	}
+	.my-recent-wins {
+		margin-top: 20px;
+		.title {
+			color: white;
+			font-family: Nurom;
+			font-size: 20px;
+			font-weight: bold;
+			text-align: center;
+			background-color: #3C3C97;
+			height: 42px;
+			position: relative;
+			span {
+				position: absolute;
+				transform: translate(-50%, -50%);
+				top: 50%;
+				left: 50%;
+				white-space: nowrap;
+			}
+		}
+		.table {
+			width: 100%;
+			th {
+				font-family: Poppins-SemiBold;
+				font-weight: semi-bold;
+				font-size: 17px;
+				height: 50px;
+				padding-left: 15px;
+			}
+			tr {
+				border: none;
+				color: white;
+				height: 42px;
+				
+			}
+			td {
+				padding-left: 15px;
+			}
+			tr:nth-child(even) {
+				background-color: #3C3C97;
+			}
+			td:nth-child(even) {
+				color: #78FF15;
+			}
+		}
+	}
+}
+

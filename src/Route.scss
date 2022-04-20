@@ -1,0 +1,8 @@
+$scale-var: 1600 / 2560;
+
+.content {
+	position: fixed;
+	top: 155px * $scale-var;
+	bottom: 0;
+    width: 100%;
+}

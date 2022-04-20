@@ -1,0 +1,61 @@
+.chat-and-history {
+    width: 100%;
+    margin: 0 !important;
+    padding: 0 !important;
+    .nav {
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 71px;
+        .nav-item {
+            height: 214px;
+            a {
+                background-color: #363663;
+                color: white;
+                height: 100%;
+                cursor: pointer;
+                border-radius: 0;
+                text-align: center;
+                position: relative;
+                font-family: Nurom;
+                font-size: 27px;
+                font-weight: bold;
+                div {
+                    writing-mode: tb-rl;
+                    transform: translate(-50%, -50%) rotate(180deg);
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    display: flex;
+                    svg {
+                        vertical-align: middle;
+                        transform: rotate(90deg);
+                        margin: 0;
+                        font-size: 34px;
+                        padding-right: 10px;
+                    }
+                }
+            }
+            .active {
+                background-color: #E245E5;
+                color: white;
+            }
+            
+        }
+        .setting {
+            background-color: #131324;
+            color: #5C52C5;
+            width: 71px;
+            height: 71px;
+            position: relative;
+            svg {
+                width: 60%;
+                height: 60%;
+                position: absolute;
+                transform: translate(-50%, -50%);
+                left: 50%;
+                top: 50%;
+            }
+        }
+    }
+    
+}
