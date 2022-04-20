@@ -17,33 +17,64 @@ $scale-var: 1600 / 2560;
     }
     .normal-group {
         position: absolute;
-        left: 200px;
-        width: 500px;
+        left: 258px * $scale-var;
+        width: 848px * $scale-var;
+        height: 65px * $scale-var !important;
         transform: translateY(-50%);
         top: 50%;
+        
+        font-family: Nurom;
+        .buy-monkey {
+            width: 204px * $scale-var;
+            font-size: 19px * $scale-var;
+        }
+        .join-bankroll {
+            width: 204px * $scale-var;
+            font-size: 19px * $scale-var;
+        }
+        .leaderboard {
+            width: 170px * $scale-var;
+        }
+        .stats {
+            width: 105px * $scale-var;
+        }
+        .help {
+            width: 105px * $scale-var;
+        }
     }
     .money-group {
         position: absolute;
-        right: 200px;
-        width: 500px;
+        right: 51px * $scale-var;
+        width: 1326px * $scale-var;
+        height: 65px * $scale-var !important;
         transform: translateY(-50%);
         top: 50%;
         .buy-now {
+            width: 272px * $scale-var;
             display: flex;
+            align-items: center;
             white-space: nowrap;
             box-sizing: border-box;
+            font-size: 24px * $scale-var;
             img {
                 width: 30px;
                 height: 30px;
             }
         }
         .money-type {
+            width: 263px * $scale-var;
             border: 2px solid #2A2662 !important;
             box-sizing: border-box;
             background-color: rgba(0, 0, 0, 0);
             white-space: nowrap;
             font-family: Nurom;
             font-weight: bold;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            .type {
+                font-size: 24px * $scale-var;
+            }
             img {
                 width: 30px;
                 height: 30px;
@@ -52,21 +83,34 @@ $scale-var: 1600 / 2560;
                 color: #F001F4;
                 font-family: Nurom;
                 font-weight: bold;
+                font-size: 24px * $scale-var;
                 .drop-icon {
-                    stroke-width: 0.5px;
+                    stroke-width: 1px;
                     stroke: black;
                     color: #515189;
-                    font-size: 15px;
+                    font-size: 21px * $scale-var;
                     width: 20px;
                     height: 20px;
                 }
                 
             }
         }
+        .deposit {
+            width: 204px * $scale-var;
+            font-size: 24px * $scale-var;
+        }
+        .withdraw {
+            width: 204px * $scale-var;
+            span {
+                font-size: 24px * $scale-var !important;
+            }
+        }
         .select-net {
+            width: 94px * $scale-var;
             display: flex;
             background-color: rgba(0, 0, 0, 0);
             .drop-icon {
+                width: 27px * $scale-var;
                 stroke-width: 0.5px;
                 stroke: black;
                 color: #515189;
@@ -75,33 +119,34 @@ $scale-var: 1600 / 2560;
                 font-size: 20px;
             }
             .net-icon {
-                width: 30px;
-                height: 30px;
+                width: 51px * $scale-var;
             }
+        }
+        .wallet-address {
+            width: 204px * $scale-var;
+            font-size: 19px * $scale-var;
         }
     }
     .buttons {
-        height: 50px;
+        //height: 50px;
         display: flex;
+        justify-content: space-around;
         button {
             color: white;
             font-family: Nurom;
+            position: relative;
         }
         .purple {
-            margin-left: 20px;
             text-align: center;
             color: white;
             font-family: Nurom;
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
         }
         .image-back {
-            margin-left: 20px;
             background-image: url("../../assets/images/playpage/background.png");
             background-color: rgba(42, 46, 104, 0.93);
             .mask {
-                text-align: center;
-                color: white;
-                font-family: Nurom;
+                
                 width: 100%;
                 height: 100%;
                 background-color: rgba(42, 46, 104, 0.93);
@@ -110,6 +155,16 @@ $scale-var: 1600 / 2560;
                 right: 0;
                 bottom: 0;
                 top: 0;
+                span {
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
+                    font-size: 17px * $scale-var;
+                    text-align: center;
+                    color: white;
+                    font-family: Nurom;
+                }
             }
         }
     }

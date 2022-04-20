@@ -15,7 +15,7 @@ import { GiReceiveMoney, GiTrophyCup, GiSailboat } from "react-icons/gi";
 import { FiUsers } from "react-icons/fi";
 import { GrDocumentText } from "react-icons/gr";
 import { CgFileDocument } from "react-icons/cg";
-import { FaDove } from "react-icons/fa";
+import { FaDove, FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { RiHome2Fill } from "react-icons/ri";
 
 
@@ -38,8 +38,8 @@ const Sidebar = () => {
           className="display-button"
           prefix={
             <div className="icon">
-              <AiOutlineDoubleRight className="right-icon"/>
-              <AiOutlineDoubleLeft className="left-icon"/>
+              <FaAngleDoubleRight className="right-icon oc-icon"/>
+              <FaAngleDoubleLeft className="left-icon oc-icon"/>
             </div>
           }
         >

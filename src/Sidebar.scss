@@ -68,27 +68,42 @@ $scale-var: 1600 / 2560;
         min-width: 155px * $scale-var;
     }
     .display-button {
-        position: fixed !important;
-        top: 10px;
-        left: 80px;
+        width: 29px * $scale-var;
+        height: 28px * $scale-var;
+        position: fixed;
+        left: 153px * $scale-var;
+        top: 64px * $scale-var;
+
         border: none;
         .icon-suffix {
             margin: 0 !important;
             border: none;
         }
+        
         .head-div {
+            padding: 0;
+            font-size: larger;
+            .oc-icon {
+                color: #515189;
+                stroke: #170F26;
+                stroke-width: 1px;
+            }
             .right-icon {
+                
                 display: none;    
             }
             .left-icon {
+                
                 display: block;
             }
         }
         .toggled {
             .right-icon {
+                
                 display: block !important;    
             }
             .left-icon {
+                
                 display: none !important;
             }
         }
