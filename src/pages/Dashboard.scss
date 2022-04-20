@@ -7,11 +7,7 @@ $scale-var: 1600 / 2560;
 }
 .dashboard .cards-container {
 	margin:25px auto;
-	display:grid;
 	width:100%;
-	grid-template-columns:repeat(3, minmax(300px, 1fr));
-	grid-gap:25px;
-	grid-template-rows:1fr;
 }
 
 .dashboard .card-bg {
