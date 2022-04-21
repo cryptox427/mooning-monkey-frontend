@@ -1,11 +1,17 @@
+$scale-var: 1600 / 2560;
+
 .players {
 	align-items: center;
+	padding: 0 !important;
+	padding-top: 18px * $scale-var !important;
+	padding-top: 18px * $scale-var !important;
 	.title {
 		color: #5C52C6;
 		font-family: Nurom;
 		font-weight: bold;
-		font-size: 20px;
-		margin-bottom: 10px;
+		font-size: 20px * $scale-var;
+		margin-bottom: 22px * $scale-var;
+		text-align: center;
 	}
 	
 	.player-table {
@@ -28,28 +34,53 @@
 			}
 		}
 		.table {
+			table-layout: fixed;
 			width: 100%;
+			margin-bottom: 0 !important;
 			th {
+				text-align: center;
+				height: fit-content;
 				font-family: Poppins-SemiBold;
 				font-weight: semi-bold;
-				font-size: 17px;
-				height: 50px;
+				font-size: 17px * $scale-var;
 				padding-left: 15px;
+				padding: 0;
+				border: none;
+				color: #5C52C6;
 			}
 			tr {
 				border: none;
 				color: white;
-				height: 42px;
 				
 			}
 			td {
-				padding-left: 15px;
+				height: fit-content;
+				line-height: 1;
+				border: none;
+				font-family: Poppins-Medium;
+				font-size: 17px * $scale-var;
+				text-align: center;
+				
+			}
+			.active {
+				color: #6DE713;
+			}
+			.hidden {
+				color:#E51C1C;
 			}
 			tr:nth-child(even) {
 				background-color: #3C3C97;
 			}
-			td:nth-child(even) {
-				color: #78FF15;
+			.player {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+			
+            .payout {
+				display: flex;
+				justify-content: center;
+				align-items: center;
 			}
 		}
 	}

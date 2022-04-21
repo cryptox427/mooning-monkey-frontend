@@ -83,7 +83,7 @@ export const Dashboard = () => {
   return (
     <div className="dashboard">
       <div style={{ height: "100%" }}>
-        <div style={{ height: "calc(100% - 64px)", overflowY: "scroll" }}>
+        <div>
           <div className="d-flex card-section">
             <div className="cards-container">
               <Row style={{width: '100%'}}>

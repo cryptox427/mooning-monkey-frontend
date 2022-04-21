@@ -1,5 +1,6 @@
 import './index.scss';
 import ContainerComponent from "../../../components/ContainerComponent";
+import PlayerCell from "./PlayerCell.js";
 
 const Players = (props) => {
     return (
@@ -8,26 +9,12 @@ const Players = (props) => {
             <div className="title">players</div>
             <div className="player-table">
                 <table className="table">
-                    <tr>
-                        <th>Wager</th>
-                        <th>Mult</th>
-                        <th>Payout</th>
-                    </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="hidden" pay_type="bnb1"/>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="hidden" pay_type="bnb1"/>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="hidden" pay_type="bnb1"/>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="active" pay_type="bnb2"/>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="active" pay_type="bnb2"/>
+                    <PlayerCell p_address="Address" p_name="Name" wager="$2.50" mulitplayer="1.20x" payout="+$2.50" p_state="active" pay_type="bnb2"/>
                 </table>
             </div>
         </div>
