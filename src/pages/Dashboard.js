@@ -92,11 +92,8 @@ export const Dashboard = () => {
                     <Row>
                       <Col sm={12} md={8}>
                         <div
-                          className="d-flex flex-1 flex-column mb-2 md:mb-0"
+                          className="mb-2 md:mb-0 bg"
                         >
-                          <div className="game-content">
-                            <img src={gameImg}></img>
-                          </div>
                         </div>
                       </Col>
                       <Col sm={12} md={4}>
