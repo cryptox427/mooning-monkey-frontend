@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
+import TransactionHistory from "./pages/TransactionHistory";
 import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
 
@@ -21,13 +22,13 @@ const Routes = () => {
                 flex: "1 1 auto",
                 display: "flex",
                 flexFlow: "column",
-                height: "100vh",
                 overflowY: "scroll",
               }}
             >
             
 
               <Route path="/play" render={() => <Dashboard/> } />
+              <Route path="/transaction-history" render={() => <TransactionHistory /> } />
               <Route path="/tables" component={Tables} />
               <Route path="/hero404" component={Hero404} />
               <Redirect to="/play"/>
