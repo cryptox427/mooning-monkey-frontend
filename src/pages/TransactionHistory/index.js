@@ -1,5 +1,5 @@
+import LogoFooterComponent from '../../components/LogoFooterComponent';
 import TableComponent from '../../components/TableComponent';
-import LogoWithGlowImg from '../../../src/assets/images/logo-with-glow.png';
 import './index.scss';
 
 const TransactionHistory = (props) => {
@@ -38,15 +38,7 @@ const TransactionHistory = (props) => {
                     <TableComponent dataList={dataList} showPagination showPerPage />
                 </div>
             </div>
-            <div className='transaction-history-bottom'>
-                <div className='transaction-history-bottom-logo'>
-                    <img src={LogoWithGlowImg} />
-                </div>
-                <div className='transaction-history-bottom-info'>
-                    <div className='title'>DISCLAIMER</div>
-                    <div className=''>MooningMonkey.com offers games with an element of chance. By using this site you ensure that you are at least 18 years of age. You accept that we are not responsible for any violation of your local laws pertaining to online gaming and games of chance. Play responsibly and have a great time on MooningMonkey.com. May the luck be with you.</div>
-                </div>
-            </div>
+            <LogoFooterComponent />
         </div>
     );
 }
