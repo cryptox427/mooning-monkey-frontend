@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { Dashboard } from "./pages/Dashboard";
 import TransactionHistory from "./pages/TransactionHistory";
+import TakStaking from "./pages/TakStaking";
 import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
 
@@ -29,6 +30,7 @@ const Routes = () => {
 
               <Route path="/play" render={() => <Dashboard/> } />
               <Route path="/transaction-history" render={() => <TransactionHistory /> } />
+              <Route path="/tak-stak" render={() => <TakStaking /> } />
               <Route path="/tables" component={Tables} />
               <Route path="/hero404" component={Hero404} />
               <Redirect to="/play"/>
