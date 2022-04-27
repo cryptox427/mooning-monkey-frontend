@@ -7,6 +7,14 @@
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%);
     }
 
+    .text-sm {
+        font-size: 12px;
+    }
+
+    .container-title {
+        font-size: 20px;
+    }
+    
     .pink-font {
         color: #F001F4;
     }
@@ -49,6 +57,31 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+            }
+        }
+    }
+
+    .assets-container {
+        &-title {
+            margin-bottom: 16px;
+        }
+
+        &-body {
+            display: flex;
+            flex-direction: column;
+            
+            &-part {
+                display: flex;
+                margin-bottom: 16px;
+                
+                &-item {
+                    display: flex;
+                    width: 50%;
+                    
+                    .right {
+                        flex: 1;
+                    }
+                }
             }
         }
     }
@@ -102,6 +135,30 @@
         &-bottom {
             display: flex;
             justify-content: space-between;
+        }
+    }
+
+    .chart-container {
+        &-top {
+            display: flex;
+            margin-bottom: 16px;
+
+            .stats {
+                margin-left: 32px;
+            }
+        }
+
+        &-select {
+            .dropdown button {
+                background-color: transparent;
+                border: 1px solid #515189;
+                color: white;
+            }
+    
+            .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+                background-color: transparent;
+                border: 1px solid #515189;
+            }
         }
     }
 }

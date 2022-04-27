@@ -1,5 +1,10 @@
 import { Row, Col } from "react-bootstrap";
 import LogoFooterComponent from "../../components/LogoFooterComponent";
+import AmountImg from '../../assets/images/amount.svg';
+import ClockImg from '../../assets/images/clock.svg';
+import StarImg from '../../assets/images/star.svg';
+import BNBImg from '../../assets/images/bnb.png';
+import MonkeyImg from '../../assets/images/monkey.png';
 import './index.scss';
 
 const TakStaking = (props) => {
@@ -11,16 +16,24 @@ const TakStaking = (props) => {
                     <Col sm={12} lg={7}>
                         <div className="staking-container-left">
                             <div className="staking-container-left-top">
-                                <div className="title">Available Staked TAK Balance 10’000</div>
+                                <div className="title">
+                                    Available Staked TAK Balance 10’000
+                                </div>
                                 <div className="stake-component">
-                                    <div className="title">Stake Amount</div>
+                                    <div className="title">
+                                        <img src={AmountImg} alt="amount" />
+                                        Stake Amount
+                                    </div>
                                     <div className="info">
                                         <div className="">Amount</div>
                                         <div className="">10'000 <span>max</span></div>
                                     </div>
                                 </div>
                                 <div className="lock-component">
-                                    <div className="title">Lock in period (Days)</div>
+                                    <div className="title">
+                                        <img src={ClockImg} alt="clock" />
+                                        Lock in period (Days)
+                                    </div>
                                     <div className="info">
                                         <div className="item">0</div>
                                         <div className="item">7</div>
@@ -31,7 +44,10 @@ const TakStaking = (props) => {
                                     </div>
                                 </div>
                                 <div className="stake-component">
-                                    <div className="">Rewards</div>
+                                    <div className="title">
+                                        <img src={StarImg} alt="star" />
+                                        Rewards
+                                    </div>
                                     <div className="info">
                                         <div></div>
                                         <div>2'498 <span>$TAK</span></div>
@@ -39,7 +55,10 @@ const TakStaking = (props) => {
                                 </div>
                                 <div className="explain-component">
                                     <div className="left">Only one TAK Staking per wallet is allowed. And, the minimum of the "TAB" TAK staked will be locked in for the full duration of the stake period.</div>
-                                    <div className="right">On BSCscan.com View Contract</div>
+                                    <div className="right">
+                                        On BSCscan.com<br />View Contract
+                                        <img src={BNBImg} alt="bnb_image" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="staking-container-left-bottom">
@@ -110,6 +129,7 @@ const TakStaking = (props) => {
                                 <div className="button">
                                      Tutorial Video
                                 </div>
+                                <img src={MonkeyImg} alt="monkey_image" />
                             </div>
                         </div>
                     </Col>

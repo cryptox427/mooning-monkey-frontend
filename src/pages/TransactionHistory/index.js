@@ -6,7 +6,7 @@ const TransactionHistory = (props) => {
     const dataList = [];
     const defaultData = {
         Event: "Reward",
-        Status: "Success",
+        Status: <span className='green-font'>Success</span>,
         Amount: 0.05,
         Fee: 0,
         "Txn Hash": "0x553a...b4js73",
