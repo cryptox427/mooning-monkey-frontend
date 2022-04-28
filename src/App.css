@@ -59,3 +59,11 @@ body {
   height: 100%;
   margin: 0;
 }
+
+
+.gradient-font {
+  width: fit-content;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

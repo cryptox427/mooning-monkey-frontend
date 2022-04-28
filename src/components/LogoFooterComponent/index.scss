@@ -1,0 +1,21 @@
+.footer {
+    color: white;
+    border: 4px solid #322C76;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+
+    &-logo {
+        width: 50%;
+        img {
+            width: 100%;
+        }
+    }
+    
+    &-info {
+        margin-top: -24px;
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+    }
+}
