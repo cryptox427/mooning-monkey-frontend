@@ -50,60 +50,60 @@ $scale-var: 1600 / 2560;
 	color:#333;
 }
 
-@media (max-width:1320px) {
-	.dashboard .cards-container {
-		grid-gap: 15px;
-		grid-template-columns: repeat(2, minmax(270px, 1fr));
-	}
-	.dashboard .wide {
-		grid-column:span 1;
-	}
-	.dashboard .card-section {
-		padding:0 0.5rem;
-	}
-	.dashboard .table-rem {
-		display:none !important;
-	}
-	.dashboard .footer {
-		width:90%;
-	}
-}
+// @media (max-width:1320px) {
+// 	.dashboard .cards-container {
+// 		grid-gap: 15px;
+// 		grid-template-columns: repeat(2, minmax(270px, 1fr));
+// 	}
+// 	.dashboard .wide {
+// 		grid-column:span 1;
+// 	}
+// 	.dashboard .card-section {
+// 		padding:0 0.5rem;
+// 	}
+// 	.dashboard .table-rem {
+// 		display:none !important;
+// 	}
+// 	.dashboard .footer {
+// 		width:90%;
+// 	}
+// }
 
-@media (max-width:920px) {
-	.dashboard .cards-container {
-		max-width:500px;
-		width:90%;
-		font-size: 0.85rem;
-		grid-template-columns: repeat(1, minmax(220px, 100%));
-	}
-	.dashboard .msg-rem {
-		display:none !important;
-	}
-	.dashboard .p-4 {
-		padding:1rem !important;
-	}
+// @media (max-width:920px) {
+// 	.dashboard .cards-container {
+// 		max-width:500px;
+// 		width:90%;
+// 		font-size: 0.85rem;
+// 		grid-template-columns: repeat(1, minmax(220px, 100%));
+// 	}
+// 	.dashboard .msg-rem {
+// 		display:none !important;
+// 	}
+// 	.dashboard .p-4 {
+// 		padding:1rem !important;
+// 	}
 
-	.dashboard .pane-image {
-		min-width:2rem;
-		height:2rem;
-		margin-right:0.5rem;
-	}
-	.dashboard .footer-rem, .dashboard .footer-link {
-		display:none !important;
-	}
-	.dashboard .footer .d-flex{
-		margin:0 auto;
-		text-align: center;
-	}
-}
-@media (max-width:375px) {
-	.dashboard .h5 {
-		font-size:1rem;
-	}
-	.dashboard .cards-container {
-		margin:10px 0;
-	}
-}
+// 	.dashboard .pane-image {
+// 		min-width:2rem;
+// 		height:2rem;
+// 		margin-right:0.5rem;
+// 	}
+// 	.dashboard .footer-rem, .dashboard .footer-link {
+// 		display:none !important;
+// 	}
+// 	.dashboard .footer .d-flex{
+// 		margin:0 auto;
+// 		text-align: center;
+// 	}
+// }
+// @media (max-width:375px) {
+// 	.dashboard .h5 {
+// 		font-size:1rem;
+// 	}
+// 	.dashboard .cards-container {
+// 		margin:10px 0;
+// 	}
+// }
 .dashboard {
 	.game-content {
 		img {

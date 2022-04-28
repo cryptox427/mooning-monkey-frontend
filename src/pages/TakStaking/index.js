@@ -50,7 +50,7 @@ const TakStaking = (props) => {
             <div className="gradient-font staking-container-title">STAKING</div>
             <div className="main">
                 <Row>
-                    <Col sm={12} lg={7}>
+                    <Col sm={12} lg={12} xl={7}>
                         <div className="staking-container-left">
                             <div className="staking-container-left-top">
                                 <div className="title">
@@ -108,7 +108,7 @@ const TakStaking = (props) => {
                             </div>
                         </div>
                     </Col>
-                    <Col sm={12} lg={5}>
+                    <Col sm={12} lg={12} xl={5}>
                         <div className="staking-container-right">
                             <div className="staking-container-right-top">
                                 <Row>

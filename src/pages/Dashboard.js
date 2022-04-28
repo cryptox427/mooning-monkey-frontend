@@ -15,6 +15,7 @@ import BetTypeContainer from './playpage/BetTypeContainer';
 import ChatAndHistory from './playpage/ChatAndHistory';
 import Players from './playpage/Players';
 import { Col, Row } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Dashboard = () => {
   const data = {
@@ -87,7 +88,7 @@ export const Dashboard = () => {
           <div className="d-flex card-section">
             <div className="cards-container">
               <Row style={{width: '100%'}}>
-                <Col sm={12} md={9}>
+                <Col xxl={9} xl={12}>
                   <div className="d-flex mb-2 flex-column md:flex-row">
                     <Row>
                       <Col sm={12} md={8}>
@@ -111,13 +112,13 @@ export const Dashboard = () => {
                     </div>
                   </div>
                 </Col>
-                <Col sm={12} lg={3}>
+                <Col xxl={3} xl={12}>
                   <Players/>  
                 </Col>
               </Row>
             </div>
           </div>
-          <footer className="footer">
+          {/* <footer className="footer">
             <div className="d-flex align-items-center">
               <CDBLink to="/" className="text-dark footer-link">
                 <img alt="logo" src="/img/pages/logo.png" width="25px" />
@@ -162,7 +163,7 @@ export const Dashboard = () => {
                 <i className="fab fa-instagram"></i>
               </CDBBtn>
             </div>
-          </footer>
+          </footer> */}
         </div>
       </div>
     </div>
