@@ -1,4 +1,5 @@
 import { Row, Col } from "react-bootstrap";
+import ReactApexChart from "react-apexcharts";
 import LogoFooterComponent from "../../components/LogoFooterComponent";
 import AmountImg from '../../assets/images/amount.svg';
 import ClockImg from '../../assets/images/clock.svg';
@@ -8,6 +9,42 @@ import MonkeyImg from '../../assets/images/monkey.png';
 import './index.scss';
 
 const TakStaking = (props) => {
+    const chartOptions = {
+        chart: {
+            type: 'area',
+            id: "basic-bar",
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            horizontalAlign: 'left'
+        },
+        xaxis: {
+            categories: [17, 18, 19, 20, 21, 22, 23, 24]
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        tooltip: {
+            enabled: false
+        },
+        theme: {
+            mode: 'dark'
+        },
+        colors: ['#F001F4']
+    }
+
+    const chartSeries = [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91]
+        }
+    ]
+
     return (
         <div className="staking-container">
             <div className="gradient-font staking-container-title">STAKING</div>
@@ -50,7 +87,7 @@ const TakStaking = (props) => {
                                     </div>
                                     <div className="info">
                                         <div></div>
-                                        <div>2'498 <span>$TAK</span></div>
+                                        <div><span className="pink-font">2'498</span> <span>$TAK</span></div>
                                     </div>
                                 </div>
                                 <div className="explain-component">
@@ -124,6 +161,7 @@ const TakStaking = (props) => {
                                         <span className="item">ALL</span>
                                     </div>
                                 </div>
+                                <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
                             </div>
                             <div className="staking-container-right-bottom">
                                 <div className="button">

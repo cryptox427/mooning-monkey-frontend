@@ -1,9 +1,47 @@
 import { Dropdown } from 'react-bootstrap';
+import ReactApexChart from "react-apexcharts";
 import LogoFooterComponent from '../../components/LogoFooterComponent';
 import USDImg from '../../assets/images/usd.png';
 import './index.scss'
 
 const MonkeyEarning = (props) => {
+    const chartOptions = {
+        chart: {
+            type: 'area',
+            id: "basic-bar",
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            horizontalAlign: 'left'
+        },
+        xaxis: {
+            type: "datetime",
+            categories: [133333330000000, 133333331000000, 133333332000000, 133333333000000, 133333334000000, 133333335000000, 133333336000000, 133333337000000]
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        tooltip: {
+            enabled: false
+        },
+        theme: {
+            mode: 'dark'
+        },
+        colors: ['#F001F4']
+    }
+
+    const chartSeries = [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91]
+        }
+    ]
+
     return (
         <div className='earning-container'>
             <div className='gradient-font earning-container-title'>MY MONKEY EARNINGS</div>
@@ -199,6 +237,7 @@ const MonkeyEarning = (props) => {
                         </Dropdown.Toggle>
                     </Dropdown>
                 </div>
+                <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={300}/>
             </div>
             <LogoFooterComponent />
         </div>
