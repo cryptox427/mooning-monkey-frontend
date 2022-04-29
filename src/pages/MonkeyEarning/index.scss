@@ -5,6 +5,10 @@
     .gradient-btn {
         padding: 8px 16px;
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%);
+        cursor: pointer;
+        &:hover {
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%);
+        }
     }
 
     .text-sm {
@@ -42,7 +46,9 @@
 
             &-btns {
                 display: flex;
-
+                .gradient-btn {
+                    
+                }
                 .first {
                     margin-right: 16px;
                 }
@@ -104,7 +110,7 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 16px;
-
+            flex-wrap: wrap;
             .item {
                 display: flex;
                 flex-direction: column;

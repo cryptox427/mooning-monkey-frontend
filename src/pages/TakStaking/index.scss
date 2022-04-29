@@ -132,6 +132,10 @@
                 .button {
                     padding: 8px 24px;
                     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+                    cursor: pointer;
+                    &:hover {
+                        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%);
+                    }
                 }
                 
             }

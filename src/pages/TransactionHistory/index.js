@@ -1,3 +1,6 @@
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+
 import LogoFooterComponent from '../../components/LogoFooterComponent';
 import TableComponent from '../../components/TableComponent';
 import BNB1Img from '../../assets/images/playpage/bnb1.png';
@@ -28,23 +31,22 @@ const TransactionHistory = (props) => {
     return (
         <div className="transaction-history">
             <div className='transaction-history-container'>
-                <div className="d-flex text-white mb-4">
-                    <div className="">
-                        <div className="">Deposit</div>
-                        {/* <div className="underline" /> */}
-                    </div>
-                    <div className="mx-4">
-                        <div className="">Withdraw</div>
-                        {/* <div className="underline" /> */}
-                    </div>
-                    <div className="">
-                        <div className="">Rewards</div>
-                        <div className="underline" />
-                    </div>
-                </div>
-                <div className='transaction-history-container-table'>
+                <Tabs defaultActiveKey="deposit"
+                      transition={false}
+                      id="noanim-tab-example"
+                      className="mb-3"
+                    >
+                    <Tab eventKey="deposit" title="Deposit">
                     <TableComponent dataList={dataList} showPagination showPerPage />
-                </div>
+                    </Tab>
+                    <Tab eventKey="withdraw" title="Withdraw">
+                    <TableComponent dataList={dataList} showPagination showPerPage />
+                    </Tab>
+                    <Tab eventKey="rewards" title="Rewards">
+                    <TableComponent dataList={dataList} showPagination showPerPage />
+                    </Tab>
+                </Tabs>
+                
             </div>
             <LogoFooterComponent />
         </div>
