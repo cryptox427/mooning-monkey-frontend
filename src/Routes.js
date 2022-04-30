@@ -4,6 +4,7 @@ import { Dashboard } from "./pages/Dashboard";
 import TransactionHistory from "./pages/TransactionHistory";
 import TakStaking from "./pages/TakStaking";
 import MonkeyEarning from "./pages/MonkeyEarning";
+import ComicBookearnings from "./pages/ComicBookearnings";
 import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
 
@@ -33,6 +34,7 @@ const Routes = () => {
               <Route path="/transaction-history" render={() => <TransactionHistory /> } />
               <Route path="/tak-stak" render={() => <TakStaking /> } />
               <Route path="/monkey-earning" render={() => <MonkeyEarning /> } />
+              <Route path="/bookearning" render={() => <ComicBookearnings /> } />
               <Route path="/tables" component={Tables} />
               <Route path="/hero404" component={Hero404} />
               <Redirect to="/play"/>
