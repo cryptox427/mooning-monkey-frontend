@@ -67,3 +67,19 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.white-btn {
+  font-weight: bold;
+  cursor: pointer;
+  background: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.white-btn:hover {
+  background: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

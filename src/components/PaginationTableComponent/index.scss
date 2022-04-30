@@ -21,7 +21,6 @@
 
     .table td {
         border-top: none;
-        white-space: nowrap;
     }
 
     &-bottom {
@@ -55,11 +54,6 @@
                     background-color: #27235A;
                     color: white;
                     margin: 0 8px;
-                    border: none;
-                }
-                &.disabled span {
-                    background-color: #27235A;
-                    color: white;
                     border: none;
                 }
             }

@@ -3,6 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 
 import LogoFooterComponent from '../../components/LogoFooterComponent';
 import TableComponent from '../../components/TableComponent';
+import PaginationTableComponent from '../../components/PaginationTableComponent';
 import BNB1Img from '../../assets/images/playpage/bnb1.png';
 import BNB2Img from '../../assets/images/playpage/bnb2.png';
 import './index.scss';
@@ -43,7 +44,7 @@ const TransactionHistory = (props) => {
                     <TableComponent dataList={dataList} showPagination showPerPage />
                     </Tab>
                     <Tab eventKey="rewards" title="Rewards">
-                    <TableComponent dataList={dataList} showPagination showPerPage />
+                    <PaginationTableComponent />
                     </Tab>
                 </Tabs>
                 

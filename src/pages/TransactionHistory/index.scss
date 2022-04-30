@@ -21,4 +21,12 @@
             }
         }
     }
+    .custom-table {
+        &-bottom {
+            flex-wrap: wrap;
+            .pagination {
+                margin-top: 1rem;
+            }
+        }
+    }
 }

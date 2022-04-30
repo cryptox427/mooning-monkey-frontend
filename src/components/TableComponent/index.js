@@ -1,9 +1,14 @@
-import { Table, Dropdown, Pagination } from 'react-bootstrap';
+import { Table, Dropdown } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import Pagination from 'react-responsive-pagination';
 import './index.scss';
 
 const TableComponent = (props) => {
     const { dataList, showPagination, showPerPage } = props;
     const headerList = Object.keys(dataList[0]);
+    const [currentPage, setCurrentPage] = useState(4);
+
+    const totalPages = 17;
 
     return (
         <div className='custom-table'>
@@ -54,25 +59,12 @@ const TableComponent = (props) => {
                             </>
                     }
                 </div>
-                <div className=''>
+                <div className='pagination-content'>
                     {
                         showPagination && 
-                            <Pagination>
-                                <Pagination.First />
-                                <Pagination.Prev />
-                                <Pagination.Item>{1}</Pagination.Item>
-                                <Pagination.Ellipsis />
-
-                                <Pagination.Item>{10}</Pagination.Item>
-                                <Pagination.Item>{11}</Pagination.Item>
-                                <Pagination.Item active>{12}</Pagination.Item>
-                                <Pagination.Item>{13}</Pagination.Item>
-                                <Pagination.Item>{14}</Pagination.Item>
-
-                                <Pagination.Ellipsis />
-                                <Pagination.Item>{20}</Pagination.Item>
-                                <Pagination.Next />
-                                <Pagination.Last />
+                            <Pagination current={currentPage}
+                            total={totalPages}
+                            onPageChange={setCurrentPage}>  
                             </Pagination>
                     }
                 </div>

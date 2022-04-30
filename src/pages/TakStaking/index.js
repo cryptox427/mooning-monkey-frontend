@@ -23,6 +23,7 @@ const TakStaking = (props) => {
         legend: {
             horizontalAlign: 'left'
         },
+        labels: [30, 40, 45, 50, 49, 60, 70, 91],
         xaxis: {
             categories: [17, 18, 19, 20, 21, 22, 23, 24]
         },
@@ -30,7 +31,7 @@ const TakStaking = (props) => {
             curve: 'straight'
         },
         tooltip: {
-            enabled: false
+            enabled: true
         },
         theme: {
             mode: 'dark'
@@ -104,7 +105,7 @@ const TakStaking = (props) => {
                                     <div className="button">UNSTAKE</div>
                                     <div className="button">CLAIM</div>
                                 </div>
-                                <div className="view-history">View History</div>
+                                <div className="view-history white-btn">View History</div>
                             </div>
                         </div>
                     </Col>

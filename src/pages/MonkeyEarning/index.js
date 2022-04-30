@@ -1,6 +1,11 @@
 import { Dropdown } from 'react-bootstrap';
 import ReactApexChart from "react-apexcharts";
+import React, { useEffect, useState } from "react";
+import Tabs from 'react-bootstrap/Tabs';
+import Tab from 'react-bootstrap/Tab';
+
 import LogoFooterComponent from '../../components/LogoFooterComponent';
+import TimerComponent from '../../components/TimerComponent';
 import USDImg from '../../assets/images/usd.png';
 import './index.scss'
 
@@ -27,7 +32,7 @@ const MonkeyEarning = (props) => {
             curve: 'straight'
         },
         tooltip: {
-            enabled: false
+            enabled: true
         },
         theme: {
             mode: 'dark'
@@ -125,7 +130,9 @@ const MonkeyEarning = (props) => {
             <div className='sub-container airdrop-container'>
                 <div className='airdrop-container-top'>
                     <div className='gradient-font container-title'>MY DAILY CLAIMABLE TAK AIRDROP</div>
-                    <div className=''>NEXT CLAIMABLE TAK: 19H 23M 39S</div>
+                    
+                    <div className=''>NEXT CLAIMABLE TAK: <TimerComponent/></div>
+                    
                 </div>
                 <div className='airdrop-container-middle'>
                     <div className='airdrop-container-middle-left'>
@@ -173,13 +180,13 @@ const MonkeyEarning = (props) => {
                 </div>
                 <div className='airdrop-container-bottom'>
                     <div className='pink-font'>In order to start earning profit from the game, you’ll need to stake your NFTs as well.</div>
-                    <div className=''>View History</div>
+                    <div className='white-btn'>View History</div>
                 </div>
             </div>
             <div className='sub-container airdrop-container'>
                 <div className='airdrop-container-top'>
                     <div className='gradient-font container-title'>WEEKLY GAME PROFIT SHARING</div>
-                    <div className=''>NEXT CLAIMABLE TAK: 19H 23M 39S</div>
+                    <div className=''>NEXT CLAIMABLE TAK: <TimerComponent/></div>
                 </div>
                 <div className='airdrop-container-middle'>
                     <div className='airdrop-container-middle-left'>
@@ -221,23 +228,47 @@ const MonkeyEarning = (props) => {
                 </div>
                 <div className='airdrop-container-bottom'>
                     <div className='pink-font'>In order to start earning profit from the game, you’ll need to stake your NFTs as well.</div>
-                    <div className=''>View History</div>
+                    <div className='white-btn'>View History</div>
                 </div>
             </div>
             <div className='sub-container chart-container'>
-                <div className='chart-container-top container-title'>
-                    <div className='gradient-font'>MY ASSETS</div>
-                    <div className='stats'>GAME STATS</div>
-                    <div className='stats'>TAK/USDT CHART</div>
-                </div>
-                <div className='chart-container-select'>
-                    <Dropdown>
-                        <Dropdown.Toggle id="dropdown-basic">
-                            MY STATS
-                        </Dropdown.Toggle>
-                    </Dropdown>
-                </div>
-                <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={300}/>
+                <Tabs defaultActiveKey="my_assets"
+                      transition={false}
+                      id="noanim-tab-example"
+                      className="mb-3"
+                    >
+                    <Tab eventKey="my_assets" title="MY ASSETS">
+                        <div className='chart-container-select'>
+                            <Dropdown>
+                                <Dropdown.Toggle id="dropdown-basic">
+                                    MY STATS
+                                </Dropdown.Toggle>
+                            </Dropdown>
+                        </div>
+                        <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={300}/>
+                    </Tab>
+                    <Tab eventKey="game_stats" title="GAME STATS">
+                        <div className='chart-container-select'>
+                            <Dropdown>
+                                <Dropdown.Toggle id="dropdown-basic">
+                                    MY STATS
+                                </Dropdown.Toggle>
+                            </Dropdown>
+                        </div>
+                        <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={300}/>
+                    </Tab>
+                    <Tab eventKey="tak_usdt_chart" title="TAK/USDT CHART">
+                        <div className='chart-container-select'>
+                            <Dropdown>
+                                <Dropdown.Toggle id="dropdown-basic">
+                                    MY STATS
+                                </Dropdown.Toggle>
+                            </Dropdown>
+                        </div>
+                        <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={300}/>
+                    </Tab>
+                </Tabs>
+                
             </div>
             <LogoFooterComponent />
         </div>

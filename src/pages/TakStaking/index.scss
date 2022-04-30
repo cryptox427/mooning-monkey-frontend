@@ -179,6 +179,16 @@
                 .item-list {
                     .item {
                         padding: 8px;
+                        cursor: pointer;
+                        &:hover {
+                            color: #F001F4;
+                        }
+                        &:active {
+                            color: #F001F4;   
+                        }
+                        &:visited {
+                            color: #F001F4;   
+                        }
                     }
                 }
             }
