@@ -29,7 +29,11 @@ const TableComponent = (props) => {
                                 <tr key={index} className={index % 2 && "obb"}>
                                     {
                                         headerList.map((header, index) => 
-                                            <td key={index}>{data[header]}</td>
+                                            <td key={index}>
+                                                <div>
+                                                    {data[header]}
+                                                </div>
+                                            </td>
                                         )
                                     }
                                 </tr>
@@ -37,7 +41,7 @@ const TableComponent = (props) => {
                     }
                 </tbody>
             </Table>
-            <div className='custom-table-bottom'>
+            {/* <div className='custom-table-bottom'>
                 <div className='custom-table-bottom-left'>
                     {
                         showPerPage && 
@@ -68,8 +72,8 @@ const TableComponent = (props) => {
                             </Pagination>
                     }
                 </div>
-            </div>
-        </div>
+            </div>*/}
+        </div> 
     );
 }
 

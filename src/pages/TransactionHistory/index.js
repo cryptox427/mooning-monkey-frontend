@@ -1,14 +1,20 @@
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import { Table, Dropdown } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import Pagination from 'react-responsive-pagination';
 
 import LogoFooterComponent from '../../components/LogoFooterComponent';
 import TableComponent from '../../components/TableComponent';
-import PaginationTableComponent from '../../components/PaginationTableComponent';
+import MobileDataList from '../../components/MobileDataList';
 import BNB1Img from '../../assets/images/playpage/bnb1.png';
 import BNB2Img from '../../assets/images/playpage/bnb2.png';
 import './index.scss';
 
 const TransactionHistory = (props) => {
+    const { showPagination, showPerPage } = props;
+    const [currentPage, setCurrentPage] = useState(4);
+    const totalPages = 17;
     const dataList = [];
     const defaultData = {
         Event: "Reward",
@@ -38,17 +44,47 @@ const TransactionHistory = (props) => {
                       className="mb-3"
                     >
                     <Tab eventKey="deposit" title="Deposit">
-                    <TableComponent dataList={dataList} showPagination showPerPage />
+                        <MobileDataList showPagination showPerPage/>
+                        <TableComponent dataList={dataList} showPagination showPerPage />
                     </Tab>
                     <Tab eventKey="withdraw" title="Withdraw">
-                    <TableComponent dataList={dataList} showPagination showPerPage />
+                        <MobileDataList showPagination showPerPage/>
+                        <TableComponent dataList={dataList} showPagination showPerPage />
                     </Tab>
                     <Tab eventKey="rewards" title="Rewards">
-                    <PaginationTableComponent />
+                        <MobileDataList showPagination showPerPage/>
+                        <TableComponent dataList={dataList} showPagination showPerPage />
                     </Tab>
                 </Tabs>
                 
             </div>
+            <div className='custom-table-bottom'>
+                <div className='custom-table-bottom-left'>
+                <React.Fragment>
+                                <div className='custom-table-bottom-left-select'>
+                                    <Dropdown>
+                                        <Dropdown.Toggle id="dropdown-basic">
+                                            10 Records
+                                        </Dropdown.Toggle>
+
+                                        <Dropdown.Menu>
+                                            <Dropdown.Item href="#/action-1">10 Records</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-2">20 Records</Dropdown.Item>
+                                            <Dropdown.Item href="#/action-3">50 Records</Dropdown.Item>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </div>
+                                <div className='custom-table-bottom-left-status'>Showing 10 out of 100</div>
+                            </React.Fragment>
+                </div>
+                <div className='pagination-content'>
+                <Pagination current={currentPage}
+                            total={totalPages}
+                            onPageChange={setCurrentPage}>  
+                            </Pagination>
+                </div>
+            </div>
+        
             <LogoFooterComponent />
         </div>
     );

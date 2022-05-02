@@ -46,6 +46,13 @@
 }
 
 
+@font-face {
+  font-family: "Poppins-Light";
+  src: local("Poppins-Light"),
+    url("./assets/font/Poppins-Light.ttf") format("truetype");
+  font-weight: medium;
+}
+
 body {
   width: 100vw;
   height: 100vh;
