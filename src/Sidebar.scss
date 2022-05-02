@@ -65,7 +65,19 @@ $scale-var: 1600 / 2560;
         }
     }
     .toggled {
-        min-width: 155px * $scale-var;
+        .monkey-sidebar-item {
+            margin: 0;
+            .item-content {
+                justify-content: center;
+                .icon {
+                    margin: 0 !important;
+                }
+            }
+            .detail-str {
+                display: none;
+            }
+        }
+        
     }
     .display-button {
         width: 29px * $scale-var;

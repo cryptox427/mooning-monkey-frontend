@@ -15,116 +15,115 @@ $scale-var: 1600 / 2560;
         height: 155px * $scale-var;
         padding: 0;
     }
-    .normal-group {
+    .button-group {
         position: absolute;
-        left: 258px * $scale-var;
-        width: 848px * $scale-var;
-        height: 65px * $scale-var !important;
         transform: translateY(-50%);
         top: 50%;
-        
-        font-family: Nurom;
-        .buy-monkey {
-            width: 204px * $scale-var;
-            font-size: 19px * $scale-var;
-        }
-        .join-bankroll {
-            width: 204px * $scale-var;
-            font-size: 19px * $scale-var;
-        }
-        .leaderboard {
-            width: 170px * $scale-var;
-        }
-        .stats {
-            width: 105px * $scale-var;
-        }
-        .help {
-            width: 105px * $scale-var;
-        }
-    }
-    .money-group {
-        position: absolute;
-        right: 51px * $scale-var;
-        width: 1326px * $scale-var;
-        height: 65px * $scale-var !important;
-        transform: translateY(-50%);
-        top: 50%;
-        .buy-now {
-            width: 272px * $scale-var;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            box-sizing: border-box;
-            font-size: 24px * $scale-var;
-            img {
-                width: 30px;
-                height: 30px;
-            }
-        }
-        .money-type {
-            width: 263px * $scale-var;
-            border: 2px solid #2A2662 !important;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0);
-            white-space: nowrap;
+        left: 254px * $scale-var;
+        display: flex;
+        .normal-group {
+            width: 848px * $scale-var;
+            height: 65px * $scale-var !important;
+            
             font-family: Nurom;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            .type {
+            .buy-monkey {
+                width: 204px * $scale-var;
+                font-size: 19px * $scale-var;
+            }
+            .join-bankroll {
+                width: 204px * $scale-var;
+                font-size: 19px * $scale-var;
+            }
+            .leaderboard {
+                width: 170px * $scale-var;
+            }
+            .stats {
+                width: 105px * $scale-var;
+            }
+            .help {
+                width: 105px * $scale-var;
+            }
+        }
+        .money-group {
+            width: 1326px * $scale-var;
+            height: 65px * $scale-var !important;
+            .buy-now {
+                width: 272px * $scale-var;
+                display: flex;
+                align-items: center;
+                white-space: nowrap;
+                box-sizing: border-box;
                 font-size: 24px * $scale-var;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
             }
-            img {
-                width: 30px;
-                height: 30px;
-            }
-            .price {
-                color: #F001F4;
+            .money-type {
+                width: 263px * $scale-var;
+                border: 2px solid #2A2662 !important;
+                box-sizing: border-box;
+                background-color: rgba(0, 0, 0, 0);
+                white-space: nowrap;
                 font-family: Nurom;
                 font-weight: bold;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                .type {
+                    font-size: 24px * $scale-var;
+                }
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+                .price {
+                    color: #F001F4;
+                    font-family: Nurom;
+                    font-weight: bold;
+                    font-size: 24px * $scale-var;
+                    .drop-icon {
+                        stroke-width: 1px;
+                        stroke: black;
+                        color: #515189;
+                        font-size: 21px * $scale-var;
+                        width: 20px;
+                        height: 20px;
+                    }
+                    
+                }
+            }
+            .deposit {
+                width: 204px * $scale-var;
                 font-size: 24px * $scale-var;
+            }
+            .withdraw {
+                width: 204px * $scale-var;
+                span {
+                    font-size: 24px * $scale-var !important;
+                }
+            }
+            .select-net {
+                width: 94px * $scale-var;
+                display: flex;
+                background-color: rgba(0, 0, 0, 0);
                 .drop-icon {
-                    stroke-width: 1px;
+                    width: 27px * $scale-var;
+                    stroke-width: 0.5px;
                     stroke: black;
                     color: #515189;
-                    font-size: 21px * $scale-var;
-                    width: 20px;
-                    height: 20px;
+                    font-family: Nurom;
+                    font-weight: bold;
+                    font-size: 20px;
                 }
-                
+                .net-icon {
+                    width: 51px * $scale-var;
+                }
             }
-        }
-        .deposit {
-            width: 204px * $scale-var;
-            font-size: 24px * $scale-var;
-        }
-        .withdraw {
-            width: 204px * $scale-var;
-            span {
-                font-size: 24px * $scale-var !important;
+            .wallet-address {
+                width: 204px * $scale-var;
+                font-size: 19px * $scale-var;
             }
-        }
-        .select-net {
-            width: 94px * $scale-var;
-            display: flex;
-            background-color: rgba(0, 0, 0, 0);
-            .drop-icon {
-                width: 27px * $scale-var;
-                stroke-width: 0.5px;
-                stroke: black;
-                color: #515189;
-                font-family: Nurom;
-                font-weight: bold;
-                font-size: 20px;
-            }
-            .net-icon {
-                width: 51px * $scale-var;
-            }
-        }
-        .wallet-address {
-            width: 204px * $scale-var;
-            font-size: 19px * $scale-var;
         }
     }
     .buttons {

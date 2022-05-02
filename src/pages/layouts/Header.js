@@ -26,61 +26,63 @@ const Header = (props) => {
         <>
             <div className='header' >
                 <img className="logo col" src={logo} alt="Italian Trulli"></img>
-                <div className="buttons normal-group">
+                <div className="button-group">
+                    <div className="buttons normal-group">
 
-                    <button className="purple border-0 buy-monkey">
-                        BUY A  MONKY & EARN
-                    </button>
-                    <button className="purple border-0 join-bankroll"  onClick={() => setBankrollStatus(true)}>
-                        JOIN THE BANKROLL & EARN
-                    </button>
-                    <button className="image-back border-0 leaderboard" onClick={() => setShowLeaderBoard(true)}>
-                    
-                        <div className='mask'>
-                            <span>LEARDERBOARD</span>
-                        </div>
-                    </button>
-                    <button className="image-back border-0 stats" onClick={() => setShowStatsModal(true)}>
-                    <div className='mask'><span>STATS</span></div>
+                        <button className="purple border-0 buy-monkey">
+                            BUY A  MONKY & EARN
+                        </button>
+                        <button className="purple border-0 join-bankroll"  onClick={() => setBankrollStatus(true)}>
+                            JOIN THE BANKROLL & EARN
+                        </button>
+                        <button className="image-back border-0 leaderboard" onClick={() => setShowLeaderBoard(true)}>
                         
-                    </button>
-                    <button className="image-back border-0 help">
-                    <div className='mask'><span>HELP</span></div>
-                        
-                    </button>
-                </div>
-                <div className="buttons money-group">
+                            <div className='mask'>
+                                <span>LEARDERBOARD</span>
+                            </div>
+                        </button>
+                        <button className="image-back border-0 stats" onClick={() => setShowStatsModal(true)}>
+                        <div className='mask'><span>STATS</span></div>
+                            
+                        </button>
+                        <button className="image-back border-0 help">
+                        <div className='mask'><span>HELP</span></div>
+                            
+                        </button>
+                    </div>
+                    <div className="buttons money-group">
 
-                    <button className="purple buy-now border-0">
-                        <img className="" src={darkLogo} alt="Italian Trulli"></img>
-                        BUY $TAK NOW
-                    </button>
-                    <button className="money-type border-0">
-                        <div className="type">
-                            <img className="" src={bnb} alt="Italian Trulli"></img>
-                            BNB
-                        </div>
-                        <div className="price">
-                            1.29
+                        <button className="purple buy-now border-0">
+                            <img className="" src={darkLogo} alt="Italian Trulli"></img>
+                            BUY $TAK NOW
+                        </button>
+                        <button className="money-type border-0">
+                            <div className="type">
+                                <img className="" src={bnb} alt="Italian Trulli"></img>
+                                BNB
+                            </div>
+                            <div className="price">
+                                1.29
+                                <FaAngleDoubleDown className="drop-icon"/>
+                            </div>
+                        </button>
+                        <button className="purple border-0 deposit" onClick={() => setShowDepositModal(true)}>
+                        
+                            DEPOSIT
+                        </button>
+                        <button className="image-back border-0 withdraw" onClick={() => setShowWithdrawModal(true)}>
+                            <div className='mask'><span>WITHDRAW</span></div>
+                            
+                        </button>
+                        <button className="select-net border-0">
                             <FaAngleDoubleDown className="drop-icon"/>
-                        </div>
-                    </button>
-                    <button className="purple border-0 deposit" onClick={() => setShowDepositModal(true)}>
-                    
-                        DEPOSIT
-                    </button>
-                    <button className="image-back border-0 withdraw" onClick={() => setShowWithdrawModal(true)}>
-                        <div className='mask'><span>WITHDRAW</span></div>
+                            <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
+                        </button>
+                        <button className="purple border-0 wallet-address">
+                            0X488B...66JK6J
                         
-                    </button>
-                    <button className="select-net border-0">
-                        <FaAngleDoubleDown className="drop-icon"/>
-                        <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
-                    </button>
-                    <button className="purple border-0 wallet-address">
-                        0X488B...66JK6J
-                    
-                    </button>
+                        </button>
+                    </div>
                 </div>
                 {children}
             </div>
