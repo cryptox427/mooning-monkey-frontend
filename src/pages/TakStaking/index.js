@@ -57,22 +57,22 @@ const TakStaking = (props) => {
                                 <div className="title">
                                     Available Staked TAK Balance 10’000
                                 </div>
-                                <div className="stake-component">
-                                    <div className="title">
+                                <div className="stake-component row">
+                                    <div className="title col-lg-4 col-md-12">
                                         <img src={AmountImg} alt="amount" />
                                         Stake Amount
                                     </div>
-                                    <div className="info">
+                                    <div className="info col-lg-6 col-md-12">
                                         <div className="">Amount</div>
                                         <div className="">10'000 <span>max</span></div>
                                     </div>
                                 </div>
-                                <div className="lock-component">
-                                    <div className="title">
+                                <div className="lock-component row">
+                                    <div className="title col-lg-4 col-md-12">
                                         <img src={ClockImg} alt="clock" />
                                         Lock in period (Days)
                                     </div>
-                                    <div className="info">
+                                    <div className="info col-lg-6 col-md-12">
                                         <div className="item">0</div>
                                         <div className="item">7</div>
                                         <div className="item">30</div>
@@ -81,19 +81,19 @@ const TakStaking = (props) => {
                                         <div className="item">120</div>
                                     </div>
                                 </div>
-                                <div className="stake-component">
-                                    <div className="title">
+                                <div className="stake-component row">
+                                    <div className="title col-lg-4 col-md-12">
                                         <img src={StarImg} alt="star" />
                                         Rewards
                                     </div>
-                                    <div className="info">
+                                    <div className="info col-lg-6 col-md-12">
                                         <div></div>
                                         <div><span className="pink-font">2'498</span> <span>$TAK</span></div>
                                     </div>
                                 </div>
-                                <div className="explain-component">
-                                    <div className="left">Only one TAK Staking per wallet is allowed. And, the minimum of the "TAB" TAK staked will be locked in for the full duration of the stake period.</div>
-                                    <div className="right">
+                                <div className="explain-component row">
+                                    <div className="left col-lg-9 col-md-12">Only one TAK Staking per wallet is allowed. And, the minimum of the "TAB" TAK staked will be locked in for the full duration of the stake period.</div>
+                                    <div className="right col-lg-3 col-md-12">
                                         On BSCscan.com<br />View Contract
                                         <img src={BNBImg} alt="bnb_image" />
                                     </div>

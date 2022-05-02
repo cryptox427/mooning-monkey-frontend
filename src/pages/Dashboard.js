@@ -16,6 +16,8 @@ import ChatAndHistory from './playpage/ChatAndHistory';
 import Players from './playpage/Players';
 import { Col, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+var __html = require('./playpage/MooningMonkey/dashboard.html.js');
+var template = { __html: __html };
 
 export const Dashboard = () => {
   const testMode = false;
@@ -173,7 +175,9 @@ export const Dashboard = () => {
 }
 {
       testMode &&
-      <iframe src=""/>
+      <div className="screen-share">
+        <span dangerouslySetInnerHTML={template} />
+      </div>
 }
     </div>
         
