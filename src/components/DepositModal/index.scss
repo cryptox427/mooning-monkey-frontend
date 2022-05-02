@@ -1,0 +1,82 @@
+.select-coin-box{
+    display: flex;
+    align-items: center;
+    border: 1px solid #2A2E68;
+}
+
+.top-select , option , option:focus , .top-select:focus{
+    background-color: #22214D;
+    color: white;
+    border: none  !important;
+    box-shadow: none !important;
+}
+
+.bottom-select ,  .bottom-select:focus{
+    background-color: transparent;
+    border: 1px solid #2A2E68 !important;
+}
+
+.amount-balance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cta-btn{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    color: white !important;
+    display: flex;
+    padding: 8px 15px;
+    text-align: center;
+    line-height: 20px;
+    height: 56px;
+    align-items: center;
+    gap: 5px;
+}
+
+.step{
+    width: 32px;
+    height: 32px;
+    background-color: #FF01EB;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: 50px;
+}
+.form-steps{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.step-line{
+    height: 4px;
+    width: calc(100%  - 64px);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #FF01EB 15.11%, #ff01ea00 100%) !important;
+  
+}
+.step.incomplete{
+    background: unset;
+    border: 2px solid #FF01EB;
+}
+
+.rth-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    margin-bottom: 12px;
+  
+}
+.success-box{
+    border: 2px solid #6DE713;
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.recent-transaction-history{
+    border: 2px solid #2A2E68;
+    padding: 1rem;
+}
