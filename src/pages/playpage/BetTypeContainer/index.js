@@ -9,7 +9,7 @@ import './index.scss';
 const BetTypeContainer = (props) => {
     return (
       <ContainerComponent>
-        <div className="w-80 p-4 m-auto flex flex-col bet-type">
+        <div className="w-80 m-auto flex flex-col bet-type">
             <div className="title">Bet Type</div>
 
             <Tabs defaultActiveKey="manual" id="uncontrolled-tab-example" className="manual-auto-toggle">

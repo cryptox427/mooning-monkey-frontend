@@ -18,6 +18,7 @@ import { Col, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Dashboard = () => {
+  const testMode = false;
   const data = {
     chart1: {
       labels: ["Eating", "Drinking", "Sleeping"],
@@ -82,37 +83,40 @@ export const Dashboard = () => {
   };
 
   return (
+    
     <div className="dashboard">
+      {
+      !testMode &&
       <div style={{ height: "100%" }}>
         <div>
           <div className="d-flex card-section">
             <div className="cards-container">
               <Row style={{width: '100%'}}>
-                <Col xxl={9} xl={12}>
-                  <div className="d-flex mb-2 flex-column md:flex-row">
-                    <Row>
-                      <Col sm={12} md={8}>
+                <Col xxl={8} xl={12} className="pr-0">
+                  <div className="d-flex flex-column md:flex-row">
+                    <Row className="m-0">
+                      <Col lg={12} xl={8} className="p-0 mb-2">
                         <div
-                          className="mb-2 md:mb-0 bg"
+                          className="md:mb-0 bg"
                         >
                         </div>
                       </Col>
-                      <Col sm={12} md={4}>
+                      <Col lg={12} xl={4} className="pr-lg-0 pl-xl-match">
                         <div
-                          className="d-flex flex-column mb-2 md:ml-2 md:mb-0"
+                          className="d-flex flex-column md:ml-2 mb-2"
                         >
                           <BetTypeContainer/>
                         </div>
                       </Col>
                     </Row>
                   </div>
-                  <div className="flex-1 d-flex flex-column">
+                  <div className="flex-1 mb-2 d-flex flex-column">
                     <div className="d-flex flex-column wide d-flex flex-column">
                       <ChatAndHistory/>  
                     </div>
                   </div>
                 </Col>
-                <Col xxl={3} xl={12}>
+                <Col xxl={4} xl={12} className="pr-0">
                   <Players/>  
                 </Col>
               </Row>
@@ -166,6 +170,12 @@ export const Dashboard = () => {
           </footer> */}
         </div>
       </div>
+}
+{
+      testMode &&
+      <iframe src=""/>
+}
     </div>
+        
   );
 };

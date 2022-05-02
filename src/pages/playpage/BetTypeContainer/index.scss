@@ -5,7 +5,7 @@ $scale-var: 1600 / 2560;
 	padding-top: 18px * $scale-var !important;
 	padding-left: 5% !important;
 	padding-right: 5% !important;
-	padding-top: 18px * $scale-var !important;
+	padding-bottom: 18px * $scale-var !important;
 	.title {
 		color: #5C52C6;
 		font-family: Nurom;
@@ -83,6 +83,8 @@ $scale-var: 1600 / 2560;
 			top: 28px * $scale-var;
 		}
 		.sub-detail-content {
+			max-width: 50%;
+			flex-wrap: wrap;
 			position: absolute;
 			right: 20px;
 			transform: translateY(-50%);

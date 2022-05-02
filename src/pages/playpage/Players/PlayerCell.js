@@ -10,7 +10,7 @@ const PlayerCell = (props) => {
     return (
         <tr>
             <td className={"player " + p_state}>
-                <div>
+                <div className="player-div">
                     <FaCircle></FaCircle>
                     {" " + p_address + " " + p_name}
                 </div>

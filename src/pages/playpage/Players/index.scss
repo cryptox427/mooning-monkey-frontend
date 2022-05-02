@@ -2,9 +2,8 @@ $scale-var: 1600 / 2560;
 
 .players {
 	align-items: center;
-	padding: 0 !important;
 	padding-top: 18px * $scale-var !important;
-	padding-top: 18px * $scale-var !important;
+	padding-bottom: 18px * $scale-var !important;
 	.title {
 		color: #5C52C6;
 		font-family: Nurom;
@@ -38,15 +37,22 @@ $scale-var: 1600 / 2560;
 			width: 100%;
 			margin-bottom: 0 !important;
 			th {
-				text-align: center;
+				text-align: left;
 				height: fit-content;
-				font-family: Poppins-SemiBold;
-				font-weight: semi-bold;
-				font-size: 17px * $scale-var;
-				padding-left: 15px;
+				font-family: Poppins-Medium;
+				font-size: 22px * $scale-var;
+				
 				padding: 0;
+				padding-bottom: 20px;
+				padding-left: 12px;
 				border: none;
 				color: #5C52C6;
+				&.h-player {
+					width: 33%;
+				}
+				&.h-wager {
+					width: 18%;
+				}
 			}
 			tr {
 				border: none;
@@ -59,8 +65,10 @@ $scale-var: 1600 / 2560;
 				border: none;
 				font-family: Poppins-Medium;
 				font-size: 17px * $scale-var;
-				text-align: center;
-				
+				text-align: left;
+				vertical-align: middle;
+				padding: 0;
+				padding-left: 12px;
 			}
 			.active {
 				color: #6DE713;
@@ -73,14 +81,21 @@ $scale-var: 1600 / 2560;
 			}
 			.player {
 				display: flex;
-				justify-content: center;
-				align-items: center;
+				white-space: nowrap;
+				font-size: 22px * $scale-var;
+				.player-div {
+					padding: 0;
+				}
 			}
 			
             .payout {
 				display: flex;
-				justify-content: center;
+				justify-content: left;
 				align-items: center;
+				img {
+					padding: 5px;
+					width: 34px;
+				}
 			}
 		}
 	}

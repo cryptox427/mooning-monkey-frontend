@@ -119,3 +119,33 @@ $scale-var: 1600 / 2560;
 	height: 100%;
 	background-size: 100% 100%;
 }
+
+@media only screen and (min-width: 0)
+{
+	.pl-xl-match {
+		padding: 0 !important;
+	}
+	.bg {
+		min-height: 40vw;
+	}
+}
+
+@media only screen and (min-width: 992px)
+{
+	.pl-xl-match {
+		padding-left: 0 !important;
+	}
+	.bg {
+		min-height: 40vw;
+	}
+}
+
+@media only screen and (min-width: 1200px)
+{
+	.pl-xl-match {
+		padding-left: calc(var(--bs-gutter-x) * .5) !important;
+	}
+	.bg {
+		min-height: 25vw;
+	}
+}
