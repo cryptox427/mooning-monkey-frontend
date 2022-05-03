@@ -16,6 +16,7 @@ $scale-var: 1600 / 2560;
     position: fixed;
     width: 100%;
     height: 62px;
+    z-index: 999;
     
     @media only screen and (min-width: 1600px) {
         height: 155px * $scale-var;
@@ -165,7 +166,7 @@ $scale-var: 1600 / 2560;
             }
             .money-type {
                 width: 118px;
-                
+                height: 100%;
                 border: 2px solid #2A2662 !important;
                 box-sizing: border-box;
                 background-color: rgba(0, 0, 0, 0);
@@ -387,4 +388,41 @@ $scale-var: 1600 / 2560;
             }
         }
     }
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.drop-profile-section{
+    background-color: #1C1C40;
+    width: 100%;
+    display: flex;
+    padding: 4px;
+    margin: 4px;
+    align-items: center;
+    gap: 10px;
+}
+
+.c-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: white;
+    margin-bottom: 8px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
 }

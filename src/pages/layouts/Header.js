@@ -9,6 +9,9 @@ import logo from '../../assets/images/playpage/logo.png';
 import darkLogo from '../../assets/images/playpage/dark-logo.png';
 import bnb from '../../assets/images/playpage/bnb.png';
 import cryptoImg from '../../assets/images/playpage/crypto-net.png';
+import USDTImg from '../../assets/images/USDT.svg';
+import CakeImg from '../../assets/images/cake.svg';
+import BUSDImg from '../../assets/images/BUSD.svg';
 
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
@@ -22,6 +25,7 @@ const Header = (props) => {
     const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+    const [moneyType, setMoneyType] = useState(false);
     return (
         <>
             <div className='header' >
@@ -56,16 +60,44 @@ const Header = (props) => {
                             <img className="" src={darkLogo} alt="Italian Trulli"></img>
                             BUY $TAK NOW
                         </button>
-                        <button className="money-type border-0">
-                            <div className="type">
-                                <img className="" src={bnb} alt="Italian Trulli"></img>
-                                BNB
+                        <div className='relative'>
+                            <button className="money-type border-0" onClick={() => setMoneyType(!moneyType)}>
+                                <div className="type">
+                                    <img className="" src={bnb} alt="Italian Trulli"></img>
+                                    BNB
+                                </div>
+                                <div className="price">
+                                    1.29
+                                    <FaAngleDoubleDown className="drop-icon"/>
+                                </div>
+                            </button>
+                            <div className={`absolute drop-profile-section ${!moneyType ? 'hidden' : 'show'}`}>
+                                <div className="c-row " style={{backgroundColor: "#3c3c9577"}}>
+                                    <div className="c-img">
+                                        <img src={USDTImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        USDT
+                                    </div>
+                                    </div>
+                                    <div className="c-row">
+                                    <div className="c-img">
+                                        <img src={CakeImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        Cake
+                                    </div>
+                                    </div>
+                                    <div className="c-row" style={{backgroundColor: "#3c3c9577"}}>
+                                    <div className="c-img">
+                                        <img src={BUSDImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        BUSD
+                                    </div>
+                                </div>
                             </div>
-                            <div className="price">
-                                1.29
-                                <FaAngleDoubleDown className="drop-icon"/>
-                            </div>
-                        </button>
+                        </div>
                         <button className="purple border-0 deposit" onClick={() => setShowDepositModal(true)}>
                         
                             DEPOSIT
