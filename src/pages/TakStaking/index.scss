@@ -36,6 +36,10 @@
         margin-bottom: 8px;
         
         @media only screen and (min-width: 768px) {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        @media only screen and (min-width: 1024px) {
             font-size: 40px;
             margin-bottom: 16px;
         }

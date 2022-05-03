@@ -50,7 +50,7 @@ const Header = (props) => {
                             
                         </button>
                     </div>
-                    <div className="buttons money-group">
+                    <div className="buttons money-group wnd-show">
 
                         <button className="purple buy-now border-0">
                             <img className="" src={darkLogo} alt="Italian Trulli"></img>
@@ -83,6 +83,31 @@ const Header = (props) => {
                         
                         </button>
                     </div>
+                    <div className="buttons money-group ph-show">
+                        <button className="money-type border-0">
+                            <div className="type">
+                                <img className="" src={bnb} alt="Italian Trulli"></img>
+                                BNB
+                            </div>
+                            <div className="price">
+                                1.29
+                                <FaAngleDoubleDown className="drop-icon"/>
+                            </div>
+                        </button>
+                        <button className="dark-blue border-0 plus" onClick={() => {}}>
+                            +
+                        </button>
+                        <button className="dark-blue border-0 minus" onClick={() => {}}>
+                            -
+                        </button>
+                        
+                        <button className="select-net border-0">
+                            <FaAngleDoubleDown className="drop-icon"/>
+                            <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
+                        </button>
+                        
+                    </div>
+                
                 </div>
                 {children}
             </div>

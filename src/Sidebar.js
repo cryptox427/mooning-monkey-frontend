@@ -18,14 +18,23 @@ import { CgFileDocument } from "react-icons/cg";
 import { FaDove, FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { RiHome2Fill } from "react-icons/ri";
 
-
+import BankrollModal from './components/BanrollModal';
+import LeaderboardModal from './components/LeaderboardModal';
+import DepositModal from './components/DepositModal';
+import StatsModal from './components/StatsModal';
+import WithdrawModal from './components/WIthdrawModal';
 import Cell from './pages/layouts/Sidebar/Cell.js';
 import './Sidebar.scss';
 
 const Sidebar = () => {
   const [selectedPage, setPage] = useState('play');
-
+  const [bankrollStatus, setBankrollStatus] = useState(false);
+  const [showLeaderBoard, setShowLeaderBoard] = useState(false);
+  const [showStatsModal, setShowStatsModal] = useState(false);
+  const [showDepositModal, setShowDepositModal] = useState(false);
+  const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   return (
+    <>
     <div
       className="app left-sidebar"
       style={{ display: "flex", height: "100%", overflow:"scroll initial"}}
@@ -94,8 +103,36 @@ const Sidebar = () => {
 
             
           </CDBSidebarMenu>
-          <CDBSidebarMenu>
-          </CDBSidebarMenu>
+          <div className="buttons normal-group">
+
+              <button className="image-back border-0 buy-monkey">
+                  
+                  <div className='mask'>
+                      <span>BUY A  MONKY & EARN</span>
+                  </div>
+              </button>
+              <button className="image-back border-0 join-bankroll"  onClick={() => setBankrollStatus(true)}>
+                  
+                  <div className='mask'>
+                      <span>JOIN THE BANKROLL & EARN</span>
+                  </div>
+              </button>
+              <button className="image-back border-0 leaderboard" onClick={() => setShowLeaderBoard(true)}>
+              
+                  <div className='mask'>
+                      <span>LEARDERBOARD</span>
+                  </div>
+              </button>
+              <button className="image-back border-0 stats" onClick={() => setShowStatsModal(true)}>
+              <div className='mask'><span>STATS</span></div>
+                  
+              </button>
+              <button className="image-back border-0 help">
+              <div className='mask'><span>HELP</span></div>
+                  
+              </button>
+          </div>
+                    
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
@@ -112,7 +149,15 @@ const Sidebar = () => {
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
-    </div>
+      </div>
+      
+      <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
+      <LeaderboardModal show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
+      <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
+      <DepositModal show={showDepositModal} onHide={() => setShowDepositModal(false)} />
+      <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
+    
+    </>
   );
 }
 

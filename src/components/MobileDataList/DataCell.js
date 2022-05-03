@@ -15,7 +15,7 @@ const DataCell = (props) => {
             <div className='main-data row'>
                 <div className='event col-4'>{event}</div>
                 <div className='status col-4'>{status}</div>
-                <div className='amount col-3'>{amount}</div>
+                <div className='amount col-2'>{amount}</div>
                 <div className={`switch-button col-1 ${displayDetail ? 'active' : ''}`} onClick={() => changeDisplaySetting()}></div>
             </div>
             {

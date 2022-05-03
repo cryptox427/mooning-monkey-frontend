@@ -1,4 +1,13 @@
 $scale-var: 1600 / 2560;
+@media only screen and (min-width: 768px) {
+    $scale-var: 768 / 2560;
+}
+@media only screen and (min-width: 1024px) {
+    $scale-var: 1024 / 2560;
+}
+@media only screen and (min-width: 1600px) {
+    $scale-var: 1600 / 2560;
+}
 
 .header {
 
@@ -6,61 +15,166 @@ $scale-var: 1600 / 2560;
 
     position: fixed;
     width: 100%;
-    height: 155px * $scale-var;
-
+    height: 62px;
+    
+    @media only screen and (min-width: 1600px) {
+        height: 155px * $scale-var;
+    }
     /* Gradient Header */
     background: linear-gradient(270deg, #20315D 0%, rgba(24, 15, 37, 0.81) 12.97%);
     .logo {
-        width: 148px * $scale-var;
-        height: 155px * $scale-var;
+        width: 46px;
+        height: 49px;
+        margin-left: 48px;
+        margin-top: 6px;
+        @media only screen and (min-width: 1600px) {
+            width: 148px * $scale-var;
+            height: 155px * $scale-var;
+            margin: 0;
+        }
         padding: 0;
     }
     .button-group {
+        button {
+            margin-left: 5px;
+        }
         position: absolute;
         transform: translateY(-50%);
         top: 50%;
         left: 254px * $scale-var;
+        right: 30px;
         display: flex;
+        justify-content: flex-end;
+        @media only screen and (min-width: 1600px) {
+            justify-content: space-between;
+        }
+        
         .normal-group {
-            width: 848px * $scale-var;
-            height: 65px * $scale-var !important;
-            
+            justify-content: flex-start;
+            height: 50px * $scale-var !important;
+            @media only screen and (min-width: 1600px) {
+                height: 65px * $scale-var !important;
+            }
+            display: none;
             font-family: Nurom;
+            
+            
+            button {
+                width: 100px;
+                font-size: 10px;
+
+                @media only screen and (min-width: 1600px) {
+                    font-size: 19px * $scale-var;
+                }
+            }
             .buy-monkey {
-                width: 204px * $scale-var;
-                font-size: 19px * $scale-var;
+                width: 100px;
+
+                @media only screen and (min-width: 1600px) {
+                    width: 160px;
+                }
+                
+                
             }
             .join-bankroll {
-                width: 204px * $scale-var;
-                font-size: 19px * $scale-var;
+                width: 120px;
+                font-size: 10px;
+
+                @media only screen and (min-width: 1600px) {
+                    width: 160px;
+                    font-size: 19px * $scale-var;
+                }
             }
             .leaderboard {
-                width: 170px * $scale-var;
+                width: 100px;
+                @media only screen and (min-width: 1600px) {
+                    width: 120px;
+                }
             }
             .stats {
-                width: 105px * $scale-var;
+                width: 50px;
+
+                @media only screen and (min-width: 1600px) {
+                    width: 80px;
+                }
             }
             .help {
-                width: 105px * $scale-var;
+                width: 50px;
+
+                @media only screen and (min-width: 1600px) {
+                    width: 80px;
+                }
+            }
+            @media only screen and (min-width: 768px) {
+                display: flex;
+            }
+            @media only screen and (min-width: 1024px) {
+                
+            }
+            @media only screen and (min-width: 1600px) {
+                
             }
         }
         .money-group {
+            height: 50px * $scale-var !important;
+            @media only screen and (min-width: 1600px) {
+                height: 65px * $scale-var !important;
+            }
+            button {
+                width: 100px;
+                font-size: 10px;
+
+                @media only screen and (min-width: 1600px) {
+                    font-size: 19px * $scale-var;
+                }
+            }
+            justify-content: flex-end;
+            &.ph-show {
+                display: flex !important;
+            }
+            &.wnd-show {
+                display: none !important;
+            }
+            @media only screen and (min-width: 1024px) {
+                &.ph-show {
+                    display: none !important;
+                }
+                &.wnd-show {
+                    display: flex !important;
+                }
+            }
+            display: flex;
             width: 1326px * $scale-var;
-            height: 65px * $scale-var !important;
             .buy-now {
-                width: 272px * $scale-var;
-                display: flex;
+                
+                display: none;
                 align-items: center;
                 white-space: nowrap;
                 box-sizing: border-box;
-                font-size: 24px * $scale-var;
+                font-size: 18px * $scale-var;
+                width: 120px;
+                font-size: 10px;
                 img {
-                    width: 30px;
-                    height: 30px;
+                    width: 24px;
+                    height: 24px;
+                    margin-right: 3px;
                 }
+                @media only screen and (min-width: 1024px) {
+                    display: flex;
+                }
+                @media only screen and (min-width: 1600px) {
+                    font-size: 24px * $scale-var;
+                    width: 272px * $scale-var;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+                
             }
             .money-type {
-                width: 263px * $scale-var;
+                width: 118px;
+                
                 border: 2px solid #2A2662 !important;
                 box-sizing: border-box;
                 background-color: rgba(0, 0, 0, 0);
@@ -70,66 +184,181 @@ $scale-var: 1600 / 2560;
                 display: flex;
                 justify-content: space-around;
                 align-items: center;
+                
                 .type {
-                    font-size: 24px * $scale-var;
+                    font-size: 10px;
                 }
                 img {
-                    width: 30px;
-                    height: 30px;
+                    width: 20px;
+                    height: 20px;
                 }
                 .price {
                     color: #F001F4;
                     font-family: Nurom;
                     font-weight: bold;
-                    font-size: 24px * $scale-var;
+                    font-size: 10px;
                     .drop-icon {
                         stroke-width: 1px;
                         stroke: black;
                         color: #515189;
-                        font-size: 21px * $scale-var;
-                        width: 20px;
-                        height: 20px;
+                        font-size: 10px;
+                        width: 14px;
+                        height: 14px;
                     }
                     
                 }
+                @media only screen and (min-width: 1024px) {
+                    width: 160px * $scale-var;
+                    display: flex;
+                    .type {
+                        font-size: 12px;
+                    }
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    .price {
+                        color: #F001F4;
+                        font-family: Nurom;
+                        font-weight: bold;
+                        font-size: 12px;
+                        .drop-icon {
+                            stroke-width: 1px;
+                            stroke: black;
+                            color: #515189;
+                            font-size: 10px;
+                            width: 14px;
+                            height: 14px;
+                        }
+                        
+                    }
+                }
+                @media only screen and (min-width: 1600px) {
+                    width: 263px * $scale-var;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                    .type {
+                        font-size: 24px * $scale-var;
+                    }
+                    .price {
+                        font-size: 24px * $scale-var;
+                        .drop-icon {
+                            font-size: 21px * $scale-var;
+                            width: 20px;
+                            height: 20px;
+                        }
+                        
+                    }
+                }
             }
             .deposit {
-                width: 204px * $scale-var;
-                font-size: 24px * $scale-var;
+                width: 60px;
+                font-size: 10px;
+                
+                @media only screen and (min-width: 1024px) {
+                    font-size: 12px;
+                    width: 70px;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
+                @media only screen and (min-width: 1600px) {
+                    font-size: 24px * $scale-var;
+                    width: 204px * $scale-var;
+                    img {
+                        width: 30px;
+                        height: 30px;
+                    }
+                }
             }
             .withdraw {
-                width: 204px * $scale-var;
-                span {
-                    font-size: 24px * $scale-var !important;
+                
+                width: 70px;
+                font-size: 10px;
+                
+                @media only screen and (min-width: 1024px) {
+                    font-size: 12px;
+                    width: 80px;
+                }
+                @media only screen and (min-width: 1600px) {
+                    font-size: 24px * $scale-var;
+                    width: 204px * $scale-var;
                 }
             }
             .select-net {
-                width: 94px * $scale-var;
+                width: 60px;
                 display: flex;
+                align-items: center;
                 background-color: rgba(0, 0, 0, 0);
                 .drop-icon {
-                    width: 27px * $scale-var;
                     stroke-width: 0.5px;
                     stroke: black;
                     color: #515189;
                     font-family: Nurom;
                     font-weight: bold;
-                    font-size: 20px;
+                    display: none;
                 }
                 .net-icon {
-                    width: 51px * $scale-var;
+                    margin-left: 3px;
+                    width: 23px;
+                }
+                @media only screen and (min-width: 1024px) {
+                    font-size: 12px;
+                    width: 60px;
+                    .drop-icon {
+                        font-size: 14px;
+                        display: block;
+                    }
+                    .net-icon {
+                        font-size: 20px;
+                    }
+                }
+                @media only screen and (min-width: 1600px) {
+                    font-size: 24px * $scale-var;
+                    width: 94px * $scale-var;
+                    .drop-icon {
+                        font-size: 14px;
+                        display: block;
+                    }
+                    .net-icon {
+                        width: 51px * $scale-var;
+                        font-size: 20px;
+                    }
                 }
             }
             .wallet-address {
-                width: 204px * $scale-var;
-                font-size: 19px * $scale-var;
+                width: 100px;
+                font-size: 10px;
+                display: block;
+                @media only screen and (min-width: 1024px) {
+
+                }
+                @media only screen and (min-width: 1600px) {
+                    width: 204px * $scale-var;
+                    font-size: 19px * $scale-var;
+                }
+            }
+            .dark-blue {
+                background-color: #2A2662;
+                color: #F001F4;
+            }
+            .plus {
+                width: 36px;
+                height: 36px;
+            }
+            .minus {
+                width: 36px;
+                height: 36px;
             }
         }
     }
     .buttons {
         //height: 50px;
-        display: flex;
-        justify-content: space-around;
+        
+        
         button {
             color: white;
             font-family: Nurom;

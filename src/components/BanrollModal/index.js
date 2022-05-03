@@ -7,7 +7,7 @@ const BankrollModal = (props) => {
     const { show, onHide } = props;
     const [status, setStatus] = useState(0);
     return (
-        <Modal show={show} onHide={onHide} >
+        <Modal className="bank-roll-modal" show={show} onHide={onHide} >
             <Modal.Header style={{backgroundColor: '#100F25', borderBottom: 'none'}} closeButton>
                 <Modal.Title><span style={{color: '#F001F4'}}>Bankroll</span></Modal.Title>
             </Modal.Header>
