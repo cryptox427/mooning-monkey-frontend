@@ -1,0 +1,55 @@
+.change-box-bottom-btn{
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+.change-box-bottom-btn > a{
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+}
+
+.three-dif-btn a{
+    font-weight: bold !important;
+    font-size: 1.2rem;
+}
+.three-dif-btn{
+    max-width: 80%;
+}
+
+.share_detail {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+.stauts-bullet li::marker{
+    color: #FF01EB !important;
+}
+.stauts-bullet li{
+    margin-bottom: 8px;
+}
+.stauts-bullet .share_detail > div span:first-child{
+    margin-right: 8px;
+}
+
+.pink {
+    color: #FF01EB;
+}
+
+.pr-2 {
+    padding-right: 16px;
+}
+
+.first-btn {
+    background: linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important;
+    color: black !important;
+}
+
+.second-btn {
+    background: linear-gradient(270deg, #F044E8 0%, #6A51C9 100%) !important;
+}
+
+.third-btn {
+    background: linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important;
+}

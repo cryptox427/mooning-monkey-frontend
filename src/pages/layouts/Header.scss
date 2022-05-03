@@ -16,6 +16,7 @@ $scale-var: 1600 / 2560;
     position: fixed;
     width: 100%;
     height: 62px;
+    z-index: 999;
     
     @media only screen and (min-width: 1600px) {
         height: 155px * $scale-var;
@@ -165,7 +166,7 @@ $scale-var: 1600 / 2560;
             }
             .money-type {
                 width: 118px;
-                
+                height: 100%;
                 border: 2px solid #2A2662 !important;
                 box-sizing: border-box;
                 background-color: rgba(0, 0, 0, 0);
@@ -322,6 +323,7 @@ $scale-var: 1600 / 2560;
             }
             .wallet-address {
                 width: 100px;
+                height: 100%;
                 font-size: 10px;
                 display: block;
                 @media only screen and (min-width: 1024px) {
@@ -387,4 +389,83 @@ $scale-var: 1600 / 2560;
             }
         }
     }
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.drop-profile-section{
+    background-color: #1C1C40;
+    width: 100%;
+    display: block;
+    padding: 4px;
+    margin: 4px;
+    align-items: center;
+    gap: 10px;
+}
+
+.c-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: white;
+    margin-bottom: 8px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.show {
+    display: block !important;
+}
+
+.dropdown-profile {
+    right: 0;
+    background-color: #1C1C40;
+}
+
+.drop-profile-section{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-profile .dropdown-item{
+    color: white;
+    margin-bottom: 1.3rem;
+    font-weight: bold;
+    background-color: transparent !important;
+    transition: 0.2s all ease-in-out;
+    padding: 0px;
+}
+.dropdown-profile .dropdown-item:last-child{
+    margin-bottom: unset !important;
+}
+.dropdown-profile .dropdown-item:hover{
+    color: #cfcfcf;
+}
+
+.dropdown-profile{
+    margin-top: 8px;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+.dropdown-profile .dropdown-item img{
+    filter: hue-rotate(316deg) contrast(0.25);
+}
+.dropdown-profile .dropdown-item:hover img{
+    filter: unset;
+}
+
+.mr-2 {
+    margin-right: 8px;
 }

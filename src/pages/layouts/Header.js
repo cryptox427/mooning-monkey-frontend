@@ -9,6 +9,19 @@ import logo from '../../assets/images/playpage/logo.png';
 import darkLogo from '../../assets/images/playpage/dark-logo.png';
 import bnb from '../../assets/images/playpage/bnb.png';
 import cryptoImg from '../../assets/images/playpage/crypto-net.png';
+import USDTImg from '../../assets/images/USDT.svg';
+import CakeImg from '../../assets/images/cake.svg';
+import BUSDImg from '../../assets/images/BUSD.svg';
+import CashBackImg from '../../assets/images/cashback.svg';
+import ComicBookImg from '../../assets/images/comic-book.svg';
+import DocsImg from '../../assets/images/docs.svg';
+import MonkeyImg from '../../assets/images/monkey.svg';
+import PlayImg from '../../assets/images/play.svg';
+import ReferralImg from '../../assets/images/referral.svg';
+import TakImg from '../../assets/images/tak.svg';
+import TransactionImg from '../../assets/images/transaction.svg';
+import WinningImg from '../../assets/images/winning-bonus.svg';
+import AvatarImg from '../../assets/images/user-img.png';
 
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
@@ -22,6 +35,8 @@ const Header = (props) => {
     const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+    const [moneyType, setMoneyType] = useState(false);
+    const [showProfile, setShowProfile] = useState(false);
     return (
         <>
             <div className='header' >
@@ -56,16 +71,44 @@ const Header = (props) => {
                             <img className="" src={darkLogo} alt="Italian Trulli"></img>
                             BUY $TAK NOW
                         </button>
-                        <button className="money-type border-0">
-                            <div className="type">
-                                <img className="" src={bnb} alt="Italian Trulli"></img>
-                                BNB
+                        <div className='relative'>
+                            <button className="money-type border-0" onClick={() => setMoneyType(!moneyType)}>
+                                <div className="type">
+                                    <img className="" src={bnb} alt="Italian Trulli"></img>
+                                    BNB
+                                </div>
+                                <div className="price">
+                                    1.29
+                                    <FaAngleDoubleDown className="drop-icon"/>
+                                </div>
+                            </button>
+                            <div className={`absolute drop-profile-section ${!moneyType ? 'hidden' : 'show'}`}>
+                                <div className="c-row " style={{backgroundColor: "#3c3c9577"}}>
+                                    <div className="c-img">
+                                        <img src={USDTImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        USDT
+                                    </div>
+                                    </div>
+                                    <div className="c-row">
+                                    <div className="c-img">
+                                        <img src={CakeImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        Cake
+                                    </div>
+                                    </div>
+                                    <div className="c-row" style={{backgroundColor: "#3c3c9577"}}>
+                                    <div className="c-img">
+                                        <img src={BUSDImg} alt="" width="22" />
+                                    </div>
+                                    <div className="c-text">
+                                        BUSD
+                                    </div>
+                                </div>
                             </div>
-                            <div className="price">
-                                1.29
-                                <FaAngleDoubleDown className="drop-icon"/>
-                            </div>
-                        </button>
+                        </div>
                         <button className="purple border-0 deposit" onClick={() => setShowDepositModal(true)}>
                         
                             DEPOSIT
@@ -78,10 +121,56 @@ const Header = (props) => {
                             <FaAngleDoubleDown className="drop-icon"/>
                             <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
                         </button>
-                        <button className="purple border-0 wallet-address">
-                            0X488B...66JK6J
-                        
-                        </button>
+                        <div className='relative'>
+                            <button className="purple border-0 wallet-address" onClick={() => setShowProfile(!showProfile)}>
+                                0X488B...66JK6J
+                            </button>
+                            <div className={`absolute dropdown-profile ${showProfile ? 'show' : 'hidden'}`} aria-labelledby="dropdownMenuLink"  >
+                                <div className="drop-profile-section">
+                                <div className="profile-user">
+                                    <img src={AvatarImg} alt="" width="42" />
+                                </div>
+                                <div className="profile-details text-left">
+                                    <div className="pink font-weight-bold">VIP LEVEL 1</div>
+                                    <div className="text-light"><span>VIP 0</span> <span>Novice</span></div>
+                                </div>
+                                </div>
+        
+                                <hr className="my-4" style={{backgroundColor: "#515189"}} />
+                            
+                                <a className="dropdown-item" href="#">
+                                <img src={PlayImg} alt="" width="20" className="mr-2" />
+                                Action</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={TransactionImg} alt="" width="20" className="mr-2" />
+                                Transaction History</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={TakImg} alt="" width="20" className="mr-2" />
+                                TAK Staking</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={MonkeyImg} alt="" width="20" className="mr-2" />
+                                Monkey Earnings</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={ComicBookImg} alt="" width="20" className="mr-2" />
+                                Comic Book Earnings</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={MonkeyImg} alt="" width="20" className="mr-2" />
+                                Mooning Monkey Earnings</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={CashBackImg} alt="" width="20" className="mr-2" />
+                                Cashback</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={WinningImg} alt="" width="20" className="mr-2" />
+                                Winning Bonus</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={ReferralImg} alt="" width="20" className="mr-2" />
+                                Referral Program</a>
+                                <a className="dropdown-item" href="#">
+                                <img src={DocsImg} alt="" width="20" className="mr-2" />
+                                Docs</a>
+                                
+                            </div>
+                        </div>
                     </div>
                     <div className="buttons money-group ph-show">
                         <button className="money-type border-0">
