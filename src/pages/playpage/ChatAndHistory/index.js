@@ -1,12 +1,20 @@
 import { Col, Row, Nav, Tab } from 'react-bootstrap';
 import { BsFillChatDotsFill, BsClockHistory } from 'react-icons/bs';
 import { AiFillSetting } from 'react-icons/ai';
+import React, { useState } from "react";
 
 import Chat from './Chat';
+import History from './History';
+
+import ScamedPage from './ScamedPage';
 import ContainerComponent from "../../../components/ContainerComponent";
 import './index.scss';
 
 const ChatAndHistory = (props) => {
+    const [scamed, setScamed] = useState(true);
+    const closeScamedPage = () => {
+        setScamed(false);
+    }
     return (
         <ContainerComponent>
         <div className=" flex flex-col chat-and-history">
@@ -30,10 +38,17 @@ const ChatAndHistory = (props) => {
                         
                     <Tab.Content>
                         <Tab.Pane eventKey="chat">
-                            <Chat/>
+                            {
+                                !scamed &&
+                                <Chat/>
+                            }
+                            {
+                                scamed &&
+                                <ScamedPage closePage={closeScamedPage}/>
+                            }
                         </Tab.Pane>
                         <Tab.Pane eventKey="history">
-                        
+                            <History/>
                         </Tab.Pane>
                     </Tab.Content>
 

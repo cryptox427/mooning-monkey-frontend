@@ -42,9 +42,12 @@ $scale-var: 1600 / 2560;
         transform: translateY(-50%);
         top: 50%;
         left: 254px * $scale-var;
-        right: 30px;
+        right: 0;
         display: flex;
         justify-content: flex-end;
+        @media only screen and (min-width: 768px) {
+            right: 30px;
+        }
         @media only screen and (min-width: 1600px) {
             justify-content: space-between;
         }
@@ -106,13 +109,13 @@ $scale-var: 1600 / 2560;
                 }
             }
             @media only screen and (min-width: 768px) {
-                display: flex;
+                
             }
             @media only screen and (min-width: 1024px) {
                 
             }
-            @media only screen and (min-width: 1600px) {
-                
+            @media only screen and (min-width: 1200px) {
+                display: flex;
             }
         }
         .money-group {
@@ -135,7 +138,7 @@ $scale-var: 1600 / 2560;
             &.wnd-show {
                 display: none !important;
             }
-            @media only screen and (min-width: 1024px) {
+            @media only screen and (min-width: 768px) {
                 &.ph-show {
                     display: none !important;
                 }
@@ -147,7 +150,6 @@ $scale-var: 1600 / 2560;
             width: 1326px * $scale-var;
             .buy-now {
                 
-                display: none;
                 align-items: center;
                 white-space: nowrap;
                 box-sizing: border-box;
@@ -158,17 +160,6 @@ $scale-var: 1600 / 2560;
                     width: 24px;
                     height: 24px;
                     margin-right: 3px;
-                }
-                @media only screen and (min-width: 1024px) {
-                    display: flex;
-                }
-                @media only screen and (min-width: 1600px) {
-                    font-size: 24px * $scale-var;
-                    width: 272px * $scale-var;
-                    img {
-                        width: 30px;
-                        height: 30px;
-                    }
                 }
                 
             }
@@ -346,12 +337,12 @@ $scale-var: 1600 / 2560;
                 color: #F001F4;
             }
             .plus {
-                width: 36px;
-                height: 36px;
+                width: 30px;
+                height: 30px;
             }
             .minus {
-                width: 36px;
-                height: 36px;
+                width: 30px;
+                height: 30px;
             }
         }
     }

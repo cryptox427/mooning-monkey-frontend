@@ -1,10 +1,24 @@
 $scale-var: 1600 / 2560;
 
 .left-sidebar {
+    position: absolute;
+    @media only screen and (min-width: 768px) {
+        position: unset;
+    }
     .pro-sidebar {
-        background: linear-gradient(350.48deg, rgba(255, 1, 199, 0.11) 4.34%, rgba(13, 12, 30, 0.45) 31.98%);
+        background: #232151;
         min-width: 280px;
-        
+        &.toggled {
+            min-width: 0;
+            width: 0;
+        }
+        @media only screen and (min-width: 768px) {
+            &.toggled {
+                min-width: 80px;
+                width: 80px;
+            }
+            background: linear-gradient(350.48deg, rgba(255, 1, 199, 0.11) 4.34%, rgba(13, 12, 30, 0.45) 31.98%);
+        }
         @media only screen and (min-width: 1600px) {
             min-width: 320px;
             
@@ -164,14 +178,13 @@ $scale-var: 1600 / 2560;
         }
     }
     .buttons {
-        margin-top: 20px;
         display: flex !important;
-        @media only screen and (min-width: 768px) {
+        @media only screen and (min-width: 1200px) {
             display: none !important;
         }
         flex-direction: column;
         button {
-            font-size: 14px;
+            font-size: 12px;
             position: relative;
             
             margin-bottom: 10px;
@@ -188,6 +201,27 @@ $scale-var: 1600 / 2560;
                     width: fit-content !important;
                 }
             }
+        }
+        .wallet-address {
+            display: block !important;
+            @media only screen and (min-width: 768px) {
+                display: none !important;
+            }
+        }
+        .buy-now {
+            display: block !important;
+            @media only screen and (min-width: 768px) {
+                display: none !important;
+            }    
+            align-items: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+            
         }
     }
 }

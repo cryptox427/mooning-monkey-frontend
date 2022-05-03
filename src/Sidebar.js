@@ -25,6 +25,7 @@ import StatsModal from './components/StatsModal';
 import WithdrawModal from './components/WIthdrawModal';
 import Cell from './pages/layouts/Sidebar/Cell.js';
 import './Sidebar.scss';
+import darkLogo from './assets/images/playpage/dark-logo.png';
 
 const Sidebar = () => {
   const [selectedPage, setPage] = useState('play');
@@ -43,6 +44,7 @@ const Sidebar = () => {
         textColor="#fff"
         backgroundColor="#333"
       >
+        <div className="sidebar-mask"/>
         <CDBSidebarHeader
           className="display-button"
           prefix={
@@ -56,6 +58,13 @@ const Sidebar = () => {
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
+        <div className="buttons normal-group">
+          <button className="purple buy-now border-0">
+            <img className="" src={darkLogo} alt="Italian Trulli"></img>
+            BUY $TAK NOW
+          </button>
+
+          </div>
           <CDBSidebarMenu>
           
 
@@ -130,6 +139,10 @@ const Sidebar = () => {
               <button className="image-back border-0 help">
               <div className='mask'><span>HELP</span></div>
                   
+              </button>
+              <button className="purple border-0 wallet-address">
+                  0X488B...66JK6J
+              
               </button>
           </div>
                     
