@@ -23,6 +23,7 @@ import TakImg from '../../assets/images/tak.svg';
 import TransactionImg from '../../assets/images/transaction.svg';
 import WinningImg from '../../assets/images/winning-bonus.svg';
 import AvatarImg from '../../assets/images/user-img.png';
+import LogoHeader from './LogoHeader.js';
 
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
@@ -44,8 +45,8 @@ const Header = (props) => {
 
     return (
         <>
+            <LogoHeader/>
             <div className='header' >
-                <img className="logo col" src={logo} alt="Italian Trulli"></img>
                 <div className="button-group">
                     <div className="buttons normal-group">
 
