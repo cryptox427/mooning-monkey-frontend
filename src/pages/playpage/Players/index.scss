@@ -43,7 +43,7 @@ $scale-var: 1600 / 2560;
 				font-size: 22px * $scale-var;
 				
 				padding: 0;
-				padding-bottom: 20px;
+				padding-bottom: 10px;
 				padding-left: 12px;
 				border: none;
 				color: #5C52C6;
@@ -87,7 +87,9 @@ $scale-var: 1600 / 2560;
 					padding: 0;
 				}
 			}
-			
+			.wager {
+				color: white;
+			}
             .payout {
 				display: flex;
 				justify-content: left;

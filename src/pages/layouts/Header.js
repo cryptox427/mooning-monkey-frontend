@@ -4,6 +4,7 @@ import LeaderboardModal from '../../components/LeaderboardModal';
 import DepositModal from '../../components/DepositModal';
 import StatsModal from '../../components/StatsModal';
 import WithdrawModal from '../../components/WIthdrawModal';
+import InfoBox from '../../components/InfoBox';
 import './Header.scss';
 import logo from '../../assets/images/playpage/logo.png';
 import darkLogo from '../../assets/images/playpage/dark-logo.png';
@@ -39,6 +40,8 @@ const Header = (props) => {
     const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
     const [moneyType, setMoneyType] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
+    
+
     return (
         <>
             <div className='header' >
@@ -73,7 +76,7 @@ const Header = (props) => {
                             <img className="" src={darkLogo} alt="Italian Trulli"></img>
                             BUY $TAK NOW
                         </button>
-                        <div className='relative'>
+                        <InfoBox className='relative' outSideClickFunc={setMoneyType}>
                             <button className="money-type border-0" onClick={() => setMoneyType(!moneyType)}>
                                 <div className="type">
                                     <img className="" src={bnb} alt="Italian Trulli"></img>
@@ -110,7 +113,7 @@ const Header = (props) => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </InfoBox>
                         <button className="purple border-0 deposit" onClick={() => setShowDepositModal(true)}>
                         
                             DEPOSIT
@@ -123,7 +126,7 @@ const Header = (props) => {
                             <FaAngleDoubleDown className="drop-icon"/>
                             <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
                         </button>
-                        <div className='relative'>
+                        <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                             <button className="purple border-0 wallet-address" onClick={() => setShowProfile(!showProfile)}>
                                 0X488B...66JK6J
                             </button>
@@ -172,7 +175,7 @@ const Header = (props) => {
                                 Docs</a>
                                 
                             </div>
-                        </div>
+                        </InfoBox>
                     </div>
                     <div className="buttons money-group ph-show">
                         <button className="money-type border-0">
