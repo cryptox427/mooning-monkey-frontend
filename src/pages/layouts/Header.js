@@ -27,6 +27,7 @@ import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 
 import { Row, Col } from 'react-bootstrap';
+import SelectNetworkModal from '../../components/SelectNetworkModal';
 
 const Header = (props) => {
     const { children } = props;
@@ -35,6 +36,7 @@ const Header = (props) => {
     const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+    const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
     const [moneyType, setMoneyType] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
     return (
@@ -117,7 +119,7 @@ const Header = (props) => {
                             <div className='mask'><span>WITHDRAW</span></div>
                             
                         </button>
-                        <button className="select-net border-0">
+                        <button className="select-net border-0" onClick={() => setShowSelectNetworkModal(true)}>
                             <FaAngleDoubleDown className="drop-icon"/>
                             <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
                         </button>
@@ -205,6 +207,7 @@ const Header = (props) => {
             <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
             <DepositModal show={showDepositModal} onHide={() => setShowDepositModal(false)} />
             <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
+            <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
         </>
     )
 }
