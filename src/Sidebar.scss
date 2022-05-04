@@ -35,17 +35,18 @@ $scale-var: 1600 / 2560;
         
         .monkey-sidebar-item {
             .iytIZQ {
-                height: 36px;
-                @media only screen and (min-width: 1600px) {
-                    height: 42px;
-                }
+                
             }
             margin-left: 27px;
             margin-top: 0;
             padding: 0;
             margin-bottom: 7px * $scale-var;
             background-color: rgba(0, 0, 0, 0);
-            .sc-Azgjq {
+            div {
+                height: 36px;
+                @media only screen and (min-width: 1600px) {
+                    height: 42px;
+                }
                 padding: 0;
                 .item-content {   
                     position: relative;
@@ -221,7 +222,7 @@ $scale-var: 1600 / 2560;
                 height: 24px;
                 margin-right: 6px;
             }
-            
+             
         }
     }
 }
