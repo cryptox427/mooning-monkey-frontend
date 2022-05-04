@@ -5,7 +5,7 @@ import PlayerCell from "./PlayerCell.js";
 const Players = (props) => {
     return (
         <ContainerComponent>
-        <div className="w-80 m-auto flex flex-col players">
+            <div className="w-80 m-auto flex flex-col players">
             <div className="title">players</div>
             <div className="player-table">
                 <table className="table">

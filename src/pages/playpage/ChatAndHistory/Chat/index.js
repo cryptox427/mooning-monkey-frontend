@@ -3,6 +3,10 @@ import { FiPaperclip } from 'react-icons/fi';
 import { FaPlus } from 'react-icons/fa';
 
 import emoji from '../../../../assets/images/playpage/emoji.png';
+import country1 from '../../../../assets/images/playpage/country1.png';
+import country2 from '../../../../assets/images/playpage/country2.png';
+import country3 from '../../../../assets/images/playpage/country3.png';
+import country4 from '../../../../assets/images/playpage/country4.png';
 import './index.scss';
 import TalkCell from './TalkCell';
 
@@ -40,6 +44,23 @@ const Chat = (props) => {
             </div>
             <div className="current-language">
                 Current Chat Language: English
+            </div>
+            <div className="countries">
+                
+                    Countries
+                <img src={country1}></img>
+                <img src={country2}></img>
+                <img src={country3}></img>
+                <img src={country4}></img>
+            </div>
+            <div className="users">
+                
+                Users
+                <div className="user">BA<div className="state"></div></div>
+                <div className="user">BA<div className="state"></div></div>
+                <div className="user">BA<div className="state"></div></div>
+                <div className="user">BA<div className="state"></div></div>
+                <div className="user">BA<div className="state"></div></div>
             </div>
             <div className="send-message">
                 <div className="full-relative">

@@ -1,39 +1,79 @@
 $scale-var: 1600 / 2560;
 
-.players {
+.histroy {
 	padding: 16px;
 	align-items: center;
 	padding-top: 18px * $scale-var !important;
 	padding-bottom: 18px * $scale-var !important;
-	.title {
-		color: #5C52C6;
-		font-family: Nurom;
-		font-weight: bold;
-		font-size: 20px * $scale-var;
-		margin-bottom: 22px * $scale-var;
-		text-align: center;
-	}
-
-	.player-table {
+	margin: 0 !important;
+	width: 100%;
+	height: 100%;
+	.history-table {
 		width: 100%;
-		.players-table tr th , .text-blue{
-			color: #5C52C6 !important;
+		margin-top: 5px;
+		.table-header {
+			color: white;
+			background-color: #3C3C97;
 		}
-	
-		.players-table .odd{
-			background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
+		tbody {
+			margin-top: 10px;
 		}
-		.players-table td{
+		.history-table tr th , .text-blue{
+			color: #5C52C6;
+
+		}
+		tr {
+			border-top: none;
+		}
+		th {
+			border-top: none;
+			border-bottom: none !important;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			font-size: 12px;
+		}
+		td{
+			color: white;
+			white-space: nowrap;
 			vertical-align: middle;
 			padding: 4px 15px;
+			font-size: 12px;
+			border-bottom: none !important;
+			border-top: none !important;
 		}
-		.players-table{
-			border-collapse: separate;
-			  border-spacing: 0 5px;
+		.odd{
+			background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
 		}
 
 		tr:nth-child(even) {
 			background-color: transparent !important;
+		}
+		tr:nth-child(odd) {
+			background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
+		}
+		.wager {
+			display: flex;
+			vertical-align: middle;
+			align-items: center;
+			img {
+				width: 20px;
+				padding: 0;
+				margin-left: 10px;
+			}
+		}
+		.mult {
+			color: #78FF15;
+		}
+		.payout {
+			color: #78FF15;
+			display: flex;
+			vertical-align: middle;
+			align-items: center;
+			img {
+				width: 20px;
+				padding: 0;
+				margin-left: 10px;
+			}
 		}
 	}
 	

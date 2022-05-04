@@ -5,7 +5,7 @@ $scale-var: 1600 / 2560;
     margin: 0 !important;
     padding: 0 !important;
     position: relative;
-    .nav {
+    .left-nav {
         margin: 0 !important;
         padding: 0 !important;
         width: 71px * $scale-var;
@@ -77,7 +77,6 @@ $scale-var: 1600 / 2560;
             top: 0;
             right: 0;
             bottom: 0;
-            display: flex;
             visibility: hidden;
         }
         .active {

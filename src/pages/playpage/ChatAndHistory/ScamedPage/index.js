@@ -17,32 +17,32 @@ const ScamedPage = (props) => {
                 </svg>
             </div>
             <div className="w-wrap">
-                <div className="w-top mt-5">
-                <div className="w-img">
-                    <img src={warningImg} alt width={70} />
-                </div>
-                <div className="w-titles">
-                    <h5 className="mb-1">Warning !</h5>
-                    <h3 className="mb-0">Signs you are being scammed</h3>
-                </div>
+                <div className="w-top">
+                    <div className="w-img">
+                        <img src={warningImg} alt width={70} />
+                    </div>
+                    <div className="warning">
+                        <h5 className="mb-1 title">Warning !</h5>
+                        <h3 className="mb-0 description">Signs you are being scammed</h3>
+                    </div>
                 </div>
                 <div className="w-details">
-                <ul className="pl-4 stauts-bullet">
-                    <li>
-                    They claim they want you to <span className="pink">gamble for them.</span>  
-                    </li>
-                    <li>
-                    They want to <span className="pink">share an account. </span> 
-                    </li>
-                    <li>
-                    They want you to <span className="pink"> share your screen with them </span> using a program like TeamViewer.
-                    </li>
-                </ul>
-                <div className="text-right">
-                    <a href="#" className="cta-btn justify-content-center ml-auto" style={{"max-width":"200px","height":"40px"}}>
-                    I understand
-                    </a>
-                </div>
+                    <ul className="pl-4 stauts-bullet">
+                        <li>
+                        They claim they want you to <span className="pink">gamble for them.</span>  
+                        </li>
+                        <li>
+                        They want to <span className="pink">share an account. </span> 
+                        </li>
+                        <li>
+                        They want you to <span className="pink"> share your screen with them </span> using a program like TeamViewer.
+                        </li>
+                    </ul>
+                    <div className="text-right">
+                        <div className="cta-btn justify-content-center ml-auto" style={{"max-width":"200px","height":"40px"}}>
+                            I understand
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

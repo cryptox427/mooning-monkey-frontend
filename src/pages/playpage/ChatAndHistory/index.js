@@ -20,7 +20,7 @@ const ChatAndHistory = (props) => {
         <div className=" flex flex-col chat-and-history">
             <Tab.Container id="left-tabs-example" defaultActiveKey="chat">
 
-                        <Nav variant="pills" className="flex-column">
+                        <Nav variant="pills" className="flex-column left-nav">
                             <Nav.Item>
                             <Nav.Link eventKey="chat" className="left-tab-button">
                                 <span><div><BsFillChatDotsFill/>CHAT</div></span>

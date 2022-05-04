@@ -3,7 +3,6 @@ $scale-var: 1600 / 2560;
 .chat{
     width: 100%;
     height: 100%;
-    position: relative;
     .current-language {
         font-family: Nurom;
         z-index: 1;
@@ -54,6 +53,58 @@ $scale-var: 1600 / 2560;
                         font-size: 22px * $scale-var;
                     }
                 }
+            }
+        }
+        
+    }
+    .countries {
+        position: absolute;
+        right: 70px;
+        top: 30px;
+        bottom: 50px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 14px;
+        img {
+            width: 40px;
+            margin-top: 5px;
+        }
+    }
+    .users {
+        position: absolute;
+        right: 10px;
+        top: 30px;
+        bottom: 50px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        font-size: 14px;
+        align-items: center;
+        .user {
+            margin-top: 5px;
+            background-color: #EB2FE2;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            .state {
+                position: absolute;
+                right: 0;
+                bottom: 0;
+                transform: translate(50%, 50%);
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: #02F104;
             }
         }
         
@@ -109,6 +160,7 @@ $scale-var: 1600 / 2560;
             right: 25px * $scale-var;
             transform: translateY(-50%);
             top: 50%;
+            cursor: pointer;
         }
         .plus-button {
             color: white;
@@ -116,6 +168,7 @@ $scale-var: 1600 / 2560;
             right: -45px * $scale-var;
             transform: translateY(-50%);
             top: 50%;
+            cursor: pointer;
         }
     }
     /* Rectangle 114 */
