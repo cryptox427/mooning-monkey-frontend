@@ -1,11 +1,14 @@
 import { Row, Col } from 'react-bootstrap';
+import InputComponent from '../../../components/InputComponent';
 
 const AutoBet = (props) => {
     return (
         <div className="auto-bet bet-info">
             <div className="bet-amount bet-detail">
                 <span className="title">Bet Amount</span>
-                <span className="main-description">$ 5,00</span>
+                <span className="main-description">
+                    <InputComponent prefix="$" defaultValue="5,00" />
+                </span>
                 <div className="sub-detail-content">
                     <span className="detail">1/2</span>
                     <span className="detail">2x</span>
@@ -17,7 +20,9 @@ const AutoBet = (props) => {
                 <Col>
                     <div className="auto-cashout bet-detail">
                         <span className="title">Auto Cashout</span>
-                        <span className="main-description">$ 25,00</span>
+                        <span className="main-description">
+                            <InputComponent prefix="$" defaultValue="5,00" />
+                        </span>
                     </div>
                 </Col>
                 <Col>
@@ -33,7 +38,9 @@ const AutoBet = (props) => {
             </div>
             <div className="on-win bet-info-detail bet-detail">
                 <span className="title">On Win</span>
-                <span className="main-description">% 0.00</span>
+                <span className="main-description">
+                    <InputComponent prefix="%" defaultValue="5,00" />
+                </span>
                 <div className="sub-detail-content">
                     <span className="detail">Increase</span>
                     <span className="detail">Reset</span>
@@ -42,7 +49,9 @@ const AutoBet = (props) => {
 
             <div className="on-loss bet-info-detail bet-detail">
                 <span className="title">On Loss</span>
-                <span className="main-description">% 0.00</span>
+                <span className="main-description">
+                    <InputComponent prefix="%" defaultValue="5,00" />
+                </span>
                 <div className="sub-detail-content">
                     <span className="detail">Increase</span>
                     <span className="detail">Reset</span>
@@ -54,7 +63,9 @@ const AutoBet = (props) => {
                 <Col>
                     <div className="stop-on-profit bet-info-detail">
                         <span className="title">Stop On Profit</span>
-                        <span className="main-description">% 0.00</span>
+                        <span className="main-description">
+                            <InputComponent prefix="%" defaultValue="5,00" />
+                        </span>
                     </div>
                 </Col>
                 <Col>
