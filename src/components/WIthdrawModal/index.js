@@ -1,8 +1,10 @@
+import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
 
 const WithdrawModal = (props) => {
     const { show, onHide } = props;
+    const [moneyType, setMoneyType] = useState(false);
 
     return (
         <Modal show={show} onHide={onHide} >
@@ -11,22 +13,36 @@ const WithdrawModal = (props) => {
             </Modal.Header>
             <Modal.Body style={{backgroundColor: '#100F25', color: 'white'}}>
                 <h6 class="text-light">Select coin</h6>
-                <div class="select-coin-box p-2">
-                <div class="w-100 d-flex align-items-center p-1">
-                <img src={TakCoinImg} class="mr-2" width="25" alt="" />
-                <h6 class="mb-0">TAK</h6>
+                <div className="relative">
+                <div className="select-coin-box p-2">
+                    <div className="w-100 d-flex  align-items-center justify-content-start p-1" onClick={() => setMoneyType(!moneyType)}>
+                        <div className="d-flex align-items-center">
+                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                            <h6 className="mb-0">TAK</h6>
+                        </div>
+                    </div>
                 </div>
-
-                <select name="" id="" class="form-control top-select bottom-select" style={{border: "none !important", width: "70px"}}>
-                    
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                    
-                </select>
-
+                <div className={`absolute select-money w-100 ${!moneyType ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
+                    <div className="d-flex p-2 select-money-item" style={{backgroundColor: "#3c3c9577"}}>
+                        <div className="d-flex align-items-center">
+                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                            <h6 className="mb-0">TAK</h6>
+                        </div>
+                    </div>
+                    <div className="d-flex p-2 select-money-item">
+                        <div className="d-flex align-items-center">
+                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                            <h6 className="mb-0">TAK</h6>
+                        </div>
+                    </div>
+                    <div className="d-flex p-2 select-money-item" style={{backgroundColor: "#3c3c9577"}}>
+                        <div className="d-flex align-items-center">
+                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                            <h6 className="mb-0">TAK</h6>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
 
                 <div class="amount-balance mt-4 mb-1">
@@ -44,15 +60,6 @@ const WithdrawModal = (props) => {
                 <h6 class="pink mb-0">0.01 TAK</h6>
                 <h6 class="mb-0">MAX</h6>
                 </div>
-
-                <select name="" id="" class="form-control top-select bottom-select" style={{border: "none !important", width: "70px"}}>
-                    
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                <option value="">0.15</option>
-                    
-                </select>
 
                 </div>
 

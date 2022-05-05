@@ -80,3 +80,25 @@
     border: 2px solid #2A2E68;
     padding: 1rem;
 }
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.select-money {
+    &-item:hover {
+        background-color: rgba(244, 244, 244, 0.5) !important;
+    }
+}
+
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}

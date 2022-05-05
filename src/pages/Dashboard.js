@@ -95,24 +95,22 @@ export const Dashboard = () => {
             <div className="cards-container">
               <Row style={{width: '100%'}}>
                 <Col xxl={8} xl={12} className="pr-0">
-                  <div className="d-flex flex-column md:flex-row">
-                    <Row className="m-0">
-                      <Col lg={12} xl={8} className="p-0 mb-2">
-                        <div
-                          className="md:mb-0 bg"
-                        >
-                        </div>
-                      </Col>
-                      <Col lg={12} xl={4} className="pr-lg-0 pl-xl-match">
-                        <div
-                          className="d-flex flex-column md:ml-2 mb-2"
-                        >
-                          <BetTypeContainer/>
-                        </div>
-                      </Col>
-                    </Row>
-                  </div>
-                  <div className="flex-1 mb-2 d-flex flex-column">
+                  <Row className="m-0 mb-4">
+                    <Col lg={12} xl={8} className="p-0 mb-2">
+                      <div
+                        className="md:mb-0 bg"
+                      >
+                      </div>
+                    </Col>
+                    <Col lg={12} xl={4} className="pr-lg-0 pl-xl-match mb-2">
+                      <div
+                        className="d-flex flex-column md:ml-2 mb-2 bet-wrapper"
+                      >
+                        <BetTypeContainer/>
+                      </div>
+                    </Col>
+                  </Row>
+                  <div className="flex-1 d-flex flex-column">
                     <div className="d-flex flex-column wide d-flex flex-column">
                       <ChatAndHistory/>  
                     </div>
