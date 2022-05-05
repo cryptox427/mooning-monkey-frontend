@@ -12,6 +12,7 @@ import { Pie, Bar } from "react-chartjs-2";
 import "./Dashboard.scss";
 import gameImg from '../assets/images/playpage/game.png';
 import BetTypeContainer from './playpage/BetTypeContainer';
+import MainChartComponent from "../components/MainChartComponent";
 import ChatAndHistory from './playpage/ChatAndHistory';
 import Players from './playpage/Players';
 import { Col, Row } from "react-bootstrap";
@@ -96,11 +97,8 @@ export const Dashboard = () => {
               <Row style={{width: '100%'}}>
                 <Col xxl={8} xl={12} className="pr-0">
                   <Row className="m-0 mb-4">
-                    <Col lg={12} xl={8} className="p-0 mb-2">
-                      <div
-                        className="md:mb-0 bg"
-                      >
-                      </div>
+                    <Col lg={12} xl={8} className="p-0 mb-2 d-flex flex-column">
+                      <MainChartComponent />
                     </Col>
                     <Col lg={12} xl={4} className="pr-lg-0 pl-xl-match mb-2">
                       <div

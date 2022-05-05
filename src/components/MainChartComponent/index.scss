@@ -1,0 +1,77 @@
+.bg {
+	background-image: url('../../assets/images/playpage/game.png');
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+.play-chart {
+    flex: 1;
+}
+
+.chart-bottom-btns{
+    background-color: #252543;
+    padding: 3px;
+    z-index: 99;
+    position: relative;
+}
+
+.left-three-btns svg{
+    width: 16px;
+    height: 16px;
+}
+
+.timeline-bg{
+    background-color: #1C1C40;
+    padding: 0.8rem;
+    min-width: 200px;
+}
+
+.tabs-common{
+    background-color: #2A2E68;
+}
+.tabs-common a{
+    padding: 5px 8px !important;
+}
+.tabs-common{
+    flex-wrap: unset !important;
+    gap: 5px;
+    justify-content: space-between;
+}
+.tabs-common .nav-link.active{
+    background-color: #F001F4 !important; 
+    color: white !important;
+    border-radius: 0px  !important;
+}
+.tabs-common .nav-link{
+    color: white !important;
+}
+.tabs-common .nav-link{
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    line-height: unset !important;
+    margin-bottom: 0px;
+    height: 35px;
+    justify-content: center;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #f002f4 !important;
+    background-color: #f002f4 !important;
+}
+.volume-btn{
+    display: flex;
+    align-items: center; 
+    gap: 8px;
+}
+.table td {
+    color: white;
+}
+.custom-control-label::before{
+    background-color: #f002f4 !important;
+    border-color: #f002f4 !important;
+}
+
+.prevent-drop {
+    bottom: 100%;
+}
