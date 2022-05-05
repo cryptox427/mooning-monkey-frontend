@@ -19,7 +19,7 @@ const ScamedPage = (props) => {
             <div className="w-wrap">
                 <div className="w-top">
                     <div className="w-img">
-                        <img src={warningImg} alt width={70} />
+                        <img src={warningImg} alt="" width={70} />
                     </div>
                     <div className="warning">
                         <h5 className="mb-1 title">Warning !</h5>
@@ -39,7 +39,7 @@ const ScamedPage = (props) => {
                         </li>
                     </ul>
                     <div className="text-right">
-                        <div className="cta-btn justify-content-center ml-auto" style={{"max-width":"200px","height":"40px"}}>
+                        <div className="cta-btn justify-content-center ml-auto" style={{"maxWidth":"200px","height":"40px"}}>
                             I understand
                         </div>
                     </div>

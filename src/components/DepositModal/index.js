@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
+import ArrowDownImg from '../../assets/images/arrow-down.svg';
 import './index.scss';
 
 const DepositModal = (props) => {
@@ -22,6 +23,7 @@ const DepositModal = (props) => {
                             <h6 className="mb-0">TAK</h6>
                         </div>
                     </div>
+                    <img src={ArrowDownImg} alt="" style={{width: "15px"}}/>
                 </div>
                 <div className={`absolute select-money w-100 ${!moneyType ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
                     <div className="d-flex p-2 select-money-item" style={{backgroundColor: "#3c3c9577"}}>

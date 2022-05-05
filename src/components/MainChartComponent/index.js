@@ -86,7 +86,7 @@ const MainChartComponent = () => {
 
                         </a>
 
-                        <div className={`dropdown-menu prevent-drop timeline-bg ${showAnimation ? 'show' : 'hidden'}`}>
+                        <div className={`absolute prevent-drop timeline-bg ${showAnimation ? 'show' : 'hidden'}`}>
                             <h6 className="pink">Animation</h6>
 
                             <ul className="nav nav-pills mb-3 tabs-common" id="pills-tab" role="tablist">
@@ -118,7 +118,7 @@ const MainChartComponent = () => {
                                                     id="custom-switch"
                                                 />    
                                             </Form>
-                                            <label className="custom-control-label" for="customSwitch1">On</label>
+                                            <label className="custom-control-label" htmlFor="customSwitch1">On</label>
                                         </div>
                                         </td>
                                     </tr>
@@ -132,7 +132,7 @@ const MainChartComponent = () => {
                                                     id="custom-switch"
                                                 />    
                                             </Form>
-                                            <label className="custom-control-label" for="customSwitch1">On</label>
+                                            <label className="custom-control-label" htmlFor="customSwitch1">On</label>
                                         </div>
                                         </td>
                                     </tr>
@@ -146,7 +146,7 @@ const MainChartComponent = () => {
                                                     id="custom-switch"
                                                 />    
                                             </Form>
-                                            <label className="custom-control-label" for="customSwitch1">On</label>
+                                            <label className="custom-control-label" htmlFor="customSwitch1">On</label>
                                         </div>
                                         </td>
                                     </tr>
@@ -160,7 +160,7 @@ const MainChartComponent = () => {
                                                     id="custom-switch"
                                                 />    
                                             </Form>
-                                            <label className="custom-control-label" for="customSwitch1">On</label>
+                                            <label className="custom-control-label" htmlFor="customSwitch1">On</label>
                                         </div>
                                         </td>
                                     </tr>

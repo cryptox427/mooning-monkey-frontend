@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
+import ArrowDownImg from '../../assets/images/arrow-down.svg';
 
 const WithdrawModal = (props) => {
     const { show, onHide } = props;
@@ -12,7 +13,7 @@ const WithdrawModal = (props) => {
                 <Modal.Title><span style={{color: '#F001F4'}}>WITHDRAW</span></Modal.Title>
             </Modal.Header>
             <Modal.Body style={{backgroundColor: '#100F25', color: 'white'}}>
-                <h6 class="text-light">Select coin</h6>
+                <h6 className="text-light">Select coin</h6>
                 <div className="relative">
                 <div className="select-coin-box p-2">
                     <div className="w-100 d-flex  align-items-center justify-content-start p-1" onClick={() => setMoneyType(!moneyType)}>
@@ -21,6 +22,7 @@ const WithdrawModal = (props) => {
                             <h6 className="mb-0">TAK</h6>
                         </div>
                     </div>
+                    <img src={ArrowDownImg} alt="" style={{width: "15px"}}/>
                 </div>
                 <div className={`absolute select-money w-100 ${!moneyType ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
                     <div className="d-flex p-2 select-money-item" style={{backgroundColor: "#3c3c9577"}}>
