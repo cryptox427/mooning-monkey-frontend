@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
+import ReactApexChart from 'react-apexcharts';
 import AspectRatioImg from '../../assets/images/aspect_ratio_white_24dp.svg'
 import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
@@ -7,10 +8,65 @@ import './index.scss';
 
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
+    const chartOptions = {
+        chart: {
+            type: 'area',
+            id: "basic-bar",
+            zoom: {
+                type: 'x',
+                enabled: true,
+                autoScaleYaxis: true
+            },
+            toolbar: {
+                autoSelected: 'zoom',
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            horizontalAlign: 'left'
+        },
+        labels: [30, 40, 45, 50, 49, 60, 70, 91],
+        xaxis: {
+            categories: [17, 18, 19, 20, 21, 22, 23, 24]
+        },
+        stroke: {
+            curve: 'straight'
+        },
+        tooltip: {
+            enabled: true
+        },
+        theme: {
+            mode: 'dark'
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                inverseColors: false,
+                opacityFrom: 0.5,
+                opacityTo: 0,
+                stops: [0, 90, 100]
+            },
+        },
+       
+        colors: ['#F001F4']
+    }
+
+    const chartSeries = [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91]
+        }
+    ]
+
     return (
         <>
             <div className="play-chart">
-                <div className="bg" ></div>
+                <div className="bg" >
+                    <ReactApexChart options={chartOptions} series={chartSeries} type="area" height={500} />
+                </div>
             </div>
             <div className="chart-bottom-btns">
                 <div className="left-three-btns">
