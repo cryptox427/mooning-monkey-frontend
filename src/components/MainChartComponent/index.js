@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import './index.scss';
 import AspectRatioImg from '../../assets/images/aspect_ratio_white_24dp.svg'
 import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
+import './index.scss';
 
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
@@ -30,7 +30,7 @@ const MainChartComponent = () => {
 
                         </a>
 
-                        <div className={`dropdown-menu prevent-drop timeline-bg ${showAnimation ? 'hidden' : 'show'}`}>
+                        <div className={`dropdown-menu prevent-drop timeline-bg ${showAnimation ? 'show' : 'hidden'}`}>
                             <h6 className="pink">Animation</h6>
 
                             <ul className="nav nav-pills mb-3 tabs-common" id="pills-tab" role="tablist">

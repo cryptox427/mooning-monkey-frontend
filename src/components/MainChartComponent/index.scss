@@ -1,5 +1,5 @@
 .bg {
-	background-image: url('../../assets/images/playpage/game.png');
+	background-image: url('../../assets/images/playpage/chartbg.png');
 	width: 100%;
 	height: 100%;
 	background-size: 100% 100%;
@@ -74,4 +74,9 @@
 
 .prevent-drop {
     bottom: 100%;
+}
+
+.form-check-input:checked {
+    background-color: #f002f4 !important;
+    border-color: #f002f4 !important;
 }
