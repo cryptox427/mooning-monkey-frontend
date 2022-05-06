@@ -483,5 +483,42 @@ $scale-var: 1600 / 2560;
     .mr-2 {
         margin-right: 8px;
     }
+
+    .register-container {
+        width: 500px;
+        right: 0;
+        top: calc(100% + 8px);
+        background-color: #1C1C40;
+        padding: 24px;
+        color: white;
+        display: flex;
+        flex-direction: column;
+
+        .reg-input-container {
+            margin-bottom: 8px;
+            display: flex;
+
+            .input-title {
+                width: 40%;
+                text-align: right;
+                padding-right: 16px;
+            }
+
+            .input-item {
+                background-color: transparent;
+                border: 1px solid white;
+                color: white;
+            }
+        }
+
+        .reg-button {
+            font-size: 16px !important;
+            float: right !important;
+        }
+
+        .center {
+            text-align: center;
+        }
+    }
 }
 
