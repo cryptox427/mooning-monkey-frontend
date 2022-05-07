@@ -8,7 +8,7 @@ import WithdrawModal from '../../components/WIthdrawModal';
 import InfoBox from '../../components/InfoBox';
 import { connectWallet, getCurrentWalletConnected } from '../../utils/interact';
 import { chainId } from '../../constants/chain';
-import request from '../../utils/request';
+import {request, postRequest} from '../../utils/request';
 import './Header.scss';
 import logo from '../../assets/images/playpage/logo.png';
 import darkLogo from '../../assets/images/playpage/dark-logo.png';
@@ -55,6 +55,7 @@ const Header = (props) => {
     const [password, setPassword] = useState();
     const [rePassword, setRePassword] = useState();
     const [pwdNotMatch, setPwdNotMatch] = useState(false);
+    const checkAPIUrl = 'http://localhost/check.php';
     
     const handleConnectWallet = async () => {
         const walletResponse = await connectWallet();
@@ -70,6 +71,15 @@ const Header = (props) => {
         pauseOnHover: true,
         draggable: true,
     });
+
+    const onClickWalletBtn = () => {
+        if(loginStatus) {
+            setShowProfile(!showProfile);
+        }
+        else {
+            setShowRegisger(!showRegister);
+        }
+    };
 
     const addWalletListener = () => {
         if (window.ethereum) {
@@ -163,14 +173,19 @@ const Header = (props) => {
             setStatus('Input all field correctly!');
             return;
         } 
+        console.log("on~~~~~~~~~~~~");
         const url = `http://localhost/register.php`;
         const data = {
+            userName: null,
             password,
-            publicKey: walletAddress
+            publicKey: walletAddress,
+            refCode: null
         }
-        const res = await request('post', url, data);
+        // const res = await request('post', url, data);
+        const checkSessionRes = await postRequest('post', checkAPIUrl, data);
+        console.log("session:", checkSessionRes);
 
-        if (res.status === 'status') {
+        if (checkSessionRes.data === 'login success') {
             setLoginStatus(true);
         }
     }
@@ -179,16 +194,20 @@ const Header = (props) => {
         if (!userName || !password || pwdNotMatch) {
             setStatus('Input all field correctly!');
             return;
-        } 
+        }
+        console.log("on1~~~~~~~~~~~~");
         const url = `http://localhost/register.php`;
         const data = {
-            username: userName,
+            userName,
             password,
-            publicKey: walletAddress
+            publicKey: walletAddress,
+            refCode: null
         }
-        const res = await request('post', url, data);
+        const checkSessionRes = await postRequest('post', checkAPIUrl, data);
+        console.log("session:", checkSessionRes);
+        // const res = await request('post', url, data);
 
-        if (res.status === 'status') {
+        if (checkSessionRes.data === 'register success') {
             setLoginStatus(true);
         }
     }
@@ -280,7 +299,7 @@ const Header = (props) => {
                         {
                             walletAddress
                                 ?   <InfoBox className='relative' outSideClickFunc={setShowProfile}>
-                                        <button className="purple border-0 wallet-address" onClick={() => setShowProfile(!showProfile)}>
+                                        <button className="purple border-0 wallet-address" onClick={() => onClickWalletBtn()}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}
                                         </button>
                                         {
@@ -310,12 +329,12 @@ const Header = (props) => {
                                                         }
                                                         <div className=''>
                                                             {
-                                                                regStatus === "Logged"
-                                                                    ? <button className="purple border-0 reg-button" onClick={onLogin}>
-                                                                        SIGN IN
-                                                                    </button>
-                                                                    : <button className="purple border-0 reg-button" onClick={onRegister}>
+                                                                regStatus === "Not Logged"
+                                                                    ? <button className="purple border-0 reg-button" onClick={onRegister}>
                                                                         SIGN UP
+                                                                    </button>
+                                                                    : <button className="purple border-0 reg-button" onClick={onLogin}>
+                                                                        SIGN IN
                                                                     </button>
                                                             }
                                                         </div>
