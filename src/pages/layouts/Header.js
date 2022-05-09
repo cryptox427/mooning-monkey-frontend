@@ -422,7 +422,7 @@ const Header = (props) => {
             <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
             <LeaderboardModal show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
             <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
-            <DepositModal show={showDepositModal} onHide={() => setShowDepositModal(false)} />
+            <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
             <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
             <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
             <ToastContainer />
