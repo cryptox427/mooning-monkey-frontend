@@ -1,4 +1,6 @@
 import { chainId } from '../constants/chain';
+import { ethers } from 'ethers';
+import { BSC_TOKENS } from '../constants/tokens';
 
 export const connectWallet = async () => {
   if (window.ethereum) {
@@ -78,3 +80,36 @@ export const getCurrentWalletConnected = async () => {
   }
 }
 
+export const getSigner = () => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
+  return signer;
+}
+
+export const getTokenContract = (tokenName) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
+  const contractABI = require("../constants/tokenABI.json");
+  const contract = new ethers.Contract(BSC_TOKENS[tokenName], contractABI, signer);
+
+  return contract;
+}
+
+export const getBalance = async (address, tokenName) => {
+  const provider = new ethers.providers.Web3Provider(window.ethereum);
+  const signer = provider.getSigner();
+
+  let balance;
+
+  if (tokenName === 'BNB') {
+    balance = await provider.getBalance(address);
+  } else {
+    const contractABI = require("../constants/tokenABI.json");
+    const contract = new ethers.Contract(BSC_TOKENS[tokenName], contractABI, signer);
+    balance = await contract.balanceOf(address);
+  }
+
+  return ethers.utils.formatEther(balance);
+}
