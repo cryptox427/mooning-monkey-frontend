@@ -72,30 +72,30 @@ const DepositModal = (props) => {
                 <Modal.Title><span style={{color: '#F001F4'}}>DEPOSIT</span></Modal.Title>
             </Modal.Header>
             <Modal.Body style={{backgroundColor: '#100F25', color: 'white'}}>
-            <h6 className="text-light">Select coin</h6>
-            <div className="relative">
-                <div className="select-coin-box cursor-pointer p-2">
-                    <div className="w-100 d-flex  align-items-center justify-content-start p-1" onClick={() => setShowSelect(!showSelect)}>
-                        <div className="d-flex align-items-center">
-                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
-                            <h6 className="mb-0">{selectedTokenName}</h6>
-                        </div>
-                    </div>
-                    <img src={ArrowDownImg} alt="" style={{width: "15px"}}/>
-                </div>
-                <div className={`absolute select-money w-100 ${!showSelect ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
-                    {
-                        tokenNames.map((tokenName, index) =>
-                            <div key={index} className="d-flex p-2 select-money-item" onClick={() => handleToken(tokenName)} >
-                                <div className="d-flex align-items-center">
-                                    <img src={TakCoinImg} className="mr-2" width="25" alt="" />
-                                    <h6 className="mb-0">{tokenName}</h6>
-                                </div>
+                <h6 className="text-light">Select coin</h6>
+                <div className="relative">
+                    <div className="select-coin-box cursor-pointer p-2">
+                        <div className="w-100 d-flex  align-items-center justify-content-start p-1" onClick={() => setShowSelect(!showSelect)}>
+                            <div className="d-flex align-items-center">
+                                <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                                <h6 className="mb-0">{selectedTokenName}</h6>
                             </div>
-                        )
-                    }
+                        </div>
+                        <img src={ArrowDownImg} alt="" style={{width: "15px"}}/>
+                    </div>
+                    <div className={`absolute select-money w-100 ${!showSelect ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
+                        {
+                            tokenNames.map((tokenName, index) =>
+                                <div key={index} className="d-flex p-2 select-money-item" onClick={() => handleToken(tokenName)} >
+                                    <div className="d-flex align-items-center">
+                                        <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                                        <h6 className="mb-0">{tokenName}</h6>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
                 </div>
-            </div>
                 <div className="amount-balance mt-4 mb-1">
                     <h6 className="text-light">Amount</h6>
                     <div className="text-light">Wallet Balance: <span>{balance} {selectedTokenName} </span></div>
