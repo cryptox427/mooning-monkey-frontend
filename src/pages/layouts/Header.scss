@@ -520,5 +520,15 @@ $scale-var: 1600 / 2560;
             text-align: center;
         }
     }
+    .register-container {
+        .reg-input-container {
+            align-items: center;
+            border: 2px solid #515189;
+            
+            input {
+                flex: 1;
+            }
+        }
+    }
 }
 

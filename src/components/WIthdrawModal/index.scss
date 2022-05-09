@@ -1,0 +1,47 @@
+.withdraw-modal {
+    .modal-dialog {
+        max-width: 500px !important;
+        margin: 3rem auto;
+        .poppin-light-txt {
+            font-family: Poppins-Light;
+        }
+        .modal-content {
+            .modal-header {
+                padding: 30px;
+                padding-top: 20px;
+                padding-bottom: 0;
+                .modal-title {
+                    span {
+                        font-family: Poppins-SemiBold;
+                    }
+                }
+                .close-btn {
+                    color: rgb(211, 209, 209);
+                    background-color: rgba(0, 0, 0, 0);
+                    border: none;
+                    position: absolute;
+                    right: 30px;
+                    font-size: 25px;
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+            .modal-body {
+                padding: 30px;
+                padding-top: 20px;
+                .dropdown-title {
+                    font-family: Poppins-Light;
+                }
+                .dropdwon-item-text {
+                    font-family: Poppins-Light;
+                    margin-left: 10px;
+                }
+                .withdraw-btn {
+                    cursor: pointer;
+                }
+            }
+        }
+        
+    }
+}
