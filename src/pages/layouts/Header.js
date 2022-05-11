@@ -181,6 +181,7 @@ const Header = (props) => {
             publicKey: walletAddress,
             refCode: null
         }
+        localStorage.setItem('publicKey', walletAddress);
         // const res = await request('post', url, data);
         const checkSessionRes = await postRequest('post', checkAPIUrl, data);
         console.log("session:", checkSessionRes);

@@ -25,8 +25,9 @@ const WithdrawModal = (props) => {
     const onWithdraw = async () => {
         console.log("on~~~~~~~~~~~~ withdraw");
         const data = {
-            tokenId: selectedTokenName,
-            tokenAmount: tokenAmount
+            tokenId: 1,
+            tokenAmount: tokenAmount,
+            publicKey: localStorage.getItem('publicKey')
         }
         // const res = await request('post', url, data);
         const checkSessionRes = await postRequest('post', withdrawApiUrl, data);

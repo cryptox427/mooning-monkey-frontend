@@ -15,7 +15,7 @@ const postRequest = async (method, url, data) => {
         axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         //axios.defaults.withCredentials = true;
         axios.defaults.crossDomain = true;
-
+        console.log(JSON.stringify(data));
         const res = await axios.post(url, {
                 data: data,
                 type: 'products'
