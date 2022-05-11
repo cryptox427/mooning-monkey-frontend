@@ -39,11 +39,10 @@ header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
         if($tokenAmount > $userCredits){
             // User does not have enough credits
             echo "User does not have enough credits";
-            //exit();
+            exit();
         }
+        
         echo "User has enough credits";
-
-
         $create_datetime = date("Y-m-d H:i:s");
         $query    = "INSERT into `tokenpayouts` (tokenId, payoutToUserId) VALUES ((SELECT tokens.id FROM tokens left join tokenpayouts b on b.tokenId = tokens.id where tokens.id = '".$tokenId."' and b.payoutToUserId is null), (SELECT id from users where publicKey = '".$publicKey."') )";
         $result   = mysqli_query($con, $query);
