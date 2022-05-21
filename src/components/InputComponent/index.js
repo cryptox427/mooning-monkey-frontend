@@ -2,20 +2,20 @@ import { useState } from 'react';
 import './index.scss';
 
 const InputComponent = (props) => {
-    const { prefix, defaultValue } = props;
+    const { prefix, defaultValue, type, valueChangeHandler } = props;
     const [inputValue, setInputValue] = useState('');
 
     const changeHandler = (e) => {
-        setInputValue(e.target.value);
+        valueChangeHandler(e.target.value);
     }
 
     return (
         <div className='input-container'>
             <input 
                 className='input-field' 
-                value={inputValue} 
+                value={defaultValue} 
                 onChange={changeHandler}
-                defaultValue={defaultValue} />
+                type={type} />
             <div className='input-prefix'>
                 {prefix}
             </div>

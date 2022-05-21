@@ -97,6 +97,12 @@ $scale-var: 1600 / 2560;
 				font-size: 17px * $scale-var;
 				color: white;
 			}
+			.amount-change-btn {
+				cursor: pointer;
+				&:hover {
+					color: #F843EA;
+				}
+			}
 		}
 	}
 	.bet-amount {
@@ -115,6 +121,7 @@ $scale-var: 1600 / 2560;
 	.play-button {
 		margin-top: 15px * $scale-var;
 		background-color: #F843EA;
+		cursor: pointer;
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;
@@ -130,6 +137,9 @@ $scale-var: 1600 / 2560;
 			top: 50%;
 			left: 50%;
 			position: absolute;
+		}
+		&.disable-bet {
+			background-color: green;
 		}
 	}
 	.bet-info-detail {

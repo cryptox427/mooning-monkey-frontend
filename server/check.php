@@ -4,6 +4,7 @@ header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: *");
 
     require('db.php');
+    
 $data = json_decode(file_get_contents("php://input"),true);
 $parse_data = $data["data"];   
 
@@ -61,9 +62,8 @@ $parse_data = $data["data"];
             while($row = mysqli_fetch_assoc($result)){
                 if(password_verify($password,$row['password'])){
                     //session_register($publicKey);
-
+                    
                     $_SESSION['publicKey'] = $publicKey;
-                    echo json_encode($_SESSION["publicKey"]);
                     echo "login success";
                 }else{
                     //PASSWORD IS NOT CORRECT

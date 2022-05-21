@@ -28,6 +28,7 @@ import TransactionImg from '../../assets/images/transaction.svg';
 import WinningImg from '../../assets/images/winning-bonus.svg';
 import AvatarImg from '../../assets/images/user-img.png';
 import LogoHeader from './LogoHeader.js';
+import {connect} from 'react-redux'
 
 import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
@@ -35,9 +36,11 @@ import { FaAngleDoubleDown } from 'react-icons/fa';
 import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
+import {getMaxCredits} from '../../actions/betActions'
+import {setPublicKey} from '../../actions/userActions'
 
 const Header = (props) => {
-    const { children } = props;
+    const { children, setPublicKey, getMaxCredits } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
@@ -187,6 +190,10 @@ const Header = (props) => {
         console.log("session:", checkSessionRes);
 
         if (checkSessionRes.data === 'login success') {
+            console.log("success")
+            setPublicKey(walletAddress);
+            getMaxCredits(walletAddress);
+            
             setLoginStatus(true);
         }
     }
@@ -431,4 +438,9 @@ const Header = (props) => {
     )
 }
 
-export default Header;
+const mapStateToProps  = (state) => (
+    {
+        
+    }
+)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits})(Header)

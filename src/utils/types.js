@@ -1,0 +1,7 @@
+export const GET_MAX_CREDITS = 'GET_MAX_CREDITS';
+export const GET_MAX_CREDITS_ERROR = 'GET_MAX_CREDITS_ERROR';
+export const BET_REQUEST = 'BET_REQUEST';
+export const BET_SUCCESS = 'BET_SUCCESS';
+export const BET_ERROR = 'BET_ERROR';
+
+export const SET_PUBLICKEY = 'SET_PUBLICKEY';
