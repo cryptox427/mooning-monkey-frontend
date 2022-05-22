@@ -58,7 +58,7 @@ const Header = (props) => {
     const [password, setPassword] = useState();
     const [rePassword, setRePassword] = useState();
     const [pwdNotMatch, setPwdNotMatch] = useState(false);
-    const checkAPIUrl = 'http://localhost/check.php';
+    const checkAPIUrl = './check.php';
     
     const handleConnectWallet = async () => {
         const walletResponse = await connectWallet();
@@ -136,7 +136,7 @@ const Header = (props) => {
 
     useEffect(async () => {
         if (walletAddress) {
-            const url = `http://localhost/account.php?publicKey=${walletAddress}`;
+            const url = `./account.php?publicKey=${walletAddress}`;
             const res = await request('get', url);
 
             if (res.status === "success") {

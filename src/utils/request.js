@@ -11,8 +11,6 @@ const request = async (method, url, data) => {
 
 const postRequest = async (method, url, data) => {
     try {
-        axios.defaults.headers.post['Content-Type'] = 'application/json';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
         //axios.defaults.withCredentials = true;
         axios.defaults.crossDomain = true;
         console.log(JSON.stringify(data));

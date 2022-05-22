@@ -18,18 +18,21 @@ const ManualBet = (props) => {
     };
 
     const clickChangeBetAmountBtn = (multipleAmount) => {
+        let _betAmount = 0;
         switch(multipleAmount) {
             case betAmountMultiple.half:
-                setMultiplier(1 / 2);
+                _betAmount = betAmount / 2 > 1 ? betAmount / 2 : 1;
+                setBetAmount(_betAmount);
                 break;
             case betAmountMultiple.double:
-                setMultiplier(2);
+                _betAmount = betAmount * 2 < maxCredits ? betAmount * 2 : maxCredits;
+                setBetAmount(_betAmount);
                 break;
             case betAmountMultiple.max:
-                setMultiplier(maxCredits / betAmount);
+                setBetAmount(maxCredits);
                 break;
             case betAmountMultiple.min:
-                setMultiplier(1);
+                setBetAmount(1);
                 break;
         }
     }
@@ -57,7 +60,7 @@ const ManualBet = (props) => {
             <div className="auto-cashout bet-detail">
                 <span className="title">Auto Cashout</span>
                 <span className="main-description">
-                    <InputComponent prefix="$" defaultValue="25" />
+                    <InputComponent prefix="x"  type="number" defaultValue="25" valueChangeHandler={setMultiplier} defaultValue={multiplier} />
                 </span>
             </div>
             <div className={`play-button ${betState ? 'disable-bet' : 'enable-bet'}`} onClick={()=>clickPlayBtn()}>

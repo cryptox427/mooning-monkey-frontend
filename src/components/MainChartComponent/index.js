@@ -14,8 +14,8 @@ const GameState = {
     Running: 'Running',
     Crashed: 'Crushed'
 }
-//const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
-const evtSource = new EventSource("./getGameProgress.php");
+const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
+//const evtSource = new EventSource("./getGameProgress.php");
 
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
@@ -34,11 +34,18 @@ const MainChartComponent = () => {
             id: "basic-bar",
             zoom: {
                 type: 'x',
-                enabled: true,
+                enabled: false,
                 autoScaleYaxis: true
             },
             toolbar: {
                 autoSelected: 'zoom',
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    display: false
+                }
             }
         },
         dataLabels: {
@@ -55,7 +62,7 @@ const MainChartComponent = () => {
             curve: 'straight'
         },
         tooltip: {
-            enabled: true
+            enabled: false
         },
         theme: {
             mode: 'dark'
@@ -76,6 +83,7 @@ const MainChartComponent = () => {
     
     evtSource.onmessage = (event) => {
         let eventData = event.data;
+        console.log("message");
         if(eventData === "Finished")
         {
             setGameData({
