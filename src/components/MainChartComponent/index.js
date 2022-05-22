@@ -9,17 +9,24 @@ import './index.scss';
 let gameData = [];
 let gameDatas = [];
 let constGameValue = 0;
+const GameState = {
+    Waiting: 'waiting',
+    Running: 'Running',
+    Crashed: 'Crushed'
+}
 const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
+
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
-    const [gameValue, setGameValue] = useState(constGameValue);
-    const [curTime, setCurTime] = useState(0);
-    const [gameValues, setGameValues] = useState(gameData);
-    const [chartSeries, setSeries] = useState([{
-        name: "series-1",
-        data: gameData
-    }]);
-    const [times, setTimes] = useState(gameData);
+    const [gameData, setGameData] = useState({
+        currentState: GameState.Waiting,
+        currentValue: 0,
+        timeLineValues: [],
+        valueHistory: [{
+            name: "series-1",
+            data: []
+        }]
+    });
     const chartOptions = {
         chart: {
             type: 'area',
@@ -70,57 +77,43 @@ const MainChartComponent = () => {
         let eventData = event.data;
         if(eventData === "Finished")
         {
-            setGameValue(0);
-            // setTimes([]);
-            // setGameValues([]);
-            // setCurTime(0);
-            // setSeries([]);
-            gameData = [];
-            gameDatas = [];
-            setTimes( gameData);
-            constGameValue = 0;
-            setGameValues(constGameValue);
-            
-            setSeries([{
-                name: "series-1",
-                data: gameData
-            }]);
+            setGameData({
+                ...gameData,
+                
+                currentState: GameState.Crashed,
+                timeLineValues: [0],
+                valueHistory: [{
+                    name: "series-1",
+                    data: []
+                }]
+            })
         }
         else {
             eventData = Number(eventData);
             if(eventData < 0) {
-                constGameValue = 0;
-                setGameValues(constGameValue);
-                // setTimes([]);
-                // setGameValues([]);
-                // setCurTime(0);
-                // setSeries([]);
-                gameData = [];
-                gameDatas = [];
-                setTimes( gameData);
-                setGameValues(gameData);
-                
-                setSeries([{
-                    name: "series-1",
-                    data: gameData
-                }]);
-            }
-            else {
-                setGameValue(eventData);
-                setCurTime(curTime + 1);
-                constGameValue ++;
-                if(gameData.length < 20) {
-                    gameData = [...gameData, constGameValue];
-                    gameDatas = [...gameDatas, eventData];
-                    
-                    setTimes( gameData);
-                    setGameValues(gameDatas);
-                    
-                    setSeries([{
+                setGameData({
+                    ...gameData,
+                    currentValue: 0,
+                    currentState: GameState.Waiting,
+                    timeLineValues: [0],
+                    valueHistory: [{
                         name: "series-1",
-                        data: gameDatas
-                    }]);
-                }
+                        data: []
+                    }]
+                })
+            }
+            else if(gameData.currentState !== GameState.Crashed) {
+                setGameData({
+                    currentValue: eventData,
+                    currentState: GameState.Running,
+                    timeLineValues: [...gameData.timeLineValues, gameData.timeLineValues[gameData.timeLineValues.length-1]+1],
+                    valueHistory: [
+                        {
+                            name: "series-1",
+                            data: [...gameData.valueHistory[0].data, eventData]
+                        }
+                    ]
+                })
             }
         } 
         //console.log("chartSeries", chartSeries, "gameValues", gameValues, "times", times);
@@ -129,8 +122,20 @@ const MainChartComponent = () => {
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <ReactApexChart options={{...chartOptions, xaxis: {categories: times}}} series={chartSeries} type="area" height={500} />
-                    <div className="game-value">{gameValue}</div>
+                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.timeLineValues}}} series={gameData.valueHistory} type="area" height={500} />
+                    <div className={`game-value ${gameData.currentState === GameState.Running ? "show": "hidden"}`}>
+                        
+                        <div className="value">{gameData.currentValue}<span>X</span></div>
+                        <div className="title">Current Payout</div>
+                    </div>
+                    <div className={`crashed-game ${gameData.currentState === GameState.Crashed ? "show": "hidden"}`}>
+                        <div className="title-top">CRASHED</div>
+                        <div className="value">{gameData.currentValue}<span>X</span></div>
+                        <div className="title-bottom">Round Over</div>
+                    </div>
+                    <div className={`waiting-round ${gameData.currentState === GameState.Waiting ? "show": "hidden"}`}>
+                        <div className="title">Waiting For Next Round</div>
+                    </div>
                 </div>
             </div>
             <div className="chart-bottom-btns">

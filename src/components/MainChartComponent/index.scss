@@ -17,7 +17,52 @@
         left: 50%;
         top: 50%;
         color: white;
-        font-size: 30px;
+        
+        .value {
+            font-size: 60px;
+            span {
+                font-size: 30px;
+            }
+        }
+        .title {
+            font-size: 20px;
+        }
+    }
+    .waiting-round {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        .title {
+            color: white;
+            font-size: 60px;
+        }
+    }
+    .crashed-game {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+        color: red;
+        
+        .value {
+            font-size: 60px;
+            span {
+                font-size: 30px;
+            }
+        }
+        .title-bottom {
+            font-size: 20px;
+        }
+        .title-top {
+            font-size: 20px;
+        }
+    }
+    .show {
+        display: block;
+    }
+    .hidden {
+        display: none;
     }
 }
 
