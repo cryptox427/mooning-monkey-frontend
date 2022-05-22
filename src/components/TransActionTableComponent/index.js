@@ -31,29 +31,29 @@ const TransActionTableComponent = (props) => {
                 </thead>
                 <tbody>
                     {
-                        dataList.length > 0 &&
-                            dataList.map((data, index) => 
+                        transactionHistory.length > 0 &&
+                        transactionHistory.map((data, index) => 
                                 <tr key={index} className={index % 2 && "obb"}>
                                     <td><div>
-                                        {data.event}
+                                        {data[2]}
                                     </div></td>
-                                    <td><span className='green-font'>{data.status}</span></td>
+                                    <td><span className='green-font'>{data[3]}</span></td>
                                     <td><div>
                                         <div>
                                             
                                                 <img className='mr-2' src={BNB1Img} alt="bnb1" />
-                                                {data.amount}
+                                                {data[0]}
                                             
                                         </div>
                                     </div></td>
                                     <td><div>
                                     <div>
                                         <img src={BNB2Img} className='mr-2' alt="bnb2" />
-                                        {data.fee}
+                                        {data[1]}
                                         </div>
                                     </div></td>
                                     <td><div>
-                                        {data.creditedOn}
+                                        {data[4]}
                                     </div></td>
                                 </tr>
                                 

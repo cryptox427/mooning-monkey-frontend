@@ -46,7 +46,7 @@ const TransactionHistory = (props) => {
                     <Nav.Link eventKey="withdraw" onClick={()=>clickTabBtn(TRANSACTION_TYPE.WITHDRAW)}>Withdraw</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                    <Nav.Link eventKey="rewards" onClick={()=>clickTabBtn(TRANSACTION_TYPE.NONE)}>Rewards</Nav.Link>
+                    <Nav.Link eventKey="rewards" onClick={()=>clickTabBtn(TRANSACTION_TYPE.REWARDS)}>Rewards</Nav.Link>
                 </Nav.Item>
             </Nav>
             <Tab.Content>
@@ -60,7 +60,7 @@ const TransactionHistory = (props) => {
                 </Tab.Pane>
                 <Tab.Pane eventKey="rewards">
                     <MobileDataList showPagination showPerPage dataList={dataList}/>
-                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.NONE} dataList={dataList} showPagination showPerPage />
+                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.REWARDS} dataList={dataList} showPagination showPerPage />
                 </Tab.Pane>
                
             </Tab.Content>

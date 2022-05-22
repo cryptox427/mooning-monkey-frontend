@@ -1,11 +1,12 @@
 import { Table, Dropdown } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import Pagination from 'react-responsive-pagination';
+import {connect} from 'react-redux'
 import './index.scss';
 import DataCell from './DataCell';
 
 const MobileDataList = (props) => {
-    const { dataList, showPagination, showPerPage } = props;
+    const { dataList, showPagination, showPerPage, transactionHistory } = props;
     const [currentPage, setCurrentPage] = useState(4);
 
     const totalPages = 17;
@@ -23,14 +24,14 @@ const MobileDataList = (props) => {
            
                 <ul className='data-list'>
                 {
-                        dataList.length > 0 &&
-                            dataList.map((data, index) => 
+                        transactionHistory.length > 0 &&
+                        transactionHistory.map((data, index) => 
                             <li key={index}>
-                            <DataCell event={data.event} 
-                                        status={data.status} 
-                                        amount={data.amount} 
-                                        fee={data.fee} 
-                                        created_at={data.creditedOn} 
+                            <DataCell event={data[2]} 
+                                        status={data[3]} 
+                                        amount={data[0]} 
+                                        fee={data[1]} 
+                                        created_at={data[4]} 
                                     >
                             </DataCell>
                         </li>
@@ -44,4 +45,10 @@ const MobileDataList = (props) => {
     );
 }
 
-export default MobileDataList;
+const mapStateToProps  = (state) => (
+    {
+        transactionHistory: state.transactionData.transactionHistory
+    }
+)
+
+export default connect(mapStateToProps, {})(MobileDataList)

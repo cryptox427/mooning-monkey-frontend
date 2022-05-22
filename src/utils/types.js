@@ -12,5 +12,6 @@ export const GET_TRANSACTION_HISTORY_ERROR = 'GET_TRANSACTION_HISTORY_ERROR';
 export const TRANSACTION_TYPE = {
     WITHDRAW: 'Withdraw',
     DEPOSIT: 'Deposit',
+    REWARDS: 'Rewards',
     NONE: ''
 }

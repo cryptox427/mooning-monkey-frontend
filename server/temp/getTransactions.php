@@ -9,12 +9,12 @@ $response = array();
 if (isset($_SESSION["publicKey"])) {
     
     if($information != ''){
-        $sql = "SELECT value, fee, information, status, createDatetime FROM `transactions` join `users` on `users`.`id` = `transactions`.`userId` where publicKey = ? and information = ?;";
+        $sql = "SELECT value, fee, information, status, transactions.createDatetime FROM `transactions` join `users` on `users`.`id` = `transactions`.`userId` where publicKey = ? and information = ?;";
         $stmt = mysqli_stmt_init($con);
         mysqli_stmt_prepare($stmt,$sql);
         mysqli_stmt_bind_param($stmt, "ss", $_SESSION['publicKey'], $information);
     }else{
-        $sql = "SELECT value, fee, information, status, createDatetime FROM `transactions` join `users` on `users`.`id` = `transactions`.`userId` where publicKey = ?;";
+        $sql = "SELECT value, fee, information, status, transactions.createDatetime FROM `transactions` join `users` on `users`.`id` = `transactions`.`userId` where publicKey = ?;";
         $stmt = mysqli_stmt_init($con);
         mysqli_stmt_prepare($stmt,$sql);
         mysqli_stmt_bind_param($stmt, "s", $_SESSION['publicKey']);
