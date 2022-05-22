@@ -6,8 +6,20 @@ import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
 import './index.scss';
 
+let gameData = [];
+let gameDatas = [];
+let constGameValue = 0;
+const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
+    const [gameValue, setGameValue] = useState(constGameValue);
+    const [curTime, setCurTime] = useState(0);
+    const [gameValues, setGameValues] = useState(gameData);
+    const [chartSeries, setSeries] = useState([{
+        name: "series-1",
+        data: gameData
+    }]);
+    const [times, setTimes] = useState(gameData);
     const chartOptions = {
         chart: {
             type: 'area',
@@ -27,9 +39,9 @@ const MainChartComponent = () => {
         legend: {
             horizontalAlign: 'left'
         },
-        labels: [30, 40, 45, 50, 49, 60, 70, 91],
+        labels: [0, 20, 40],
         xaxis: {
-            categories: [17, 18, 19, 20, 21, 22, 23, 24]
+            categories: []
         },
         stroke: {
             curve: 'straight'
@@ -53,19 +65,72 @@ const MainChartComponent = () => {
        
         colors: ['#F001F4']
     }
-
-    const chartSeries = [
+    
+    evtSource.onmessage = (event) => {
+        let eventData = event.data;
+        if(eventData === "Finished")
         {
-          name: "series-1",
-          data: [30, 40, 45, 50, 49, 60, 70, 91]
+            setGameValue(0);
+            // setTimes([]);
+            // setGameValues([]);
+            // setCurTime(0);
+            // setSeries([]);
+            gameData = [];
+            gameDatas = [];
+            setTimes( gameData);
+            constGameValue = 0;
+            setGameValues(constGameValue);
+            
+            setSeries([{
+                name: "series-1",
+                data: gameData
+            }]);
         }
-    ]
-
+        else {
+            eventData = Number(eventData);
+            if(eventData < 0) {
+                constGameValue = 0;
+                setGameValues(constGameValue);
+                // setTimes([]);
+                // setGameValues([]);
+                // setCurTime(0);
+                // setSeries([]);
+                gameData = [];
+                gameDatas = [];
+                setTimes( gameData);
+                setGameValues(gameData);
+                
+                setSeries([{
+                    name: "series-1",
+                    data: gameData
+                }]);
+            }
+            else {
+                setGameValue(eventData);
+                setCurTime(curTime + 1);
+                constGameValue ++;
+                if(gameData.length < 20) {
+                    gameData = [...gameData, constGameValue];
+                    gameDatas = [...gameDatas, eventData];
+                    
+                    setTimes( gameData);
+                    setGameValues(gameDatas);
+                    
+                    setSeries([{
+                        name: "series-1",
+                        data: gameDatas
+                    }]);
+                }
+            }
+        } 
+        //console.log("chartSeries", chartSeries, "gameValues", gameValues, "times", times);
+    }
     return (
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <ReactApexChart options={chartOptions} series={chartSeries} type="area" height={500} />
+                    <ReactApexChart options={{...chartOptions, xaxis: {categories: times}}} series={chartSeries} type="area" height={500} />
+                    <div className="game-value">{gameValue}</div>
                 </div>
             </div>
             <div className="chart-bottom-btns">

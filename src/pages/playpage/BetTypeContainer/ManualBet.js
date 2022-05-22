@@ -12,7 +12,7 @@ const ManualBet = (props) => {
     const {maxCredits, betState, betRequest, publicKey} = props;
     const [betAmount, setBetAmount] = useState(1);
     const [multiplier, setMultiplier] = useState(1);
-    
+    console.log("reload", betAmount)
     const betAmountMultiple = {
         half: 'half',
         double: 'double',
