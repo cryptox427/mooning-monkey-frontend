@@ -1,11 +1,8 @@
 import { useState } from 'react';
 
 import InputComponent from "../../../components/InputComponent";
-import {request, postRequest} from '../../../utils/request';
 import {connect} from 'react-redux'
 import {getMaxCredits, betRequest} from '../../../actions/betActions'
-const creditsUrl = 'http://localhost/getCredits.php';
-const betUrl = 'http://localhost/bet.php';
 
 const ManualBet = (props) => {
 

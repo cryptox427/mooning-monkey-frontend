@@ -15,7 +15,7 @@ const WithdrawModal = (props) => {
     const [showSelect, setShowSelect] = useState(false);
     const [tokenAmount, setTokenAmount] = useState(0.01);
 
-    const withdrawApiUrl = 'http://localhost/monkey-moon/withdraw.php';
+    const withdrawApiUrl = './monkey-moon/withdraw.php';
 
     const handleToken = (tokenName) => {
         setSelectedTokenName(tokenName);

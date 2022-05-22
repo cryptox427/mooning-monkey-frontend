@@ -177,7 +177,7 @@ const Header = (props) => {
             return;
         } 
         console.log("on~~~~~~~~~~~~");
-        const url = `http://localhost/register.php`;
+        const url = `./register.php`;
         const data = {
             userName: null,
             password,
@@ -204,7 +204,7 @@ const Header = (props) => {
             return;
         }
         console.log("on1~~~~~~~~~~~~");
-        const url = `http://localhost/register.php`;
+        const url = `./register.php`;
         const data = {
             userName,
             password,

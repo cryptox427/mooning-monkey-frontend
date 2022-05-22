@@ -14,7 +14,8 @@ const GameState = {
     Running: 'Running',
     Crashed: 'Crushed'
 }
-const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
+//const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
+const evtSource = new EventSource("./getGameProgress.php");
 
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);

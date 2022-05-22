@@ -13,7 +13,7 @@ export const getMaxCredits = (publicKey) => async dispatch => {
         const data = {
             publicKey: publicKey
         }
-        const res = await axios.post(`http://localhost/getCredits.php`, {
+        const res = await axios.post(`./getCredits.php`, {
                 data: data,
                 type: 'products'
             });
@@ -44,7 +44,7 @@ export const betRequest = (publicKey, amount, multiplier) => async dispatch => {
             amount: amount,
             multiplier: multiplier
         }
-        const res = await axios.post(`http://localhost/bet.php`, {
+        const res = await axios.post(`./bet.php`, {
                 data: data,
                 type: 'products'
             });
