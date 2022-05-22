@@ -6,6 +6,7 @@ import TakCoinImg from '../../assets/images/tak-coin.svg';
 import ArrowDownImg from '../../assets/images/arrow-down.svg';
 import './index.scss';
 import {request, postRequest} from '../../utils/request';
+import {serverUrl} from '../../utils/constant'
 
 const WithdrawModal = (props) => {
     const { show, onHide } = props;
@@ -15,7 +16,7 @@ const WithdrawModal = (props) => {
     const [showSelect, setShowSelect] = useState(false);
     const [tokenAmount, setTokenAmount] = useState(0.01);
 
-    const withdrawApiUrl = './monkey-moon/withdraw.php';
+    const withdrawApiUrl = serverUrl + 'monkey-moon/withdraw.php';
 
     const handleToken = (tokenName) => {
         setSelectedTokenName(tokenName);

@@ -7,7 +7,6 @@ import Players from './playpage/Players';
 import { Col, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 export const Dashboard = () => {
   const testMode = false;
 

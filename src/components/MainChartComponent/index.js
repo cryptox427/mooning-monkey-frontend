@@ -1,23 +1,25 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
 import ReactApexChart from 'react-apexcharts';
+import {connect} from 'react-redux'
 import AspectRatioImg from '../../assets/images/aspect_ratio_white_24dp.svg'
 import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
-import './index.scss';
+import './index.scss'
+import {serverUrl} from '../../utils/constant'
 
-let gameData = [];
-let gameDatas = [];
-let constGameValue = 0;
+import {getAllBets, setGameResult} from '../../actions/gameActions'
+
 const GameState = {
     Waiting: 'waiting',
     Running: 'Running',
     Crashed: 'Crushed'
 }
 //const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
-const evtSource = new EventSource("./getGameProgress.php");
+const evtSource = new EventSource(serverUrl + "getGameProgress.php");
 
-const MainChartComponent = () => {
+const MainChartComponent = (props) => {
+    const { getAllBets, setGameResult } = props;
     const [showAnimation, setShowAnimation] = useState(false);
     const [gameData, setGameData] = useState({
         currentState: GameState.Waiting,
@@ -86,13 +88,24 @@ const MainChartComponent = () => {
        
         colors: ['#F001F4']
     }
-    let timeArray = [0];
-    let valueArray = [];
+
+    const startGame = () => {
+        setGameResult(0);
+        getAllBets();
+    }
+
+    const endGame = () => {
+        setGameResult(gameData.currentValue);
+    }
+
     evtSource.onmessage = (event) => {
         let eventData = event.data;
         console.log("message");
         if(eventData === "Finished")
         {
+            if(gameData.currentState === GameState.Running) {
+                endGame();
+            }
             setGameData({
                 ...gameData,
                 
@@ -119,7 +132,9 @@ const MainChartComponent = () => {
                 })
             }
             else if(gameData.currentState !== GameState.Crashed) {
-                valueArray = [...gameData.valueHistory[0].data, eventData];
+                if(gameData.currentState !== GameState.Running) {
+                    startGame();
+                }
                 setGameData({
                     currentValue: eventData,
                     currentState: GameState.Running,
@@ -286,4 +301,10 @@ const MainChartComponent = () => {
     );
 }
 
-export default MainChartComponent;
+const mapStateToProps  = (state) => (
+    {
+    
+    }
+)
+
+export default connect(mapStateToProps, {getAllBets, setGameResult})(MainChartComponent)

@@ -2,6 +2,8 @@
 import {GET_MAX_CREDITS, GET_MAX_CREDITS_ERROR, BET_REQUEST, BET_SUCCESS, BET_ERROR} from '../utils/types'
 import axios from 'axios'
 
+import {serverUrl} from '../utils/constant'
+
 export const getMaxCredits = (publicKey) => async dispatch => {
     
     
@@ -13,7 +15,7 @@ export const getMaxCredits = (publicKey) => async dispatch => {
         const data = {
             publicKey: publicKey
         }
-        const res = await axios.post(`./getCredits.php`, {
+        const res = await axios.post(`${serverUrl}getCredits.php`, {
                 data: data,
                 type: 'products'
             });

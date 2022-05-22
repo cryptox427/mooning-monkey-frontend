@@ -6,6 +6,7 @@ import { getTokenContract, getSigner, getBalance } from "../../utils/interact";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
 import ArrowDownImg from '../../assets/images/arrow-down.svg';
 import './index.scss';
+import {serverUrl} from '../../utils/constant'
 
 const DepositModal = (props) => {
     const { show, onHide, walletAddress } = props;

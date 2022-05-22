@@ -38,6 +38,7 @@ import SelectNetworkModal from '../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../actions/betActions'
 import {setPublicKey} from '../../actions/userActions'
+import {serverUrl} from '../../utils/constant'
 
 const Header = (props) => {
     const { children, setPublicKey, getMaxCredits } = props;
@@ -58,7 +59,7 @@ const Header = (props) => {
     const [password, setPassword] = useState();
     const [rePassword, setRePassword] = useState();
     const [pwdNotMatch, setPwdNotMatch] = useState(false);
-    const checkAPIUrl = './check.php';
+    const checkAPIUrl = serverUrl + 'check.php';
     
     const handleConnectWallet = async () => {
         const walletResponse = await connectWallet();
@@ -176,8 +177,6 @@ const Header = (props) => {
             setStatus('Input all field correctly!');
             return;
         } 
-        console.log("on~~~~~~~~~~~~");
-        const url = `./register.php`;
         const data = {
             userName: null,
             password,
@@ -203,8 +202,6 @@ const Header = (props) => {
             setStatus('Input all field correctly!');
             return;
         }
-        console.log("on1~~~~~~~~~~~~");
-        const url = `./register.php`;
         const data = {
             userName,
             password,
