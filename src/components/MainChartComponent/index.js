@@ -8,7 +8,7 @@ import TuneImg from '../../assets/images/tune_white_24dp.svg'
 import './index.scss'
 import {serverUrl} from '../../utils/constant'
 
-import {getAllBets, setGameResult} from '../../actions/gameActions'
+import {getAllBets, setGameResult, removeAllBets} from '../../actions/gameActions'
 
 const GameState = {
     Waiting: 'waiting',
@@ -19,7 +19,7 @@ const GameState = {
 const evtSource = new EventSource(serverUrl + "getGameProgress.php");
 
 const MainChartComponent = (props) => {
-    const { getAllBets, setGameResult } = props;
+    const { getAllBets, setGameResult, removeAllBets } = props;
     const [showAnimation, setShowAnimation] = useState(false);
     const [gameData, setGameData] = useState({
         currentState: GameState.Waiting,
@@ -95,6 +95,7 @@ const MainChartComponent = (props) => {
     }
 
     const endGame = () => {
+        removeAllBets();
         setGameResult(gameData.currentValue);
     }
 
@@ -307,4 +308,4 @@ const mapStateToProps  = (state) => (
     }
 )
 
-export default connect(mapStateToProps, {getAllBets, setGameResult})(MainChartComponent)
+export default connect(mapStateToProps, {getAllBets, setGameResult, removeAllBets})(MainChartComponent)

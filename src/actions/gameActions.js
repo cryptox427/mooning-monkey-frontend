@@ -24,6 +24,13 @@ export const getAllBets = () => async dispatch => {
     }
 }
 
+export const removeAllBets = () => async dispatch => {
+    dispatch( {
+        type: GET_ALL_BET_SUCCESS,
+        payload: []
+    })
+}
+
 export const setGameResult = (result) => async dispatch => {
     dispatch( {
         type: SET_GAME_RESULT,

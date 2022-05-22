@@ -8,17 +8,11 @@ export const getMaxCredits = (publicKey) => async dispatch => {
     
     
     try{
-        axios.defaults.headers.post['Content-Type'] = 'application/json';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        //axios.defaults.withCredentials = true;
-        axios.defaults.crossDomain = true;
+
         const data = {
             publicKey: publicKey
         }
-        const res = await axios.post(`${serverUrl}getCredits.php`, {
-                data: data,
-                type: 'products'
-            });
+        const res = await axios.get(`${serverUrl}getCredits.php`);
         console.log("~~~~~~~~~credits:", res.data)
         dispatch( {
             type: GET_MAX_CREDITS,
@@ -37,19 +31,12 @@ export const getMaxCredits = (publicKey) => async dispatch => {
 export const betRequest = (publicKey, amount, multiplier) => async dispatch => {
     console.log("~~~~~~~~~betRequest:")
     try{
-        axios.defaults.headers.post['Content-Type'] = 'application/json';
-        axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-        //axios.defaults.withCredentials = true;
-        axios.defaults.crossDomain = true;
         const data = {
             publicKey: publicKey,
             amount: amount,
             multiplier: multiplier
         }
-        const res = await axios.post(`./bet.php`, {
-                data: data,
-                type: 'products'
-            });
+        const res = await axios.get(`./bet.php?amount=${amount}&multiplier=${multiplier}`);
         console.log("~~~~~~~~~betResult:", res.data)
         if(res.data === "Success"){
             dispatch( {
