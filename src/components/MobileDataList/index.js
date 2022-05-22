@@ -20,107 +20,23 @@ const MobileDataList = (props) => {
                 
             </div>    
             <div className='mobile-data-list-main'>
+           
                 <ul className='data-list'>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="0x563e...b4js73"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
-                    <li>
-                        <DataCell event="Reward" 
-                                    status="Success"
-                                    amount="0.05"
-                                    fee="0.05"
-                                    txn_hash="afaewr32rwerw3rff"
-                                    created_at="24-09-2021 16:02"
-                                >
-                        </DataCell>
-                    </li>
+                {
+                        dataList.length > 0 &&
+                            dataList.map((data, index) => 
+                            <li key={index}>
+                            <DataCell event={data.event} 
+                                        status={data.status} 
+                                        amount={data.amount} 
+                                        fee={data.fee} 
+                                        created_at={data.creditedOn} 
+                                    >
+                            </DataCell>
+                        </li>
+                                
+                            )
+                    }
                 </ul>
             </div>
     </div>

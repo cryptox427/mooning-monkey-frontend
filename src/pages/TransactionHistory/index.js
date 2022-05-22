@@ -1,62 +1,71 @@
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
+import Nav from 'react-bootstrap/Nav';
 import { Table, Dropdown } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import Pagination from 'react-responsive-pagination';
+import {connect} from 'react-redux'
 
 import LogoFooterComponent from '../../components/LogoFooterComponent';
-import TableComponent from '../../components/TableComponent';
+import TransActionTableComponent from '../../components/TransActionTableComponent';
 import MobileDataList from '../../components/MobileDataList';
-import BNB1Img from '../../assets/images/playpage/bnb1.png';
-import BNB2Img from '../../assets/images/playpage/bnb2.png';
+
 import './index.scss';
+import {TRANSACTION_TYPE} from '../../utils/types';
+import {getTransactionHistory} from '../../actions/transactionHistoryActions'
 
 const TransactionHistory = (props) => {
-    const { showPagination, showPerPage } = props;
+    const { showPagination, showPerPage, getTransactionHistory } = props;
     const [currentPage, setCurrentPage] = useState(4);
     const totalPages = 17;
     const dataList = [];
     const defaultData = {
-        Event: "Reward",
-        Status: <span className='green-font'>Success</span>,
-        Amount: <div className="">
-                    <img className='mr-2' src={BNB1Img} alt="bnb1" />
-                    0.05
-                </div>,
-        Fee: <div className="">
-                <img src={BNB2Img} className='mr-2' alt="bnb2" />
-                0
-            </div>,
-        "Txn Hash": "0x553a...b4js73",
-        "Credited On": "24-09-2021 16:03"
+        event: "Reward",
+        status: "Success",
+        amount: 0.05,
+        fee: 0,
+        creditedOn: "24-09-2021 16:03"
     }
 
     for (let i = 0; i < 10; i++) {
         dataList.push(defaultData);
     }
 
+    const clickTabBtn = (type) => {
+        getTransactionHistory(type)
+    }
     return (
         <div className="transaction-history">
             <div className='transaction-history-container'>
-                <Tabs defaultActiveKey="deposit"
-                      transition={false}
-                      id="noanim-tab-example"
-                      className="mb-3"
-                    >
-                    <Tab eventKey="deposit" title="Deposit">
-                        <MobileDataList showPagination showPerPage/>
-                        <TableComponent dataList={dataList} showPagination showPerPage />
-                    </Tab>
-                    <Tab eventKey="withdraw" title="Withdraw">
-                        <MobileDataList showPagination showPerPage/>
-                        <TableComponent dataList={dataList} showPagination showPerPage />
-                    </Tab>
-                    <Tab eventKey="rewards" title="Rewards">
-                        <MobileDataList showPagination showPerPage/>
-                        <TableComponent dataList={dataList} showPagination showPerPage />
-                    </Tab>
-                </Tabs>
+            <Tab.Container id="left-tabs-example" defaultActiveKey="deposit">
+            <Nav variant="pills" className="nav-tabs">
+                <Nav.Item>
+                    <Nav.Link eventKey="deposit" onClick={()=>clickTabBtn(TRANSACTION_TYPE.DEPOSIT)}>Deposit</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="withdraw" onClick={()=>clickTabBtn(TRANSACTION_TYPE.WITHDRAW)}>Withdraw</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="rewards" onClick={()=>clickTabBtn(TRANSACTION_TYPE.NONE)}>Rewards</Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <Tab.Content>
+                <Tab.Pane eventKey="deposit">
+                    <MobileDataList showPagination showPerPage dataList={dataList}/>
+                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.DEPOSIT} dataList={dataList} showPagination showPerPage />
+                </Tab.Pane>
+                <Tab.Pane eventKey="withdraw">
+                    <MobileDataList showPagination showPerPage dataList={dataList}/>
+                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.WITHDRAW} dataList={dataList} showPagination showPerPage />
+                </Tab.Pane>
+                <Tab.Pane eventKey="rewards">
+                    <MobileDataList showPagination showPerPage dataList={dataList}/>
+                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.NONE} dataList={dataList} showPagination showPerPage />
+                </Tab.Pane>
+               
+            </Tab.Content>
                 
+                </Tab.Container>
             </div>
             <div className='custom-table-bottom'>
                 <div className='custom-table-bottom-left'>
@@ -90,4 +99,10 @@ const TransactionHistory = (props) => {
     );
 }
 
-export default TransactionHistory;
+const mapStateToProps  = (state) => (
+    {
+    
+    }
+)
+
+export default connect(mapStateToProps, {getTransactionHistory})(TransactionHistory)

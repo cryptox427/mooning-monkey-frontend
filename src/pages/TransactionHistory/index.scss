@@ -6,7 +6,9 @@
         flex-direction: column;
         .nav-tabs {
             border-bottom: 0;
+            margin-bottom: 10px;
             .nav-link {
+                cursor: pointer;
                 color: white;
                 border: none;
                 &.active {

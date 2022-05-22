@@ -14,8 +14,8 @@ const GameState = {
     Running: 'Running',
     Crashed: 'Crushed'
 }
-const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
-//const evtSource = new EventSource("./getGameProgress.php");
+//const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
+const evtSource = new EventSource("./getGameProgress.php");
 
 const MainChartComponent = () => {
     const [showAnimation, setShowAnimation] = useState(false);
@@ -30,16 +30,22 @@ const MainChartComponent = () => {
     });
     const chartOptions = {
         chart: {
-            type: 'area',
-            id: "basic-bar",
+            // type: 'area',
+            // id: "basic-bar",
             zoom: {
                 type: 'x',
                 enabled: false,
                 autoScaleYaxis: true
             },
-            toolbar: {
-                autoSelected: 'zoom',
+            // toolbar: {
+            //     autoSelected: 'zoom',
+            // }
+            animations: {
+                enabled: false
             }
+        },
+        markers: {
+            size: 0
         },
         scales: {
             x: {
@@ -80,7 +86,8 @@ const MainChartComponent = () => {
        
         colors: ['#F001F4']
     }
-    
+    let timeArray = [0];
+    let valueArray = [];
     evtSource.onmessage = (event) => {
         let eventData = event.data;
         console.log("message");
@@ -112,14 +119,15 @@ const MainChartComponent = () => {
                 })
             }
             else if(gameData.currentState !== GameState.Crashed) {
+                valueArray = [...gameData.valueHistory[0].data, eventData];
                 setGameData({
                     currentValue: eventData,
                     currentState: GameState.Running,
-                    timeLineValues: [...gameData.timeLineValues, gameData.timeLineValues[gameData.timeLineValues.length-1]+1],
+                    timeLineValues: [...gameData.timeLineValues, gameData.timeLineValues[gameData.timeLineValues.length-1]+1].slice(-20),
                     valueHistory: [
                         {
                             name: "series-1",
-                            data: [...gameData.valueHistory[0].data, eventData]
+                            data: [...gameData.valueHistory[0].data, eventData].slice(-20)
                         }
                     ]
                 })

@@ -1,0 +1,73 @@
+.custom-table {
+    .green-font {
+        color: lightgreen;
+    }
+
+    thead tr {
+        border: 5px solid #2A2864
+    }
+
+    tbody tr {
+        border-style: none;
+    }
+    
+    tr {
+        color: white;
+    }
+
+    tr.obb {
+        background: #322C76
+    }
+
+    .table td {
+        border-top: none;
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
+
+        .dropdown button {
+            background-color: transparent;
+            border: 1px solid #515189;
+            color: white;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+            background-color: transparent;
+            border: 1px solid #515189;
+        }
+
+        &-left {
+            display: flex;
+            align-items: center;
+
+            &-status {
+                margin-left: 24px;
+                color: white;
+            }
+        }
+
+        .pagination {
+            .page-item {
+                a {
+                    background-color: #27235A;
+                    color: white;
+                    margin: 0 8px;
+                    border: none;
+                }
+                &.disabled span {
+                    background-color: #27235A;
+                    color: white;
+                    border: none;
+                }
+            }
+
+            .page-item.active .page-link {
+                background: #F843EA;
+            }
+        }
+    }
+}
