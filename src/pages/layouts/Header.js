@@ -137,7 +137,7 @@ const Header = (props) => {
 
     useEffect(async () => {
         if (walletAddress) {
-            const url = `./account.php?publicKey=${walletAddress}`;
+            const url = `${serverUrl}account.php?publicKey=${walletAddress}`;
             const res = await request('get', url);
 
             if (res.status === "success") {

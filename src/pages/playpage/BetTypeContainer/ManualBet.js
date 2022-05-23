@@ -7,7 +7,7 @@ import {GAME_STATE} from '../../../utils/types'
 
 const ManualBet = (props) => {
 
-    const {maxCredits, betState, betRequest, gameState, gameResult, myRecentWin, stopBet} = props;
+    const {maxCredits, betState, betRequest, gameState, gameResult, myRecentWin, stopBet, bettedMultiplier} = props;
     const [betAmount, setBetAmount] = useState(1);
     const [multiplier, setMultiplier] = useState(1);
     const [playerButtonStyle, setPlayerButtonStyle] = useState({disableBtn: false, buttonName: "Play"});
@@ -50,11 +50,16 @@ const ManualBet = (props) => {
         () => {
             switch(gameState) {
                 case GAME_STATE.WAITING:
-                    setPlayerButtonStyle({disableBtn: false, buttonName: "Play"})
+                    if(betState) {
+                        setPlayerButtonStyle({disableBtn: false, buttonName: "Stop Bet"})
+                    }
+                    else {
+                        setPlayerButtonStyle({disableBtn: false, buttonName: "Play"})
+                    }
                     break;
                 case GAME_STATE.RUNNING:
                     if(betState) {
-                        if(gameResult >= multiplier) {
+                        if(gameResult >= bettedMultiplier) {
                             setPlayerButtonStyle({disableBtn: true, buttonName: "Play"})
                         }
                         else {
@@ -118,6 +123,7 @@ const ManualBet = (props) => {
                             </tr>
                         )
                     }
+                    
                     </tbody>
                     
                 </table>
@@ -130,6 +136,7 @@ const mapStateToProps  = (state) => (
     {
         maxCredits: state.betData.maxCredits,
         betState: state.betData.betState,
+        bettedMultiplier: state.betData.multiplier,
         gameState: state.betGameData.gameState,
         gameResult: state.betGameData.gameResult,
         myRecentWin: state.userData.myRecentWin

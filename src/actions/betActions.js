@@ -32,7 +32,8 @@ export const betRequest = ( amount, multiplier) => async dispatch => {
         console.log("~~~~~~~~~betResult:", res.data)
         if(res.data === "Success"){
             dispatch( {
-                type: BET_SUCCESS
+                type: BET_SUCCESS,
+                payload: {amount, multiplier}
             })
         }
         else {

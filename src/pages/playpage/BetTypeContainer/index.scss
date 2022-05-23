@@ -159,6 +159,8 @@ $scale-var: 1600 / 2560;
 	}
 	.my-recent-wins {
 		margin-top: 15px * $scale-var;
+
+		max-height: 200px;
 		.title {
 			color: white;
 			font-family: Nurom;
