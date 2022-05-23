@@ -108,7 +108,6 @@ const MainChartComponent = (props) => {
 
     evtSource.onmessage = (event) => {
         let eventData = event.data;
-        console.log("message");
         if(eventData === "Finished")
         {
             if(gameData.currentState === GAME_STATE.RUNNING) {

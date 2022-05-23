@@ -1,8 +1,11 @@
+import {connect} from 'react-redux'
+
 import './index.scss';
 import HistoryCell from "./HistoryCell.js";
 
 const HistoryTable = (props) => {
-    
+    const {gameHistory} = props;
+
     return (
         <div className="history-table">
             <table className="table">
@@ -17,16 +20,20 @@ const HistoryTable = (props) => {
                     </tr>
                 </thead>
                 <tbody className="table-body">
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
-                    
-                    <HistoryCell pay_type="bnb1" h_game="Crash" h_address="Hidden" h_time="10:36 AM" h_wager="$2.50" h_mult="1.23x" h_payout="$100.00"/>
+                    {
+                        gameHistory && 
+                        (
+                            gameHistory.length > 0 &&
+                            gameHistory.map((data, index) => 
+                                <HistoryCell pay_type="bnb1" h_game="Crashgame" 
+                                h_address={data.address} 
+                                h_time={data.gameDate} 
+                                h_wager={data.bet} 
+                                h_mult={data.multiplier} 
+                                h_payout={data.payout}/>
+                            )
+                        )
+                    }
                 </tbody>
             </table>
         </div>
@@ -35,4 +42,10 @@ const HistoryTable = (props) => {
     );
 }
 
-export default HistoryTable;
+const mapStateToProps  = (state) => (
+    {
+        gameHistory: state.betGameData.gameHistory
+    }
+)
+
+export default connect(mapStateToProps, {})(HistoryTable)

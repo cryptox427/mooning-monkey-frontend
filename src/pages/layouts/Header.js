@@ -37,11 +37,11 @@ import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../actions/betActions'
-import {setPublicKey} from '../../actions/userActions'
+import {setPublicKey, getMyRecentWins} from '../../actions/userActions'
 import {serverUrl} from '../../utils/constant'
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
@@ -192,7 +192,7 @@ const Header = (props) => {
             console.log("success")
             setPublicKey(walletAddress);
             getMaxCredits(walletAddress);
-            
+            getMyRecentWins();
             setLoginStatus(true);
         }
     }
@@ -440,4 +440,4 @@ const mapStateToProps  = (state) => (
         
     }
 )
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits})(Header)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins})(Header)

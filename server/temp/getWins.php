@@ -13,14 +13,11 @@ if (isset($_SESSION["publicKey"])) {
 
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
-    $transactionsFound = false;
-    while($row = mysqli_fetch_assoc($result)){
-        $response = array(
-            'status' => true,
-            'message' => 'Success',
-            'data' => mysqli_fetch_all($result)
-        );
-    }
+    $response = array(
+        'status' => true,
+        'message' => 'Success',
+        'data' => mysqli_fetch_all($result)
+    );
 
 } else {
     $response = array(

@@ -37,33 +37,33 @@ const TransactionHistory = (props) => {
     return (
         <div className="transaction-history">
             <div className='transaction-history-container'>
-            <Tab.Container id="left-tabs-example" defaultActiveKey="deposit">
-            <Nav variant="pills" className="nav-tabs">
-                <Nav.Item>
-                    <Nav.Link eventKey="deposit" onClick={()=>clickTabBtn(TRANSACTION_TYPE.DEPOSIT)}>Deposit</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="withdraw" onClick={()=>clickTabBtn(TRANSACTION_TYPE.WITHDRAW)}>Withdraw</Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                    <Nav.Link eventKey="rewards" onClick={()=>clickTabBtn(TRANSACTION_TYPE.REWARDS)}>Rewards</Nav.Link>
-                </Nav.Item>
-            </Nav>
-            <Tab.Content>
-                <Tab.Pane eventKey="deposit">
-                    <MobileDataList showPagination showPerPage dataList={dataList}/>
-                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.DEPOSIT} dataList={dataList} showPagination showPerPage />
-                </Tab.Pane>
-                <Tab.Pane eventKey="withdraw">
-                    <MobileDataList showPagination showPerPage dataList={dataList}/>
-                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.WITHDRAW} dataList={dataList} showPagination showPerPage />
-                </Tab.Pane>
-                <Tab.Pane eventKey="rewards">
-                    <MobileDataList showPagination showPerPage dataList={dataList}/>
-                    <TransActionTableComponent transActionType={TRANSACTION_TYPE.REWARDS} dataList={dataList} showPagination showPerPage />
-                </Tab.Pane>
-               
-            </Tab.Content>
+                <Tab.Container id="left-tabs-example" defaultActiveKey="deposit">
+                    <Nav variant="pills" className="nav-tabs">
+                        <Nav.Item>
+                            <Nav.Link eventKey="deposit" onClick={()=>clickTabBtn(TRANSACTION_TYPE.DEPOSIT)}>Deposit</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="withdraw" onClick={()=>clickTabBtn(TRANSACTION_TYPE.WITHDRAW)}>Withdraw</Nav.Link>
+                        </Nav.Item>
+                        <Nav.Item>
+                            <Nav.Link eventKey="rewards" onClick={()=>clickTabBtn(TRANSACTION_TYPE.REWARDS)}>Rewards</Nav.Link>
+                        </Nav.Item>
+                    </Nav>
+                    <Tab.Content>
+                        <Tab.Pane eventKey="deposit">
+                            <MobileDataList showPagination showPerPage dataList={dataList}/>
+                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.DEPOSIT} dataList={dataList} showPagination showPerPage />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="withdraw">
+                            <MobileDataList showPagination showPerPage dataList={dataList}/>
+                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.WITHDRAW} dataList={dataList} showPagination showPerPage />
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="rewards">
+                            <MobileDataList showPagination showPerPage dataList={dataList}/>
+                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.REWARDS} dataList={dataList} showPagination showPerPage />
+                        </Tab.Pane>
+                    
+                    </Tab.Content>
                 
                 </Tab.Container>
             </div>

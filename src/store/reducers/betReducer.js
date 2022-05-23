@@ -1,5 +1,5 @@
 import { GiTurret } from 'react-icons/gi';
-import {GET_MAX_CREDITS, BET_SUCCESS, BET_ERROR, END_BET} from '../../utils/types';
+import {GET_MAX_CREDITS, BET_SUCCESS, BET_ERROR, END_BET, STOP_BET_SUCCESS, STOP_BET_ERROR} from '../../utils/types';
 
 const initialState = {
     maxCredits: 0,
@@ -29,6 +29,19 @@ const betReducer = (state = initialState, action) => {
         return {
             ...state,
             betState: false,
+            loading: false
+
+        }
+        case STOP_BET_SUCCESS:
+        return {
+            ...state,
+            betState: false,
+            loading: false
+
+        }
+        case STOP_BET_ERROR:
+        return {
+            ...state,
             loading: false
 
         }

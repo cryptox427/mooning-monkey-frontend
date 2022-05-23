@@ -12,13 +12,13 @@ const HistoryCell = (props) => {
             <td className="address">{h_address}</td>
             <td className="time">{h_time}</td>
             <td className="wager">
-                {h_wager}
+                ${h_wager}
                 <img style={{display: pay_type == "bnb1" ? "block" : "none"}} src={bnb1Img}></img>
                 <img style={{display: pay_type == "bnb2" ? "block" : "none"}} src={bnb2Img}></img>
             </td>
-            <td className="mult">{h_mult}</td>
+            <td className="mult">{h_mult}x</td>
             <td className="payout">
-                {h_payout}
+                ${h_payout}
                 <img style={{display: pay_type == "bnb1" ? "block" : "none"}} src={bnb1Img}></img>
                 <img style={{display: pay_type == "bnb2" ? "block" : "none"}} src={bnb2Img}></img>
             </td>

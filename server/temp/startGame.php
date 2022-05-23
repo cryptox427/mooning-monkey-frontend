@@ -51,8 +51,9 @@
             
             $response = curl_exec($ch);
             curl_close($ch);
-    
-            $randomNumber = (json_decode($response)->{'result'}->{'random'}->{'data'}[0] + 0.11) * 10;
+            var_dump($response);
+            
+            $randomNumber = (json_decode($response)->{'result'}->{'random'}->{'data'}[0] + (rand(10,100)/100)) * 24;
 
             $sql    = "INSERT INTO crashgame (result) VALUES(?)";
             $stmt = mysqli_stmt_init($con);

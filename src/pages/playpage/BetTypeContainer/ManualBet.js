@@ -2,16 +2,16 @@ import { useState, useEffect } from 'react';
 
 import InputComponent from "../../../components/InputComponent";
 import {connect} from 'react-redux'
-import {getMaxCredits, betRequest} from '../../../actions/betActions'
+import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
 import {GAME_STATE} from '../../../utils/types'
 
 const ManualBet = (props) => {
 
-    const {maxCredits, betState, betRequest, gameState} = props;
+    const {maxCredits, betState, betRequest, gameState, gameResult, myRecentWin, stopBet} = props;
     const [betAmount, setBetAmount] = useState(1);
     const [multiplier, setMultiplier] = useState(1);
     const [playerButtonStyle, setPlayerButtonStyle] = useState({disableBtn: false, buttonName: "Play"});
-    console.log("~~~~~~~~~~~~~curState", gameState, "bet", betState)
+
     const betAmountMultiple = {
         half: 'half',
         double: 'double',
@@ -42,28 +42,35 @@ const ManualBet = (props) => {
         console.log("clickPlayBtn")
         betRequest(betAmount, multiplier);
     }
+    const clickStopBtn = () => {
+        console.log("clickStopBtn")
+        betRequest(betAmount, multiplier);
+    }
     useEffect(
         () => {
-            console.log("change data", gameState, "bet", betState)
             switch(gameState) {
                 case GAME_STATE.WAITING:
                     setPlayerButtonStyle({disableBtn: false, buttonName: "Play"})
                     break;
                 case GAME_STATE.RUNNING:
                     if(betState) {
-                        setPlayerButtonStyle({disableBtn: true, buttonName: "Stop Bet"})
+                        if(gameResult >= multiplier) {
+                            setPlayerButtonStyle({disableBtn: true, buttonName: "Play"})
+                        }
+                        else {
+                            setPlayerButtonStyle({disableBtn: false, buttonName: "Stop Bet"})
+                        }
                     }
                     else {
-                        setPlayerButtonStyle({disableBtn: false, buttonName: "Play"})
+                        setPlayerButtonStyle({disableBtn: true, buttonName: "Play"})
                     }
                     break;
                 case GAME_STATE.CRASHED:
-                    console.log("crashed button")
                     setPlayerButtonStyle({disableBtn: true, buttonName: "Play"})
                     break;
             }
         },
-        [gameState, betState],
+        [gameState, betState, gameResult],
     );
 
     return (
@@ -88,7 +95,8 @@ const ManualBet = (props) => {
                     <InputComponent prefix="x"  type="number" defaultValue="25" valueChangeHandler={setMultiplier} defaultValue={multiplier} />
                 </span>
             </div>
-            <button type="button" className="play-button" disabled={playerButtonStyle.disableBtn} onClick={()=>clickPlayBtn()}>
+            <button type="button" className="play-button" disabled={playerButtonStyle.disableBtn} 
+                onClick={playerButtonStyle.buttonName === "Play"?()=>clickPlayBtn():()=>clickStopBtn()}>
                 <span>{playerButtonStyle.buttonName}</span>
             </button>
             <div className="my-recent-wins">
@@ -99,21 +107,19 @@ const ManualBet = (props) => {
                         <th>Mult</th>
                         <th>Payout</th>
                     </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
-                    <tr>
-                        <td>X amount</td>
-                        <td>2.50X</td>
-                        <td>X amount</td>
-                    </tr>
+                    <tbody>
+                    {
+                        myRecentWin.length > 0 &&
+                        myRecentWin.map((data, index) => 
+                            <tr>
+                                <td>$ {data.bet}</td>
+                                <td>{data.multiplier}X</td>
+                                <td>$ {data.payout}</td>
+                            </tr>
+                        )
+                    }
+                    </tbody>
+                    
                 </table>
             </div>
         </div>
@@ -124,8 +130,10 @@ const mapStateToProps  = (state) => (
     {
         maxCredits: state.betData.maxCredits,
         betState: state.betData.betState,
-        gameState: state.betGameData.gameState
+        gameState: state.betGameData.gameState,
+        gameResult: state.betGameData.gameResult,
+        myRecentWin: state.userData.myRecentWin
     }
 )
 
-export default connect(mapStateToProps, {getMaxCredits, betRequest})(ManualBet)
+export default connect(mapStateToProps, {getMaxCredits, betRequest, stopBet})(ManualBet)

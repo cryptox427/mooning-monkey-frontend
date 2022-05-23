@@ -3,6 +3,8 @@ export const GET_MAX_CREDITS_ERROR = 'GET_MAX_CREDITS_ERROR';
 export const BET_REQUEST = 'BET_REQUEST';
 export const BET_SUCCESS = 'BET_SUCCESS';
 export const BET_ERROR = 'BET_ERROR';
+export const STOP_BET_SUCCESS = 'STOP_BET_SUCCESS';
+export const STOP_BET_ERROR = 'STOP_BET_ERROR';
 export const END_BET = 'END_BET';
 
 export const SET_PUBLICKEY = 'SET_PUBLICKEY';
@@ -10,8 +12,14 @@ export const SET_PUBLICKEY = 'SET_PUBLICKEY';
 export const GET_TRANSACTION_HISTORY_SUCCESS = 'GET_TRANSACTION_HISTORY_SUCCESS';
 export const GET_TRANSACTION_HISTORY_ERROR = 'GET_TRANSACTION_HISTORY_ERROR';
 
+export const GET_MY_RECENT_WINS_SUCCESS = 'GET_MY_RECENT_WINS_SUCCESS';
+export const GET_MY_RECENT_WINS_ERROR = 'GET_MY_RECENT_WINS_ERROR';
+
 export const GET_ALL_BET_SUCCESS = 'GET_ALL_BET_SUCCESS';
 export const GET_ALL_BET_ERROR = 'GET_ALL_BET_ERROR';
+
+export const GET_GAME_HISTORY_SUCCESS = 'GET_GAME_HISTORY_SUCCESS';
+export const GET_GAME_HISTORY_ERROR = 'GET_GAME_HISTORY_ERROR';
 
 export const SET_GAME_RESULT = 'SET_GAME_RESULT';
 
@@ -21,6 +29,13 @@ export const TRANSACTION_TYPE = {
     WITHDRAW: 'Withdraw',
     DEPOSIT: 'Deposit',
     REWARDS: 'Rewards',
+    NONE: ''
+}
+
+export const GAME_HISTORY_TYPE = {
+    ALL: 'All',
+    HIGH_WINS: 'High Wins',
+    LUCKY_WINS: 'Lucky Wins',
     NONE: ''
 }
 

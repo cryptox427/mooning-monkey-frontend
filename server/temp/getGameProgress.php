@@ -27,7 +27,7 @@ mysqli_commit($con);
 while (true) {
     // Calculate the current Game Result and out ouput it
     $currentGameResult = calculateGameProgress($gameStartTime, $gameEndMultiplier, $stepsPerSecond);
-    echo "data: " . $currentGameResult, "\n\n";
+    echo "data: " . number_format((float)$currentGameResult, 2, '.', ''), "\n\n";
 
     if (ob_get_contents()) ob_end_flush();
     flush();

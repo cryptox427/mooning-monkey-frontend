@@ -10,14 +10,13 @@ $stmt = mysqli_stmt_init($con);
 mysqli_stmt_prepare($stmt,$sql);
 mysqli_stmt_execute($stmt);
 $result = mysqli_stmt_get_result($stmt);
-while($row = mysqli_fetch_assoc($result)){
-    $response = array(
-        'status' => true,
-        'message' => 'Success',
-        'data' => mysqli_fetch_all($result)
-    );
-}
-echo json_encode($response);
 
+$response = array(
+    'status' => true,
+    'message' => 'Success',
+    'data' => mysqli_fetch_all($result)
+);
+
+echo json_encode($response);
 
 ?>
