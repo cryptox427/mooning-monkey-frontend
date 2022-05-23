@@ -3,6 +3,7 @@ export const GET_MAX_CREDITS_ERROR = 'GET_MAX_CREDITS_ERROR';
 export const BET_REQUEST = 'BET_REQUEST';
 export const BET_SUCCESS = 'BET_SUCCESS';
 export const BET_ERROR = 'BET_ERROR';
+export const END_BET = 'END_BET';
 
 export const SET_PUBLICKEY = 'SET_PUBLICKEY';
 
@@ -14,9 +15,17 @@ export const GET_ALL_BET_ERROR = 'GET_ALL_BET_ERROR';
 
 export const SET_GAME_RESULT = 'SET_GAME_RESULT';
 
+export const CHANGE_GAME_STATE = 'CHANGE_GAME_STATE';
+
 export const TRANSACTION_TYPE = {
     WITHDRAW: 'Withdraw',
     DEPOSIT: 'Deposit',
     REWARDS: 'Rewards',
     NONE: ''
+}
+
+export const GAME_STATE = {
+    WAITING: 'WAITING',
+    RUNNING: 'RUNNING',
+    CRASHED: 'CRASHED'
 }

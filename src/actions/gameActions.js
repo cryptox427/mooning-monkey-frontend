@@ -1,5 +1,5 @@
 
-import {GET_ALL_BET_SUCCESS, GET_ALL_BET_ERROR, SET_GAME_RESULT} from '../utils/types'
+import {GET_ALL_BET_SUCCESS, GET_ALL_BET_ERROR, SET_GAME_RESULT, CHANGE_GAME_STATE} from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
@@ -35,6 +35,14 @@ export const setGameResult = (result) => async dispatch => {
     dispatch( {
         type: SET_GAME_RESULT,
         payload: result
+    })
+
+}
+
+export const changeGameState = (gameState) => async dispatch => {
+    dispatch( {
+        type: CHANGE_GAME_STATE,
+        payload: gameState
     })
 
 }

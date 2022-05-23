@@ -121,13 +121,13 @@ $scale-var: 1600 / 2560;
 	.play-button {
 		margin-top: 15px * $scale-var;
 		background-color: #F843EA;
-		cursor: pointer;
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;
 		text-align: center;
 		position: relative;
 		white-space: nowrap;
+		border: none;
 		span {
 			text-align: center;
 			font-family: Nurom;
@@ -138,8 +138,8 @@ $scale-var: 1600 / 2560;
 			left: 50%;
 			position: absolute;
 		}
-		&.disable-bet {
-			background-color: green;
+		&[disabled] {
+			background-color: gray;
 		}
 	}
 	.bet-info-detail {

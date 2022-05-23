@@ -8,31 +8,30 @@ import TuneImg from '../../assets/images/tune_white_24dp.svg'
 import './index.scss'
 import {serverUrl} from '../../utils/constant'
 
-import {getAllBets, setGameResult, removeAllBets} from '../../actions/gameActions'
+import {getAllBets, setGameResult, removeAllBets, changeGameState} from '../../actions/gameActions'
+import {endBet} from '../../actions/betActions'
+import {GAME_STATE} from '../../utils/types'
 
-const GameState = {
-    Waiting: 'waiting',
-    Running: 'Running',
-    Crashed: 'Crushed'
-}
+
 //const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
 const evtSource = new EventSource(serverUrl + "getGameProgress.php");
 
 const MainChartComponent = (props) => {
-    const { getAllBets, setGameResult, removeAllBets } = props;
+    const { getAllBets, setGameResult, removeAllBets, changeGameState } = props;
     const [showAnimation, setShowAnimation] = useState(false);
     const [gameData, setGameData] = useState({
-        currentState: GameState.Waiting,
+        currentState: GAME_STATE.WAITING,
         currentValue: 0,
         timeLineValues: [],
         valueHistory: [{
             name: "series-1",
+            type: 'line',
             data: []
         }]
     });
     const chartOptions = {
         chart: {
-            // type: 'area',
+            
             // id: "basic-bar",
             zoom: {
                 type: 'x',
@@ -76,7 +75,7 @@ const MainChartComponent = (props) => {
             mode: 'dark'
         },
         fill: {
-            type: 'gradient',
+            type: 'solid',
             gradient: {
                 shadeIntensity: 1,
                 inverseColors: false,
@@ -86,17 +85,25 @@ const MainChartComponent = (props) => {
             },
         },
        
-        colors: ['#F001F4']
+        colors: ['#ff66ff']
     }
 
     const startGame = () => {
         setGameResult(0);
         getAllBets();
+        changeGameState(GAME_STATE.RUNNING);
     }
 
     const endGame = () => {
-        removeAllBets();
         setGameResult(gameData.currentValue);
+        endBet();
+        changeGameState(GAME_STATE.CRASHED);
+    }
+
+    const waitGame = () => {
+        removeAllBets();
+        setGameResult(-1);
+        changeGameState(GAME_STATE.WAITING);
     }
 
     evtSource.onmessage = (event) => {
@@ -104,15 +111,17 @@ const MainChartComponent = (props) => {
         console.log("message");
         if(eventData === "Finished")
         {
-            if(gameData.currentState === GameState.Running) {
+            if(gameData.currentState === GAME_STATE.RUNNING) {
                 endGame();
             }
             setGameData({
                 ...gameData,
                 
-                currentState: GameState.Crashed,
+                currentState: GAME_STATE.CRASHED,
                 timeLineValues: [0],
                 valueHistory: [{
+
+                    type: 'line',
                     name: "series-1",
                     data: []
                 }]
@@ -121,32 +130,38 @@ const MainChartComponent = (props) => {
         else {
             eventData = Number(eventData);
             if(eventData < 0) {
+                if(gameData.currentState !== GAME_STATE.WAITING) {
+                    waitGame();
+                }
                 setGameData({
                     ...gameData,
                     currentValue: 0,
-                    currentState: GameState.Waiting,
+                    currentState: GAME_STATE.WAITING,
                     timeLineValues: [0],
                     valueHistory: [{
+                        type: 'line',
                         name: "series-1",
                         data: []
                     }]
                 })
             }
-            else if(gameData.currentState !== GameState.Crashed) {
-                if(gameData.currentState !== GameState.Running) {
+            else if(gameData.currentState !== GAME_STATE.CRASHED) {
+                if(gameData.currentState !== GAME_STATE.RUNNING) {
                     startGame();
                 }
                 setGameData({
                     currentValue: eventData,
-                    currentState: GameState.Running,
+                    currentState: GAME_STATE.RUNNING,
                     timeLineValues: [...gameData.timeLineValues, gameData.timeLineValues[gameData.timeLineValues.length-1]+1].slice(-20),
                     valueHistory: [
                         {
+                            type: 'line',
                             name: "series-1",
                             data: [...gameData.valueHistory[0].data, eventData].slice(-20)
                         }
                     ]
                 })
+                setGameResult(eventData);
             }
         } 
         //console.log("chartSeries", chartSeries, "gameValues", gameValues, "times", times);
@@ -156,17 +171,17 @@ const MainChartComponent = (props) => {
             <div className="play-chart">
                 <div className="bg" >
                     <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.timeLineValues}}} series={gameData.valueHistory} type="area" height={500} />
-                    <div className={`game-value ${gameData.currentState === GameState.Running ? "show": "hidden"}`}>
+                    <div className={`game-value ${gameData.currentState === GAME_STATE.RUNNING ? "show": "hidden"}`}>
                         
                         <div className="value">{gameData.currentValue}<span>X</span></div>
                         <div className="title">Current Payout</div>
                     </div>
-                    <div className={`crashed-game ${gameData.currentState === GameState.Crashed ? "show": "hidden"}`}>
+                    <div className={`crashed-game ${gameData.currentState === GAME_STATE.CRASHED ? "show": "hidden"}`}>
                         <div className="title-top">CRASHED</div>
                         <div className="value">{gameData.currentValue}<span>X</span></div>
                         <div className="title-bottom">Round Over</div>
                     </div>
-                    <div className={`waiting-round ${gameData.currentState === GameState.Waiting ? "show": "hidden"}`}>
+                    <div className={`waiting-round ${gameData.currentState === GAME_STATE.WAITING ? "show": "hidden"}`}>
                         <div className="title">Waiting For Next Round</div>
                     </div>
                 </div>
@@ -308,4 +323,4 @@ const mapStateToProps  = (state) => (
     }
 )
 
-export default connect(mapStateToProps, {getAllBets, setGameResult, removeAllBets})(MainChartComponent)
+export default connect(mapStateToProps, {getAllBets, setGameResult, removeAllBets, endBet, changeGameState})(MainChartComponent)

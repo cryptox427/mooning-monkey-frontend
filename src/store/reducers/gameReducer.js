@@ -1,10 +1,11 @@
-import {GET_ALL_BET_SUCCESS, GET_ALL_BET_ERROR, SET_GAME_RESULT} from '../../utils/types';
+import {GET_ALL_BET_SUCCESS, GET_ALL_BET_ERROR, SET_GAME_RESULT, GAME_STATE, CHANGE_GAME_STATE} from '../../utils/types';
 
 const initialState = {
     allBets: [],
     loading: false,
     loaded: false,
-    gameResult: 0
+    gameResult: 0,
+    gameState: GAME_STATE.WAITING
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -29,6 +30,11 @@ const gameReducer = (state = initialState, action) => {
         return {
             ...state,
             gameResult: action.payload
+        }
+        case CHANGE_GAME_STATE:
+        return {
+            ...state,
+            gameState: action.payload
         }
         default: return state
     }

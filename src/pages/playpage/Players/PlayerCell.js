@@ -7,7 +7,13 @@ import bnb2Img from '../../../assets/images/playpage/bnb2.png';
 
 const PlayerCell = (props) => {
     const { p_address, p_name, wager, mulitplayer, payout, pay_type, gameResult } = props;
-    const p_state = gameResult > mulitplayer ? "active" : "red";
+    let p_state = "white";
+    if(gameResult < 0) {
+        p_state = "white";
+    }
+    else {
+        p_state = gameResult > mulitplayer ? "active" : "red";
+    }
     return (
         <tr>
             <td className={"player " + p_state}>
