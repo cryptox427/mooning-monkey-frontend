@@ -53,3 +53,14 @@
 .third-btn {
     background: linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important;
 }
+.stats-modal {
+    .modal-dialog {
+        max-width: 600px !important;
+        div {
+            font-family: Poppins-Light;
+        }
+        span, p {
+            font-family: Poppins-Light;
+        }
+    }
+}

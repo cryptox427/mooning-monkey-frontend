@@ -266,7 +266,7 @@ $scale-var: 1600 / 2560;
                 font-size: 10px;
                 
                 @media only screen and (min-width: 1024px) {
-                    font-size: 12px;
+                    font-size: 10px;
                     width: 70px;
                     img {
                         width: 30px;
@@ -274,7 +274,7 @@ $scale-var: 1600 / 2560;
                     }
                 }
                 @media only screen and (min-width: 1600px) {
-                    font-size: 24px * $scale-var;
+                    font-size: 17px * $scale-var;
                     width: 204px * $scale-var;
                     img {
                         width: 30px;

@@ -17,6 +17,7 @@ import { GrDocumentText } from "react-icons/gr";
 import { CgFileDocument } from "react-icons/cg";
 import { FaDove, FaAngleDoubleLeft, FaAngleDoubleRight } from "react-icons/fa";
 import { RiHome2Fill } from "react-icons/ri";
+import {connect} from 'react-redux'
 
 import BankrollModal from './components/BanrollModal';
 import LeaderboardModal from './components/LeaderboardModal';
@@ -26,14 +27,19 @@ import WithdrawModal from './components/WIthdrawModal';
 import Cell from './pages/layouts/Sidebar/Cell.js';
 import './Sidebar.scss';
 import darkLogo from './assets/images/playpage/dark-logo.png';
+import {changeCurrentPage} from './actions/userActions'
 
-const Sidebar = () => {
-  const [selectedPage, setPage] = useState('play');
+const Sidebar = (props) => {
+  const {currentPage, changeCurrentPage} = props;
+  
   const [bankrollStatus, setBankrollStatus] = useState(false);
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+  const setPage = (targetPage) => {
+    changeCurrentPage(targetPage)
+  }
   return (
     <>
     <div
@@ -68,43 +74,43 @@ const Sidebar = () => {
           <CDBSidebarMenu>
           
 
-            <Cell linkStr="play" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="play" setPage={setPage} selectedPage={currentPage}>
               <BsPlay className="icon"/>
               <span className="detail-str">Play</span>
             </Cell>
-            <Cell linkStr="transaction-history" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="transaction-history" setPage={setPage} selectedPage={currentPage}>
               <BiTransferAlt className="icon"/>
               <span className="detail-str">Transaction History</span>
             </Cell>
-            <Cell linkStr="tak-stak" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="tak-stak" setPage={setPage} selectedPage={currentPage}>
                 <BiStar className="icon"/>
                 <span className="detail-str">TAK Staking</span>
             </Cell>
-            <Cell linkStr="monkey-earning" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="monkey-earning" setPage={setPage} selectedPage={currentPage}>
               <SiSurveymonkey className="icon"/>
                 <span className="detail-str">Monkey Earnings</span>
             </Cell>
-            <Cell linkStr="bookearning" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="bookearning" setPage={setPage} selectedPage={currentPage}>
             <BiPencil className="icon"/>
                 <span className="detail-str">Comic Book Earnings</span>
             </Cell>
-            <Cell linkStr="bankroll" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="bankroll" setPage={setPage} selectedPage={currentPage}>
             <BsMenuButton className="icon"/>
                 <span className="detail-str">Bankroll</span>
             </Cell>
-            <Cell linkStr="cashback" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="cashback" setPage={setPage} selectedPage={currentPage}>
             <GiReceiveMoney className="icon"/>
                 <span className="detail-str">Cashback</span>
             </Cell>
-            <Cell linkStr="win-bonus" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="win-bonus" setPage={setPage} selectedPage={currentPage}>
             <GiTrophyCup className="icon"/>
                 <span className="detail-str">Winning Bonus</span>
             </Cell>
-            <Cell linkStr="referral" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="referral" setPage={setPage} selectedPage={currentPage}>
             <FiUsers className="icon"/>
                 <span className="detail-str">Referral Program</span>
             </Cell>
-            <Cell linkStr="docs" setPage={setPage} selectedPage={selectedPage}>
+            <Cell linkStr="docs" setPage={setPage} selectedPage={currentPage}>
             <CgFileDocument className="icon"/>
                 <span className="detail-str">Docs</span>
             </Cell>
@@ -174,4 +180,9 @@ const Sidebar = () => {
   );
 }
 
-export default Sidebar;
+const mapStateToProps  = (state) => (
+  {
+    currentPage: state.userData.currentPage 
+  }
+)
+export default connect(mapStateToProps, {changeCurrentPage})(Sidebar)

@@ -1,32 +1,80 @@
 import { Modal } from "react-bootstrap";
+import ReactApexChart from "react-apexcharts";
 import './index.scss';
 
 const StatsModal = (props) => {
     const { show, onHide } = props;
+    const chartOptions = {
+        chart: {
+            type: 'area',
+            id: "basic-bar",
+            zoom: {
+                enabled: false
+            },
+            background: 'rgba(52, 52, 52, 0)'
+
+        },
+        dataLabels: {
+            enabled: false
+        },
+        legend: {
+            horizontalAlign: 'left'
+        },
+        labels: [30, 40, 45, 50, 49, 60, 70, 91],
+        xaxis: {
+            categories: [17, 18, 19, 20, 21, 22, 23, 24]
+        },
+        stroke: {
+            curve: 'straight',
+            width: 1
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+              opacityFrom: 0.6,
+              opacityTo: 0.8,
+            }
+          },
+        tooltip: {
+            enabled: true
+        },
+        theme: {
+            mode: 'dark'
+        },
+        colors: ['#F001F4']
+    }
+
+    const chartSeries = [
+        {
+          name: "series-1",
+          data: [30, 40, 45, 50, 49, 60, 70, 91]
+        }
+    ]
 
     return (
-        <Modal show={show} onHide={onHide} >
-            <Modal.Header style={{backgroundColor: '#100F25', borderBottom: 'none'}} closeButton>
-                <Modal.Title><span style={{color: '#F001F4'}}>STATS</span></Modal.Title>
+        <Modal show={show} onHide={onHide} className="monkey-modal stats-modal">
+            <Modal.Header closeButton closeVariant='white'>
+                <Modal.Title><span>STATS</span></Modal.Title>
+
             </Modal.Header>
-            <Modal.Body style={{backgroundColor: '#100F25', color: 'white'}}>
-            <h5 className="popup_title mb-3">Username</h5>
-                <p className="mt-3"><span className="pink pr-2">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
+            <Modal.Body>
+                <h5 className="title-midle mb-3 poppin-bold-txt">Username</h5>
+                <p className="mt-3 poppin-light-txt"><span className="pink pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
 
                 <div className="change-box-bottom-btn mt-3 three-dif-btn">
-                <a href="#" className="cta-btn cta-cancel first-btn" style={{backgroundColor: "linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important", color: "black !important"}}>
-                    Cancel
-                </a>
-                <a href="#" className="cta-btn second-btn" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #F044E8 0%, #6A51C9 100%) !important"}}>
-                    Submit
-                </a>
-                <a href="#" className="cta-btn third-btn" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important"}}>
-                    Submit
-                </a>
+                    <button className="cta-btn cta-cancel first-btn poppin-bold-txt" style={{backgroundColor: "linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important", color: "black !important"}}>
+                        Tip
+                    </button>
+                    <button className="cta-btn second-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #F044E8 0%, #6A51C9 100%) !important"}}>
+                        + Add Friend
+                    </button>
+                    <button className="cta-btn third-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important"}}>
+                        Block User
+                    </button>
 
                 </div>
 
-                <p className="mt-4"><span className="pink pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
+                <div className="mt-4"><span className="pink pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</div>
 
                 <ul className="pl-4 stauts-bullet">
                 <li>
@@ -148,8 +196,10 @@ const StatsModal = (props) => {
                 <p className="mt-4"><span className="pink pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
 
 
-                <div className="chart-section">
-                <div id="div_g" style={{width: "100%", height: "300px"}}></div>
+                <div className="">
+                <div >
+                    <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
+                </div>
                 </div>
 
                 <p className="text-center">Interested in participating in the bankroll? Click <a href="#" className="pink">here </a>  to invest!</p>

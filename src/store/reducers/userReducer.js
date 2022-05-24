@@ -1,8 +1,9 @@
-import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, GET_MY_RECENT_WINS_ERROR} from '../../utils/types';
+import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, CHANGE_CURRENT_PAGE} from '../../utils/types';
 
 const initialState = {
     publicKey: 0,
     myRecentWin: [],
+    currentPage: "play",
     loading:true
 }
 
@@ -31,6 +32,12 @@ const userReducer = (state = initialState, action) => {
             
             loading: false
         }
+        case CHANGE_CURRENT_PAGE:
+        return {
+            ...state,
+            currentPage: action.payload
+        }
+        
         default: return state
     }
 

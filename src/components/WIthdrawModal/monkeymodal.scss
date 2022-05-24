@@ -1,0 +1,197 @@
+.hidden {
+    display: none;
+}
+
+.show {
+    display: block;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.top-select , option , option:focus , .top-select:focus{
+    background-color: #22214D;
+    color: white;
+    border: none  !important;
+    box-shadow: none !important;
+}
+
+.bottom-select ,  .bottom-select:focus{
+    background-color: transparent;
+    border: 1px solid #2A2E68 !important;
+}
+
+.amount-balance{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cta-btn{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    color: white !important;
+    display: flex;
+    padding: 8px 15px;
+    text-align: center;
+    line-height: 20px;
+    height: 56px;
+    align-items: center;
+    gap: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.step{
+    width: 32px;
+    height: 32px;
+    background-color: #FF01EB;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid transparent;
+    border-radius: 50px;
+}
+.form-steps{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.step-line{
+    height: 4px;
+    width: calc(100%  - 64px);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #FF01EB 15.11%, #ff01ea00 100%) !important;
+  
+}
+.step.incomplete{
+    background: unset;
+    border: 2px solid #FF01EB;
+}
+
+.rth-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    margin-bottom: 12px;
+  
+}
+.success-box{
+    border: 2px solid #6DE713;
+    padding: 2px 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.recent-transaction-history{
+    border: 2px solid #2A2E68;
+    padding: 1rem;
+}
+
+.relative {
+    position: relative;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.monkey-modal {
+    
+    .select-money {
+        &-item:hover {
+            background-color: rgba(244, 244, 244, 0.5) !important;
+        }
+    }
+    
+    
+    .modal-dialog {
+        .title-midle {
+            font-size: 18px;
+        }
+        margin: 3rem auto;
+        .poppin-light-txt {
+            font-family: Poppins-Light;
+        }
+        .poppin-bold-txt {
+            font-family: Poppins-SemiBold;
+        }
+        .modal-content {
+            .modal-header {
+                background-color: rgb(16, 15, 37);
+                border-bottom: none;
+                padding: 30px;
+                padding-top: 20px;
+                padding-bottom: 0;
+                .modal-title {
+                    span {
+                        font-family: Poppins-SemiBold;
+                        color: rgb(240, 1, 244);
+                    }
+                }
+                .close-btn {
+                    color: rgb(211, 209, 209);
+                    background-color: rgba(0, 0, 0, 0);
+                    border: none;
+                    position: absolute;
+                    right: 30px;
+                    font-size: 25px;
+                    &:hover {
+                        color: white;
+                    }
+                }
+            }
+            .modal-body {
+                background-color: rgb(16, 15, 37);
+                color: white;
+                padding: 30px;
+                padding-top: 20px;
+                .dropdown-container {
+                    margin-bottom: 20px;
+                    .title {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between; 
+                    }
+                }
+                .dropdown-title {
+                    font-family: Poppins-Light;
+                }
+                .dropdown-box{
+                    display: flex;
+                    align-items: center;
+                    border: 1px solid #2A2E68;
+                
+                    input {
+                        background-color: transparent;
+                        color: #FF01EB;
+                        border: none;
+                        text-align: right;
+                
+                        &:focus-visible {
+                            outline: 2px solid #FF01EB;
+                        }
+                    }
+                }
+                .dropdown-content {
+                    background-color: black;
+                }
+                .dropdwon-item-text {
+                    font-family: Poppins-Light;
+                    margin-left: 10px;
+                }
+                .withdraw-btn {
+                    cursor: pointer;
+                }
+                .amount-coin {
+                    margin-left: 10px;
+                }
+                
+                .view-history {
+                    cursor: pointer;
+                }
+            }
+        }
+        
+    }
+}

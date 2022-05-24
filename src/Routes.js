@@ -30,14 +30,15 @@ const Routes = () => {
             >
             
 
-              <Route path="/play" render={() => <Dashboard/> } />
+              <Route exact path="/"><Redirect to="/play"/></Route>
+              <Route path="/play" render={() => <Dashboard /> } />
               <Route path="/transaction-history" render={() => <TransactionHistory /> } />
               <Route path="/tak-stak" render={() => <TakStaking /> } />
               <Route path="/monkey-earning" render={() => <MonkeyEarning /> } />
               <Route path="/bookearning" render={() => <ComicBookearnings /> } />
               <Route path="/tables" component={Tables} />
               <Route path="/hero404" component={Hero404} />
-              <Redirect to="/play"/>
+              
           </div>
         </div>
       </BrowserRouter>

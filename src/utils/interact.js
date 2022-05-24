@@ -1,12 +1,15 @@
-import { chainId } from '../constants/chain';
+import { chainId, testBscChainId } from '../constants/chain';
 import { ethers } from 'ethers';
-import { BSC_TOKENS } from '../constants/tokens';
+import { BSC_TOKENS, BSC_TESTNET_TOKENS } from '../constants/tokens';
+
+const useChainID = testBscChainId;
+const useTokens = BSC_TESTNET_TOKENS;
 
 export const connectWallet = async () => {
   if (window.ethereum) {
     try {
       const chain = await window.ethereum.request({ method: 'eth_chainId' })
-      if (chain === chainId) {
+      if (chain === useChainID) {
         const addressArray = await window.ethereum.request({
           method: 'eth_requestAccounts',
         })
@@ -24,7 +27,7 @@ export const connectWallet = async () => {
       } else {
         window.ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{ chainId:chainId }],
+          params: [{ chainId: useChainID }],
         })
         return {
           address: "",
@@ -92,7 +95,7 @@ export const getTokenContract = (tokenName) => {
   const signer = provider.getSigner();
 
   const contractABI = require("../constants/tokenABI.json");
-  const contract = new ethers.Contract(BSC_TOKENS[tokenName], contractABI, signer);
+  const contract = new ethers.Contract(useTokens[tokenName], contractABI, signer);
 
   return contract;
 }
@@ -107,7 +110,8 @@ export const getBalance = async (address, tokenName) => {
     balance = await provider.getBalance(address);
   } else {
     const contractABI = require("../constants/tokenABI.json");
-    const contract = new ethers.Contract(BSC_TOKENS[tokenName], contractABI, signer);
+    const contract = new ethers.Contract(useTokens[tokenName], contractABI, signer);
+    console.log("coin address", useTokens[tokenName])
     balance = await contract.balanceOf(address);
   }
 

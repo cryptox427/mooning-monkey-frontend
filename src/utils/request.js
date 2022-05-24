@@ -9,7 +9,7 @@ const request = async (method, url, data) => {
     }
 };
 
-const postRequest = async (method, url, data) => {
+const postRequest = async (url, data) => {
     try {
         //axios.defaults.withCredentials = true;
         axios.defaults.crossDomain = true;
@@ -20,18 +20,6 @@ const postRequest = async (method, url, data) => {
             });
             console.log("res:", res);
             return res;
-                // .then(response => {
-                //     const {data} = response;
-            
-                //     console.log(response);
-                //     return {status: "success", response};
-                // })
-                // .catch(err => {
-                //     console.error(err);
-                // });
- 
-
-
     } catch (error) {
         return {status: "error", result: "Not responding"};
     }

@@ -25,6 +25,8 @@ export const SET_GAME_RESULT = 'SET_GAME_RESULT';
 
 export const CHANGE_GAME_STATE = 'CHANGE_GAME_STATE';
 
+export const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
+
 export const TRANSACTION_TYPE = {
     WITHDRAW: 'Withdraw',
     DEPOSIT: 'Deposit',

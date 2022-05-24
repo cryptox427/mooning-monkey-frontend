@@ -1,5 +1,6 @@
 
-import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, GET_MY_RECENT_WINS_ERROR} from '../utils/types'
+import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, GET_MY_RECENT_WINS_ERROR,
+    CHANGE_CURRENT_PAGE} from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
@@ -9,6 +10,15 @@ export const setPublicKey = (publicKey) => async dispatch => {
     dispatch( {
         type: SET_PUBLICKEY,
         payload: publicKey
+    })
+
+}
+
+export const changeCurrentPage = (targetPage) => dispatch => {
+    
+    dispatch( {
+        type: CHANGE_CURRENT_PAGE,
+        payload: targetPage
     })
 
 }

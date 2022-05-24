@@ -1,16 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {connect} from 'react-redux'
 import { Modal } from "react-bootstrap";
 import { BSC_TOKENS, DEPOSIT_WALLET_ADDRESS } from "../../constants/tokens";
+import { tokenIDs } from "../../utils/constant";
+
 import { AiOutlineClose } from "react-icons/ai";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
 import ArrowDownImg from '../../assets/images/arrow-down.svg';
+import './monkeymodal.scss';
 import './index.scss';
 import {request, postRequest} from '../../utils/request';
 import {serverUrl} from '../../utils/constant'
+import {withdraw} from '../../actions/withdrawActions'
+import {changeCurrentPage} from '../../actions/userActions'
+
+import { withRouter } from "react-router-dom";
+import { getMaxCredits } from "../../actions/betActions";
 
 const WithdrawModal = (props) => {
-    const { show, onHide } = props;
-    const tokenNames = Object.keys(BSC_TOKENS);
+    const { show, onHide, maxCredits, history, changeCurrentPage } = props;
+    const tokenNames = Object.keys(tokenIDs);
     const [selectedTokenName, setSelectedTokenName] = useState(tokenNames[0]);
     const [balance, setBalance] = useState(0);
     const [showSelect, setShowSelect] = useState(false);
@@ -24,36 +33,44 @@ const WithdrawModal = (props) => {
     };
 
     const onWithdraw = async () => {
-        console.log("on~~~~~~~~~~~~ withdraw");
-        const data = {
-            tokenId: 1,
-            tokenAmount: tokenAmount,
-            publicKey: localStorage.getItem('publicKey')
+        const result = await withdraw(tokenIDs[selectedTokenName], tokenAmount);
+        if(result === "Success") {
+            window.alert("withdraw success");
         }
-        // const res = await request('post', url, data);
-        const checkSessionRes = await postRequest('post', withdrawApiUrl, data);
-        console.log("response:", checkSessionRes.data);
-
-        if (checkSessionRes.data === 'login success') {
-            
+        else {
+            window.alert("withdraw failed");
         }
+        getMaxCredits();
     }
     const handleTokenAmount = (e) => {
-        const newValue = e.target.value;
+        let newValue = Math.min(e.target.value, maxCredits);
         setTokenAmount(newValue)
     }
 
+      
+    useEffect(async () => {
+        let newValue = Math.min(tokenAmount, maxCredits);
+        setTokenAmount(newValue)
+    }, [maxCredits]);
+
+    const gotoHistoryPage = () => {
+        history.push("/transaction-history");
+        changeCurrentPage("transaction-history");
+        onHide();
+    }
     return (
-        <Modal show={show} onHide={onHide} className="withdraw-modal">
-            <Modal.Header style={{backgroundColor: '#100F25', borderBottom: 'none'}} closeButton closeVariant	
-='white'>
-                <Modal.Title><span style={{color: '#F001F4'}}>WITHDRAW</span></Modal.Title>
+        <Modal show={show} onHide={onHide} className="monkey-modal withdraw-modal">
+            <Modal.Header closeButton closeVariant='white'>
+                <Modal.Title><span>WITHDRAW</span></Modal.Title>
 
             </Modal.Header>
-            <Modal.Body style={{backgroundColor: '#100F25', color: 'white'}}>
-                <h6 className="text-light dropdown-title">Select coin</h6>
+            <Modal.Body>
+            <div className="dropdown-container">
+                    <div className="title">
+                        <h6 className="poppin-light-txt">Select coin</h6>
+                    </div>
                 <div className="relative">
-                    <div className="select-coin-box p-2">
+                    <div className="dropdown-box p-2">
                         <div className="w-100 d-flex  align-items-center justify-content-start p-1" onClick={() => setShowSelect(!showSelect)}>
                             <div className="d-flex align-items-center">
                                 <img src={TakCoinImg} className="mr-2" width="25" alt="" />
@@ -62,7 +79,7 @@ const WithdrawModal = (props) => {
                         </div>
                         <img src={ArrowDownImg} alt="" style={{width: "15px"}}/>
                     </div>
-                    <div className={`absolute select-money w-100 ${!showSelect ? 'hidden' : 'show'}`} style={{backgroundColor: "black"}}>
+                    <div className={`absolute w-100 dropdown-content ${!showSelect ? 'hidden' : 'show'}`}>
                         {
                             tokenNames.map((tokenName, index) =>
                                 <div key={index} className="d-flex p-2 select-money-item" onClick={() => handleToken(tokenName)} >
@@ -75,35 +92,45 @@ const WithdrawModal = (props) => {
                         }
                     </div>
                 </div>
-
-                <div className="amount-balance mt-4 mb-1">
-                    <h6 className="text-light">Amount</h6>
-                    <div className="text-light">Wallet Balance: <span>{balance} {selectedTokenName} </span></div>
                 </div>
-                <div className="select-coin-box p-2">
-                    <div className="w-100 d-flex align-items-center justify-content-between p-1">
-                        <div className="d-flex align-items-center justify-content-between">
-                            <img src={TakCoinImg} className="mr-2" width="25" alt="" />
-                            <h6 className="mb-0">{selectedTokenName}</h6>
-                        </div>
-                        <div className="flex1 d-flex align-items-center">
-                            <div className="pink" style={{marginRight: '16px'}}>
-                                <input type='number' className="" value={tokenAmount} onChange={handleTokenAmount}  />
-                                &nbsp;{selectedTokenName}
+                
+                <div className="dropdown-container">
+                    <div className="title">
+                        <h6 className="poppin-light-txt">Amount</h6>
+                        <div className="poppin-light-txt hint">WIthdrawable: <span className="poppin-light-txt">{maxCredits} {selectedTokenName} </span></div>    
+                    </div>
+                    
+                    <div className="dropdown-box p-2">
+                        <div className="w-100 d-flex align-items-center justify-content-between p-1">
+                            <div className="d-flex align-items-center justify-content-between">
+                                <img src={TakCoinImg} className="mr-2" width="25" alt="" />
+                                <h6 className="mb-0 amount-coin poppin-light-txt">{selectedTokenName}</h6>
                             </div>
-                            <div className="mb-0 cursor-pointer" onClick={() => setTokenAmount(balance * 1 - 0.1)}>MAX</div>
+                            <div className="flex1 d-flex align-items-center">
+                                <div className="pink">
+                                    <input type='number' className="withdraw-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
+                                    &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
+                                </div>
+                                <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => setTokenAmount(maxCredits)}>MAX</div>
+                            </div>
                         </div>
                     </div>
-                </div> 
-                <div className="cta-btn justify-content-center mt-4 poppin-light-txt withdraw-btn" id="withdraw-btn" onClick={()=>onWithdraw()}>
+                </div>
+                 
+                <div className="cta-btn justify-content-center mt-4 poppin-light-txt" id="withdraw-btn" onClick={()=>onWithdraw()}>
                     Withdraw
                 </div>
-                <div className="amount-balance mt-4 mb-1 justify-content-center">
-                    <a href="#" className="text-light poppin-light-txt" style={{textDecoration: "underline !important"}}>View History</a>
+                <div className="mt-4 mb-1 justify-content-center">
+                    <div onClick={()=>gotoHistoryPage()} className="text-light view-history-btn poppin-light-txt view-history" style={{textDecoration: "underline !important"}}>View History</div>
                 </div>
             </Modal.Body>
         </Modal>
     );
 }
 
-export default WithdrawModal;
+const mapStateToProps  = (state) => (
+    {
+        maxCredits: state.betData.maxCredits
+    }
+)
+export default withRouter(connect(mapStateToProps, {changeCurrentPage})(WithdrawModal))

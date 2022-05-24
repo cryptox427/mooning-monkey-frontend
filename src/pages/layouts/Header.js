@@ -14,19 +14,10 @@ import logo from '../../assets/images/playpage/logo.png';
 import darkLogo from '../../assets/images/playpage/dark-logo.png';
 import bnb from '../../assets/images/playpage/bnb.png';
 import cryptoImg from '../../assets/images/playpage/crypto-net.png';
-import USDTImg from '../../assets/images/USDT.svg';
+import USDTImg, { ReactComponent } from '../../assets/images/USDT.svg';
 import CakeImg from '../../assets/images/cake.svg';
 import BUSDImg from '../../assets/images/BUSD.svg';
-import CashBackImg from '../../assets/images/cashback.svg';
-import ComicBookImg from '../../assets/images/comic-book.svg';
-import DocsImg from '../../assets/images/docs.svg';
-import MonkeyImg from '../../assets/images/monkey.svg';
-import PlayImg from '../../assets/images/play.svg';
-import ReferralImg from '../../assets/images/referral.svg';
-import TakImg from '../../assets/images/tak.svg';
-import TransactionImg from '../../assets/images/transaction.svg';
-import WinningImg from '../../assets/images/winning-bonus.svg';
-import AvatarImg from '../../assets/images/user-img.png';
+
 import LogoHeader from './LogoHeader.js';
 import {connect} from 'react-redux'
 
@@ -39,6 +30,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../actions/betActions'
 import {setPublicKey, getMyRecentWins} from '../../actions/userActions'
 import {serverUrl} from '../../utils/constant'
+import {ProfileModal} from './ProfileModal'
+
 
 const Header = (props) => {
     const { children, setPublicKey, getMaxCredits, getMyRecentWins } = props;
@@ -185,7 +178,7 @@ const Header = (props) => {
         }
         localStorage.setItem('publicKey', walletAddress);
         // const res = await request('post', url, data);
-        const checkSessionRes = await postRequest('post', checkAPIUrl, data);
+        const checkSessionRes = await postRequest(checkAPIUrl, data);
         console.log("session:", checkSessionRes);
 
         if (checkSessionRes.data === 'login success') {
@@ -208,7 +201,7 @@ const Header = (props) => {
             publicKey: walletAddress,
             refCode: null
         }
-        const checkSessionRes = await postRequest('post', checkAPIUrl, data);
+        const checkSessionRes = await postRequest(checkAPIUrl, data);
         console.log("session:", checkSessionRes);
         // const res = await request('post', url, data);
 
@@ -344,51 +337,7 @@ const Header = (props) => {
                                                             }
                                                         </div>
                                                     </div>
-                                                :   <div className={`absolute dropdown-profile ${showProfile ? 'show' : 'hidden'}`} aria-labelledby="dropdownMenuLink"  >
-                                                        <div className="drop-profile-section">
-                                                        <div className="profile-user">
-                                                            <img src={AvatarImg} alt="" width="42" />
-                                                        </div>
-                                                        <div className="profile-details text-left">
-                                                            <div className="pink font-weight-bold">VIP LEVEL 1</div>
-                                                            <div className="text-light"><span>VIP 0</span> <span>Novice</span></div>
-                                                        </div>
-                                                        </div>
-                                
-                                                        <hr className="my-4" style={{backgroundColor: "#515189"}} />
-                                                    
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={PlayImg} alt="" width="20" className="mr-2" />
-                                                        Action</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={TransactionImg} alt="" width="20" className="mr-2" />
-                                                        Transaction History</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={TakImg} alt="" width="20" className="mr-2" />
-                                                        TAK Staking</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={MonkeyImg} alt="" width="20" className="mr-2" />
-                                                        Monkey Earnings</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={ComicBookImg} alt="" width="20" className="mr-2" />
-                                                        Comic Book Earnings</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={MonkeyImg} alt="" width="20" className="mr-2" />
-                                                        Mooning Monkey Earnings</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={CashBackImg} alt="" width="20" className="mr-2" />
-                                                        Cashback</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={WinningImg} alt="" width="20" className="mr-2" />
-                                                        Winning Bonus</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={ReferralImg} alt="" width="20" className="mr-2" />
-                                                        Referral Program</a>
-                                                        <a className="dropdown-item" href="#">
-                                                        <img src={DocsImg} alt="" width="20" className="mr-2" />
-                                                        Docs</a>
-                                                        
-                                                    </div>
+                                                :   <React.Fragment/>
                                         }
                                     </InfoBox>
                                 :   <button className="purple border-0 wallet-address" onClick={handleConnectWallet}>
