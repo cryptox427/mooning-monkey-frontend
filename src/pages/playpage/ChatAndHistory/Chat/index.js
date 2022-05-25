@@ -18,6 +18,7 @@ import country4 from '../../../../assets/images/playpage/country4.png';
 import './index.scss';
 import TalkCell from './TalkCell';
 import InfoBox from '../../../../components/InfoBox';
+import StatsModal from '../../../../components/StatsModal';
 
 const renderTooltip = (props) => (
     <Tooltip id="button-tooltip" {...props}>
@@ -31,6 +32,28 @@ const countries = {
     Spanish: country3,
     Hungarian: country4
 }
+const chatTestData = [
+    {
+        time: "1234:54:3:23",
+        username: "Luis",
+        messageText: "Nice to meet you"
+    },
+    {
+        time: "1234:54:3:23",
+        username: "Luis",
+        messageText: "Nice to meet you"
+    },
+    {
+        time: "1234:54:3:23",
+        username: "Luis",
+        messageText: "Nice to meet you"
+    },
+    {
+        time: "1234:54:3:23",
+        username: "Luis",
+        messageText: "Nice to meet you"
+    }
+]
 let initialised = false;
 const Chat = (props) => {
     const [messages, setMessages] = useState([]);
@@ -39,6 +62,7 @@ const Chat = (props) => {
     const [meMessage, setMessage] = useState("");
     const [displayFlagContent, setDisplayFlagContent] = useState(false);
     const [displayChannel, setDisplayChannel] = useState(false);
+    const [showStatsModal, setShowStatsModal] = useState(false);
     const initData = () => {
         console.log("initData")
         initialised = true;
@@ -110,15 +134,10 @@ const Chat = (props) => {
                 <div className="chat-talks-content">
                     <div className="talks">
                     {
-                        messages.length > 0 &&
-                        messages.map((message, index) => {
-                                let messageParts = message.split(' | ');
-
-                                let time = messageParts[0];
-                                let username = messageParts[1];
-                                let messageText = messageParts[2];
+                        chatTestData.length > 0 &&
+                        chatTestData.map((chat, index) => {
                                 return (
-                                    <TalkCell t_time={time} t_name={username} t_content={messageText}/>
+                                    <TalkCell clickUserName={setShowStatsModal} t_time={chat.time} t_name={chat.username} t_content={chat.messageText}/>
                                 )
                             }
                         )
@@ -187,6 +206,7 @@ const Chat = (props) => {
                     </InfoBox>
                 </div>
             </div>
+            <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
         </div>
     );
 }

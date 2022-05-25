@@ -42,6 +42,7 @@ $scale-var: 1600 / 2560;
                         margin-right: 5px;
                     }
                     .person-name {
+                        cursor: pointer;
                         color: #F001F4;
                         font-family: Poppins-Medium;
                         font-size: 22px * $scale-var;

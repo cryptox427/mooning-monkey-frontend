@@ -1,11 +1,11 @@
 import './index.scss';
 
 const TalkCell = (props) => {
-    const { t_time, t_name, t_content } = props;
+    const { t_time, t_name, t_content, clickUserName } = props;
     return (
         <div className="talk-cell">            
             <div className="time">{t_time}</div>
-            <div className="person-name">{t_name + ":"}</div>
+            <div className="person-name" onClick={()=>clickUserName(true)}>{t_name + ":"}</div>
             <div className="talk-content">{t_content}</div>
         </div>
     );
