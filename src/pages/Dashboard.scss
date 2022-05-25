@@ -130,7 +130,7 @@ $scale-var: 1600 / 2560;
 		padding: 0 !important;
 	}
 	.bg {
-		min-height: 40vw;
+		min-height: 20vw;
 	}
 }
 
@@ -140,7 +140,7 @@ $scale-var: 1600 / 2560;
 		padding-left: 0 !important;
 	}
 	.bg {
-		min-height: 40vw;
+		min-height: 20vw;
 	}
 }
 
@@ -150,6 +150,6 @@ $scale-var: 1600 / 2560;
 		padding-left: calc(var(--bs-gutter-x) * .5) !important;
 	}
 	.bg {
-		min-height: 25vw;
+		min-height: 20vw;
 	}
 }

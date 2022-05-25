@@ -59,8 +59,8 @@ $scale-var: 1600 / 2560;
     }
     .countries {
         position: absolute;
-        right: 70px;
-        top: 30px;
+        right: 20px;
+        top: 10px;
         bottom: 50px;
         overflow: hidden;
         display: flex;
@@ -70,9 +70,55 @@ $scale-var: 1600 / 2560;
         justify-content: flex-start;
         align-items: center;
         font-size: 14px;
-        img {
-            width: 40px;
-            margin-top: 5px;
+        z-index: 1;
+        height: 0;
+        overflow: initial;
+        .leave-btn {
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            font-family: Poppins-Medium;
+            margin-bottom: 5px;
+            .close-symbol {
+                color: red;
+                margin-right: 0px;
+            }
+        }
+        .display-btn {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-family: Poppins-Medium;
+            margin-bottom: 3px;
+            span {
+                margin-right: 6px;
+                color: gray;
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+        .country {
+            margin-left: 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 3px;
+            padding-left: 6px;
+            padding-right: 6px;
+            img {
+                width: 32px;
+                height: 24px;
+            }
+        }
+        .selected-country {
+            background-color: gray;
+            
+            
         }
     }
     .users {
@@ -162,13 +208,33 @@ $scale-var: 1600 / 2560;
             top: 50%;
             cursor: pointer;
         }
-        .plus-button {
-            color: white;
+        
+        .flag-content {
             position: absolute;
             right: -45px * $scale-var;
             transform: translateY(-50%);
             top: 50%;
-            cursor: pointer;
+            .plus-button {
+                color: white;
+                cursor: pointer;
+            }
+            .flag-drop-box {
+                background: #36356C;
+                position: absolute;
+                right: -18px;
+                bottom: 40px;
+                border-radius: 5px;
+                padding: 5px;
+                max-width: 390px;
+                width: max-content;
+                img {
+                    cursor: pointer;
+                    width: 32px;
+                    height: 24px;
+                    border-radius: 5px;
+                    margin: 3px;
+                }
+            }
         }
     }
     /* Rectangle 114 */

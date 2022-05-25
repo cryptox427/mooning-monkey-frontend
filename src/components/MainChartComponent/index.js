@@ -169,7 +169,7 @@ const MainChartComponent = (props) => {
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.timeLineValues}}} series={gameData.valueHistory} type="area" height={500} />
+                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.timeLineValues}}} series={gameData.valueHistory} type="area" height={300} />
                     <div className={`game-value ${gameData.currentState === GAME_STATE.RUNNING ? "show": "hidden"}`}>
                         
                         <div className="value">{gameData.currentValue}<span>X</span></div>
@@ -177,11 +177,11 @@ const MainChartComponent = (props) => {
                     </div>
                     <div className={`crashed-game ${gameData.currentState === GAME_STATE.CRASHED ? "show": "hidden"}`}>
                         <div className="title-top">CRASHED</div>
-                        <div className="value">{gameData.currentValue}<span>X</span></div>
+                        <div className="value">@{gameData.currentValue}<span>X</span></div>
                         <div className="title-bottom">Round Over</div>
                     </div>
                     <div className={`waiting-round ${gameData.currentState === GAME_STATE.WAITING ? "show": "hidden"}`}>
-                        <div className="title">Waiting For Next Round</div>
+                        <div className="title">Waiting for next round</div>
                     </div>
                 </div>
             </div>

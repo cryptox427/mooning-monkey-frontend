@@ -19,9 +19,10 @@
         color: white;
         
         .value {
-            font-size: 60px;
+            font-size: 80px;
+            font-family: Poppins-Medium;
             span {
-                font-size: 30px;
+                font-size: 40px;
             }
         }
         .title {
@@ -34,8 +35,10 @@
         left: 50%;
         top: 50%;
         .title {
-            color: white;
-            font-size: 60px;
+            white-space: nowrap;
+            color: gray;
+            font-family: Poppins-Medium;
+            font-size: 25px;
         }
     }
     .crashed-game {
@@ -46,16 +49,20 @@
         color: red;
         
         .value {
+            font-family: Poppins-Medium;
             font-size: 60px;
             span {
+                font-family: Poppins-Medium;
                 font-size: 30px;
             }
         }
         .title-bottom {
-            font-size: 20px;
+            font-size: 16px;
+            font-family: Poppins-Medium;
         }
         .title-top {
-            font-size: 20px;
+            font-size: 26px;
+            font-family: Poppins-Medium;
         }
     }
     .show {
