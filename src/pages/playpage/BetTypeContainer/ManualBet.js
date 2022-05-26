@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import InputComponent from "../../../components/InputComponent";
 import {connect} from 'react-redux'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
-import {GAME_STATE} from '../../../utils/types'
+import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 
 const ManualBet = (props) => {
 
@@ -11,14 +11,6 @@ const ManualBet = (props) => {
     const [betAmount, setBetAmount] = useState(1);
     const [multiplier, setMultiplier] = useState(1);
     const [playerButtonStyle, setPlayerButtonStyle] = useState({disableBtn: false, buttonName: "Play"});
-
-    const betAmountMultiple = {
-        half: 'half',
-        double: 'double',
-        max: 'max',
-        min: 'min'
-    };
-
     const clickChangeBetAmountBtn = (multipleAmount) => {
         let _betAmount = 0;
         switch(multipleAmount) {
@@ -44,7 +36,7 @@ const ManualBet = (props) => {
     }
     const clickStopBtn = () => {
         console.log("clickStopBtn")
-        betRequest(betAmount, multiplier);
+        stopBet();
     }
     useEffect(
         () => {

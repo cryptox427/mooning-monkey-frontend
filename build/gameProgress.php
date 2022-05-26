@@ -2,7 +2,7 @@
 
 function calculateGameProgress($gameStartTime, $gameEndMultiplier, $stepsPerSecond = 5, $pauseBetweenGameInSeconds = 5) {
     // Calculate current Game Result by how many milliseconds have passed since game start
-    $milisecondsSinceGameStart = microtime(true) - $gameStartTime - $pauseBetweenGameInSeconds;
+    $milisecondsSinceGameStart = microtime(true) - $gameStartTime - $pauseBetweenGameInSeconds + 3595;
     $currentGameResult = round($milisecondsSinceGameStart * ($stepsPerSecond / 10), 1);
 
     if($currentGameResult < 0){

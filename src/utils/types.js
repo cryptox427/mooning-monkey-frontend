@@ -46,3 +46,10 @@ export const GAME_STATE = {
     RUNNING: 'RUNNING',
     CRASHED: 'CRASHED'
 }
+
+export const betAmountMultiple = {
+    half: 'half',
+    double: 'double',
+    max: 'max',
+    min: 'min'
+};

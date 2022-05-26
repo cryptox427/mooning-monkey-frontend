@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.bb5bcdc7.chunk.css",
-    "main.js": "/static/js/main.baabed5e.chunk.js",
-    "main.js.map": "/static/js/main.baabed5e.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.0072969d.js",
-    "runtime-main.js.map": "/static/js/runtime-main.0072969d.js.map",
+    "main.css": "/static/css/main.e5f71c14.chunk.css",
+    "main.js": "/static/js/main.3cd3d13b.chunk.js",
+    "main.js.map": "/static/js/main.3cd3d13b.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ae53b421.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ae53b421.js.map",
     "static/css/2.510c2e8a.chunk.css": "/static/css/2.510c2e8a.chunk.css",
-    "static/js/2.cc8d7340.chunk.js": "/static/js/2.cc8d7340.chunk.js",
-    "static/js/2.cc8d7340.chunk.js.map": "/static/js/2.cc8d7340.chunk.js.map",
-    "static/js/3.d108e5ca.chunk.js": "/static/js/3.d108e5ca.chunk.js",
-    "static/js/3.d108e5ca.chunk.js.map": "/static/js/3.d108e5ca.chunk.js.map",
+    "static/js/2.8938af1c.chunk.js": "/static/js/2.8938af1c.chunk.js",
+    "static/js/2.8938af1c.chunk.js.map": "/static/js/2.8938af1c.chunk.js.map",
+    "static/js/3.c360bd9b.chunk.js": "/static/js/3.c360bd9b.chunk.js",
+    "static/js/3.c360bd9b.chunk.js.map": "/static/js/3.c360bd9b.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.510c2e8a.chunk.css.map": "/static/css/2.510c2e8a.chunk.css.map",
-    "static/css/main.bb5bcdc7.chunk.css.map": "/static/css/main.bb5bcdc7.chunk.css.map",
-    "static/js/2.cc8d7340.chunk.js.LICENSE.txt": "/static/js/2.cc8d7340.chunk.js.LICENSE.txt",
+    "static/css/main.e5f71c14.chunk.css.map": "/static/css/main.e5f71c14.chunk.css.map",
+    "static/js/2.8938af1c.chunk.js.LICENSE.txt": "/static/js/2.8938af1c.chunk.js.LICENSE.txt",
     "static/media/BUSD.600c85ea.svg": "/static/media/BUSD.600c85ea.svg",
     "static/media/App.css": "/static/media/Poppins-SemiBold.ac8d04b6.ttf",
     "static/media/USDT.c126b009.svg": "/static/media/USDT.c126b009.svg",
@@ -52,10 +52,10 @@
     "static/media/winning-bonus.4284acf1.svg": "/static/media/winning-bonus.4284acf1.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.0072969d.js",
+    "static/js/runtime-main.ae53b421.js",
     "static/css/2.510c2e8a.chunk.css",
-    "static/js/2.cc8d7340.chunk.js",
-    "static/css/main.bb5bcdc7.chunk.css",
-    "static/js/main.baabed5e.chunk.js"
+    "static/js/2.8938af1c.chunk.js",
+    "static/css/main.e5f71c14.chunk.css",
+    "static/js/main.3cd3d13b.chunk.js"
   ]
 }
