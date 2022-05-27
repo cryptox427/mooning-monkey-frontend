@@ -1,34 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Form } from 'react-bootstrap';
 import ReactApexChart from 'react-apexcharts';
 import {connect} from 'react-redux'
+import FlipNumbers from "react-flip-numbers";
 import AspectRatioImg from '../../assets/images/aspect_ratio_white_24dp.svg'
 import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
 import './index.scss'
 import {serverUrl} from '../../utils/constant'
+import AnimatedNumber from "react-animated-number";
 
 import {getAllBets, setGameResult, removeAllBets, changeGameState} from '../../actions/gameActions'
 import {endBet} from '../../actions/betActions'
 import {GAME_STATE} from '../../utils/types'
+import AnimNumberDisplayer from './AnimNumberDisplayer'
 
 
-//const evtSource = new EventSource("https://64bb-92-42-44-153.ngrok.io/getGameProgress.php");
-const evtSource = new EventSource(serverUrl + "getGameProgress.php");
-
+const evtSource = new EventSource(serverUrl+"getGameProgress.php");
 const MainChartComponent = (props) => {
     const { getAllBets, setGameResult, removeAllBets, changeGameState } = props;
     const [showAnimation, setShowAnimation] = useState(false);
+    const [testValue, setTestValue] = useState(9);
     const [gameData, setGameData] = useState({
         currentState: GAME_STATE.WAITING,
         currentValue: 0,
-        timeLineValues: [],
-        valueHistory: [{
-            name: "series-1",
-            type: 'line',
-            data: []
-        }]
+        crashValues: [],
+        displayValues: []
     });
+
+
+    useEffect(() => {
+        console.log(testValue)
+    }, [testValue])
     const chartOptions = {
         chart: {
             
@@ -45,6 +48,13 @@ const MainChartComponent = (props) => {
                 enabled: false
             }
         },
+        
+        forecastDataPoints: {
+            count: 0,
+            fillOpacity: 0.5,
+            strokeWidth: undefined,
+            dashArray: 4,
+          },
         markers: {
             size: 0
         },
@@ -53,18 +63,36 @@ const MainChartComponent = (props) => {
                 ticks: {
                     display: false
                 }
-            }
+            },
+            y: [{
+                display: true,
+                position: 'right',
+                ticks: {
+                 beginAtZero: true
+                }
+            }]
         },
+        grid: {
+            show: true,      // you can either change hear to disable all grids
+            xaxis: {
+              lines: {
+                show: false  //or just here to disable only x axis grids
+               }
+             },  
+            yaxis: {
+            position: 'right',
+              lines: { 
+                show: false  //or just here to disable only y axis
+               }
+             },   
+          },
         dataLabels: {
             enabled: false
         },
         legend: {
-            horizontalAlign: 'left'
         },
         labels: [0, 20, 40],
-        xaxis: {
-            categories: []
-        },
+        
         stroke: {
             curve: 'straight'
         },
@@ -74,6 +102,26 @@ const MainChartComponent = (props) => {
         theme: {
             mode: 'dark'
         },
+        xaxis: {
+            type: 'numeric',
+            tickAmount: 5,
+            labels: {
+              hideOverlappingLabels: false
+            }
+          },
+        yaxis: [
+            {
+                opposite: true,
+                title: {
+                },
+                logarithmic: false,
+                decimalsInFloat: 1,
+                tickAmount: 6,
+                min: 0,
+                max: 50,
+                
+            }
+        ],
         fill: {
             type: 'solid',
             gradient: {
@@ -87,6 +135,92 @@ const MainChartComponent = (props) => {
        
         colors: ['#ff66ff']
     }
+    const options = {
+        chart: {
+          height: 350,
+          type: "line",
+          stacked: false
+        },
+        dataLabels: {
+          enabled: false
+        },
+        colors: ["#FF1654", "#247BA0"],
+        series: [
+          {
+            name: "Series A",
+            data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
+          },
+          {
+            name: "Series B",
+            data: [20, 29, 37, 36, 44, 45, 50, 58]
+          }
+        ],
+        stroke: {
+          width: [4, 4]
+        },
+        plotOptions: {
+          bar: {
+            columnWidth: "20%"
+          }
+        },
+        xaxis: {
+          categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
+        },
+        yaxis: [
+          {
+            axisTicks: {
+              show: true
+            },
+            axisBorder: {
+              show: true,
+              color: "#FF1654"
+            },
+            labels: {
+              style: {
+                colors: "#FF1654"
+              }
+            },
+            title: {
+              text: "Series A",
+              style: {
+                color: "#FF1654"
+              }
+            }
+          },
+          {
+            opposite: true,
+            axisTicks: {
+              show: true
+            },
+            axisBorder: {
+              show: true,
+              color: "#247BA0"
+            },
+            labels: {
+              style: {
+                colors: "#247BA0"
+              }
+            },
+            title: {
+              text: "Series B",
+              style: {
+                color: "#247BA0"
+              }
+            }
+          }
+        ],
+        tooltip: {
+          shared: false,
+          intersect: true,
+          x: {
+            show: false
+          }
+        },
+        legend: {
+          horizontalAlign: "left",
+          offsetX: 40
+        }
+      };
 
     const startGame = () => {
         setGameResult(0);
@@ -106,6 +240,11 @@ const MainChartComponent = (props) => {
         changeGameState(GAME_STATE.WAITING);
     }
 
+    
+
+    
+    
+    //messageCounter = window.setInterval(getMesssage, 2000);
     evtSource.onmessage = (event) => {
         let eventData = event.data;
         if(eventData === "Finished")
@@ -117,13 +256,8 @@ const MainChartComponent = (props) => {
                 ...gameData,
                 
                 currentState: GAME_STATE.CRASHED,
-                timeLineValues: [0],
-                valueHistory: [{
-
-                    type: 'line',
-                    name: "series-1",
-                    data: []
-                }]
+                crashValues: [],
+                displayValues: []
             })
         }
         else {
@@ -136,52 +270,77 @@ const MainChartComponent = (props) => {
                     ...gameData,
                     currentValue: 0,
                     currentState: GAME_STATE.WAITING,
-                    timeLineValues: [0],
-                    valueHistory: [{
-                        type: 'line',
-                        name: "series-1",
-                        data: []
-                    }]
+                    crashValues: [],
+                    displayValues: []
                 })
             }
             else if(gameData.currentState !== GAME_STATE.CRASHED) {
                 if(gameData.currentState !== GAME_STATE.RUNNING) {
                     startGame();
                 }
+                let timeValue = gameData.crashValues.length > 0 ? gameData.crashValues[gameData.crashValues.length-1].time+1 : 1;
+                let crashValues = [...gameData.crashValues, 
+                    {
+                        time: timeValue,
+                        crashValue: eventData
+                    }]
+                let displayValues = [];
+                if(crashValues.length > 10) {
+                    for(let i = 0 ; i < 9 ; i ++) {
+                        displayValues = [...displayValues, crashValues[parseInt(i * crashValues.length / 10)]]
+                    }
+                    displayValues = [...displayValues, crashValues[crashValues.length - 1]]
+                }
+                else {
+                    displayValues = crashValues;
+                }
                 setGameData({
                     currentValue: eventData,
                     currentState: GAME_STATE.RUNNING,
-                    timeLineValues: [...gameData.timeLineValues, gameData.timeLineValues[gameData.timeLineValues.length-1]+1].slice(-20),
-                    valueHistory: [
-                        {
-                            type: 'line',
-                            name: "series-1",
-                            data: [...gameData.valueHistory[0].data, eventData].slice(-20)
-                        }
-                    ]
+                    crashValues: crashValues,
+                    displayValues: displayValues
                 })
                 setGameResult(eventData);
             }
         } 
         //console.log("chartSeries", chartSeries, "gameValues", gameValues, "times", times);
     }
+    const formatValue = (value) => value.toFixed(2);
     return (
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.timeLineValues}}} series={gameData.valueHistory} type="area" height={300} />
+                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
+                        {
+                            type: 'line',
+                            name: "series-1",
+                            data: gameData.displayValues.map(data => data.crashValue)
+                        }
+                    ]} height={320} />
                     <div className={`game-value ${gameData.currentState === GAME_STATE.RUNNING ? "show": "hidden"}`}>
                         
-                        <div className="value">{gameData.currentValue}<span>X</span></div>
+                        <div className="value">
+                            <AnimatedNumber
+                                value={gameData.currentValue}
+                                style={{
+                                    fontSize: 100
+                                }}
+                                duration={1000}
+                                formatValue={(n) => n.toFixed(2)}
+                                frameStyle={(percentage) =>
+                                    percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
+                                }
+                            /><span>X</span>
+                        </div>
                         <div className="title">Current Payout</div>
                     </div>
                     <div className={`crashed-game ${gameData.currentState === GAME_STATE.CRASHED ? "show": "hidden"}`}>
                         <div className="title-top">CRASHED</div>
-                        <div className="value">@{gameData.currentValue}<span>X</span></div>
+                        <div className="value">{gameData.currentValue}<span>X</span></div>
                         <div className="title-bottom">Round Over</div>
                     </div>
                     <div className={`waiting-round ${gameData.currentState === GAME_STATE.WAITING ? "show": "hidden"}`}>
-                        <div className="title">Waiting for next round</div>
+                        <div className="title">Preparing Round</div>
                     </div>
                 </div>
             </div>

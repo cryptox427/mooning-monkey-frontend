@@ -19,14 +19,19 @@
         color: white;
         
         .value {
-            font-size: 80px;
-            font-family: Poppins-Medium;
+            text-align: center;
+            font-size: 100px;
+            height: 120px;
+            font-family: Poppins-Light;
             span {
-                font-size: 40px;
+                font-size: 60px;
+                font-family: Poppins-Light;
             }
         }
         .title {
             font-size: 20px;
+            text-align: center;
+            font-family: Poppins-Medium;
         }
     }
     .waiting-round {
@@ -36,9 +41,9 @@
         top: 50%;
         .title {
             white-space: nowrap;
-            color: gray;
+            color: white;
             font-family: Poppins-Medium;
-            font-size: 25px;
+            font-size: 35px;
         }
     }
     .crashed-game {
@@ -50,19 +55,24 @@
         
         .value {
             font-family: Poppins-Medium;
-            font-size: 60px;
+            font-size: 80px;
+            text-align: center;
+            height: 100px;
             span {
-                font-family: Poppins-Medium;
+                font-family: Poppins-Light;
                 font-size: 30px;
             }
         }
         .title-bottom {
             font-size: 16px;
-            font-family: Poppins-Medium;
+            font-family: Poppins-SemiBold;
+            text-align: center;
         }
         .title-top {
+            height: 20px;
             font-size: 26px;
-            font-family: Poppins-Medium;
+            font-family: Poppins-SemiBold;
+            text-align: center;
         }
     }
     .show {
@@ -78,6 +88,7 @@
     padding: 3px;
     z-index: 99;
     position: relative;
+    margin-top: -10px;
 }
 
 .left-three-btns svg{

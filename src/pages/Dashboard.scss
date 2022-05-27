@@ -109,10 +109,77 @@ $scale-var: 1600 / 2560;
 // 	}
 // }
 .dashboard {
+	padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	.game-bet-chat-content {
+		width: 100%;
+		padding-bottom: 10px;
+		.game-bet {
+			display: flex;
+			flex-wrap: wrap;
+			padding-bottom: 10px;
+			.game {
+				width: 100%;
+				padding-bottom: 10px;
+			}
+			.bet {
+				width: 100%;
+			}
+		}
+	}
+	.players-content {
+		width: 100%;
+	}
 	.game-content {
 		img {
 			width: 100%;
 			height: 100%;
+		}
+	}
+
+	@media only screen and (min-width: 992px)
+	{
+		.game-bet-chat-content {
+			width: 100%;
+			padding-bottom: 10px;
+			.game-bet {
+				padding-bottom: 10px;
+				.game {
+					width: 60%;
+					padding-right: 10px;
+					padding-bottom: 0px;
+				}
+				.bet {
+					width: 40%;
+				}
+			}
+		}
+		.players-content {
+			width: 100%;
+		}
+	}
+
+	@media only screen and (min-width: 1500px)
+	{
+		.game-bet-chat-content {
+			width: 65%;
+			padding-right: 10px;
+			padding-bottom: 0px;
+			.game-bet {
+				padding-bottom: 10px;
+				.game {
+					width: 60%;
+					padding-right: 10px;
+					padding-bottom: 0px;
+				}
+				.bet {
+					width: 40%;
+				}
+			}
+		}
+		.players-content {
+			width: 35%;
 		}
 	}
 }
@@ -124,32 +191,4 @@ $scale-var: 1600 / 2560;
 	background-size: 100% 100%;
 }
 
-@media only screen and (min-width: 0)
-{
-	.pl-xl-match {
-		padding: 0 !important;
-	}
-	.bg {
-		min-height: 20vw;
-	}
-}
 
-@media only screen and (min-width: 992px)
-{
-	.pl-xl-match {
-		padding-left: 0 !important;
-	}
-	.bg {
-		min-height: 20vw;
-	}
-}
-
-@media only screen and (min-width: 1200px)
-{
-	.pl-xl-match {
-		padding-left: calc(var(--bs-gutter-x) * .5) !important;
-	}
-	.bg {
-		min-height: 20vw;
-	}
-}

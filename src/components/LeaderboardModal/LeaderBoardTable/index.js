@@ -4,14 +4,15 @@ import Pagination from 'react-responsive-pagination';
 import {connect} from 'react-redux'
 
 import './index.scss';
+import {getLeaderBoards} from '../../../actions/gameActions';
 
-const loadedData = false;
+
 const LeaderBoardTable = (props) => {
     const {dataList} = props;
     const [currentPage, setCurrentPage] = useState(4);
     const totalPages = 17;
  
-    
+    console.log("dataList4", dataList)
     return (
         <div className='custom-table leaderboard-table'>
             <Table>
@@ -31,7 +32,7 @@ const LeaderBoardTable = (props) => {
                         dataList.map(data => 
                             <tr>
                                 <td>{data.player}</td>
-                                <td>{data.wagered}</td>
+                                <td>{data.wargered}</td>
                                 <td>{data.profit}</td>
                                 <td>{data.profitAth}</td>
                                 <td>{data.profitAtl}</td>

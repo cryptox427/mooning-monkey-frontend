@@ -6,11 +6,30 @@ import {
         CHANGE_GAME_STATE,
         GAME_HISTORY_TYPE,
         GET_GAME_HISTORY_SUCCESS,
-        GET_GAME_HISTORY_ERROR
+        GET_GAME_HISTORY_ERROR,
+        GET_LEADERBOARD_SUCCESS,
+        GET_LEADERBOARD_ERROR 
     } from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
+
+export const getLeaderBoards = async () => {
+    try{
+        const res = await axios.get(`${serverUrl}getLeaderboard.php`);
+        console.log("~~~~~~~~~all getLeaderBoards:", res.data)
+        if(res.data.message === "Success") {
+            return res.data.data;
+        }
+        else {
+            return [];
+        }
+    }
+    catch(e){
+        console.log("Error: getLeaderBoards")
+        return [];
+    }
+}
 
 export const getAllBets = () => async dispatch => {
     try{
