@@ -1,7 +1,4 @@
-import { Table, Dropdown } from 'react-bootstrap';
-import React, { useEffect, useState } from "react";
-import Pagination from 'react-responsive-pagination';
-import {connect} from 'react-redux'
+import { Table } from 'react-bootstrap';
 
 import './index.scss';
 import BNB1Img from '../../assets/images/playpage/bnb1.png';
@@ -9,14 +6,8 @@ import BNB2Img from '../../assets/images/playpage/bnb2.png';
 
 const loadedData = false;
 const TransActionTableComponent = (props) => {
-    const { dataList, showPagination, showPerPage, transactionData, transActionType } = props;
-    const { transactionHistory, loading, loaded, networkError } = transactionData;
-    const headerList = Object.keys(dataList[0]);
-    const [currentPage, setCurrentPage] = useState(4);
-
-    const totalPages = 17;
+    const { dataList } = props;
  
-    
     return (
         <div className='custom-table'>
             <Table>
@@ -31,33 +22,33 @@ const TransActionTableComponent = (props) => {
                 </thead>
                 <tbody>
                     {
-                        transactionHistory.length > 0 &&
-                        transactionHistory.map((data, index) => 
-                                <tr key={index} className={index % 2 && "obb"}>
-                                    <td><div>
-                                        {data[2]}
-                                    </div></td>
-                                    <td><span className='green-font'>{data[3]}</span></td>
-                                    <td><div>
-                                        <div>
-                                            
-                                                <img className='mr-2' src={BNB1Img} alt="bnb1" />
-                                                {data[0]}
-                                            
-                                        </div>
-                                    </div></td>
-                                    <td><div>
+                        dataList.length > 0 &&
+                        dataList.map((data, index) => 
+                            <tr key={index} className={`transaction-cell ${index % 2 && "obb"}`}>
+                                <td><div>
+                                    {data[2]}
+                                </div></td>
+                                <td><span className='green-font'>{data[3]}</span></td>
+                                <td><div>
                                     <div>
-                                        <img src={BNB2Img} className='mr-2' alt="bnb2" />
-                                        {data[1]}
-                                        </div>
-                                    </div></td>
-                                    <td><div>
-                                        {data[4]}
-                                    </div></td>
-                                </tr>
-                                
-                            )
+                                        
+                                        <img className='coin-type' src={BNB1Img} alt="bnb1" />
+                                        {data[0]}
+                                        
+                                    </div>
+                                </div></td>
+                                <td><div>
+                                <div>
+                                    <img src={BNB2Img} className='coin-type' alt="bnb2" />
+                                    {data[1]}
+                                    </div>
+                                </div></td>
+                                <td><div>
+                                    {data[4]}
+                                </div></td>
+                            </tr>
+                            
+                        )
                     }
                 </tbody>
             </Table>
@@ -97,10 +88,4 @@ const TransActionTableComponent = (props) => {
     );
 }
 
-const mapStateToProps  = (state) => (
-    {
-        transactionData: state.transactionData
-    }
-)
-
-export default connect(mapStateToProps, {})(TransActionTableComponent)
+export default TransActionTableComponent

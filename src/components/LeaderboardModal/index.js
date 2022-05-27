@@ -7,18 +7,25 @@ import Pagination from 'react-responsive-pagination';
 
 import {getLeaderBoards} from '../../actions/gameActions';
 
-let testData = [["ServerTest",1667.6875,7362.3125,8235,1,110]];
+let testData = [["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110],
+["ServerTest",1667.6875,7362.3125,8235,1,110]];
 
 const LeaderboardModal = (props) => {
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
     const [displayCount, setDisplayCount] = useState(10);
-    const [leaderBoardData, setLeaderBoardData] = useState({
-        all: [],
-        display: []
-    });
+    const [leaderBoardData, setLeaderBoardData] = useState([]);
+    const [displayData, setDisplayData] = useState([]);
     const [totalPages, setTotalPageCopunt] = useState(10);
     const { show, onHide } = props;
-    console.log("redraw", leaderBoardData)
     let dataList = [];
     for(let i = 0 ; i < 10 ; i ++) {
         dataList.push({
@@ -30,14 +37,13 @@ const LeaderboardModal = (props) => {
             bets: "Amount"
         });
     }
-    const getDisplayData = (baseData, selectedPageNumber) => {
-        const displayArray = baseData.slice(selectedPageNumber * displayCount, displayCount)
+    const getDisplayData = (baseData, selectedPageNumber, selectedDisplayCount) => {
+        const displayArray = baseData.slice((selectedPageNumber-1) * selectedDisplayCount, selectedPageNumber*selectedDisplayCount)
         return displayArray;
     }
     const getDataFromServer = async () => {
-        console.log("getDataFromServer")
         const data = await getLeaderBoards()
-        const _displayData = data.map(_data => {
+        const _leaderBoardData = data.map(_data => {
             
             return {
                 player: _data[0],
@@ -48,26 +54,19 @@ const LeaderboardModal = (props) => {
                 bets: _data[5]
             }
         });
-        let adsfasdf = getDisplayData(_displayData, currentPage);
-        setLeaderBoardData({
-            all: _displayData,
-            display: adsfasdf
-        })
+        setLeaderBoardData(_leaderBoardData)
     }
     useEffect(
         () => {
-            console.log(leaderBoardData)
-            let displayData = getDisplayData(leaderBoardData.all, currentPage)
-            setLeaderBoardData({
-                ...leaderBoardData,
-                display: displayData
-            })
+            
+            let _displayData = getDisplayData(leaderBoardData, currentPage, displayCount)
+            setDisplayData(_displayData)
         },
-        [currentPage, displayCount],
+        [leaderBoardData, currentPage, displayCount],
     );
     useEffect(
         () => {
-            setTotalPageCopunt(leaderBoardData.all.length / displayCount + 1)
+            setTotalPageCopunt(parseInt((leaderBoardData.length-1) / displayCount + 1))
         },
         [leaderBoardData, displayCount],
     );
@@ -108,7 +107,7 @@ const LeaderboardModal = (props) => {
             <Modal.Body>
     
                 <div className="table-responsive">
-                    <LeaderBoardTable dataList={leaderBoardData.all}/>
+                    <LeaderBoardTable dataList={displayData}/>
                 </div>
 
                 <div className='custom-table-bottom'>
@@ -127,14 +126,14 @@ const LeaderboardModal = (props) => {
                                     </Dropdown.Menu>
                                 </Dropdown>
                             </div>
-                            <div className='custom-table-bottom-left-status'>{`Showing ${leaderBoardData.display.length} out of ${leaderBoardData.all.length}`}</div>
+                            <div className='custom-table-bottom-left-status'>{`Showing ${displayData.length} out of ${leaderBoardData.length}`}</div>
                         </React.Fragment>
                     </div>
                     <div className='pagination-content'>
-                    <Pagination current={currentPage}
-                        total={totalPages}
-                        onPageChange={setCurrentPage}>  
-                        </Pagination>
+                        <Pagination current={currentPage}
+                            total={totalPages}
+                            onPageChange={setCurrentPage}>  
+                            </Pagination>
                     </div>
                 </div>
             </Modal.Body>

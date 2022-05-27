@@ -4,7 +4,7 @@
     }
 
     thead tr {
-        border: 5px solid #2A2864
+        border: 2px solid #2A2864
     }
 
     tbody tr {
@@ -18,13 +18,25 @@
     tr.obb {
         background: #322C76
     }
-
+    .table th {
+        font-family: Poppins-Medium;
+        font-size: 14px;
+    }
     .table td {
-        border-top: none;
+        border: none;
         white-space: nowrap;
         vertical-align: middle;
+        font-family: Poppins-Light;
+        padding: 8px;
+        padding-left: 12px;
+        font-size: 14px;
     }
-
+    .transaction-cell {
+        .coin-type {
+            width: 20px;
+            margin-right: 5px;
+        }
+    }
     &-bottom {
         display: flex;
         justify-content: space-between;

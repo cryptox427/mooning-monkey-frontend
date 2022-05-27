@@ -14,25 +14,62 @@ import './index.scss';
 import {TRANSACTION_TYPE} from '../../utils/types';
 import {getTransactionHistory} from '../../actions/transactionHistoryActions'
 
+const defaultData = [
+    // event: "Reward",
+    // status: "Success",
+    // amount: 0.05,
+    // fee: 0,
+    // creditedOn: "24-09-2021 16:03"
+    "Reward",
+    "Success",
+    0.05,
+    0,
+    "24-09-2021 16:03"
+]
+const testDataList = [];
+    
+
+for (let i = 0; i < 11; i++) {
+    testDataList.push(defaultData);
+}
 const TransactionHistory = (props) => {
-    const { showPagination, showPerPage, getTransactionHistory } = props;
-    const [currentPage, setCurrentPage] = useState(4);
-    const totalPages = 17;
-    const dataList = [];
-    const defaultData = {
-        event: "Reward",
-        status: "Success",
-        amount: 0.05,
-        fee: 0,
-        creditedOn: "24-09-2021 16:03"
+    const { transactionHistory, getTransactionHistory } = props;
+    const [currentPage, setCurrentPage] = useState(1);
+    const [displayCount, setDisplayCount] = useState(10);
+    const [displayData, setDisplayData] = useState([]);
+    const [totalPages, setTotalPageCopunt] = useState(10);
+    
+    const getDisplayData = (baseData, selectedPageNumber, selectedDisplayCount) => {
+        const displayArray = baseData.slice((selectedPageNumber-1) * selectedDisplayCount, selectedPageNumber * selectedDisplayCount)
+        return displayArray;
     }
-
-    for (let i = 0; i < 10; i++) {
-        dataList.push(defaultData);
-    }
-
+    useEffect(
+        () => {
+            let displayDataList = getDisplayData(transactionHistory, currentPage, displayCount)
+            setDisplayData(displayDataList)
+        },
+        [transactionHistory, currentPage, displayCount],
+    );
+    useEffect(
+        () => {
+            setTotalPageCopunt(parseInt((transactionHistory.length - 1) / displayCount + 1))
+        },
+        [transactionHistory, displayCount],
+    );
+    useEffect(
+        () => {
+            clickTabBtn(TRANSACTION_TYPE.DEPOSIT)
+        },
+        [],
+    );
     const clickTabBtn = (type) => {
         getTransactionHistory(type)
+        //setTransactionHistory(testDataList)
+        
+    }
+    /////// pagination action
+    const changeDisplayCount = (e) => {
+        setDisplayCount(e);
     }
     return (
         <div className="transaction-history">
@@ -51,16 +88,16 @@ const TransactionHistory = (props) => {
                     </Nav>
                     <Tab.Content>
                         <Tab.Pane eventKey="deposit">
-                            <MobileDataList showPagination showPerPage dataList={dataList}/>
-                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.DEPOSIT} dataList={dataList} showPagination showPerPage />
+                            <MobileDataList dataList={displayData}/>
+                            <TransActionTableComponent dataList={displayData} transActionType={TRANSACTION_TYPE.DEPOSIT}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="withdraw">
-                            <MobileDataList showPagination showPerPage dataList={dataList}/>
-                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.WITHDRAW} dataList={dataList} showPagination showPerPage />
+                            <MobileDataList dataList={displayData}/>
+                            <TransActionTableComponent dataList={displayData} transActionType={TRANSACTION_TYPE.WITHDRAW}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="rewards">
-                            <MobileDataList showPagination showPerPage dataList={dataList}/>
-                            <TransActionTableComponent transActionType={TRANSACTION_TYPE.REWARDS} dataList={dataList} showPagination showPerPage />
+                            <MobileDataList dataList={displayData}/>
+                            <TransActionTableComponent dataList={displayData} transActionType={TRANSACTION_TYPE.REWARDS}/>
                         </Tab.Pane>
                     
                     </Tab.Content>
@@ -70,27 +107,27 @@ const TransactionHistory = (props) => {
             <div className='custom-table-bottom'>
                 <div className='custom-table-bottom-left'>
                 <React.Fragment>
-                                <div className='custom-table-bottom-left-select'>
-                                    <Dropdown>
-                                        <Dropdown.Toggle id="dropdown-basic">
-                                            10 Records
-                                        </Dropdown.Toggle>
+                    <div className='custom-table-bottom-left-select'>
+                        <Dropdown  onSelect={(e)=>changeDisplayCount(e)}>
+                            <Dropdown.Toggle id="dropdown-basic">
+                            {displayCount} Records
+                            </Dropdown.Toggle>
 
-                                        <Dropdown.Menu>
-                                            <Dropdown.Item href="#/action-1">10 Records</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-2">20 Records</Dropdown.Item>
-                                            <Dropdown.Item href="#/action-3">50 Records</Dropdown.Item>
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </div>
-                                <div className='custom-table-bottom-left-status'>Showing 10 out of 100</div>
-                            </React.Fragment>
+                            <Dropdown.Menu>
+                                <Dropdown.Item eventKey={10}>10 Records</Dropdown.Item>
+                                <Dropdown.Item eventKey={20}>20 Records</Dropdown.Item>
+                                <Dropdown.Item eventKey={50}>50 Records</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </div>
+                    <div className='custom-table-bottom-left-status'>{`Showing ${displayData.length} out of ${transactionHistory.length}`}</div>
+                </React.Fragment>
                 </div>
                 <div className='pagination-content'>
-                <Pagination current={currentPage}
-                            total={totalPages}
-                            onPageChange={setCurrentPage}>  
-                            </Pagination>
+                    <Pagination current={currentPage}
+                        total={totalPages}
+                        onPageChange={setCurrentPage}>  
+                        </Pagination>
                 </div>
             </div>
         
@@ -101,7 +138,7 @@ const TransactionHistory = (props) => {
 
 const mapStateToProps  = (state) => (
     {
-    
+        transactionHistory: state.transactionData.transactionHistory
     }
 )
 
