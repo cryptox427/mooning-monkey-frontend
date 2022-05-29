@@ -45,7 +45,8 @@ export const login = (userData) => async dispatch => {
         const res = await axios.post(`${serverUrl}check.php`, {
             data: userData
         });
-        console.log("~~~~~~~~~login:", res.data)
+        
+        console.log("~~~~~~~~~login:", res, userData)
         if(res.data === "login success") {
             dispatch( {
                 type: GET_LOGIN_REQUEST_SUCCESS
@@ -101,23 +102,19 @@ export const getRegisteredState = (walletAddress) => async dispatch => {
     try{
         const res = await axios.get(`${serverUrl}account.php?publicKey=${walletAddress}`);
         console.log("~~~~~~~~~getRegisteredState:", res)
-        if (res.status === "success") {
-            if (res.result === "Doesnt Exist") {
+            if (res.data === "Doesnt Exist") {
                 dispatch( {
                     type: GET_REGISTERED_STATUS_SUCCESS,
                     payload: false
                 })
             }
             
-            if (res.result === "Exists") {
+            if (res.data === "Exists") {
                 dispatch( {
                     type: GET_REGISTERED_STATUS_SUCCESS,
                     payload: true
                 })
             }
-        } else {
-            //setStatus('Network is not worked')
-        }
     }
     catch(e){
         dispatch( {

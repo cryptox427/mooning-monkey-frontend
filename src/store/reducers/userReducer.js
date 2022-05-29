@@ -54,12 +54,12 @@ const userReducer = (state = initialState, action) => {
         case GET_REGISTERED_STATUS_SUCCESS:
             return {
                 ...state,
-                logged: action.payload
+                registered: action.payload
             }
         case GET_REGISTERED_STATUS_ERROR:
         return {
             ...state,
-            logged: false
+            registered: false
         }
         
         default: return state

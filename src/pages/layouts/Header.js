@@ -139,6 +139,7 @@ const Header = (props) => {
 
     useEffect(async () => {
         if (walletAddress) {
+            setPublicKey(walletAddress);
             getRegisteredState(walletAddress)
             // const url = `${serverUrl}account.php?publicKey=${walletAddress}`;
             // const res = await request('get', url);
@@ -193,7 +194,7 @@ const Header = (props) => {
 
         if (checkSessionRes.data === 'login success') {
             console.log("success")
-            setPublicKey(walletAddress);
+            
             getMaxCredits(walletAddress);
             getMyRecentWins();
             setLoginStatus(true);

@@ -10,7 +10,7 @@ import BottomLineInputComponent from "../../components/BottomLineInputComponent"
 
 
 const LoginModal = (props) => {
-    const { show, onHide, walletAddress, login, registered } = props;
+    const { show, onHide, publicKey, login, registered } = props;
     const [userData, setUserData] = useState({
         userName: "",
         password: "",
@@ -34,10 +34,10 @@ const LoginModal = (props) => {
         const data = {
             userName: null,
             password: userData.password,
-            publicKey: walletAddress,
+            publicKey: publicKey,
             refCode: null
         }
-        localStorage.setItem('publicKey', walletAddress);
+        localStorage.setItem('publicKey', publicKey);
         login(data);
     }
     useEffect(() => {
@@ -63,10 +63,10 @@ const LoginModal = (props) => {
         const data = {
             userName: null,
             password: userData.password,
-            publicKey: walletAddress,
+            publicKey: publicKey,
             refCode: null
         }
-        localStorage.setItem('publicKey', walletAddress);
+        localStorage.setItem('publicKey', publicKey);
         register(data);
     }
     return (
@@ -107,7 +107,8 @@ const LoginModal = (props) => {
 
 const mapStateToProps  = (state) => (
     {
-        registered: state.userData.registered
+        registered: state.userData.registered,
+        publicKey: state.userData.publicKey
     }
 )
 export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins, login, register})(LoginModal)
