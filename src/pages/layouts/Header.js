@@ -38,13 +38,13 @@ import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../actions/betActions'
-import {setPublicKey, getMyRecentWins} from '../../actions/userActions'
+import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../actions/userActions'
 import {serverUrl} from '../../utils/constant'
 import {ProfileModal} from './ProfileModal'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged, getRegisteredState } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
@@ -139,21 +139,22 @@ const Header = (props) => {
 
     useEffect(async () => {
         if (walletAddress) {
-            const url = `${serverUrl}account.php?publicKey=${walletAddress}`;
-            const res = await request('get', url);
+            getRegisteredState(walletAddress)
+            // const url = `${serverUrl}account.php?publicKey=${walletAddress}`;
+            // const res = await request('get', url);
 
-            if (res.status === "success") {
-                if (res.result === "Doesnt Exist") {
-                    setRegStatus("Not Logged");
-                }
+            // if (res.status === "success") {
+            //     if (res.result === "Doesnt Exist") {
+            //         setRegStatus("Not Logged");
+            //     }
                 
-                if (res.result === "exist") {
-                    setRegStatus("Logged");
-                }
-                setShowRegisger(true)
-            } else {
-                setStatus('Network is not worked')
-            }
+            //     if (res.result === "exist") {
+            //         setRegStatus("Logged");
+            //     }
+            //     setShowRegisger(true)
+            // } else {
+            //     setStatus('Network is not worked')
+            // }
         }
     }, [walletAddress]);
 
@@ -361,7 +362,7 @@ const mapStateToProps  = (state) => (
         logged: state.userData.logged
     }
 )
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins})(Header)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins, getRegisteredState})(Header)
 
 {/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                                         <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>

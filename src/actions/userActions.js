@@ -1,6 +1,7 @@
 
 import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, GET_MY_RECENT_WINS_ERROR,
-    CHANGE_CURRENT_PAGE, GET_LOGIN_REQUEST_SUCCESS, GET_LOGIN_REQUEST_ERROR} from '../utils/types'
+    CHANGE_CURRENT_PAGE, GET_LOGIN_REQUEST_SUCCESS, GET_LOGIN_REQUEST_ERROR,
+    GET_REGISTERED_STATUS_REQUEST, GET_REGISTERED_STATUS_SUCCESS, GET_REGISTERED_STATUS_ERROR} from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
@@ -96,7 +97,35 @@ export const register = (userData) => async dispatch => {
         })
     }
 }
-
+export const getRegisteredState = (walletAddress) => async dispatch => {
+    try{
+        const res = await axios.get(`${serverUrl}account.php?publicKey=${walletAddress}`);
+        console.log("~~~~~~~~~getRegisteredState:", res)
+        if (res.status === "success") {
+            if (res.result === "Doesnt Exist") {
+                dispatch( {
+                    type: GET_REGISTERED_STATUS_SUCCESS,
+                    payload: false
+                })
+            }
+            
+            if (res.result === "Exists") {
+                dispatch( {
+                    type: GET_REGISTERED_STATUS_SUCCESS,
+                    payload: true
+                })
+            }
+        } else {
+            //setStatus('Network is not worked')
+        }
+    }
+    catch(e){
+        dispatch( {
+            type: GET_REGISTERED_STATUS_SUCCESS,
+            payload: console.log("GET_REGISTERED_STATUS_SUCCESS")
+        })
+    }
+}
 export const getMyRecentWins = () => async dispatch => {
     try{
         const res = await axios.get(`${serverUrl}getWins.php`);

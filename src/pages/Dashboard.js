@@ -32,11 +32,7 @@ export const Dashboard = () => {
               </div>
             </div>
           </div>
-          <div className="flex-1 d-flex flex-column">
-            <div className="d-flex flex-column wide d-flex flex-column">
-              <ChatAndHistory/>  
-            </div>
-          </div>
+          <ChatAndHistory/>  
         </div>
         <div className="players-content">
           <Players/>  

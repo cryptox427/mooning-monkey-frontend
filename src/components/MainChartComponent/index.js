@@ -343,7 +343,7 @@ const MainChartComponent = (props) => {
                             name: "series-1",
                             data: gameData.displayValues.map(data => data.crashValue)
                         }
-                    ]} height={320} />
+                    ]}/>
                     <div className={`game-value ${gameData.currentState === GAME_STATE.RUNNING ? "show": "hidden"}`}>
                         
                         <div className="value">

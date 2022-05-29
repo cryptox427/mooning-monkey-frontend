@@ -34,7 +34,7 @@ export const getLeaderBoards = async () => {
 export const getAllBets = () => async dispatch => {
     try{
         const res = await axios.get(`${serverUrl}getBets.php`);
-        console.log("~~~~~~~~~all bet:", res.data)
+        //console.log("~~~~~~~~~all bet:", res.data)
         if(res.data.message === "Success") {
             dispatch( {
                 type: GET_ALL_BET_SUCCESS,
