@@ -9,6 +9,10 @@
     }
 }
 .play-chart {
+    .bg {
+        display: flex;
+        flex-direction: column-reverse;
+    }
     flex: 1;
     position: relative;
     .game-value {
@@ -88,12 +92,33 @@
     padding: 3px;
     z-index: 99;
     position: relative;
-    margin-top: -10px;
+    margin-top: -20px;
 }
 
-.left-three-btns svg{
-    width: 16px;
-    height: 16px;
+.left-three-btns {
+    .btn-group {
+        box-shadow: none;
+        .toggle-switches {
+            tr {
+                td {
+                    margin: 0;
+                    padding: 0;
+                    .custom-control {
+                        padding: 5px;
+                    }
+                }
+            }
+        }
+        .prevent-drop {
+            .nav-link {
+                background-color: rgba(0, 0, 0, 0);
+            }
+        }
+    }
+    svg{
+        width: 16px;
+        height: 16px;  
+    } 
 }
 
 .timeline-bg{

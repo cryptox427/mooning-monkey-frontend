@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import { Row, Col, Form } from 'react-bootstrap';
+import { Row, Col, Form, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import {connect} from 'react-redux'
+import { MDBBtn, MDBWaves } from "mdb-react-ui-kit";
+import { BsFillExclamationCircleFill } from 'react-icons/bs';
+
 import InputComponent from '../../../components/InputComponent';
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
-
+import BottomLineInputComponent from "../../../components/BottomLineInputComponent";
 
 
 const AutoBet = (props) => {
@@ -15,13 +18,11 @@ const AutoBet = (props) => {
     const [totalBets, setTotalBets] = useState(1);
     const [onWin, setOnWin] = useState({
         amount: 1,
-        increase: false,
-        reset: true
+        type: "increase"
     });
     const [onLoss, setOnLoss] = useState({
         amount: 1,
-        increase: false,
-        reset: true
+        type: "increase"
     });
     const [firstData, setFirstData] = useState({
         cashOut: 0
@@ -83,41 +84,17 @@ const AutoBet = (props) => {
     const clickStopBtn = () => {
         setWasStarted(false)
     }
-    const clickOnWinRadioBtn = (e, param) => {
-        if(e.target.checked) {
-            if(param === "increase") {
-                setOnWin({
-                    ...onWin,
-                    increase: true,
-                    reset: false
-                })
-            }
-            if(param === "reset") {
-                setOnWin({
-                    ...onWin,
-                    increase: false,
-                    reset: true
-                })
-            }
-        }
+    const clickOnWinRadioBtn = (param) => {
+        setOnWin({
+            ...onWin,
+            type: param
+        })
     }
-    const clickOnLossRadioBtn = (e, param) => {
-        if(e.target.checked) {
-            if(param === "increase") {
-                setOnLoss({
-                    ...onLoss,
-                    increase: true,
-                    reset: false
-                })
-            }
-            if(param === "reset") {
-                setOnLoss({
-                    ...onLoss,
-                    increase: false,
-                    reset: true
-                })
-            }
-        }
+    const clickOnLossRadioBtn = (param) => {
+        setOnLoss({
+            ...onLoss,
+            type: param
+        })
     }
     const clickChangeBetAmountBtn = (multipleAmount) => {
         let _betAmount = 0;
@@ -141,33 +118,41 @@ const AutoBet = (props) => {
     return (
         <div className="auto-bet bet-info">
             <div className="bet-amount bet-detail">
-                <span className="title">Bet Amount</span>
-                <span className="main-description">
-                    <InputComponent type="number" prefix="$" valueChangeHandler={setBetAmount} defaultValue={betAmount}/>
-                </span>
+                <div className="auto-cashout bet-detail">
+                    <BottomLineInputComponent label="Bet Amount" 
+                        className="fill-input moon-bet-input purple-bg-input-child" 
+                        type="number" prefix="$" 
+                        valueChangeHandler={setBetAmount} 
+                        defaultValue={betAmount} />
+                </div>
+                
                 <div className="sub-detail-content">
-                <span className="detail amount-change-btn" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.half)}>1/2</span>
-                    <span className="detail amount-change-btn" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.double)}>Double</span>
-                    <span className="detail amount-change-btn" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.max)}>Max</span>
-                    <span className="detail amount-change-btn" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.min)}>Min</span>
+                    <span className="detail amount-change-btn" tabindex="1" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.half)}>1/2</span>
+                    <span className="detail amount-change-btn" tabindex="2" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.double)}>Double</span>
+                    <span className="detail amount-change-btn" tabindex="3" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.max)}>Max</span>
+                    <span className="detail amount-change-btn" tabindex="4" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.min)}>Min</span>
                 </div>
             </div>
             <div className="bet-detail">
                 <Row>
                 <Col>
                     <div className="auto-cashout bet-detail">
-                        <span className="title">Auto Cashout</span>
-                        <span className="main-description">
-                            <InputComponent type="number" prefix="$" valueChangeHandler={setAutoCashOut} defaultValue={autoCashOut}/>
-                        </span>
+                        <BottomLineInputComponent label="Auto Cashout" 
+                            className="fill-input moon-bet-input purple-bg-input-child" 
+                            type="number" prefix="$" 
+                            valueChangeHandler={setAutoCashOut} 
+                            defaultValue={autoCashOut} />
                     </div>
                 </Col>
                 <Col>
                     <div className="total-bet bet-detail">
-                        <span className="title">Total Bets</span>
-                        <span className="main-description">
-                            <InputComponent type="number" prefix="$" valueChangeHandler={setTotalBets} defaultValue={totalBets}/>
-                        </span>
+                        <div className="auto-cashout bet-detail">
+                            <BottomLineInputComponent label="Total Bets" 
+                                className="fill-input moon-bet-input purple-bg-input-child" 
+                                type="number" prefix="$" 
+                                valueChangeHandler={setTotalBets} 
+                                defaultValue={totalBets} />
+                        </div>
                         <div className="sub-detail-content">
                             <span className="detail">Ꚙ</span>
                         </div>
@@ -176,60 +161,115 @@ const AutoBet = (props) => {
                 </Row>
             </div>
             <div className="on-win bet-info-detail bet-detail">
-                <span className="title">On Win</span>
-                <span className="main-description">
-                    <InputComponent type="number" prefix="%" valueChangeHandler={(amount)=>setOnWin({...onWin, amount: amount})} defaultValue={onWin.amount}/>
-                </span>
+                <BottomLineInputComponent label="On Win" 
+                    className="fill-input moon-bet-input purple-bg-input-child" 
+                    type="number" prefix="%" 
+                    valueChangeHandler={(amount)=>setOnWin({...onWin, amount: amount})} 
+                    defaultValue={onWin.amount} />
                 <div className="sub-detail-content">
-                    <Form.Check onClick={(e)=>{clickOnWinRadioBtn(e, "increase")}} className="detail" type="radio" name="flexRadioDefault" id="increase" label="Increase"/>
-                    <Form.Check onClick={(e)=>{clickOnWinRadioBtn(e, "reset")}} className="detail" type="radio" name="flexRadioDefault" id="decrease" label="Reset" defaultChecked/>
-    
+                <ButtonGroup>
+                    <ToggleButton
+                        id="radio-1"
+                        type="radio"
+                        className="on-win-radio"
+                        name="on-win-radio"
+                        value={"increase"}
+                        checked={onWin.type === "increase"}
+                        onChange={(e) => clickOnWinRadioBtn(e.target.value)}
+                    >
+                        Increase
+                    </ToggleButton>
+                    <ToggleButton
+                        id="radio-2"
+                        type="radio"
+                        className="on-win-radio"
+                        name="on-win-radio"
+                        value="reset"
+                        checked={onWin.type === "reset"}
+                        onChange={(e) => clickOnWinRadioBtn(e.target.value)}
+                    >
+                        Reset
+                    </ToggleButton>
+                </ButtonGroup>
                 </div>
             </div>
 
             <div className="on-loss bet-info-detail bet-detail">
-                <span className="title">On Loss</span>
-                <span className="main-description">
-                    <InputComponent type="number" prefix="%" valueChangeHandler={(amount)=>setOnLoss({...onLoss, amount: amount})} defaultValue={onLoss.amount}/>
-                </span>
+                <BottomLineInputComponent label="On Loss" 
+                    className="fill-input moon-bet-input purple-bg-input-child" 
+                    type="number" prefix="%" 
+                    valueChangeHandler={(amount)=>setOnWin({...onLoss, amount: amount})} 
+                    defaultValue={onLoss.amount} />
                 <div className="sub-detail-content">
-                    <Form.Check onClick={(e)=>{clickOnLossRadioBtn(e, "increase")}} className="detail" type="radio" name="onLoss" id="loss-increase" label="Increase"/>
-                    <Form.Check onClick={(e)=>{clickOnLossRadioBtn(e, "reset")}} className="detail" type="radio" name="onLoss" id="loss-decrease" label="Reset" defaultChecked/>
-    
+                    <ButtonGroup>
+                        <ToggleButton
+                            id="loss-radio-1"
+                            type="radio"
+                            className="on-loss-radio"
+                            name="on-loss-radio"
+                            value={"increase"}
+                            checked={onLoss.type === "increase"}
+                            onChange={(e) => clickOnLossRadioBtn(e.target.value)}
+                        >
+                            Increase
+                        </ToggleButton>
+                        <ToggleButton
+                            id="loss-radio-2"
+                            type="radio"
+                            className="on-loss-radio"
+                            name="on-loss-radio"
+                            value="reset"
+                            checked={onLoss.type === "reset"}
+                            onChange={(e) => clickOnLossRadioBtn(e.target.value)}
+                        >
+                            Reset
+                        </ToggleButton>
+                    </ButtonGroup>
                 </div>
             </div>
             
             <div className="bet-detail">
                 <Row>
                 <Col>
+                <div className="bet-detail">
                     <div className="stop-on-profit bet-info-detail">
-                        <span className="title">Stop On Profit</span>
-                        <span className="main-description">
-                            <InputComponent type="number" prefix="%" valueChangeHandler={setStopOnProfit} defaultValue={stopOnProfit}/>
-                        </span>
+                        <BottomLineInputComponent label="Stop On Profit" 
+                            className="fill-input moon-bet-input purple-bg-input-child" 
+                            type="number" prefix="%" 
+                            valueChangeHandler={setStopOnProfit} 
+                            defaultValue={stopOnProfit} />
+                    </div>
+                    <div className="sub-detail-content">
+                        <span className="detail"><BsFillExclamationCircleFill/></span>
+                    </div>
                     </div>
                 </Col>
                 <Col>
+                <div className="bet-detail">
                     <div className="stop-on-loss bet-info-detail">
-                        <span className="title">Stop On Loss</span>
-                        <span className="main-description">
-                            <InputComponent type="number" prefix="%" valueChangeHandler={setStopOnLoss} defaultValue={stopOnLoss}/>
-                        </span>
-                        <div className="sub-detail-content">
-                            <span className="detail">i</span>
-                        </div>
+                        <BottomLineInputComponent label="Stop On Loss" 
+                            className="fill-input moon-bet-input purple-bg-input-child" 
+                            type="number" prefix="%" 
+                            valueChangeHandler={setStopOnLoss} 
+                            defaultValue={stopOnLoss} />
+                        
+                    </div>
+                    <div className="sub-detail-content">
+                        <span className="detail"><BsFillExclamationCircleFill/></span>
+                    </div>
                     </div>
                 </Col>
                 </Row>
             </div>
             {
                 wasStarted?
-                <div onClick={()=>clickStopBtn()} className="play-button start-auto-bet">
-                    <span>Stop Autobet</span>
-                </div>:
-                <div onClick={()=>clickAutoBetBtn()} className="play-button start-auto-bet">
-                    <span>Start Autobet</span>
-                </div>
+                <MDBBtn className="play-button start-auto-bet" color='secondary'
+                        onClick={()=>clickStopBtn()}>
+                    <span>Stop Autobet</span></MDBBtn>
+                :
+                <MDBBtn className="play-button start-auto-bet" color='secondary'
+                        onClick={()=>clickAutoBetBtn()}>
+                    <span>Start Autobet</span></MDBBtn>
                 
             }
             

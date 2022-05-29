@@ -9,7 +9,14 @@
             border: none;
             font-family: Nurom;
             cursor: pointer;
+            padding: 10px 20px;
+            box-shadow: none;
+            background-color: rgba(0, 0, 0, 0);
+            &:hover {
+                background-color: rgba(0, 0, 0, 0);
+            }
             &.active {
+                box-shadow: none;
                 color: white;
                 background-color: rgba(0, 0, 0, 0);
                 border: none;
@@ -17,7 +24,7 @@
                 background-position: 0 90%, 100% 100%;
                 background-size: 100% 2px;
                 background-repeat: no-repeat;
-
+                transition: none;
             }
         }
     }

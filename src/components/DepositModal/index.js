@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Modal } from "react-bootstrap";
+import { Modal, Spinner } from "react-bootstrap";
 import { ethers, BigNumber } from 'ethers';
 import {connect} from 'react-redux'
 import { BSC_TOKENS, DEPOSIT_WALLET_ADDRESS } from "../../constants/tokens";
@@ -144,7 +144,7 @@ const DepositModal = (props) => {
                                 <h6 className="mb-0 amount-coin poppin-light-txt">{selectedTokenName}</h6>
                             </div>
                             <div className="flex1 d-flex align-items-center">
-                                <div className="pink">
+                                <div className="pink-monkey-text">
                                     <input type='number' className="deposit-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
                                     &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
                                 </div>
@@ -155,9 +155,9 @@ const DepositModal = (props) => {
                 </div>
                 {
                     isLoading
-                        ?   <a href="#" className="cta-btn justify-content-center mt-3" data-toggle="modal" data-target="#approve" >
-                                Loading...
-                            </a>
+                        ?   <div className="cta-btn justify-content-center mt-3">
+                                Pending<Spinner animation="border" variant="primary" />
+                            </div>
                             :
                             <div className="cta-btn justify-content-center mt-4 poppin-light-txt" onClick={()=>handleDeposit()}>
                                 Deposit

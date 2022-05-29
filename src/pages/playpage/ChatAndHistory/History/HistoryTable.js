@@ -3,6 +3,36 @@ import {connect} from 'react-redux'
 import './index.scss';
 import HistoryCell from "./HistoryCell.js";
 
+const testData = [
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "1",
+        multiplier: "1",
+        payout: "1"
+    },
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "1",
+        multiplier: "1",
+        payout: "1"
+    },
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "1",
+        multiplier: "1",
+        payout: "1"
+    },
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "1",
+        multiplier: "1",
+        payout: "1"
+    }
+]
 const HistoryTable = (props) => {
     const {gameHistory} = props;
 

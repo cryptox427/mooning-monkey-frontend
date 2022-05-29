@@ -74,6 +74,9 @@ $scale-var: 1600 / 2560;
         z-index: 1;
         height: 0;
         overflow: initial;
+        button {
+            
+        }
         .leave-btn {
             cursor: pointer;
             width: 100%;
@@ -168,7 +171,8 @@ $scale-var: 1600 / 2560;
         .message-write-content {
             position: absolute;
             color: white;
-            
+            font-family: Poppins-Light;
+            font-size: 14px;
             left: 120px * $scale-var;
             right: 80px * $scale-var;
             transform: translateY(-50%);

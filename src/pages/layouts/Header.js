@@ -5,6 +5,8 @@ import LeaderboardModal from '../../components/LeaderboardModal';
 import DepositModal from '../../components/DepositModal';
 import StatsModal from '../../components/StatsModal';
 import WithdrawModal from '../../components/WIthdrawModal';
+import LoginModal from '../../components/LoginModal';
+
 import InfoBox from '../../components/InfoBox';
 import { connectWallet, getCurrentWalletConnected } from '../../utils/interact';
 import { chainId } from '../../constants/chain';
@@ -17,7 +19,15 @@ import cryptoImg from '../../assets/images/playpage/crypto-net.png';
 import USDTImg, { ReactComponent } from '../../assets/images/USDT.svg';
 import CakeImg from '../../assets/images/cake.svg';
 import BUSDImg from '../../assets/images/BUSD.svg';
-
+import { MDBBtn,
+    MDBModal,
+    MDBModalDialog,
+    MDBModalContent,
+    MDBModalHeader,
+    MDBModalTitle,
+    MDBModalBody,
+    MDBModalFooter,
+  } from 'mdb-react-ui-kit';
 import LogoHeader from './LogoHeader.js';
 import {connect} from 'react-redux'
 
@@ -34,13 +44,14 @@ import {ProfileModal} from './ProfileModal'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
     const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
+    const [showLoginModal, setShowLoginModal] = useState(false);
     const [moneyType, setMoneyType] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
     const [walletAddress, setWalletAddress] = useState(null);
@@ -53,6 +64,9 @@ const Header = (props) => {
     const [rePassword, setRePassword] = useState();
     const [pwdNotMatch, setPwdNotMatch] = useState(false);
     const checkAPIUrl = serverUrl + 'check.php';
+    const [basicModal, setBasicModal] = useState(false);
+
+    const toggleShow = () => setBasicModal(!basicModal);
     
     const handleConnectWallet = async () => {
         const walletResponse = await connectWallet();
@@ -70,12 +84,7 @@ const Header = (props) => {
     });
 
     const onClickWalletBtn = () => {
-        if(loginStatus) {
-            setShowProfile(!showProfile);
-        }
-        else {
-            setShowRegisger(!showRegister);
-        }
+        setShowLoginModal(!logged)
     };
 
     const addWalletListener = () => {
@@ -296,13 +305,71 @@ const Header = (props) => {
                         </button>
                         {
                             walletAddress
-                                ?   <InfoBox className='relative' outSideClickFunc={setShowProfile}>
-                                        <button className="purple border-0 wallet-address" onClick={() => onClickWalletBtn()}>
+                                ?   <button className="purple border-0 wallet-address" onClick={() => onClickWalletBtn()}>
+                                        {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}
+                                    </button>
+                                
+                                :   <button className="purple border-0 wallet-address" onClick={handleConnectWallet}>
+                                        Connect Wallet
+                                    </button>
+                        }
+                    </div>
+                    <div className="buttons money-group ph-show">
+                        <button className="money-type border-0">
+                            <div className="type">
+                                <img className="" src={bnb} alt="Italian Trulli"></img>
+                                BNB
+                            </div>
+                            <div className="price">
+                                1.29
+                                <FaAngleDoubleDown className="drop-icon"/>
+                            </div>
+                        </button>
+                        <button className="dark-blue border-0 plus" onClick={() => {}}>
+                            +
+                        </button>
+                        <button className="dark-blue border-0 minus" onClick={() => {}}>
+                            -
+                        </button>
+                        
+                        <button className="select-net border-0">
+                            <FaAngleDoubleDown className="drop-icon"/>
+                            <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
+                        </button>
+                        
+                    </div>
+                    
+                </div>
+                {children}
+            </div>
+            <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
+            <LeaderboardModal animationDirection="right"  show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
+            <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
+            <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
+            <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
+            <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
+            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+            
+            <ToastContainer />
+            
+        </>
+    )
+}
+
+const mapStateToProps  = (state) => (
+    {
+        logged: state.userData.logged
+    }
+)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins})(Header)
+
+{/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
+                                        <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}
                                         </button>
                                         {
                                             !loginStatus
-                                                ?   <div className={`absolute register-container ${showRegister ? 'show' : 'hidden'}`}>
+                                                ?   <div className={`absolute register-container ${setShowLoginModal ? 'show' : 'hidden'}`}>
                                                         {
                                                             regStatus === "Not Logged" &&
                                                                 <div className='reg-input-container'>
@@ -339,54 +406,4 @@ const Header = (props) => {
                                                     </div>
                                                 :   <React.Fragment/>
                                         }
-                                    </InfoBox>
-                                :   <button className="purple border-0 wallet-address" onClick={handleConnectWallet}>
-                                        Connect Wallet
-                                    </button>
-                        }
-                    </div>
-                    <div className="buttons money-group ph-show">
-                        <button className="money-type border-0">
-                            <div className="type">
-                                <img className="" src={bnb} alt="Italian Trulli"></img>
-                                BNB
-                            </div>
-                            <div className="price">
-                                1.29
-                                <FaAngleDoubleDown className="drop-icon"/>
-                            </div>
-                        </button>
-                        <button className="dark-blue border-0 plus" onClick={() => {}}>
-                            +
-                        </button>
-                        <button className="dark-blue border-0 minus" onClick={() => {}}>
-                            -
-                        </button>
-                        
-                        <button className="select-net border-0">
-                            <FaAngleDoubleDown className="drop-icon"/>
-                            <img className="net-icon" src={cryptoImg} alt="Italian Trulli"></img>
-                        </button>
-                        
-                    </div>
-                
-                </div>
-                {children}
-            </div>
-            <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
-            <LeaderboardModal show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
-            <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
-            <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
-            <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
-            <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
-            <ToastContainer />
-        </>
-    )
-}
-
-const mapStateToProps  = (state) => (
-    {
-        
-    }
-)
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins})(Header)
+                                    </InfoBox> */}

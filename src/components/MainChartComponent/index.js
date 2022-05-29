@@ -15,7 +15,65 @@ import {endBet} from '../../actions/betActions'
 import {GAME_STATE} from '../../utils/types'
 import AnimNumberDisplayer from './AnimNumberDisplayer'
 
-
+const testData = [ 
+    {
+        time: 1,
+        crashValue: 1
+    },
+    {
+        time: 2,
+        crashValue: 3
+    },
+    {
+        time: 3,
+        crashValue: 8
+    },
+    {
+        time: 4,
+        crashValue: 9
+    },
+    {
+        time: 5,
+        crashValue: 1
+    },
+    {
+        time: 6,
+        crashValue: 6
+    },
+    {
+        time: 8,
+        crashValue: 1
+    },
+    {
+        time: 9,
+        crashValue: 1
+    },
+    {
+        time: 10,
+        crashValue: 1
+    },
+    {
+        time: 12,
+        crashValue: 1
+    },
+    {
+        time: 14,
+        crashValue: 1
+    },
+    {
+        time: 18,
+        crashValue: 1
+    },
+    {
+        time: 19,
+        crashValue: 1
+    },
+    {
+        time: 20,
+        crashValue: 40
+    }];
+const timeValues = [1,2,3,4,5,6,7,8,9,10];
+const realValues = [1,2,3];
 const evtSource = new EventSource(serverUrl+"getGameProgress.php");
 const MainChartComponent = (props) => {
     const { getAllBets, setGameResult, removeAllBets, changeGameState } = props;
@@ -33,44 +91,17 @@ const MainChartComponent = (props) => {
         console.log(testValue)
     }, [testValue])
     const chartOptions = {
-        chart: {
-            
-            // id: "basic-bar",
-            zoom: {
-                type: 'x',
-                enabled: false,
-                autoScaleYaxis: true
-            },
-            // toolbar: {
-            //     autoSelected: 'zoom',
-            // }
-            animations: {
-                enabled: false
-            }
-        },
-        
-        forecastDataPoints: {
-            count: 0,
-            fillOpacity: 0.5,
-            strokeWidth: undefined,
-            dashArray: 4,
-          },
         markers: {
             size: 0
         },
-        scales: {
-            x: {
-                ticks: {
-                    display: false
-                }
-            },
-            y: [{
-                display: true,
-                position: 'right',
-                ticks: {
-                 beginAtZero: true
-                }
-            }]
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        theme: {
+            mode: 'dark'
         },
         grid: {
             show: true,      // you can either change hear to disable all grids
@@ -84,29 +115,13 @@ const MainChartComponent = (props) => {
               lines: { 
                 show: false  //or just here to disable only y axis
                }
-             },   
-          },
-        dataLabels: {
-            enabled: false
-        },
-        legend: {
-        },
-        labels: [0, 20, 40],
-        
-        stroke: {
-            curve: 'straight'
-        },
-        tooltip: {
-            enabled: false
-        },
-        theme: {
-            mode: 'dark'
+            },   
         },
         xaxis: {
             type: 'numeric',
             tickAmount: 5,
             labels: {
-              hideOverlappingLabels: false
+              hideOverlappingLabels: true
             }
           },
         yaxis: [
@@ -119,9 +134,23 @@ const MainChartComponent = (props) => {
                 tickAmount: 6,
                 min: 0,
                 max: 50,
-                
+                axisTicks: {
+                    show: true,
+                    borderType: 'solid',
+                    color: '#78909C',
+                    width: 6,
+                    offsetX: 0,
+                    offsetY: 0
+                },
+                axisBorder: {
+                    show: true,
+                    color: '#78909C',
+                    offsetX: 0,
+                    offsetY: 0
+                },
             }
         ],
+        
         fill: {
             type: 'solid',
             gradient: {
@@ -249,12 +278,11 @@ const MainChartComponent = (props) => {
         let eventData = event.data;
         if(eventData === "Finished")
         {
-            if(gameData.currentState === GAME_STATE.RUNNING) {
+            if(gameData.currentState !== GAME_STATE.CRASHED) {
                 endGame();
             }
             setGameData({
                 ...gameData,
-                
                 currentState: GAME_STATE.CRASHED,
                 crashValues: [],
                 displayValues: []
@@ -262,7 +290,7 @@ const MainChartComponent = (props) => {
         }
         else {
             eventData = Number(eventData);
-            if(eventData < 0) {
+            if(eventData <= 0) {
                 if(gameData.currentState !== GAME_STATE.WAITING) {
                     waitGame();
                 }
@@ -274,7 +302,7 @@ const MainChartComponent = (props) => {
                     displayValues: []
                 })
             }
-            else if(gameData.currentState !== GAME_STATE.CRASHED) {
+            else {
                 if(gameData.currentState !== GAME_STATE.RUNNING) {
                     startGame();
                 }
@@ -305,7 +333,6 @@ const MainChartComponent = (props) => {
         } 
         //console.log("chartSeries", chartSeries, "gameValues", gameValues, "times", times);
     }
-    const formatValue = (value) => value.toFixed(2);
     return (
         <>
             <div className="play-chart">
@@ -325,7 +352,7 @@ const MainChartComponent = (props) => {
                                 style={{
                                     fontSize: 100
                                 }}
-                                duration={1000}
+                                duration={2000}
                                 formatValue={(n) => n.toFixed(2)}
                                 frameStyle={(percentage) =>
                                     percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}

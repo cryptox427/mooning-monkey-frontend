@@ -7,6 +7,8 @@ import MonkeyEarning from "./pages/MonkeyEarning";
 import ComicBookearnings from "./pages/ComicBookearnings";
 import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
+import 'mdbreact/dist/css/mdb.css';
+import 'mdb-react-ui-kit/dist/css/mdb.min.css'
 
 import Sidebar from "./Sidebar";
 import Header from "./pages/layouts/Header.js";

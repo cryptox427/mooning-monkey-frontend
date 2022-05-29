@@ -6,6 +6,7 @@ import { IoClose } from 'react-icons/io5';
 
 import { useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { MDBTooltip } from 'mdb-react-ui-kit';
 
 import {serverUrl} from '../../../../utils/constant'
 import {request} from '../../../../utils/request';
@@ -21,9 +22,9 @@ import InfoBox from '../../../../components/InfoBox';
 import StatsModal from '../../../../components/StatsModal';
 
 const renderTooltip = (props) => (
-    <Tooltip id="button-tooltip" {...props}>
+    <MDBTooltip wrapperProps={{ color: 'secondary' }} {...props} placement='right' title={props.countryName}>
         {props.countryName}
-    </Tooltip>
+    </MDBTooltip>
 );
 let messageCounter = null;
 const countries = {
@@ -168,15 +169,12 @@ const Chat = (props) => {
                         displayChannel &&
                         selectedCountries.length > 0 &&
                         selectedCountries.map(country => 
-                            <OverlayTrigger
-                                placement="right"
-                                overlay={renderTooltip({countryName:country})}
-                            >
+                            <MDBTooltip placement="left" title={country} tag="span">
                                 <div className={`country ${selectedCounty === country ? "selected-country" : ""}`}>
                                 <img src={countries[country]} onClick={()=>changeSelectedCountry(country)}></img>
-                                </div>       
-                            </OverlayTrigger>
-                                 
+                                </div> 
+                            
+                            </MDBTooltip>
                         )
                     }
             </div>
@@ -194,12 +192,10 @@ const Chat = (props) => {
                             {
                                 Object.keys(countries).length > 0 &&
                                 Object.keys(countries).map(country => 
-                                    <OverlayTrigger
-                                        placement="top"
-                                        overlay={renderTooltip({countryName:country})}
-                                    >
-                                        <img src={countries[country]} onClick={()=>clickCountryImg(country)}></img>     
-                                    </OverlayTrigger>
+                                    <MDBTooltip placement="left" title={country} tag="span">
+                                        <img src={countries[country]} onClick={()=>clickCountryImg(country)}></img>
+                                    
+                                    </MDBTooltip>
                                 )
                             }
                         </div>

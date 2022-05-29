@@ -59,7 +59,7 @@ const StatsModal = (props) => {
             </Modal.Header>
             <Modal.Body>
                 <h5 className="title-midle mb-3 poppin-bold-txt">Username</h5>
-                <p className="mt-3 poppin-light-txt"><span className="pink pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
+                <p className="mt-3 poppin-light-txt"><span className="pink-monkey-text pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
 
                 <div className="change-box-bottom-btn mt-3 three-dif-btn">
                     <button className="cta-btn cta-cancel first-btn poppin-bold-txt" style={{backgroundColor: "linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important", color: "black !important"}}>
@@ -74,7 +74,7 @@ const StatsModal = (props) => {
 
                 </div>
 
-                <div className="mt-4"><span className="pink pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</div>
+                <div className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</div>
 
                 <ul className="pl-4 stauts-bullet">
                 <li>
@@ -193,7 +193,7 @@ const StatsModal = (props) => {
                 </ul>
 
 
-                <p className="mt-4"><span className="pink pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
+                <p className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
 
 
                 <div className="">
@@ -202,7 +202,7 @@ const StatsModal = (props) => {
                 </div>
                 </div>
 
-                <p className="text-center">Interested in participating in the bankroll? Click <a href="#" className="pink">here </a>  to invest!</p>
+                <p className="text-center">Interested in participating in the bankroll? Click <a href="#" className="pink-monkey-text">here </a>  to invest!</p>
             </Modal.Body>
         </Modal>
     );

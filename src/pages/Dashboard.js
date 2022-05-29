@@ -8,6 +8,7 @@ import ChatAndHistory from './playpage/ChatAndHistory';
 import Players from './playpage/Players';
 import { Col, Row } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { MDBBtn } from "mdb-react-ui-kit";
 
 export const Dashboard = () => {
   const testMode = false;

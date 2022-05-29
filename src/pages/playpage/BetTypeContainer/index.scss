@@ -1,5 +1,42 @@
 $scale-var: 1600 / 2560;
 
+.fill-input {
+	width: 100%;
+	input {
+		border-radius: 0 !important;
+	}
+	input[type=number]::-webkit-inner-spin-button, 
+	input[type=number]::-webkit-outer-spin-button { 
+	-webkit-appearance: none; 
+	margin: 0; 
+	}
+}
+.purple-bg-input-child {
+	background: linear-gradient(90deg, #3C3C97 0%, #363075 100%);
+	input {
+		background-color: rgba(0, 0, 0, 0) !important;
+		
+
+	}
+	.md-form label {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: 1rem;
+		color: white;
+		cursor: text;
+		transition: transform .2s ease-out, color .2s ease-out;
+		transform: translateY(12px);
+		transform-origin: 0% 100%;
+	}
+}
+.moon-bet-input {
+	.md-form.md-bg .form-control {
+		padding-bottom: 5px !important;
+		padding-left: 24px !important;
+		color: white;
+	}
+}
 .bet-type {
 	align-items: center;
 	padding-top: 18px * $scale-var !important;
@@ -37,7 +74,7 @@ $scale-var: 1600 / 2560;
 				border: none;
 				border-radius: 0;
 				font-family: Nurom;
-				font-weight: 23px * $scale-var;
+				font-size: 12px;
 				color: white !important;
 				display: flex;
 				justify-content: center;
@@ -62,6 +99,7 @@ $scale-var: 1600 / 2560;
 	.bet-detail {
 		width: 100%;
 		position: relative;
+		
 		.title {
 			color: white;
 			font-family: Poppins-Regular;
@@ -84,18 +122,40 @@ $scale-var: 1600 / 2560;
 		}
 		.sub-detail-content {
 			max-width: 50%;
-			flex-wrap: wrap;
+			flex-wrap: nowrap;
 			position: absolute;
-			right: 20px;
+			right: 10px;
 			transform: translateY(-50%);
 			top: 50%;
 			display: flex;
 			justify-content: right;
+			.btn-group {
+				box-shadow: none !important;
+				.btn-check {
+					
+					&+label {		
+						border-radius: 5px;
+						background-color: rgba(0, 0, 0, 0) !important;
+						padding: 5px 10px;
+						font-size: 12px;
+						font-family: Poppins-Regular;
+					}
+					&:checked {
+						&+label {		
+							background-color: #F001F4  !important;
+						}
+					}
+				}
+			}
 			.detail {
-				margin-left: 5px;
+				padding-left: 5px;
+				padding-right: 5px;
 				font-family: Poppins-Regular;
 				font-size: 17px * $scale-var;
 				color: white;
+				svg {
+					color: #F843EA !important;
+				}
 				&.form-check {
 					position: relative;
 					display: flex;
@@ -136,7 +196,7 @@ $scale-var: 1600 / 2560;
 						top: 50%;
 						font-family: Poppins-Regular;
 						font-size: 12px;
-						&:checked {
+						&:focus {
 							position: absolute;
 							
 							
@@ -148,6 +208,11 @@ $scale-var: 1600 / 2560;
 				cursor: pointer;
 				&:hover {
 					color: #F843EA;
+				}
+				&:focus {
+					background-size: 200% 200%;
+					background-color: rgba(0, 0, 0, 0.2);
+
 				}
 			}
 		}
@@ -166,8 +231,9 @@ $scale-var: 1600 / 2560;
 		height: 66px * $scale-var;
 	}
 	.play-button {
+		margin: 0;
 		margin-top: 15px * $scale-var;
-		background-color: #F843EA;
+		background-color: #F843EA !important;
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;
@@ -175,6 +241,9 @@ $scale-var: 1600 / 2560;
 		position: relative;
 		white-space: nowrap;
 		border: none;
+		border-radius: 0;
+		padding: 0;
+		
 		span {
 			text-align: center;
 			font-family: Nurom;
@@ -184,6 +253,7 @@ $scale-var: 1600 / 2560;
 			top: 50%;
 			left: 50%;
 			position: absolute;
+			
 		}
 		&[disabled] {
 			background-color: gray;
@@ -210,15 +280,17 @@ $scale-var: 1600 / 2560;
 		max-height: 200px;
 		.title {
 			color: white;
-			font-family: Nurom;
+			
 			font-size: 20px * $scale-var;
 			font-weight: bold;
 			text-align: center;
-			background-color: #3C3C97;
-			height: 42px * $scale-var;
+			background: linear-gradient(90deg, #3C3C97 0%, #363075 100%);
+			height: 30px;
 			position: relative;
 			margin: 0;
 			span {
+				font-family: Nurom;
+				font-size: 12px;
 				position: absolute;
 				transform: translate(-50%, -50%);
 				top: 50%;

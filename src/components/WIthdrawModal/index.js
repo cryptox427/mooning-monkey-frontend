@@ -107,10 +107,8 @@ const WithdrawModal = (props) => {
                                 <h6 className="mb-0 amount-coin poppin-light-txt">{selectedTokenName}</h6>
                             </div>
                             <div className="flex1 d-flex align-items-center">
-                                <div className="pink">
-                                    <input type='number' className="withdraw-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
+                                <input type='number' className="withdraw-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
                                     &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
-                                </div>
                                 <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => setTokenAmount(maxCredits)}>MAX</div>
                             </div>
                         </div>
