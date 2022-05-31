@@ -269,7 +269,7 @@ const Chat = (props) => {
                             <MDBTooltip placement="left" title={friend} tag="span">
                                 <div className={`friend ${selectedChanel.friend === friend ? "selected-friend" : ""}`}>
                                     <div className="friend-background" onClick={()=>setSelectedChanel({country: "", friend: friend})}></div>
-                                    <p className="friend-name"  onClick={()=>setSelectedChanel({country: "", friend: friend})}>jon</p>
+                                    <p className="friend-name"  onClick={()=>setSelectedChanel({country: "", friend: friend})}>{friend}</p>
                                 </div> 
                             
                             </MDBTooltip>
