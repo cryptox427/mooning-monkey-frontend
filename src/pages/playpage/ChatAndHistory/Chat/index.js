@@ -64,15 +64,16 @@ const Chat = (props) => {
     const { userName } = props;
     const [messages, setMessages] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
-    const [friends, setFriends] = useState(["1","2","3"]);
+    const [friends, setFriends] = useState([]);
     const [selectedCounty, setSelectedCountry] = useState("english");
     const [selectedChanel, setSelectedChanel] = useState({
-        country: "",
+        country: "english",
         friend: ""
     });
     const [meMessage, setMessage] = useState("");
     const [displayFlagContent, setDisplayFlagContent] = useState(false);
-    const [displayChannel, setDisplayChannel] = useState(true);
+    const [displayCountryChanel, setDisplayCountryChannel] = useState(true);
+    const [displayFriendChanel, setDisplayFriendChannel] = useState(true);
     const [statsModalData, setShowStatsModal] = useState({
         display: false,
         userName: ""
@@ -96,7 +97,7 @@ const Chat = (props) => {
     useEffect(() => {
         continueGetMessage()
         // clearing interval
-    },[selectedCounty]);
+    },[selectedChanel]);
     const changeSelectedCountry = (country) => {
         console.log("changeSelectedCountry")
         if(selectedCounty !== country) {
@@ -135,23 +136,75 @@ const Chat = (props) => {
     }
     const removeSelectedCounntry = () => {
         
-        if(selectedCounty !== null) {
-            const selectedIndex = selectedCountries.indexOf(selectedCounty);
+        if(selectedChanel.country !== "") {
+            const selectedIndex = selectedCountries.indexOf(selectedChanel.country);
             console.log("removeSelectedCounntry", selectedIndex, selectedCountries)
             let _selectedCountries = [...selectedCountries];
             _selectedCountries.splice(selectedIndex, 1)
             setSelectedCountries(_selectedCountries);
             if(_selectedCountries.length > 0) {
-                setSelectedCountry(_selectedCountries[0]);
+                setSelectedChanel({
+                    country: _selectedCountries[0],
+                    friend: ""
+                })
             }
             else {
-                setSelectedCountry(null);
+                if(friends.length > 0) {
+                    setSelectedChanel({
+                        country: "",
+                        friend: friends[0]
+                    })
+                }
+                else {
+                    setSelectedChanel({
+                        country: "",
+                        friend: ""
+                    })
+                }
+            }
+        }
+    }
+    const removeSelectedFriend = () => {
+        
+        if(selectedChanel.friend !== "") {
+            const selectedIndex = friends.indexOf(selectedChanel.friend);
+            console.log("removeSelectedFriend", selectedIndex, friends)
+            let _friends = [...friends];
+            _friends.splice(selectedIndex, 1)
+            setFriends(_friends);
+            if(_friends.length > 0) {
+                setSelectedChanel({
+                    country: "",
+                    friend: _friends[0]
+                })
+            }
+            else {
+                if(selectedCountries.length > 0) {
+                    setSelectedChanel({
+                        country: selectedCountries[0],
+                        friend: ""
+                    })
+                }
+                else {
+                    setSelectedChanel({
+                        country: "",
+                        friend: ""
+                    })
+                }
             }
         }
     }
     
     const getMesssage = async () => {
-        const res = await request('get', `${serverUrl}chat/getMessagesOnetime.php?room=${selectedCounty}`);
+        let res = {}
+        if(selectedChanel.friend !== "") {
+            res = await request('get', `${serverUrl}chat/getMessagesOnetime.php?room=userToUser*__*${userName}*__*${selectedChanel.friend}`);
+
+        }
+        else if(selectedChanel.country !== "") {
+            res = await request('get', `${serverUrl}chat/getMessagesOnetime.php?room=${selectedChanel.country}`);
+        }
+        
         setMessages(res.result.split('<///***br***///>'));
         console.log("~~~~~~~getMesssage", res.result.split('<///***br***///>'), selectedCounty)
     }
@@ -171,8 +224,13 @@ const Chat = (props) => {
         var timeStr = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' +
             today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
         setMessages([...messages, `${timeStr} | ${userName} | ${myMsg}`]);
-        await request('get', `${serverUrl}chat/sendMessage.php?message=${myMsg}&room=${selectedCounty}`);
-        
+        if(selectedChanel.friend !== "") {
+            
+            await request('get', `${serverUrl}chat/sendMessage.php?message=${myMsg}&room=userToUser*__*${userName}*__*${selectedChanel.friend}`);
+        }
+        else if(selectedChanel.country !== "") {
+            await request('get', `${serverUrl}chat/sendMessage.php?message=${myMsg}&room=${selectedChanel.country}`);
+        }
     }
     const clickCountryImg = (country) => {
         if(!selectedCountries.includes(country)) {
@@ -228,15 +286,15 @@ const Chat = (props) => {
                     
                     Leave
                 </div>
-                <div className="display-btn" onClick={()=>setDisplayChannel(!displayChannel)}>
+                <div className="display-btn" onClick={()=>setDisplayCountryChannel(!displayCountryChanel)}>
                     {
-                        displayChannel ? <span><AiFillMinusSquare/></span> : <span><AiFillPlusSquare/></span>
+                        displayCountryChanel ? <span><AiFillMinusSquare/></span> : <span><AiFillPlusSquare/></span>
                     }
                     Countries
                 </div>
                 <div className="countries-list">
                     {
-                        displayChannel &&
+                        displayCountryChanel &&
                         selectedCountries.length > 0 &&
                         selectedCountries.map(country => 
                             <MDBTooltip placement="left" title={country} tag="span">
@@ -250,26 +308,26 @@ const Chat = (props) => {
                 </div>
             </div>
             <div className="friends">
-                <div className="leave-btn" onClick={()=>removeSelectedCounntry()}>
+                <div className="leave-btn" onClick={()=>removeSelectedFriend()}>
                     <div className="close-symbol"><IoClose/></div>
                     
                     Leave
                 </div>
-                <div className="display-btn" onClick={()=>setDisplayChannel(!displayChannel)}>
+                <div className="display-btn" onClick={()=>setDisplayFriendChannel(!displayFriendChanel)}>
                     {
-                        displayChannel ? <span><AiFillMinusSquare/></span> : <span><AiFillPlusSquare/></span>
+                        displayFriendChanel ? <span><AiFillMinusSquare/></span> : <span><AiFillPlusSquare/></span>
                     }
-                    Friedns
+                    Friends
                 </div>
                 <div className="friends-list">
                     {
-                        displayChannel &&
+                        displayFriendChanel &&
                         friends.length > 0 &&
                         friends.map(friend => 
                             <MDBTooltip placement="left" title={friend} tag="span">
                                 <div className={`friend ${selectedChanel.friend === friend ? "selected-friend" : ""}`}>
-                                    <div className="friend-background" onClick={()=>setSelectedChanel({country: "", friend: friend})}></div>
-                                    <p className="friend-name"  onClick={()=>setSelectedChanel({country: "", friend: friend})}>{friend}</p>
+                                    <div className="friend-background"></div>
+                                    <p className="friend-name"  onClick={()=>setSelectedChanel({country: "", friend: friend})}>{friend.substring(0,2)}</p>
                                 </div> 
                             
                             </MDBTooltip>

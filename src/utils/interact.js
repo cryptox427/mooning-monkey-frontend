@@ -2,7 +2,7 @@ import { chainId, testBscChainId } from '../constants/chain';
 import { ethers } from 'ethers';
 import { BSC_TOKENS, BSC_TESTNET_TOKENS } from '../constants/tokens';
 
-const useChainID = testBscChainId;
+const useChainID = chainId;
 const useTokens = BSC_TESTNET_TOKENS;
 
 export const connectWallet = async () => {
