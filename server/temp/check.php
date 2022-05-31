@@ -6,9 +6,7 @@
 
     if (isset($parse_data['password']) && isset($parse_data['publicKey'])) {
         // removes backslashes
-        $username = stripslashes($parse_data['userName']);
-        //escapes special characters in a string
-        $username = mysqli_real_escape_string($con, $username);
+        
         $publicKey= stripslashes($parse_data['publicKey']);
         $publicKey= mysqli_real_escape_string($con, $publicKey);
         $password = stripslashes($parse_data['password']);
@@ -32,6 +30,9 @@
             // PUBLIC KEY UNUSED
             
             if(isset($parse_data['userName'])){
+                $username = stripslashes($parse_data['userName']);
+                //escapes special characters in a string
+                $username = mysqli_real_escape_string($con, $username);
                 $create_datetime = date("Y-m-d H:i:s");
                 $query    = "INSERT into `users` (username, password, publicKey, createDatetime, refCode)
                             VALUES ('$username', '" . password_hash($password,PASSWORD_DEFAULT) . "', '$publicKey', '$create_datetime', '. $refCode .')";

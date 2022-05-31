@@ -362,7 +362,7 @@ const MainChartComponent = (props) => {
                         Your browser does not support the video tag.
                     </video>
                 
-                    <div  className="moon-graph">
+                    <div  className="graph-container">
                         {   
                             gameData.currentState === GAME_STATE.RUNNING &&
                             <ReactApexChart className="moon-graph" options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[

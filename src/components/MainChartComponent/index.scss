@@ -22,8 +22,10 @@
             height: 100%;
             object-fit: fill;
         }
-        .moon-graph {
-            margin-bottom: 20px;
+        .graph-container {
+            .moon-graph {
+                margin-bottom: 20px;
+            }
         }
     }
     flex: 1;

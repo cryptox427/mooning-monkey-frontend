@@ -48,7 +48,7 @@ const LoginModal = (props) => {
         })
     }, [show])
     const clickRegisterBtn = async () => {
-        if (userData.password === "" || userData.confirmPassword === "" ||
+        if (userData.password === "" || userData.confirmPassword === "" || userData.userName === "" ||
             userData.confirmPassword !== userData.password) {
             toast.info('Input all field correctly!', {
                 position: "top-right",
@@ -77,6 +77,14 @@ const LoginModal = (props) => {
                     
                 </Modal.Header>
                 <Modal.Body>
+                    {
+                        !registered &&
+                        <BottomLineInputComponent label="username" className="fill-input moon-bet-input purple-bg-input-child" type="text" prefix=""
+                            valueChangeHandler={(value)=>{setUserData({
+                                ...userData,
+                                userName: value
+                            })}} defaultValue={userData.userName} />
+                    }
                     <BottomLineInputComponent label="password" className="fill-input moon-bet-input purple-bg-input-child" type="password" prefix=""
                         valueChangeHandler={(value)=>{setUserData({
                             ...userData,
