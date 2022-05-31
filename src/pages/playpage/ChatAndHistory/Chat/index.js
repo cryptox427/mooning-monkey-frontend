@@ -241,7 +241,7 @@ const Chat = (props) => {
                         selectedCountries.map(country => 
                             <MDBTooltip placement="left" title={country} tag="span">
                                 <div className={`country ${selectedChanel.country === country ? "selected-country" : ""}`}>
-                                <img src={countries[country]} onClick={()=>setSelectedChanel({...selectedChanel, country: country})}></img>
+                                <img src={countries[country]} onClick={()=>setSelectedChanel({friend: "", country: country})}></img>
                                 </div> 
                             
                             </MDBTooltip>
@@ -268,8 +268,8 @@ const Chat = (props) => {
                         friends.map(friend => 
                             <MDBTooltip placement="left" title={friend} tag="span">
                                 <div className={`friend ${selectedChanel.friend === friend ? "selected-friend" : ""}`}>
-                                    <div className="friend-background" onClick={()=>setSelectedChanel({...selectedChanel, friend: friend})}></div>
-                                    <p className="friend-name">jon</p>
+                                    <div className="friend-background" onClick={()=>setSelectedChanel({country: "", friend: friend})}></div>
+                                    <p className="friend-name"  onClick={()=>setSelectedChanel({country: "", friend: friend})}>jon</p>
                                 </div> 
                             
                             </MDBTooltip>
