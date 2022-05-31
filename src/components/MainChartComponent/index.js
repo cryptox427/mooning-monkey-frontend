@@ -270,7 +270,7 @@ const MainChartComponent = (props) => {
         setGameResult(0);
         getAllBets();
         changeGameState(GAME_STATE.RUNNING);
-        document.getElementById('bgVideo').currentTime = 0
+        
     }
 
     const endGame = () => {
@@ -283,6 +283,7 @@ const MainChartComponent = (props) => {
         removeAllBets();
         setGameResult(-1);
         changeGameState(GAME_STATE.WAITING);
+        document.getElementById('bgVideo').currentTime = 0
     }
 
     
@@ -353,20 +354,27 @@ const MainChartComponent = (props) => {
         <>
             <div className="play-chart">
                 <div className="bg" >
-                <video loop autoPlay muted id="bgVideo">
-                    <source
-                    src={BackgroundVideo }
-                    type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                </video>
-                    <ReactApexChart className="moon-graph" options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
-                        {
-                            type: 'line',
-                            name: "series-1",
-                            data: gameData.displayValues.map(data => data.crashValue)
+                    <video loop autoPlay muted id="bgVideo">
+                        <source
+                        src={BackgroundVideo }
+                        type="video/mp4"
+                        />
+                        Your browser does not support the video tag.
+                    </video>
+                
+                    <div  className="moon-graph">
+                        {   
+                            gameData.currentState === GAME_STATE.RUNNING &&
+                            <ReactApexChart className="moon-graph" options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
+                                {
+                                    type: 'line',
+                                    name: "series-1",
+                                    data: gameData.displayValues.map(data => data.crashValue)
+                                }
+                            ]}/>
                         }
-                    ]}/>
+                    </div>
+                
                     <div className={`game-value ${gameData.currentState === GAME_STATE.RUNNING ? "show": "hidden"}`}>
                         
                         <div className="value">

@@ -7,9 +7,10 @@ import { BsFillExclamationCircleFill } from 'react-icons/bs';
 import InputComponent from '../../../components/InputComponent';
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
+import {setPopUp} from '../../../actions/gameActions'
 import BottomLineInputComponent from "../../../components/BottomLineInputComponent";
 
-
+let totalProfit = 0;
 const AutoBet = (props) => {
     const {gameState, maxCredits, betState, gameResult} = props;
     
@@ -31,6 +32,7 @@ const AutoBet = (props) => {
     const [stopOnLoss, setStopOnLoss] = useState(1);
     const [infiniteMode, setInfiniteMode] = useState(false);
     const [wasStarted, setWasStarted] = useState(false);
+    const [originalBetAmount, setOriginalBetAmount] = useState(0);
     useEffect(
         () => {
             if(wasStarted) {    
@@ -75,13 +77,25 @@ const AutoBet = (props) => {
         }
     }
     const clickAutoBetBtn = () => {
-        setInfiniteMode(totalBets === 0)
-        setWasStarted(true)
-        if(!betState) {
-            betRequest(betAmount, autoCashOut)
+        totalProfit = 0;
+        if(betAmount > 0) {    
+            setInfiniteMode(totalBets === 0)
+            setOriginalBetAmount(betAmount)
+            setWasStarted(true)
+            if(!betState) {
+                betRequest(betAmount, autoCashOut)
+            }
+        }
+        else {
+            setPopUp("Set bet amount")
         }
     }
+    const calcGameResult = () => {
+        let profit = gameResult >= autoCashOut ? gameResult * betAmount : -gameResult * betAmount;
+        totalProfit += profit;
+    }
     const clickStopBtn = () => {
+        totalProfit = 0;
         setWasStarted(false)
     }
     const clickOnWinRadioBtn = (param) => {
