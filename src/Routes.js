@@ -9,13 +9,30 @@ import { Tables } from "./pages/Tables";
 import { Hero404 } from "./pages/Hero404";
 import 'mdbreact/dist/css/mdb.css';
 import 'mdb-react-ui-kit/dist/css/mdb.min.css'
-
+import { ToastContainer, toast } from 'react-toastify';
+import { useEffect } from 'react';
+import {connect} from 'react-redux'
 import Sidebar from "./Sidebar";
 import Header from "./pages/layouts/Header.js";
+import {setPopUp} from "./actions/gameActions";
 import './Route.scss';
 
-const Routes = () => {
-
+const Routes = (props) => {
+  const {popup, setPopUp} = props
+  const notify = () => toast.info(popup, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+  });
+  useEffect(() => {
+    if (popup !== "") {
+        notify();
+        setPopUp("")
+    }
+}, [popup]);
   return (
     <Fragment>
       <BrowserRouter>
@@ -48,4 +65,9 @@ const Routes = () => {
   );
 };
 
-export default Routes;
+const mapStateToProps  = (state) => (
+  {
+    popup: state.betGameData.popup
+  }
+)
+export default connect(mapStateToProps, {setPopUp})(Routes)

@@ -4,11 +4,13 @@ import {GET_MAX_CREDITS, GET_MAX_CREDITS_ERROR, BET_REQUEST, BET_SUCCESS, BET_ER
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
+import {setPopUp, getAllBets} from "./gameActions";
 
 export const getMaxCredits = (publicKey) => async dispatch => {
     
     
     try{
+        console.log("~~~~~~~~~credits:")
         const res = await axios.get(`${serverUrl}getCredits.php`);
         console.log("~~~~~~~~~credits:", res.data)
         dispatch( {
@@ -36,13 +38,16 @@ export const betRequest = ( amount, multiplier) => async dispatch => {
                 payload: {amount, multiplier}
             })
         }
+        
         else {
+            setPopUp(res.data)
             dispatch( {
                 type: BET_ERROR
             })
         }
     }
     catch(e){
+        setPopUp(e.message)
         dispatch( {
             type: BET_ERROR,
             payload: console.log(e),
@@ -55,13 +60,15 @@ export const stopBet = ( ) => async dispatch => {
     console.log("~~~~~~~~~stopBet")
     try{
         const res = await axios.get("./stopBet.php");
-        console.log("~~~~~~~~~stopBet:", res.data)
+        console.log("~~~~~~~~~stopBet:", res)
         if(res.data === "Success"){
             dispatch( {
                 type: STOP_BET_SUCCESS
             })
+            dispatch(getAllBets())
         }
         else {
+            setPopUp(res.data)
             dispatch( {
                 type: STOP_BET_ERROR
             })

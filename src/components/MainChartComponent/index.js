@@ -6,6 +6,7 @@ import FlipNumbers from "react-flip-numbers";
 import AspectRatioImg from '../../assets/images/aspect_ratio_white_24dp.svg'
 import FullScreenImg from '../../assets/images/fullscreen_white_24dp.svg'
 import TuneImg from '../../assets/images/tune_white_24dp.svg'
+import BackgroundVideo from '../../assets/video/MoonBackground.mp4'
 import './index.scss'
 import {serverUrl} from '../../utils/constant'
 import AnimatedNumber from "react-animated-number";
@@ -76,7 +77,7 @@ const timeValues = [1,2,3,4,5,6,7,8,9,10];
 const realValues = [1,2,3];
 const evtSource = new EventSource(serverUrl+"getGameProgress.php");
 const MainChartComponent = (props) => {
-    const { getAllBets, setGameResult, removeAllBets, changeGameState } = props;
+    const { getAllBets, setGameResult, removeAllBets, changeGameState, endBet } = props;
     const [showAnimation, setShowAnimation] = useState(false);
     const [testValue, setTestValue] = useState(9);
     const [gameData, setGameData] = useState({
@@ -162,7 +163,21 @@ const MainChartComponent = (props) => {
             },
         },
        
-        colors: ['#ff66ff']
+        colors: ['#ff66ff'],
+        dataLabels: {
+            enabled: false
+        },
+        tooltip: {
+            enabled: false
+        },
+        chart: {
+            zoom: {
+                enabled: false
+            },
+            animations: {
+                enabled: false
+            }
+        }
     }
     const options = {
         chart: {
@@ -255,6 +270,7 @@ const MainChartComponent = (props) => {
         setGameResult(0);
         getAllBets();
         changeGameState(GAME_STATE.RUNNING);
+        document.getElementById('bgVideo').currentTime = 0
     }
 
     const endGame = () => {
@@ -337,7 +353,14 @@ const MainChartComponent = (props) => {
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <ReactApexChart options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
+                <video loop autoPlay muted id="bgVideo">
+                    <source
+                    src={BackgroundVideo }
+                    type="video/mp4"
+                    />
+                    Your browser does not support the video tag.
+                </video>
+                    <ReactApexChart className="moon-graph" options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
                         {
                             type: 'line',
                             name: "series-1",
@@ -352,11 +375,8 @@ const MainChartComponent = (props) => {
                                 style={{
                                     fontSize: 100
                                 }}
-                                duration={2000}
+                                duration={200}
                                 formatValue={(n) => n.toFixed(2)}
-                                frameStyle={(percentage) =>
-                                    percentage > 20 && percentage < 80 ? { opacity: 0.5 } : {}
-                                }
                             /><span>X</span>
                         </div>
                         <div className="title">Current Payout</div>

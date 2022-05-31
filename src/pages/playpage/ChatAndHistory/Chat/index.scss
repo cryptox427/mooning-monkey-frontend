@@ -121,6 +121,86 @@ $scale-var: 1600 / 2560;
         }
         .selected-country {
             background-color: gray;
+        }
+        .countries-list {
+            position: absolute;
+            top: 50px;
+        }
+    }
+    .friends {
+        position: absolute;
+        right: 120px;
+        top: 10px;
+        bottom: 50px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        text-align: center;
+        justify-content: flex-start;
+        align-items: center;
+        font-size: 14px;
+        z-index: 1;
+        height: 0;
+        overflow: initial;
+        .friends-list {
+            position: absolute;
+            top: 50px;
+            .friend {
+                margin-left: 20px;
+                cursor: pointer;
+                border-radius: 5px;
+                padding: 3px;
+                position: relative;
+                
+                .friend-background {
+                    width: 24px;
+                    height: 24px;
+                    background-color: blueviolet;
+                }
+                .friend-name {
+                    position: absolute;
+                    transform: translate(-50%, -50%);
+                    top: 50%;
+                    left: 50%;
+                    font-family: Poppins-Medium;
+                }
+            }
+            
+        }
+        .leave-btn {
+            cursor: pointer;
+            width: 100%;
+            display: flex;
+            justify-content: right;
+            align-items: center;
+            font-family: Poppins-Medium;
+            margin-bottom: 5px;
+            .close-symbol {
+                color: red;
+                margin-right: 0px;
+            }
+        }
+        .display-btn {
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 12px;
+            font-family: Poppins-Medium;
+            margin-bottom: 3px;
+            span {
+                margin-right: 6px;
+                color: gray;
+                svg {
+                    width: 16px;
+                    height: 16px;
+                }
+            }
+        }
+        
+        .selected-friend {
+            background-color: gray;
             
             
         }
@@ -241,6 +321,7 @@ $scale-var: 1600 / 2560;
                 }
             }
         }
+        
     }
     /* Rectangle 114 */
 

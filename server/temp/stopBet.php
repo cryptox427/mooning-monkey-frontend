@@ -33,8 +33,12 @@
             if(mysqli_stmt_execute($stmt)) {
                 echo "Success";
             }
+        }else{
+            echo "Game is already over or did not start yet";
         }
 
+    }else{
+        echo "Not logged in";
     }
 
 ?>

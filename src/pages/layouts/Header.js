@@ -136,6 +136,11 @@ const Header = (props) => {
           setStatus(null)
         }
     }, [status]);
+    useEffect(() => {
+        if (logged) {
+            setShowLoginModal(false)
+        }
+    }, [logged]);
 
     useEffect(async () => {
         if (walletAddress) {

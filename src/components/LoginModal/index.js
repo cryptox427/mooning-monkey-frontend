@@ -10,7 +10,7 @@ import BottomLineInputComponent from "../../components/BottomLineInputComponent"
 
 
 const LoginModal = (props) => {
-    const { show, onHide, publicKey, login, registered } = props;
+    const { show, onHide, publicKey, login, registered, register } = props;
     const [userData, setUserData] = useState({
         userName: "",
         password: "",
@@ -100,7 +100,6 @@ const LoginModal = (props) => {
                     
                 </Modal.Body>
             </Modal>
-            <ToastContainer />
         </>
     );
 }

@@ -10,8 +10,21 @@
 }
 .play-chart {
     .bg {
+        position: relative;
         display: flex;
         flex-direction: column-reverse;
+        video {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+        }
+        .moon-graph {
+            margin-bottom: 20px;
+        }
     }
     flex: 1;
     position: relative;

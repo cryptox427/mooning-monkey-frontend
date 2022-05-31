@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 
 import {
         GET_ALL_BET_SUCCESS, 
@@ -8,7 +9,8 @@ import {
         GET_GAME_HISTORY_SUCCESS,
         GET_GAME_HISTORY_ERROR,
         GET_LEADERBOARD_SUCCESS,
-        GET_LEADERBOARD_ERROR 
+        GET_LEADERBOARD_ERROR ,
+        SET_POPUP
     } from '../utils/types'
 import axios from 'axios'
 
@@ -33,8 +35,9 @@ export const getLeaderBoards = async () => {
 
 export const getAllBets = () => async dispatch => {
     try{
+        console.log("~~~~~~~~~all bet")
         const res = await axios.get(`${serverUrl}getBets.php`);
-        //console.log("~~~~~~~~~all bet:", res.data)
+        console.log("~~~~~~~~~all bet:", res.data)
         if(res.data.message === "Success") {
             dispatch( {
                 type: GET_ALL_BET_SUCCESS,
@@ -102,5 +105,21 @@ export const changeGameState = (gameState) => async dispatch => {
         type: CHANGE_GAME_STATE,
         payload: gameState
     })
+
+}
+export const setPopUp = (popup) => {
+    console.log("popup")
+    toast.info(popup, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+    });
+    // dispatch( {
+    //     type: SET_POPUP,
+    //     payload: popup
+    // })
 
 }

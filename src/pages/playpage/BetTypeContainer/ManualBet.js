@@ -67,7 +67,7 @@ const ManualBet = (props) => {
                 case GAME_STATE.RUNNING:
                     if(betState) {
                         if(gameResult >= bettedMultiplier) {
-                            setPlayerButtonStyle({disableBtn: true, buttonName: "Play"})
+                            setPlayerButtonStyle({disableBtn: true, buttonName: "Stop Bet"})
                         }
                         else {
                             setPlayerButtonStyle({disableBtn: false, buttonName: "Stop Bet"})
@@ -106,7 +106,7 @@ const ManualBet = (props) => {
                 
             </div>
        
-            <MDBBtn className="play-button" color='secondary'
+            <MDBBtn className="play-button" color='secondary' disabled={playerButtonStyle.disableBtn}
                     onClick={playerButtonStyle.buttonName === "Play"?()=>clickPlayBtn():()=>clickStopBtn()}>
                 <span>{playerButtonStyle.buttonName}</span></MDBBtn>
             
@@ -125,7 +125,7 @@ const ManualBet = (props) => {
                             <tr>
                                 <td>$ {data.bet}</td>
                                 <td>{data.multiplier}X</td>
-                                <td>$ {data.payout}</td>
+                                <td>$ {Number(data.payout).toFixed(2)}</td>
                             </tr>
                         )
                     }

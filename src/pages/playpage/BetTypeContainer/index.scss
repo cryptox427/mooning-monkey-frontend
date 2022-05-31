@@ -276,8 +276,10 @@ $scale-var: 1600 / 2560;
 	}
 	.my-recent-wins {
 		margin-top: 15px * $scale-var;
-
+		overflow-y: auto;
+		overflow-x: hidden;
 		max-height: 200px;
+		min-height: 100px;
 		.title {
 			color: white;
 			

@@ -58,7 +58,7 @@ export const getCurrentWalletConnected = async () => {
       const chain = await window.ethereum.request({
         method: "eth_chainId",
       })
-      if (addressArray.length > 0 && chain === chainId) {
+      if (addressArray.length > 0 && chain === useChainID) {
         return {
           address: addressArray[0],
           status: "👆🏽 Please Sign in/up now.",

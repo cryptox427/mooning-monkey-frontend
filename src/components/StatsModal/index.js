@@ -1,9 +1,12 @@
 import { Modal } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import './index.scss';
+import {connect} from 'react-redux'
+import {getStats} from '../../actions/userActions';
 
 const StatsModal = (props) => {
-    const { show, onHide } = props;
+    const { show, onHide, stats, getStats } = props;
     const chartOptions = {
         chart: {
             type: 'area',
@@ -43,7 +46,14 @@ const StatsModal = (props) => {
         },
         colors: ['#F001F4']
     }
-
+    useEffect(
+        () => {
+            if(show) {
+                getStats()
+            }
+        },
+        [show],
+    );
     const chartSeries = [
         {
           name: "series-1",
@@ -58,21 +68,6 @@ const StatsModal = (props) => {
 
             </Modal.Header>
             <Modal.Body>
-                <h5 className="title-midle mb-3 poppin-bold-txt">Username</h5>
-                <p className="mt-3 poppin-light-txt"><span className="pink-monkey-text pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
-
-                <div className="change-box-bottom-btn mt-3 three-dif-btn">
-                    <button className="cta-btn cta-cancel first-btn poppin-bold-txt" style={{backgroundColor: "linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important", color: "black !important"}}>
-                        Tip
-                    </button>
-                    <button className="cta-btn second-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #F044E8 0%, #6A51C9 100%) !important"}}>
-                        + Add Friend
-                    </button>
-                    <button className="cta-btn third-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important"}}>
-                        Block User
-                    </button>
-
-                </div>
 
                 <div className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</div>
 
@@ -81,8 +76,8 @@ const StatsModal = (props) => {
                     <div className="share_detail">
                     <span>Users</span>
                     <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span>$0.0001</span>
+                        
+                        <span>{stats.users}</span>
                     </div>
                     
                 </div>
@@ -91,8 +86,8 @@ const StatsModal = (props) => {
                     <div className="share_detail">
                     <span>Bets</span>
                     <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span>$0.0001</span>
+                   
+                        <span>{stats.bets}</span>
                     </div>
                     
                 </div>
@@ -102,7 +97,7 @@ const StatsModal = (props) => {
                     <span>Bankroll</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X </span>
                     </div>
                     
                 </div>
@@ -111,8 +106,7 @@ const StatsModal = (props) => {
                     <div className="share_detail">
                     <span>Wagered</span>
                     <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> $ {stats.wagered}</span>
                     </div>
                     
                 </div>
@@ -122,7 +116,7 @@ const StatsModal = (props) => {
                     <span>Return to the player</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X</span>
                     </div>
                     
                 </div>
@@ -131,8 +125,8 @@ const StatsModal = (props) => {
                     <div className="share_detail">
                     <span>Investors profit</span>
                     <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        
+                        <span> $ {stats.investorProfit}</span>
                     </div>
                     
                 </div>
@@ -141,8 +135,8 @@ const StatsModal = (props) => {
                     <div className="share_detail">
                     <span>Investors all-time high profit   </span>
                     <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        
+                        <span> $ {stats.investorProfitATH}</span>
                     </div>
                     
                 </div>
@@ -152,7 +146,7 @@ const StatsModal = (props) => {
                     <span>Commission</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X</span>
                     </div>
                     
                 </div>
@@ -162,7 +156,7 @@ const StatsModal = (props) => {
                     <span>Total cashback</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X</span>
                     </div>
                     
                 </div>
@@ -172,7 +166,7 @@ const StatsModal = (props) => {
                     <span>Total winning bonus</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X </span>
                     </div>
                     
                 </div>
@@ -182,7 +176,7 @@ const StatsModal = (props) => {
                     <span>Total Shared profit with the community</span>
                     <div>
                         <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X amount</span>
+                        <span> X </span>
                     </div>
                     
                 </div>
@@ -207,5 +201,9 @@ const StatsModal = (props) => {
         </Modal>
     );
 }
-
-export default StatsModal;
+const mapStateToProps  = (state) => (
+    {
+        stats: state.userData.stats
+    }
+)
+export default connect(mapStateToProps, {getStats})(StatsModal)

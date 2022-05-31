@@ -4,7 +4,8 @@ import {GET_ALL_BET_SUCCESS,
     GAME_STATE, 
     CHANGE_GAME_STATE,
     GET_GAME_HISTORY_SUCCESS,
-    GET_GAME_HISTORY_ERROR
+    GET_GAME_HISTORY_ERROR,
+    SET_POPUP
 } from '../../utils/types';
 
 const initialState = {
@@ -13,6 +14,7 @@ const initialState = {
     loading: false,
     loaded: false,
     gameResult: 0,
+    popup: "",
     gameState: GAME_STATE.WAITING
 }
 
@@ -63,6 +65,11 @@ const gameReducer = (state = initialState, action) => {
         return {
             ...state,
             gameHistory: []
+        }
+        case SET_POPUP:
+        return {
+            ...state,
+            popup: action.payload
         }
         default: return state
     }
