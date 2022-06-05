@@ -32,9 +32,9 @@ const ChatAndHistory = (props) => {
                             </Nav.Link>
                             </Nav.Item>
                         </Nav>
-                        <div className="setting">
+                        {/* <div className="setting">
                             <AiFillSetting></AiFillSetting>
-                        </div>
+                        </div> */}
                     </div>        
                     <Tab.Content>
                         <Tab.Pane eventKey="chat">

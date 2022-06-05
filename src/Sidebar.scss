@@ -176,6 +176,10 @@ $scale-var: 1600 / 2560;
             height: 20px;
             margin: 5px;
             color: #7050CB;
+            img {
+                width: 100%;
+                color: #7050CB;
+            }
         }
     }
     .buttons {

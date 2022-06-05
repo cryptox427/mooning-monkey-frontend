@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   CDBSidebar,
   CDBSidebarContent,
@@ -6,11 +6,12 @@ import {
   CDBSidebarHeader,
   CDBSidebarMenu,
   CDBSidebarMenuItem } from "cdbreact";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter, useLocation } from "react-router-dom";
 import { AiOutlineDoubleRight, AiOutlineDoubleLeft, AiFillTwitterCircle } from "react-icons/ai";
 import { BsPlay, BsMenuButton, BsDiscord } from "react-icons/bs";
 import { BiTransferAlt, BiStar, BiPencil } from "react-icons/bi";
-import { SiSurveymonkey } from "react-icons/si";
+
+import { SiSurveymonkey, SiLinktree, SiNotion } from "react-icons/si";
 import { GiReceiveMoney, GiTrophyCup, GiSailboat } from "react-icons/gi";
 import { FiUsers } from "react-icons/fi";
 import { GrDocumentText } from "react-icons/gr";
@@ -27,19 +28,27 @@ import WithdrawModal from './components/WIthdrawModal';
 import Cell from './pages/layouts/Sidebar/Cell.js';
 import './Sidebar.scss';
 import darkLogo from './assets/images/playpage/dark-logo.png';
+import openSeaLogo from './assets/images/opensea.png';
 import {changeCurrentPage} from './actions/userActions'
 
 const Sidebar = (props) => {
-  const {currentPage, changeCurrentPage} = props;
+  const {changeCurrentPage, history} = props;
   
   const [bankrollStatus, setBankrollStatus] = useState(false);
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
+  const [currentPage, setCurrentPage] = useState("");
+  
   const setPage = (targetPage) => {
     changeCurrentPage(targetPage)
   }
+  const location = useLocation();
+  useEffect(() => {
+    console.log("~~url", location.pathname)
+    setCurrentPage(location.pathname)
+  }, [location]);
   return (
     <>
     <div
@@ -161,10 +170,12 @@ const Sidebar = (props) => {
               padding: "20px 5px"
             }}
           >
-            <BsDiscord className="sidebar-foot-btn"/>
-            <FaDove className="sidebar-foot-btn"/>
-            <GiSailboat className="sidebar-foot-btn"/>
-            <RiHome2Fill className="sidebar-foot-btn"/>
+            <a href='https://discord.gg/MooningMonkey' target="_blank" rel="noopener noreferrer"><BsDiscord className="sidebar-foot-btn"/></a>
+            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><FaDove className="sidebar-foot-btn"/></a>
+            
+            <a href='https://opensea.io/collection/officialmooningmonkey' target="_blank" rel="noopener noreferrer"><GiSailboat className="sidebar-foot-btn"/></a>
+            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><SiLinktree className="sidebar-foot-btn"/></a>
+            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><SiNotion className="sidebar-foot-btn"/></a>
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
@@ -185,4 +196,4 @@ const mapStateToProps  = (state) => (
     currentPage: state.userData.currentPage 
   }
 )
-export default connect(mapStateToProps, {changeCurrentPage})(Sidebar)
+export default withRouter(connect(mapStateToProps, {changeCurrentPage})(Sidebar))

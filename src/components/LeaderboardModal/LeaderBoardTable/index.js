@@ -32,11 +32,11 @@ const LeaderBoardTable = (props) => {
                         dataList.map(data => 
                             <tr>
                                 <td>{data.player}</td>
-                                <td>{data.wargered}</td>
-                                <td>{data.profit}</td>
-                                <td>{data.profitAth}</td>
-                                <td>{data.profitAtl}</td>
-                                <td>{data.bets}</td>
+                                <td>{Number(data.wargered).toFixed(2)}</td>
+                                <td>{Number(data.profit).toFixed(2)}</td>
+                                <td>{Number(data.profitAth).toFixed(2)}</td>
+                                <td>{Number(data.profitAtl).toFixed(2)}</td>
+                                <td>{Number(data.bets).toFixed(2)}</td>
                             </tr>
                         )
                     }

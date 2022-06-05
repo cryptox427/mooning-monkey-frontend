@@ -1,17 +1,45 @@
 .deposit-modal {
     .modal-dialog {
         max-width: 500px !important;
-        .deposit-amount {
-            text-align: center !important;
+        .dropdown-box {
+            position: relative;
+            .token-amount {
+                position: absolute;
+                text-align: center !important;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                &:focus-visible {
+                    outline: 2px solid;
+                    outline-color: #2A2E68;
+                }
+            }
+            .error-alert {
+                position: absolute;
+                bottom: -22px;
+                font-family: Poppins-Light;
+                color: red;
+                font-size: 12px;
+                right: 0;
+            }
         }
         .max-btn {
             margin-left: 20px;
+            z-index: 1;
+        }
+        .deposit-btn {
+            width: 100%;
         }
         .recent-transaction-history {
             div {
                 font-family: Poppins-Light;
             }
         }
+    }
+    input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
 }
 

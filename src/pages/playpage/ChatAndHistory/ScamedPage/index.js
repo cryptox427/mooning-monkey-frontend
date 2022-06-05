@@ -39,9 +39,9 @@ const ScamedPage = (props) => {
                         </li>
                     </ul>
                     <div className="text-right">
-                        <div className="cta-btn justify-content-center ml-auto">
+                        <button onClick={closePage} className="cta-btn understand-btn">
                             I understand
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>

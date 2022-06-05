@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import BankrollModal from '../../components/BanrollModal';
-import LeaderboardModal from '../../components/LeaderboardModal';
-import DepositModal from '../../components/DepositModal';
-import StatsModal from '../../components/StatsModal';
-import WithdrawModal from '../../components/WIthdrawModal';
-import LoginModal from '../../components/LoginModal';
 
-import InfoBox from '../../components/InfoBox';
-import { connectWallet, getCurrentWalletConnected } from '../../utils/interact';
-import { chainId } from '../../constants/chain';
-import {request, postRequest} from '../../utils/request';
+import BankrollModal from '../../../components/BanrollModal';
+import LeaderboardModal from '../../../components/LeaderboardModal';
+import DepositModal from '../../../components/DepositModal';
+import StatsModal from '../../../components/StatsModal';
+import WithdrawModal from '../../../components/WIthdrawModal';
+import LoginModal from '../../../components/LoginModal';
+
+import InfoBox from '../../../components/InfoBox';
+import { connectWallet, getCurrentWalletConnected } from '../../../utils/interact';
+import { chainId } from '../../../constants/chain';
+import {request, postRequest} from '../../../utils/request';
 import './Header.scss';
-import logo from '../../assets/images/playpage/logo.png';
-import darkLogo from '../../assets/images/playpage/dark-logo.png';
-import bnb from '../../assets/images/playpage/bnb.png';
-import cryptoImg from '../../assets/images/playpage/crypto-net.png';
-import USDTImg, { ReactComponent } from '../../assets/images/USDT.svg';
-import CakeImg from '../../assets/images/cake.svg';
-import BUSDImg from '../../assets/images/BUSD.svg';
+import logo from '../../../assets/images/playpage/logo.png';
+import darkLogo from '../../../assets/images/playpage/dark-logo.png';
+import bnb from '../../../assets/images/playpage/bnb.png';
+import cryptoImg from '../../../assets/images/playpage/crypto-net.png';
+import USDTImg, { ReactComponent } from '../../../assets/images/USDT.svg';
+import CakeImg from '../../../assets/images/cake.svg';
+import BUSDImg from '../../../assets/images/BUSD.svg';
 import { MDBBtn,
     MDBModal,
     MDBModalDialog,
@@ -35,16 +36,16 @@ import { BsChevronDoubleDown } from 'react-icons/bs';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 
 import { Row, Col, ToastBody } from 'react-bootstrap';
-import SelectNetworkModal from '../../components/SelectNetworkModal';
+import SelectNetworkModal from '../../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
-import {getMaxCredits} from '../../actions/betActions'
-import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../actions/userActions'
-import {serverUrl} from '../../utils/constant'
-import {ProfileModal} from './ProfileModal'
+import {getMaxCredits} from '../../../actions/betActions'
+import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../../actions/userActions'
+import {serverUrl} from '../../../utils/constant'
+import {ProfileModal} from '../ProfileModal'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged, getRegisteredState } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged, getRegisteredState, history } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
@@ -369,7 +370,6 @@ const mapStateToProps  = (state) => (
     }
 )
 export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins, getRegisteredState})(Header)
-
 {/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                                         <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}

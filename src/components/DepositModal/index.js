@@ -8,6 +8,7 @@ import TakCoinImg from '../../assets/images/tak-coin.svg';
 import ArrowDownImg from '../../assets/images/arrow-down.svg';
 import './index.scss';
 import {changeCurrentPage} from '../../actions/userActions'
+import {setPopUp} from "../../actions/gameActions";
 
 import { withRouter } from "react-router-dom";
 
@@ -16,7 +17,10 @@ const DepositModal = (props) => {
     const tokenNames = Object.keys(BSC_TOKENS);
     const [selectedTokenName, setSelectedTokenName] = useState(tokenNames[0]);
     const [balance, setBalance] = useState(0);
-    const [tokenAmount, setTokenAmount] = useState(0.01);
+    const [tokenAmount, setTokenAmount] = useState({
+        vale: 0,
+        error: null    
+    });
     const [showSelect, setShowSelect] = useState(false);
     const [txHash, setTxHash] = useState();
     const [transactionFee, setTransactionFee] = useState(0);
@@ -36,10 +40,10 @@ const DepositModal = (props) => {
             const signer = getSigner();
             let tx;
             if (selectedTokenName === 'BNB') {
-                tx = await signer.sendTransaction({to: DEPOSIT_WALLET_ADDRESS, value: ethers.utils.parseEther(tokenAmount.toString())});
+                tx = await signer.sendTransaction({to: DEPOSIT_WALLET_ADDRESS, value: ethers.utils.parseEther(tokenAmount.value.toString())});
             } else {
                 const tokenContract = getTokenContract(selectedTokenName);
-                tx = await tokenContract.transfer(DEPOSIT_WALLET_ADDRESS, ethers.utils.parseEther(tokenAmount));
+                tx = await tokenContract.transfer(DEPOSIT_WALLET_ADDRESS, ethers.utils.parseEther(tokenAmount.vale));
             }
             const res = await tx.wait();
             console.log(tx);
@@ -57,6 +61,7 @@ const DepositModal = (props) => {
                 setBalance(newBalance);
             }
         } catch (error) {
+            setPopUp("deposit failed")
             console.log(error);
             setIsLoading(false);
             setIsSuccess(false);
@@ -64,10 +69,20 @@ const DepositModal = (props) => {
     }
 
     const handleTokenAmount = (e) => {
-        const newValue = e.target.value > balance ? balance : e.target.value < 0 ? 0 : e.target.value;
-        setTokenAmount(newValue)
+        validateAmountSet(e.target.value)
     }
-    
+    const validateAmountSet = (value) => {
+        console.log(value)
+        let newValue = Math.max(value, 0);
+        let err = null;
+        if(newValue > balance) {
+            err = "Insufficient balance"
+        }
+        setTokenAmount({
+            value: newValue,
+            error: err
+        })
+    }  
     useEffect(async () => {
         if (walletAddress) {
             try {
@@ -81,10 +96,13 @@ const DepositModal = (props) => {
 
     useEffect(async () => {
         setShowResult(false);
+        setTokenAmount({
+            value: 0,
+            error: null
+        })
     }, [show]);
-
     useEffect(async () => {
-        setTokenAmount(Math.min(balance, tokenAmount))
+        validateAmountSet(tokenAmount.value)
     }, [balance]);
 
     const gotoHistoryPage = () => {
@@ -131,26 +149,27 @@ const DepositModal = (props) => {
                     </div> 
                     
                 </div>
-                <div className="dropdown-container">
+                <div className={`dropdown-container ${tokenAmount.error ? 'err-field' : ''}`}>
                     <div className="title">
-                        <h6 className="poppin-light-txt">Amount</h6>
-                        <div className="poppin-light-txt hint">Wallet Balance: <span className="poppin-light-txt">{balance} {selectedTokenName} </span></div>    
+                        <h6 className="poppin-light-txt red-under-error">Amount</h6>
+                        <div className="poppin-light-txt hint red-under-error">Wallet Balance: <span className="poppin-light-txt">{balance} {selectedTokenName} </span></div>    
                     </div>
                     
-                    <div className="dropdown-box p-2">
+                    <div className="dropdown-box p-2 red-border-under-error">
                         <div className="w-100 d-flex align-items-center justify-content-between p-1">
+                        <input type='number' className="token-amount poppin-bold-txt red-outline-under-error" value={tokenAmount.value} onChange={handleTokenAmount}  />
                             <div className="d-flex align-items-center justify-content-between">
                                 <img src={TakCoinImg} className="mr-2" width="25" alt="" />
                                 <h6 className="mb-0 amount-coin poppin-light-txt">{selectedTokenName}</h6>
                             </div>
                             <div className="flex1 d-flex align-items-center">
-                                <div className="pink-monkey-text">
-                                    <input type='number' className="deposit-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
-                                    &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
-                                </div>
-                                <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => setTokenAmount(balance)}>MAX</div>
+                                &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
+                                <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => validateAmountSet(balance)}>MAX</div>
                             </div>
                         </div>
+                        <div className="display-under-error red-under-error error-alert">
+                                {tokenAmount.error}   
+                            </div>
                     </div>
                 </div>
                 {
@@ -159,9 +178,9 @@ const DepositModal = (props) => {
                                 Pending<Spinner animation="border" variant="primary" />
                             </div>
                             :
-                            <div className="cta-btn justify-content-center mt-4 poppin-light-txt" onClick={()=>handleDeposit()}>
+                            <button disabled={tokenAmount.error ? true: false} className="cta-btn deposit-btn justify-content-center poppin-light-txt" onClick={()=>handleDeposit()}>
                                 Deposit
-                            </div>
+                            </button>
                 }
                 <div className="justify-content-between d-flex mt-4 mb-1">
                     <h6 className="text-light">Recent Transactions</h6>
@@ -184,7 +203,7 @@ const DepositModal = (props) => {
                                 </div>
                                 <div className="rth-row">
                                     <div>Amount({selectedTokenName})</div>
-                                    <div>{tokenAmount}</div>
+                                    <div>{tokenAmount.value}</div>
                                 </div>
                                 <div className="rth-row">
                                     <div>Free({selectedTokenName})</div>

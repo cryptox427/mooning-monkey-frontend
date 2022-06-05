@@ -59,5 +59,32 @@
         span, p {
             font-family: Poppins-Light;
         }
+        .three-dif-btn {
+            margin-bottom: 20px;
+            .tip-btn {
+                padding: 14px 30px;
+                border: none;
+                color: black;
+                background: linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important;
+                &:hover {
+                    background: linear-gradient(90deg, #b8ffa1 0%, #9ae923 55.18%, #e9e630 100%) !important;
+                }
+            }
+            .block-user-btn {
+                padding: 14px 30px;
+                border: none;
+                color: white;
+                background: linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important;
+                &:hover {
+                    background: linear-gradient(270deg, #ff782a 0%, #ff4741 100%) !important;
+                }
+            }
+            .add-friend-btn {
+                border: none;
+                padding: 14px 30px !important;
+            
+            }
+        }
+        
     }
 }

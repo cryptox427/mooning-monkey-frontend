@@ -7,7 +7,21 @@ const testData = [
     {
         address: "1",
         gameDate: "1",
-        bet: "1",
+        bet: "5435",
+        multiplier: "1",
+        payout: "341"
+    },
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "341",
+        multiplier: "1",
+        payout: "1"
+    },
+    {
+        address: "1",
+        gameDate: "1",
+        bet: "4531",
         multiplier: "1",
         payout: "1"
     },
@@ -16,25 +30,11 @@ const testData = [
         gameDate: "1",
         bet: "1",
         multiplier: "1",
-        payout: "1"
-    },
-    {
-        address: "1",
-        gameDate: "1",
-        bet: "1",
-        multiplier: "1",
-        payout: "1"
-    },
-    {
-        address: "1",
-        gameDate: "1",
-        bet: "1",
-        multiplier: "1",
-        payout: "1"
+        payout: "341"
     }
 ]
 const HistoryTable = (props) => {
-    const {gameHistory} = props;
+    const {gameHistory, type} = props;
 
     return (
         <div className="history-table">
@@ -42,7 +42,10 @@ const HistoryTable = (props) => {
                 <thead>
                     <tr className="table-header">
                         <th className="h-game">Game</th>
-                        <th className="h-wager">Address</th>
+                        {
+                            type !== "wager" &&
+                            <th className="h-wager">Address</th>
+                        }
                         <th className="h-time">Time</th>
                         <th className="h-wager">Wager</th>
                         <th className="h-multi">multi</th>
@@ -60,7 +63,8 @@ const HistoryTable = (props) => {
                                 h_time={data.gameDate} 
                                 h_wager={data.bet} 
                                 h_mult={data.multiplier} 
-                                h_payout={data.payout}/>
+                                h_payout={data.payout}
+                                type={type}/>
                             )
                         )
                     }

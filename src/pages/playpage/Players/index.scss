@@ -1,6 +1,10 @@
 $scale-var: 1600 / 2560;
 
 .players {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	align-items: center;
 	padding-top: 18px * $scale-var !important;
 	padding-bottom: 18px * $scale-var !important;
@@ -104,5 +108,17 @@ $scale-var: 1600 / 2560;
 			}
 		}
 	}
+	.total-info {
+		padding: 5px 10px;
+		display: flex;
+		width: 100%;
+		justify-content: space-between;
+		div {
+			font-family: Poppins-Medium !important;
+			color: #5C52C6;
+		}
+	}
+	
+
 }
 

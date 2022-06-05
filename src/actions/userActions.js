@@ -83,8 +83,9 @@ export const register = (userData) => async dispatch => {
             data: userData
         });
         console.log("~~~~~~~~~register:", res.data)
-        setPopUp(res.data)
+        
         if(res.data === "register success") {
+            setPopUp("register success")
             dispatch( {
                 type: GET_LOGIN_REQUEST_SUCCESS
             })
@@ -94,6 +95,7 @@ export const register = (userData) => async dispatch => {
             dispatch(getUserName());
         }
         else {
+            setPopUp("register failed")
             dispatch( {
                 type: GET_LOGIN_REQUEST_ERROR,
                 payload: console.log(res.data)
@@ -101,7 +103,7 @@ export const register = (userData) => async dispatch => {
         }
     }
     catch(e){
-        setPopUp(e.message)
+        setPopUp("register failed")
         dispatch( {
             type: GET_LOGIN_REQUEST_ERROR,
             payload: console.log(e)

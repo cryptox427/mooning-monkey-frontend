@@ -1,7 +1,6 @@
 import Tabs from 'react-bootstrap/Tabs';
 import Tab from 'react-bootstrap/Tab';
 import Nav from 'react-bootstrap/Nav';
-import { Table, Dropdown } from 'react-bootstrap';
 import React, { useEffect, useState } from "react";
 import Pagination from 'react-responsive-pagination';
 import {connect} from 'react-redux'
@@ -13,6 +12,7 @@ import MobileDataList from '../../components/MobileDataList';
 import './index.scss';
 import {TRANSACTION_TYPE} from '../../utils/types';
 import {getTransactionHistory} from '../../actions/transactionHistoryActions'
+import Select from 'react-select';
 
 const defaultData = [
     // event: "Reward",
@@ -71,6 +71,26 @@ const TransactionHistory = (props) => {
     const changeDisplayCount = (e) => {
         setDisplayCount(e);
     }
+    const tableRecodCountOptions = [
+        { value: 10, label: '10 Records' },
+        { value: 20, label: '20 Records' },
+        { value: 50, label: '50 Records' } 
+    ];
+    const recordTableStyle = {
+        option: (provided, state) => ({
+            ...provided
+        }),
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderRadius: '0',
+            borderColor: '#515189',
+        }),
+        singleValue: provided => ({
+            ...provided,
+            color: 'white'
+          })
+    }
     return (
         <div className="transaction-history">
             <div className='transaction-history-container'>
@@ -107,19 +127,11 @@ const TransactionHistory = (props) => {
             <div className='custom-table-bottom'>
                 <div className='custom-table-bottom-left'>
                 <React.Fragment>
-                    <div className='custom-table-bottom-left-select'>
-                        <Dropdown  onSelect={(e)=>changeDisplayCount(e)}>
-                            <Dropdown.Toggle id="dropdown-basic">
-                            {displayCount} Records
-                            </Dropdown.Toggle>
+                    <Select value={{label: `${displayCount} Records`, value: displayCount}} className="record-count-select"
+                        onChange={(e)=>changeDisplayCount(e.value)}
+                        options = {tableRecodCountOptions} styles = {recordTableStyle}>
 
-                            <Dropdown.Menu>
-                                <Dropdown.Item eventKey={10}>10 Records</Dropdown.Item>
-                                <Dropdown.Item eventKey={20}>20 Records</Dropdown.Item>
-                                <Dropdown.Item eventKey={50}>50 Records</Dropdown.Item>
-                            </Dropdown.Menu>
-                        </Dropdown>
-                    </div>
+                    </Select>
                     <div className='custom-table-bottom-left-status'>{`Showing ${displayData.length} out of ${transactionHistory.length}`}</div>
                 </React.Fragment>
                 </div>

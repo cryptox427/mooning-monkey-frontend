@@ -11,7 +11,7 @@ const initialState = {
     publicKey: 0,
     userName: "",
     myRecentWin: [],
-    stats: [],
+    stats: {},
     userStats: [],
     currentPage: "play",
     logged: false,

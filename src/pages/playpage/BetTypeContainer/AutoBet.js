@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Row, Col, Form, ButtonGroup, ToggleButton } from 'react-bootstrap';
 import {connect} from 'react-redux'
-import { MDBBtn, MDBWaves } from "mdb-react-ui-kit";
+import { MDBBtn, MDBWaves, MDBTooltip } from "mdb-react-ui-kit";
 import { BsFillExclamationCircleFill } from 'react-icons/bs';
 
 import InputComponent from '../../../components/InputComponent';
@@ -9,6 +9,7 @@ import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
 import {setPopUp} from '../../../actions/gameActions'
 import BottomLineInputComponent from "../../../components/BottomLineInputComponent";
+import Tooltip from "../../../components/Tooltip";
 
 let totalProfit = 0;
 const AutoBet = (props) => {
@@ -182,17 +183,7 @@ const AutoBet = (props) => {
                     defaultValue={onWin.amount} />
                 <div className="sub-detail-content">
                 <ButtonGroup>
-                    <ToggleButton
-                        id="radio-1"
-                        type="radio"
-                        className="on-win-radio"
-                        name="on-win-radio"
-                        value={"increase"}
-                        checked={onWin.type === "increase"}
-                        onChange={(e) => clickOnWinRadioBtn(e.target.value)}
-                    >
-                        Increase
-                    </ToggleButton>
+                    
                     <ToggleButton
                         id="radio-2"
                         type="radio"
@@ -203,6 +194,17 @@ const AutoBet = (props) => {
                         onChange={(e) => clickOnWinRadioBtn(e.target.value)}
                     >
                         Reset
+                    </ToggleButton>
+                    <ToggleButton
+                        id="radio-1"
+                        type="radio"
+                        className="on-win-radio"
+                        name="on-win-radio"
+                        value={"increase"}
+                        checked={onWin.type === "increase"}
+                        onChange={(e) => clickOnWinRadioBtn(e.target.value)}
+                    >
+                        Increase
                     </ToggleButton>
                 </ButtonGroup>
                 </div>
@@ -216,17 +218,7 @@ const AutoBet = (props) => {
                     defaultValue={onLoss.amount} />
                 <div className="sub-detail-content">
                     <ButtonGroup>
-                        <ToggleButton
-                            id="loss-radio-1"
-                            type="radio"
-                            className="on-loss-radio"
-                            name="on-loss-radio"
-                            value={"increase"}
-                            checked={onLoss.type === "increase"}
-                            onChange={(e) => clickOnLossRadioBtn(e.target.value)}
-                        >
-                            Increase
-                        </ToggleButton>
+                        
                         <ToggleButton
                             id="loss-radio-2"
                             type="radio"
@@ -237,6 +229,17 @@ const AutoBet = (props) => {
                             onChange={(e) => clickOnLossRadioBtn(e.target.value)}
                         >
                             Reset
+                        </ToggleButton>
+                        <ToggleButton
+                            id="loss-radio-1"
+                            type="radio"
+                            className="on-loss-radio"
+                            name="on-loss-radio"
+                            value={"increase"}
+                            checked={onLoss.type === "increase"}
+                            onChange={(e) => clickOnLossRadioBtn(e.target.value)}
+                        >
+                            Increase
                         </ToggleButton>
                     </ButtonGroup>
                 </div>
@@ -253,10 +256,17 @@ const AutoBet = (props) => {
                             valueChangeHandler={setStopOnProfit} 
                             defaultValue={stopOnProfit} />
                     </div>
+                    
                     <div className="sub-detail-content">
-                        <span className="detail"><BsFillExclamationCircleFill/></span>
+                        <Tooltip
+                            width="300px"
+                            content="Use Stop onProfit to stop autobet after profiting a specified amount.For example, if you start with $100 and you set Stop on Profit to $25: if your balance went above $125 autobet will stop." 
+                            direction="bottom">
+                            <span className="detail"><BsFillExclamationCircleFill/></span>
+                        </Tooltip>
                     </div>
-                    </div>
+                    
+                </div>
                 </Col>
                 <Col>
                 <div className="bet-detail">
@@ -269,7 +279,12 @@ const AutoBet = (props) => {
                         
                     </div>
                     <div className="sub-detail-content">
-                        <span className="detail"><BsFillExclamationCircleFill/></span>
+                        <Tooltip
+                            width="300px"
+                            content="Use Stop onProfit to stop autobet after profiting a specified amount.For example, if you start with $100 and you set Stop on Profit to $25: if your balance went above $125 autobet will stop." 
+                            direction="bottom">
+                            <span className="detail"><BsFillExclamationCircleFill/></span>
+                        </Tooltip>
                     </div>
                     </div>
                 </Col>

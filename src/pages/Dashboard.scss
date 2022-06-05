@@ -112,7 +112,7 @@ $scale-var: 1600 / 2560;
 	padding: 20px;
 	display: flex;
 	flex-wrap: wrap;
-	min-height: 80%;
+	min-height: 100%;
 	.game-bet-chat-content {
 		width: 100%;
 		padding-bottom: 10px;
@@ -123,7 +123,7 @@ $scale-var: 1600 / 2560;
 			flex-wrap: wrap;
 			padding-bottom: 10px;
 			.game {
-				
+				height: 300px;
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -152,6 +152,7 @@ $scale-var: 1600 / 2560;
 			.game-bet {
 				padding-bottom: 10px;
 				.game {
+					height: auto;
 					width: 70%;
 					padding-right: 10px;
 					padding-bottom: 0px;
@@ -168,12 +169,15 @@ $scale-var: 1600 / 2560;
 
 	@media only screen and (min-width: 1500px)
 	{
+
+		padding-bottom: 0;
 		.game-bet-chat-content {
 			width: 65%;
 			padding-right: 10px;
-			padding-bottom: 0px;
+			padding-bottom: 20px;
 			.game-bet {
 				padding-bottom: 10px;
+				min-height: 27vw;
 				.game {
 					width: 70%;
 					padding-right: 10px;
@@ -186,8 +190,11 @@ $scale-var: 1600 / 2560;
 		}
 		.players-content {
 			width: 35%;
+			padding-bottom: 20px;
 		}
+
 	}
+
 }
 
 .bg {

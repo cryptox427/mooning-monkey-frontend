@@ -59,10 +59,13 @@ $scale-var: 1600 / 2560;
 			display: flex;
 			vertical-align: middle;
 			align-items: center;
+			p {
+				margin: 0;
+			}
 			img {
 				width: 20px;
 				padding: 0;
-				margin-left: 10px;
+				margin-right: 10px;
 			}
 		}
 		.mult {
@@ -73,10 +76,14 @@ $scale-var: 1600 / 2560;
 			display: flex;
 			vertical-align: middle;
 			align-items: center;
+			p {
+				
+				margin: 0;
+			}
 			img {
 				width: 20px;
 				padding: 0;
-				margin-left: 10px;
+				margin-right: 10px;
 			}
 		}
 	}

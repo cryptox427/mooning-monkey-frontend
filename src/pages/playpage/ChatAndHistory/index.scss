@@ -15,7 +15,9 @@ $scale-var: 1600 / 2560;
         height: 100%;
         
         .left-nav {
-            height: calc((100% - 40px));
+            height: calc((100%));
+            width: 100%;
+            margin: 0 !important;
         }
         .nav-item {
             width: 100%;

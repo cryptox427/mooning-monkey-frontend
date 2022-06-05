@@ -5,11 +5,19 @@ import './index.scss';
 import {connect} from 'react-redux'
 import {getUserStats, addFriend} from '../../actions/userActions';
 
+const ChartDataType = [
+    'ALL',
+    'H',
+    'D',
+    'W',
+    'M'
+];
 const UserStatsModal = (props) => {
     const { show, onHide, userName, clickAddBtn } = props;
     const [userStats, setUserStats] = useState({
 
     });
+    const [chartDataType, setChartDataType] = useState(ChartDataType[0])
     const chartOptions = {
         chart: {
             type: 'area',
@@ -73,11 +81,10 @@ const UserStatsModal = (props) => {
           data: [30, 40, 45, 50, 49, 60, 70, 91]
         }
     ]
-
     return (
         <Modal show={show} onHide={onHide} className="monkey-modal stats-modal">
             <Modal.Header closeButton closeVariant='white'>
-                <Modal.Title><span>STATS</span></Modal.Title>
+                <Modal.Title><span>User Stats</span></Modal.Title>
 
             </Modal.Header>
             <Modal.Body>
@@ -85,131 +92,59 @@ const UserStatsModal = (props) => {
                 <p className="mt-3 poppin-light-txt"><span className="pink-monkey-text pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
 
                 <div className="change-box-bottom-btn mt-3 three-dif-btn">
-                    <button className="cta-btn cta-cancel first-btn poppin-bold-txt" style={{backgroundColor: "linear-gradient(90deg, #5BFE26 0%, #ADFD37 55.18%, #EFFC45 100%) !important", color: "black !important"}}>
+                    <button className="tip-btn">
                         Tip
                     </button>
-                    <button onClick={()=>clickAddBtn(userName)} className="cta-btn second-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #F044E8 0%, #6A51C9 100%) !important"}}>
+                    <button onClick={()=>clickAddBtn(userName)} className="cta-btn add-friend-btn">
                         + Add Friend
                     </button>
-                    <button className="cta-btn third-btn poppin-bold-txt" id="showToast" style={{backgroundColor: "linear-gradient(270deg, #FE8642 0%, #E7251F 100%) !important"}}>
+                    <button className="block-user-btn">
                         Block User
                     </button>
 
                 </div>
 
-                <div className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</div>
-
                 <ul className="pl-4 stauts-bullet">
-                <li>
-                    <div className="share_detail">
-                    <span>Users</span>
-                    <div>
-                        
-                        <span>{userStats.users}</span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Bets</span>
-                    <div>
-                    {userStats.bets}
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Bankroll</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X</span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Wagered</span>
-                    <div>
-                        ${userStats.wagered}
-                        
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Return to the player</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X </span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Investors profit</span>
-                    <div>
-                        ${userStats.investorProfit}
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Investors all-time high profit   </span>
-                    <div>
-                        ${userStats.investorProfitATH}
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Commission</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X </span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Total cashback</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X </span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Total winning bonus</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X </span>
-                    </div>
-                    
-                </div>
-                </li>
-                <li>
-                    <div className="share_detail">
-                    <span>Total Shared profit with the community</span>
-                    <div>
-                        <span style={{color: "#6968B8"}}>X %</span>
-                        <span> X </span>
-                    </div>
-                    
-                </div>
-                </li>
-                
-                
-                
+                    <li>
+                        <div className="share_detail">
+                            <span>Games Played:</span>
+                            <div>
+                                <span>{userStats.users}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="share_detail">
+                            <span>Total Wagered:</span>
+                            <div>
+                                <span>X{userStats.wagered}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="share_detail">
+                            <span>Net Profit:</span>
+                            <div>
+                                <span>+ X{userStats.investorProfit}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="share_detail">
+                            <span>Profit All Time High:</span>
+                            <div>
+                                <span>+ X{userStats.investorProfitATH}</span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div className="share_detail">
+                            <span>Profit All Time Low:</span>
+                            <div>
+                                <span>- X{userStats.investorProfitATH}</span>
+                            </div>
+                        </div>
+                    </li>
                 </ul>
 
 
@@ -217,12 +152,25 @@ const UserStatsModal = (props) => {
 
 
                 <div className="">
-                <div >
+                    <div className="chart-header">
+                        <h5 className="chart-title">Games played</h5>
+                        <div className="chart-data-type">
+                            {
+                                ChartDataType.map(data => 
+                                    <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
+                                        onClick={()=>setChartDataType(data)}>{data}</button>
+                                )
+                            }
+                        </div>
+                    </div>
                     <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
                 </div>
-                </div>
 
-                <p className="text-center">Interested in participating in the bankroll? Click <a href="#" className="pink-monkey-text">here </a>  to invest!</p>
+                <div className="total-info">
+                    <p className="detail">Average daily bet: 1,387</p>
+                    <p className="detail">Average weekly bet: 9,709</p>
+                    <p className="detail">Average monthly bet: 9,709</p>
+                </div>
             </Modal.Body>
         </Modal>
     );

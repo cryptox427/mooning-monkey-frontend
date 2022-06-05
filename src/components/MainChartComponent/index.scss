@@ -23,8 +23,9 @@
             object-fit: fill;
         }
         .graph-container {
+            
             .moon-graph {
-                margin-bottom: 20px;
+                padding-bottom: 20px;
             }
         }
     }
@@ -105,7 +106,6 @@
 .chart-bottom-btns{
     background-color: #252543;
     padding: 3px;
-    z-index: 99;
     position: relative;
     margin-top: -40px;
 }

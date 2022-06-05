@@ -19,18 +19,23 @@ const History = (props) => {
     const tabDataList = [
         {
             title: "All",
-            component: <HistoryTable/>,
+            component: <HistoryTable type=""/>,
             clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.ALL)
         },
         {
             title: "High Wins",
-            component: <HistoryTable/>,
+            component: <HistoryTable type=""/>,
             clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.HIGH_WINS)
         },
         {
             title: "Lucky Wins",
-            component: <HistoryTable/>,
+            component: <HistoryTable type=""/>,
             clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.LUCKY_WINS)
+        },
+        {
+            title: "My Wager",
+            component: <HistoryTable type="wager"/>,
+            clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.ALL)
         }
     ];
     return (

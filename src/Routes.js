@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useEffect } from 'react';
 import {connect} from 'react-redux'
 import Sidebar from "./Sidebar";
-import Header from "./pages/layouts/Header.js";
+import Header from "./pages/layouts/Header";
 import {setPopUp} from "./actions/gameActions";
 import './Route.scss';
 

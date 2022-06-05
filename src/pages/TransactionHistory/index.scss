@@ -51,7 +51,18 @@
             border: 1px solid #515189;
             color: white;
         }
-
+        .dropdown-toggle {
+            background-color: 	rgba(0, 128, 255, 0) !important;
+            &:hover {
+                background-color: rgba(0, 128, 255, 0) !important;
+            }
+            &:focus {
+                background-color: rgba(0, 128, 255, 0) !important;
+            }
+            &:active {
+                background-color: rgba(0, 128, 255, 0) !important;
+            }
+        }
         .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
             background-color: transparent;
             border: 1px solid #515189;
@@ -64,6 +75,36 @@
             &-status {
                 margin-left: 24px;
                 color: white;
+                font-family: Poppins-Light;
+            }
+            &-select {
+                padding: 10px 16px;
+                background-color: rgba(0, 0, 0, 0);
+                color: white;
+                -webkit-appearance:none; /* Safari and Chrome */
+                appearance:none;
+                border: 1px solid #515189;
+                &:visited {
+                    border: 1px solid #515189 !important;
+                }
+                &:focus {
+                    border: 1px solid #515189 !important;
+                }
+                &:active {
+                    border: 1px solid #515189 !important;
+                }
+                & > option {
+                    padding-top: 15px !important;
+                }
+            }
+            .record-count-select {
+                border-radius: 0;
+                span {
+                    display: none;
+                }
+                div {
+                    font-family: Poppins-Light;
+                }
             }
         }
 

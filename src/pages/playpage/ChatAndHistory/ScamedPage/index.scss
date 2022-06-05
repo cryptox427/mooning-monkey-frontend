@@ -42,13 +42,12 @@
             padding: 20px;
     
             color: white;
-            .cta-btn {
-                font-size: 14px;
-                cursor: pointer;
-                height: 30px;
-                padding: 0;
+            .understand-btn {
+                margin-right: auto;
+                width: fit-content;
+                padding: 12px 30px;
+                border: none;
                 font-family: Poppins-Light;
-                max-width: 200px;
             }
         }
     }

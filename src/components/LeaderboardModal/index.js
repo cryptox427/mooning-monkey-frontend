@@ -4,7 +4,7 @@ import './index.scss';
 import LeaderBoardTable from './LeaderBoardTable';
 import { Dropdown } from 'react-bootstrap';
 import Pagination from 'react-responsive-pagination';
-
+import Select from 'react-select';
 import {getLeaderBoards} from '../../actions/gameActions';
 
 let testData = [["ServerTest",1667.6875,7362.3125,8235,1,110],
@@ -85,6 +85,27 @@ const LeaderboardModal = (props) => {
     const onHideAction = () => {
         onHide()
     }
+    const tableRecodCountOptions = [
+        { value: 10, label: '10 Records' },
+        { value: 20, label: '20 Records' },
+        { value: 50, label: '50 Records' } 
+    ];
+    const recordTableStyle = {
+        option: (provided, state) => ({
+            ...provided,
+            color: 'black'
+        }),
+        control: (provided) => ({
+            ...provided,
+            backgroundColor: 'rgba(0, 0, 0, 0)',
+            borderRadius: '0',
+            borderColor: '#515189',
+        }),
+        singleValue: provided => ({
+            ...provided,
+            color: 'white'
+          })
+    }
     return (
         <Modal show={show} onHide={onHideAction} className="monkey-modal leaderboard-modal">
             <Modal.Header closeButton closeVariant='white'>
@@ -100,19 +121,11 @@ const LeaderboardModal = (props) => {
                 <div className='custom-table-bottom'>
                     <div className='custom-table-bottom-left'>
                         <React.Fragment>
-                            <div className='custom-table-bottom-left-select'>
-                                <Dropdown onSelect={(e)=>changeDisplayCount(e)}>
-                                    <Dropdown.Toggle id="dropdown-basic">
-                                        {displayCount} Records
-                                    </Dropdown.Toggle>
+                            <Select value={{label: `${displayCount} Records`, value: displayCount}} className="record-count-select"
+                                onChange={(e)=>changeDisplayCount(e.value)}
+                                options = {tableRecodCountOptions} styles = {recordTableStyle}>
 
-                                    <Dropdown.Menu>
-                                        <Dropdown.Item eventKey={10}>10 Records</Dropdown.Item>
-                                        <Dropdown.Item eventKey={20}>20 Records</Dropdown.Item>
-                                        <Dropdown.Item eventKey={50}>50 Records</Dropdown.Item>
-                                    </Dropdown.Menu>
-                                </Dropdown>
-                            </div>
+                            </Select>
                             <div className='custom-table-bottom-left-status'>{`Showing ${displayData.length} out of ${leaderBoardData.length}`}</div>
                         </React.Fragment>
                     </div>

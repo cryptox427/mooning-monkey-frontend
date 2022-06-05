@@ -76,3 +76,38 @@
     background-color: rgba(0, 0, 0, 0) !important;
     color: #FF01EB;
 }
+.display-under-error {
+    display: none;
+}
+.err-field {
+    .red-under-error {
+        color: red;
+    }
+    .display-under-error {
+        display: block;
+    }
+    .red-border-under-error {
+        border-color: red !important;
+    }
+    .red-outline-under-error {
+        outline-color: red !important;
+    }
+}
+.cta-btn{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    color: white !important;
+    display: flex;
+    padding: 8px 15px;
+    text-align: center;
+    line-height: 20px;
+    align-items: center;
+    gap: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    }
+    &:disabled {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(90deg, #4f3d81 4.11%, #913e8a 100%) !important;
+    }
+}

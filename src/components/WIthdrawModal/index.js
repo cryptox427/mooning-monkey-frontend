@@ -23,7 +23,10 @@ const WithdrawModal = (props) => {
     const [selectedTokenName, setSelectedTokenName] = useState(tokenNames[0]);
     const [balance, setBalance] = useState(0);
     const [showSelect, setShowSelect] = useState(false);
-    const [tokenAmount, setTokenAmount] = useState(0.01);
+    const [tokenAmount, setTokenAmount] = useState({
+        vale: 0,
+        error: null    
+    });
 
     const withdrawApiUrl = serverUrl + 'monkey-moon/withdraw.php';
 
@@ -33,26 +36,34 @@ const WithdrawModal = (props) => {
     };
 
     const onWithdraw = async () => {
-        const result = await withdraw(tokenIDs[selectedTokenName], tokenAmount);
-        if(result === "Success") {
-            window.alert("withdraw success");
-        }
-        else {
-            window.alert("withdraw failed");
-        }
+        const result = await withdraw(tokenIDs[selectedTokenName], tokenAmount.value);
         getMaxCredits();
     }
     const handleTokenAmount = (e) => {
-        let newValue = Math.min(e.target.value, maxCredits);
-        setTokenAmount(newValue)
+        validateAmountSet(e.target.value)
     }
-
-      
-    useEffect(async () => {
-        let newValue = Math.min(tokenAmount, maxCredits);
-        setTokenAmount(newValue)
+    const validateAmountSet = (value) => {
+        console.log(value)
+        let newValue = Math.max(value, 0);
+        let err = null;
+        if(newValue > maxCredits) {
+            err = "Insufficient amount"
+        }
+        setTokenAmount({
+            value: newValue,
+            error: err
+        })
+    }  
+    useEffect(() => {
+        validateAmountSet(tokenAmount.value)
     }, [maxCredits]);
-
+    useEffect(() => {
+        setTokenAmount({
+            value: 0,
+            error: null
+        })
+    }, [show]);
+    
     const gotoHistoryPage = () => {
         history.push("/transaction-history");
         changeCurrentPage("transaction-history");
@@ -94,30 +105,37 @@ const WithdrawModal = (props) => {
                 </div>
                 </div>
                 
-                <div className="dropdown-container">
+                <div className={`dropdown-container ${tokenAmount.error ? 'err-field' : ''}`}>
                     <div className="title">
-                        <h6 className="poppin-light-txt">Amount</h6>
-                        <div className="poppin-light-txt hint">WIthdrawable: <span className="poppin-light-txt">{maxCredits} {selectedTokenName} </span></div>    
+                        <h6 className="poppin-light-txt red-under-error">Amount</h6>
+                        <div className="poppin-light-txt hint red-under-error">WIthdrawable: <span className="poppin-light-txt">{maxCredits} {selectedTokenName} </span></div>    
                     </div>
                     
-                    <div className="dropdown-box p-2">
+                    <div className="dropdown-box p-2 red-border-under-error">
+                        
                         <div className="w-100 d-flex align-items-center justify-content-between p-1">
+                            <input type='number' className="token-amount poppin-bold-txt red-outline-under-error" value={tokenAmount.value} onChange={handleTokenAmount}  />
                             <div className="d-flex align-items-center justify-content-between">
                                 <img src={TakCoinImg} className="mr-2" width="25" alt="" />
                                 <h6 className="mb-0 amount-coin poppin-light-txt">{selectedTokenName}</h6>
                             </div>
-                            <div className="flex1 d-flex align-items-center">
-                                <input type='number' className="withdraw-amount poppin-bold-txt" value={tokenAmount} onChange={handleTokenAmount}  />
+                            <div className="flex1 d-flex align-items-center">          
                                     &nbsp;<span className="poppin-bold-txt">{selectedTokenName}</span>
-                                <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => setTokenAmount(maxCredits)}>MAX</div>
+                                <div className="mb-0 max-btn cursor-pointer poppin-light-txt" onClick={() => validateAmountSet(maxCredits)}>MAX</div>
+                            </div>
+                            
+                            <div className="display-under-error red-under-error error-alert">
+                                {tokenAmount.error}   
                             </div>
                         </div>
+
+                        
                     </div>
                 </div>
                  
-                <div className="cta-btn justify-content-center mt-4 poppin-light-txt" id="withdraw-btn" onClick={()=>onWithdraw()}>
+                <button disabled={tokenAmount.error ? true: false} className="cta-btn withdraw-btn justify-content-center poppin-light-txt" id="withdraw-btn" onClick={()=>onWithdraw()}>
                     Withdraw
-                </div>
+                </button>
                 <div className="mt-4 mb-1 justify-content-center">
                     <div onClick={()=>gotoHistoryPage()} className="text-light view-history-btn poppin-light-txt view-history" style={{textDecoration: "underline !important"}}>View History</div>
                 </div>

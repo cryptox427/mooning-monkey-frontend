@@ -26,10 +26,14 @@ $scale-var: 1600 / 2560;
             margin: 0;
         }
         padding: 0;
+        &:hover {
+            cursor: pointer;
+        }
     }
     @media only screen and (min-width: 1600px) {
         height: 155px * $scale-var;
     }
+    
 }
 
 .header {
@@ -380,7 +384,7 @@ $scale-var: 1600 / 2560;
             background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
         }
         .image-back {
-            background-image: url("../../assets/images/playpage/background.png");
+            background-image: url("../../../assets/images/playpage/background.png");
             background-color: rgba(42, 46, 104, 0.93);
             .mask {
                 

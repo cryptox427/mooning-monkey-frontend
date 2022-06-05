@@ -61,7 +61,7 @@ const LoginModal = (props) => {
             return;
         } 
         const data = {
-            userName: null,
+            userName: userData.userName,
             password: userData.password,
             publicKey: publicKey,
             refCode: null

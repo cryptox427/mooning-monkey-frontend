@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 
+
 const ManualBet = (props) => {
 
     const {maxCredits, betState, betRequest, gameState, gameResult, myRecentWin, stopBet, bettedMultiplier} = props;

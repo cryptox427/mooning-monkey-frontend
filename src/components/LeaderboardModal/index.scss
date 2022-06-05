@@ -38,6 +38,11 @@
                     }
                 }
             }
+            .record-count-select {
+                span {
+                    display: none;
+                }
+            }
             &-status {
                 font-size: 14px;
             }
