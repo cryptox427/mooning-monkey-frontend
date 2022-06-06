@@ -187,8 +187,8 @@ const ManualBet = (props) => {
                     </tr>
                     <tbody>
                     {
-                        myRecentWinsTestData.length > 0 &&
-                        myRecentWinsTestData.map((data, index) => 
+                        myRecentWin.length > 0 &&
+                        myRecentWin.map((data, index) => 
                             <tr>
                                 <td>$ {data.bet}</td>
                                 <td>{data.multiplier}X</td>
