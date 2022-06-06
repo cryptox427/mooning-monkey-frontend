@@ -1,6 +1,6 @@
 
 import {GET_MAX_CREDITS, GET_MAX_CREDITS_ERROR, BET_REQUEST, BET_SUCCESS, BET_ERROR, END_BET, 
-    STOP_BET_SUCCESS, STOP_BET_ERROR} from '../utils/types'
+    STOP_BET_SUCCESS, STOP_BET_ERROR, SET_AUTO_BET, STOP_AUTO_BET} from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
@@ -85,5 +85,15 @@ export const stopBet = ( ) => async dispatch => {
 export const endBet = () => async dispatch => {
     dispatch( {
         type: END_BET
+    })
+}
+export const setAutoBet = () => async dispatch => {
+    dispatch( {
+        type: SET_AUTO_BET
+    })
+}
+export const stopAutoBet = () => async dispatch => {
+    dispatch( {
+        type: STOP_AUTO_BET
     })
 }

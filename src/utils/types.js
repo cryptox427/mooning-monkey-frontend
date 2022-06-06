@@ -6,6 +6,8 @@ export const BET_ERROR = 'BET_ERROR';
 export const STOP_BET_SUCCESS = 'STOP_BET_SUCCESS';
 export const STOP_BET_ERROR = 'STOP_BET_ERROR';
 export const END_BET = 'END_BET';
+export const SET_AUTO_BET = 'SET_AUTO_BET';
+export const STOP_AUTO_BET = 'STOP_AUTO_BET';
 
 export const SET_PUBLICKEY = 'SET_PUBLICKEY';
 
@@ -54,6 +56,9 @@ export const SET_POPUP = 'SET_POPUP';
 export const ADD_FRIEND = 'ADD_FRIEND';
 
 export const CHANGE_GAME_STATE = 'CHANGE_GAME_STATE';
+
+export const SHOW_LOGIN_MODAL = 'SHOW_LOGIN_MODAL';
+export const HIDE_LOGIN_MODAL = 'HIDE_LOGIN_MODAL';
 
 export const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
 

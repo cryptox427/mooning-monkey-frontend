@@ -5,7 +5,7 @@ require('./db.php');
 $response = array();
 
 
-$sql = "SELECT users.publicKey, amount, multiplier, amount*multiplier as payout, crashgamebets.createDatetime FROM `crashgamebets` join `users` on `users`.`id` = `crashgamebets`.`userId` join `crashgame` on `crashgame`.`id` = `crashgamebets`.`gameId` where `crashgamebets`.`multiplier` <= `crashgame`.`result` ORDER BY (`crashgame`.`result` - multiplier) ASC LIMIT 10;";
+$sql = "SELECT users.username, users.publicKey, amount, multiplier, ROUND(amount*multiplier, 2) as payout, crashgamebets.createDatetime FROM `crashgamebets` join `users` on `users`.`id` = `crashgamebets`.`userId` join `crashgame` on `crashgame`.`id` = `crashgamebets`.`gameId` where `crashgamebets`.`multiplier` <= `crashgame`.`result` ORDER BY (`crashgame`.`result` - multiplier) ASC LIMIT 10;";
 $stmt = mysqli_stmt_init($con);
 mysqli_stmt_prepare($stmt,$sql);
 

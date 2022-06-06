@@ -64,11 +64,11 @@ const UserStatsModal = (props) => {
                 if(statsData.length > 0) {
                     setUserStats ({
                         ...userStats,
-                        users: statsData[0][0],
-                        bets: statsData[0][1],
-                        wagered: statsData[0][2],
-                        investorProfit: statsData[0][3],
-                        investorProfitATH: statsData[0][4]
+                        betAmount: statsData[0][0],
+                        totalWagered: statsData[0][1],
+                        netProfit: statsData[0][2],
+                        profitATH: statsData[0][3],
+                        profitATL: statsData[0][4]
                     })
                 }
             }
@@ -109,7 +109,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Games Played:</span>
                             <div>
-                                <span>{userStats.users}</span>
+                                <span>{userStats.betAmount}</span>
                             </div>
                         </div>
                     </li>
@@ -117,7 +117,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Total Wagered:</span>
                             <div>
-                                <span>X{userStats.wagered}</span>
+                                <span>X{userStats.totalWagered}</span>
                             </div>
                         </div>
                     </li>
@@ -125,7 +125,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Net Profit:</span>
                             <div>
-                                <span>+ X{userStats.investorProfit}</span>
+                                <span>+ X{userStats.netProfit}</span>
                             </div>
                         </div>
                     </li>
@@ -133,7 +133,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time High:</span>
                             <div>
-                                <span>+ X{userStats.investorProfitATH}</span>
+                                <span>+ X{userStats.profitATH}</span>
                             </div>
                         </div>
                     </li>
@@ -141,7 +141,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time Low:</span>
                             <div>
-                                <span>- X{userStats.investorProfitATH}</span>
+                                <span>- X{userStats.profitATL}</span>
                             </div>
                         </div>
                     </li>

@@ -94,10 +94,10 @@ const HistoryTable = (props) => {
                     
                     <tbody className="table-body">
                         {
-                            testData && 
+                            gameHistory && 
                             (
-                                testData.length > 0 &&
-                                testData.map((data, index) => 
+                                gameHistory.length > 0 &&
+                                gameHistory.map((data, index) => 
                                     <HistoryCell pay_type="bnb1" h_game="Crashgame" 
                                         h_address={data.address} 
                                         h_username={data.username} 

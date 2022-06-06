@@ -12,7 +12,9 @@ import {
         GET_LEADERBOARD_ERROR ,
         SET_POPUP,
         GET_ONLINE_PLEYERS_SUCCESS,
-        GET_ONLINE_PLEYERS_ERROR
+        GET_ONLINE_PLEYERS_ERROR,
+        SHOW_LOGIN_MODAL,
+        HIDE_LOGIN_MODAL
     } from '../utils/types'
 import axios from 'axios'
 
@@ -141,4 +143,16 @@ export const setPopUp = (popup) => {
     //     payload: popup
     // })
 
+}
+export const showLoginModal = () => dispatch => {
+    console.log("showLoginModal")
+    dispatch( {
+        type: SHOW_LOGIN_MODAL
+    })
+}
+export const hideLoginModal = () => dispatch => {
+    console.log("hideLoginModal")
+    dispatch( {
+        type: HIDE_LOGIN_MODAL
+    })
 }

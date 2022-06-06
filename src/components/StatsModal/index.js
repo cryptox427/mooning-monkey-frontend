@@ -8,7 +8,7 @@ import './index.scss';
 import MyStats from './MyStats'
 import GameStats from './GameStats'
 import {connect} from 'react-redux'
-import {getStats} from '../../actions/userActions';
+import {getStats, getUserStats} from '../../actions/userActions';
 
 const ChartDataType = [
     'ALL',
@@ -19,7 +19,9 @@ const ChartDataType = [
 ];
 const StatsModal = (props) => {
     const { show, onHide, stats, getStats, userName } = props;
-    const [chartDataType, setChartDataType] = useState(ChartDataType[0])
+    const [userStats, setUserStats] = useState({
+
+    });
     const chartOptions = {
         chart: {
             type: 'area',
@@ -67,6 +69,22 @@ const StatsModal = (props) => {
         },
         [show],
     );
+    const onClickMyStats = async () => {
+        const statsData = await getUserStats(userName)
+        if(statsData.length > 0) {
+            setUserStats ({
+                ...userStats,
+                betAmount: statsData[0][0],
+                totalWagered: statsData[0][1],
+                netProfit: statsData[0][2],
+                profitATH: statsData[0][3],
+                profitATL: statsData[0][4]
+            })
+        }
+    }
+    const onClickGameStats = async () => {
+        getStats()
+    }
     const chartSeries = [
         {
           name: "series-1",
@@ -80,17 +98,17 @@ const StatsModal = (props) => {
                 <Modal.Header closeButton closeVariant='white'>
                     <Nav variant="pills" className="nav-tabs modal-nav-tabs">
                         <Nav.Item>
-                            <Nav.Link eventKey="myStats">My Stats</Nav.Link>
+                            <Nav.Link onClick={()=>onClickMyStats()} eventKey="myStats">My Stats</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="gameStats">Game Stats</Nav.Link>
+                            <Nav.Link onClick={()=>onClickGameStats()} eventKey="gameStats">Game Stats</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Modal.Header>
                 <Modal.Body>
                     <Tab.Content>
                         <Tab.Pane eventKey="myStats">
-                            <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
+                            <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={userStats}/>
                         </Tab.Pane>
                         <Tab.Pane eventKey="gameStats">
                             <GameStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>

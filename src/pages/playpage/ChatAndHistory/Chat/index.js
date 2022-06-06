@@ -245,28 +245,28 @@ const Chat = (props) => {
                 <div className="chat-talks-content">
                     <div className="talks">
                     {
-                        // messages.length > 0 &&
-                        // messages.map((message) => {
-                        //         let messageParts = message.split(' | ');
+                        messages.length > 0 &&
+                        messages.map((message) => {
+                                let messageParts = message.split(' | ');
                                 
-                        //         let time = messageParts[0];
-                        //         let username = messageParts[1];
-                        //         let messageText = messageParts[2];
-                        //         if(messageParts.length>2) {
-                        //             return (
-                        //                 <TalkCell clickUserName={setShowStatsModal} t_time={time} t_name={username} t_content={messageText}/>
-                        //             )
-                        //         }
-                        //     }
-                        // )
-                        chatTestData.length > 0 &&
-                        chatTestData.map((chat, index) => {
-                            
-                                return (
-                                    <TalkCell clickUserName={setShowStatsModal} t_time={chat.time} t_name={chat.username} t_content={chat.messageText}/>
-                                )
+                                let time = messageParts[0];
+                                let username = messageParts[1];
+                                let messageText = messageParts[2];
+                                if(messageParts.length>2) {
+                                    return (
+                                        <TalkCell clickUserName={setShowStatsModal} t_time={time} t_name={username} t_content={messageText}/>
+                                    )
+                                }
                             }
                         )
+                        // chatTestData.length > 0 &&
+                        // chatTestData.map((chat, index) => {
+                            
+                        //         return (
+                        //             <TalkCell clickUserName={setShowStatsModal} t_time={chat.time} t_name={chat.username} t_content={chat.messageText}/>
+                        //         )
+                        //     }
+                        // )
                     }
                     </div>
                     {/* {<div className="mask"></div>} */}

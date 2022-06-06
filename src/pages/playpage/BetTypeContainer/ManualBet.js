@@ -6,12 +6,13 @@ import BottomLineInputComponent from "../../../components/BottomLineInputCompone
 
 import {connect} from 'react-redux'
 import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
+import {showLoginModal} from '../../../actions/gameActions'
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 
 
 const ManualBet = (props) => {
 
-    const {maxCredits, betState, betRequest, gameState, gameResult, myRecentWin, stopBet, bettedMultiplier} = props;
+    const {maxCredits, betState, betRequest, gameState, showLoginModal, logged, gameResult, myRecentWin, stopBet, bettedMultiplier} = props;
     const [betAmount, setBetAmount] = useState(1);
     const [multiplier, setMultiplier] = useState(1);
     const [cursorPos, setWaveState] = useState({});
@@ -37,6 +38,10 @@ const ManualBet = (props) => {
     }
     const clickPlayBtn = () => {
         console.log("clickPlayBtn")
+        if(!logged) {
+            showLoginModal()
+            return
+        }
         betRequest(betAmount, multiplier);
     }
     const clickStopBtn = () => {
@@ -146,8 +151,9 @@ const mapStateToProps  = (state) => (
         bettedMultiplier: state.betData.multiplier,
         gameState: state.betGameData.gameState,
         gameResult: state.betGameData.gameResult,
-        myRecentWin: state.userData.myRecentWin
+        myRecentWin: state.userData.myRecentWin,
+        logged: state.userData.logged
     }
 )
 
-export default connect(mapStateToProps, {getMaxCredits, betRequest, stopBet})(ManualBet)
+export default connect(mapStateToProps, {getMaxCredits, betRequest, stopBet, showLoginModal})(ManualBet)

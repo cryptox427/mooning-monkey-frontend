@@ -50,6 +50,8 @@
 
         }
 
+    }else{
+        echo "Not logged in!";
     }
 
 ?>

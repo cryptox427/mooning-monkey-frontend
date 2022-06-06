@@ -39,20 +39,21 @@ import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../../actions/betActions'
+import {showLoginModal, hideLoginModal} from '../../../actions/gameActions'
+
 import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../../actions/userActions'
 import {serverUrl} from '../../../utils/constant'
 import {ProfileModal} from '../ProfileModal'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins, logged, getRegisteredState, history } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, showLoginModal, hideLoginModal, displayLoginModal, logged, getRegisteredState, history } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
     const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
     const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
-    const [showLoginModal, setShowLoginModal] = useState(false);
     const [moneyType, setMoneyType] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
     const [walletAddress, setWalletAddress] = useState(null);
@@ -85,7 +86,9 @@ const Header = (props) => {
     });
 
     const onClickWalletBtn = () => {
-        setShowLoginModal(!logged)
+        if(!logged) {
+            showLoginModal()
+        }
     };
 
     const addWalletListener = () => {
@@ -139,7 +142,7 @@ const Header = (props) => {
     }, [status]);
     useEffect(() => {
         if (logged) {
-            setShowLoginModal(false)
+            hideLoginModal()
         }
     }, [logged]);
 
@@ -356,7 +359,7 @@ const Header = (props) => {
             <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
             <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
             <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
-            <LoginModal show={showLoginModal} onHide={() => setShowLoginModal(false)} />
+            <LoginModal show={displayLoginModal} onHide={() => hideLoginModal()} />
             
             <ToastContainer />
             
@@ -366,10 +369,11 @@ const Header = (props) => {
 
 const mapStateToProps  = (state) => (
     {
-        logged: state.userData.logged
+        logged: state.userData.logged,
+        displayLoginModal: state.betGameData.displayLoginModal
     }
 )
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits, getMyRecentWins, getRegisteredState})(Header)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, showLoginModal, hideLoginModal, getMyRecentWins, getRegisteredState})(Header)
 {/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                                         <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}

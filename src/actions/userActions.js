@@ -49,9 +49,10 @@ export const login = (userData) => async dispatch => {
         const res = await axios.post(`${serverUrl}check.php`, {
             data: userData
         });
-        setPopUp(res.data)
+        
         console.log("~~~~~~~~~login:", res, userData)
-        if(res.data === "login success") {
+        if(res.data === "Login success") {
+            setPopUp("Login success")
             dispatch( {
                 type: GET_LOGIN_REQUEST_SUCCESS
             })
@@ -62,6 +63,7 @@ export const login = (userData) => async dispatch => {
             
         }
         else {
+            setPopUp("Login failed")
             dispatch( {
                 type: GET_LOGIN_REQUEST_ERROR,
                 payload: console.log(res.data)
@@ -69,7 +71,7 @@ export const login = (userData) => async dispatch => {
         }
     }
     catch(e){
-        setPopUp(e.message)
+        setPopUp("Login failed")
         dispatch( {
             type: GET_LOGIN_REQUEST_ERROR,
             payload: console.log(e)

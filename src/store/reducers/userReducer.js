@@ -11,7 +11,13 @@ const initialState = {
     publicKey: 0,
     userName: "",
     myRecentWin: [],
-    stats: {},
+    stats: {
+        users: 0,
+        bets: 0,
+        wagered: 0,
+        investorProfit: 0,
+        investorProfitATH: 0
+    },
     userStats: [],
     currentPage: "play",
     logged: false,
@@ -91,8 +97,7 @@ const userReducer = (state = initialState, action) => {
             }
         case GET_STATS_ERROR:
         return {
-            ...state,
-            stats: []
+            ...state
         }
         case ADD_FRIEND:
             if(state.friends.includes(action.payload)) {

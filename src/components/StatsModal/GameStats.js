@@ -20,7 +20,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Users:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>{stats.users}</span>
                         </div>
                     </div>
                 </li>
@@ -28,7 +28,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Bets:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>{stats.bets}</span>
                         </div>
                     </div>
                 </li>
@@ -36,7 +36,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Bankroll:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>
@@ -44,7 +44,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Wagered:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>${Number(stats.wagered).toFixed(2)}</span>
                         </div>
                     </div>
                 </li>
@@ -52,7 +52,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Return to player:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>
@@ -60,7 +60,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Investors' profit:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>${Number(stats.investorProfit).toFixed(2)}</span>
                         </div>
                     </div>
                 </li>
@@ -68,7 +68,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Investors' all-time high profit:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>${Number(stats.investorProfitATH).toFixed(2)}</span>
                         </div>
                     </div>
                 </li>
@@ -76,7 +76,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Commission:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>
@@ -84,7 +84,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Total cashback:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>
@@ -92,7 +92,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Total winning bonus:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>
@@ -100,7 +100,7 @@ const GameStats = (props) => {
                     <div className="share_detail">
                         <span>Total shared profit with the community:</span>
                         <div>
-                            <span>x amount</span>
+                            <span>x</span>
                         </div>
                     </div>
                 </li>

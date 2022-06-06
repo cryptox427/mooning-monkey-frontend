@@ -9,6 +9,7 @@
     }
 }
 .play-chart {
+    height: 100%;
     .bg {
         position: relative;
         display: flex;
@@ -23,9 +24,12 @@
             object-fit: fill;
         }
         .graph-container {
-            
+            height: 100%;
             .moon-graph {
-                padding-bottom: 20px;
+                padding-bottom: 40px;
+                height: calc(100% - 40px);
+                min-height: 0 !important;
+                
             }
         }
     }

@@ -24,7 +24,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Games Played:</span>
                             <div>
-                                <span>{stats.users}</span>
+                                <span>{stats.betAmount}</span>
                             </div>
                         </div>
                     </li>
@@ -32,7 +32,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Total Wagered:</span>
                             <div>
-                                <span>X{stats.wagered}</span>
+                                <span>X{stats.totalWagered}</span>
                             </div>
                         </div>
                     </li>
@@ -40,7 +40,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Net Profit:</span>
                             <div>
-                                <span>+ X{stats.investorProfit}</span>
+                                <span>+ X{stats.netProfit}</span>
                             </div>
                         </div>
                     </li>
@@ -48,7 +48,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time High:</span>
                             <div>
-                                <span>+ X{stats.investorProfitATH}</span>
+                                <span>+ X{stats.profitATH}</span>
                             </div>
                         </div>
                     </li>
@@ -56,7 +56,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time Low:</span>
                             <div>
-                                <span>- X{stats.investorProfitATH}</span>
+                                <span>- X{stats.profitATL}</span>
                             </div>
                         </div>
                     </li>

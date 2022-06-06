@@ -9,15 +9,19 @@
         $username = mysqli_real_escape_string($con, $username);
         $username = str_replace("_","-",$username); // _ is not allowed in usernames
 
-        $email = stripslashes($parse_data['email']);
-        $email = mysqli_real_escape_string($con, $email);
+        if(array_key_exists("email",$parse_data)){
+            $email = stripslashes($parse_data['email']);
+            $email = mysqli_real_escape_string($con, $email);
+
+            $refCode = stripslashes($parse_data['refCode']);
+            $refCode = mysqli_real_escape_string($con, $refCode);
+        }
         
         $publicKey= stripslashes($parse_data['publicKey']);
         $publicKey= mysqli_real_escape_string($con, $publicKey);
         $password = stripslashes($parse_data['password']);
         $password = mysqli_real_escape_string($con, $password);
-        $refCode = stripslashes($parse_data['refCode']);
-        $refCode = mysqli_real_escape_string($con, $refCode);
+
         $alreadyExists = false;
 
         $sql = "SELECT * FROM `users` WHERE publicKey=?";
@@ -30,6 +34,7 @@
             $alreadyExists = true;
             break;
         }
+
   
         if(!$alreadyExists) {
             // PUBLIC KEY UNUSED
@@ -62,13 +67,20 @@
                     //session_register($publicKey);
 
                     $_SESSION['publicKey'] = $publicKey;
-                    echo "login success";
+                    echo "Login success";
+
+                    $query    = "INSERT into `lastlogin` (userId) VALUES ((SELECT id from users where publicKey = '" . $publicKey . "'))";
+                    $result   = mysqli_query($con, $query);
+
                 }else{
                     //PASSWORD IS NOT CORRECT
-                    echo "login faild";
+                    echo "Login failed";
                 }
+                break;
             }
   
         }
+    }else{
+        echo "No password and/or Wallet given";
     }
 ?>

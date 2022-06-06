@@ -6,14 +6,18 @@ import { BsFillExclamationCircleFill } from 'react-icons/bs';
 
 import InputComponent from '../../../components/InputComponent';
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
-import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
-import {setPopUp} from '../../../actions/gameActions'
+import {getMaxCredits, betRequest, setAutoBet, stopAutoBet} from '../../../actions/betActions'
+import {setPopUp, showLoginModal} from '../../../actions/gameActions'
 import BottomLineInputComponent from "../../../components/BottomLineInputComponent";
 import Tooltip from "../../../components/Tooltip";
 
+const valueUpdateType = {
+    INCREASE: 'INCREASE',
+    RESET: 'RESET'
+}
 let totalProfit = 0;
 const AutoBet = (props) => {
-    const {gameState, maxCredits, betState, gameResult} = props;
+    const {gameState, maxCredits, autoBetState, gameResult, showLoginModal, setAutoBet, betRequest, stopAutoBet, logged} = props;
     
     const [betAmount, setBetAmount] = useState(1);
     const [autoCashOut, setAutoCashOut] = useState(1);
@@ -32,30 +36,82 @@ const AutoBet = (props) => {
     const [stopOnProfit, setStopOnProfit] = useState(1);
     const [stopOnLoss, setStopOnLoss] = useState(1);
     const [infiniteMode, setInfiniteMode] = useState(false);
-    const [wasStarted, setWasStarted] = useState(false);
     const [originalBetAmount, setOriginalBetAmount] = useState(0);
+    const [btnState, setBtnState] = useState({
+        startBtn: {
+            display: true,
+            disable: false
+        }, 
+        stopBtn: {
+            display: false,
+            disable: false
+        }     
+    })
+    const doBet = () => {
+        betRequest(betAmount, autoCashOut)
+    }
+    const stopBet = () => {
+        setInfiniteMode(false)
+        stopAutoBet()
+    }
+    const updateAutoValues = () => {
+        let profit = 0;
+        if(gameResult >= autoCashOut) {
+            profit = betAmount * autoCashOut;
+            if(onWin.type === valueUpdateType.INCREASE) {
+                let _autoBetAmount = betAmount * (100 + onWin.amount) / 100;
+                setBetAmount(_autoBetAmount)
+            }
+            if(onWin.type === valueUpdateType.RESET) {
+                setBetAmount(originalBetAmount)
+            }
+        }
+        else {
+            profit = -betAmount;
+            if(onLoss.type === valueUpdateType.INCREASE) {
+                let _autoBetAmount = betAmount * (100 + onLoss.amount) / 100;
+                setBetAmount(_autoBetAmount)
+            }
+            if(onLoss.type === valueUpdateType.RESET) {
+                setBetAmount(originalBetAmount)
+            }
+        }
+        totalProfit += profit;
+    }
     useEffect(
         () => {
-            if(wasStarted) {    
+            if(autoBetState) {    
                 switch(gameState) {
+                    case GAME_STATE.RUNNING:
+
+                    break;
                     case GAME_STATE.CRASHED:
                         if(!infiniteMode) {
                             if(totalBets > 0) {
-                                setTotalBets(totalBets-1)
-                                checkUpdateAutoValues()
+                                
                             }
                             else {
-                                setWasStarted(false)
+                                stopBet()
                             }
-                        }          
-                        else {
-                            checkUpdateAutoValues()
-                        }              
+                        }
+                        updateAutoValues()
+                        if(totalProfit > originalBetAmount * stopOnProfit / 100 || totalProfit < -originalBetAmount * stopOnLoss / 100) {
+                            stopBet()
+                        }
                     break;
                     case GAME_STATE.WAITING:
-                        if(wasStarted) {
-                            if(!betState) {
-                                betRequest(betAmount, autoCashOut)
+                        if(autoBetState) {   
+                            if(infiniteMode) {
+                                doBet()
+                            }
+                            else {
+                                if(totalBets > 0) {
+                                    setTotalBets(totalBets - 1)
+                                    doBet()
+                                }
+                                else {
+                                    stopBet()
+                                }
                             }
                         }                        
                     break;
@@ -64,28 +120,65 @@ const AutoBet = (props) => {
         },
         [gameState],
     );
-    const checkUpdateAutoValues = () => {
-        if(gameResult > autoCashOut) {
-            if(onWin.reset) {
-                
+    useEffect(
+        () => {
+            if(autoBetState) {    
+                if(gameState === GAME_STATE.WAITING) {
+                    setBtnState({
+                        startBtn: {
+                            display: false,
+                            disable: false
+                        }, 
+                        stopBtn: {
+                            display: true,
+                            disable: false
+                        }
+                    })
+                }
             }
             else {
-
+                if(gameState === GAME_STATE.WAITING) {
+                    setBtnState({
+                        startBtn: {
+                            display: true,
+                            disable: false
+                        }, 
+                        stopBtn: {
+                            display: false,
+                            disable: false
+                        }
+                    })
+                }
+                else {
+                    setBtnState({
+                        startBtn: {
+                            display: true,
+                            disable: true
+                        }, 
+                        stopBtn: {
+                            display: false,
+                            disable: false
+                        }
+                    })
+                }
             }
-        }
-        else {
-
-        }
-    }
+        },
+        [gameState, autoBetState],
+    );
+    
     const clickAutoBetBtn = () => {
+        if(!logged) {
+            showLoginModal()
+            return;
+        }
         totalProfit = 0;
         if(betAmount > 0) {    
             setInfiniteMode(totalBets === 0)
             setOriginalBetAmount(betAmount)
-            setWasStarted(true)
-            if(!betState) {
+            if(!autoBetState) {
+                setAutoBet()
                 betRequest(betAmount, autoCashOut)
-            }
+            } 
         }
         else {
             setPopUp("Set bet amount")
@@ -96,8 +189,8 @@ const AutoBet = (props) => {
         totalProfit += profit;
     }
     const clickStopBtn = () => {
+        stopBet()
         totalProfit = 0;
-        setWasStarted(false)
     }
     const clickOnWinRadioBtn = (param) => {
         setOnWin({
@@ -189,8 +282,8 @@ const AutoBet = (props) => {
                         type="radio"
                         className="on-win-radio"
                         name="on-win-radio"
-                        value="reset"
-                        checked={onWin.type === "reset"}
+                        value={valueUpdateType.RESET}
+                        checked={onWin.type === valueUpdateType.RESET}
                         onChange={(e) => clickOnWinRadioBtn(e.target.value)}
                     >
                         Reset
@@ -200,8 +293,8 @@ const AutoBet = (props) => {
                         type="radio"
                         className="on-win-radio"
                         name="on-win-radio"
-                        value={"increase"}
-                        checked={onWin.type === "increase"}
+                        value={valueUpdateType.INCREASE}
+                        checked={onWin.type === valueUpdateType.INCREASE}
                         onChange={(e) => clickOnWinRadioBtn(e.target.value)}
                     >
                         Increase
@@ -224,8 +317,8 @@ const AutoBet = (props) => {
                             type="radio"
                             className="on-loss-radio"
                             name="on-loss-radio"
-                            value="reset"
-                            checked={onLoss.type === "reset"}
+                            value={valueUpdateType.RESET}
+                            checked={onLoss.type === valueUpdateType.RESET}
                             onChange={(e) => clickOnLossRadioBtn(e.target.value)}
                         >
                             Reset
@@ -235,8 +328,8 @@ const AutoBet = (props) => {
                             type="radio"
                             className="on-loss-radio"
                             name="on-loss-radio"
-                            value={"increase"}
-                            checked={onLoss.type === "increase"}
+                            value={valueUpdateType.INCREASE}
+                            checked={onLoss.type === valueUpdateType.INCREASE}
                             onChange={(e) => clickOnLossRadioBtn(e.target.value)}
                         >
                             Increase
@@ -291,27 +384,28 @@ const AutoBet = (props) => {
                 </Row>
             </div>
             {
-                wasStarted?
-                <MDBBtn className="play-button start-auto-bet" color='secondary'
-                        onClick={()=>clickStopBtn()}>
-                    <span>Stop Autobet</span></MDBBtn>
-                :
-                <MDBBtn className="play-button start-auto-bet" color='secondary'
-                        onClick={()=>clickAutoBetBtn()}>
-                    <span>Start Autobet</span></MDBBtn>
-                
+                btnState.startBtn.display &&
+                <MDBBtn disabled={btnState.startBtn.disable} className="play-button start-auto-bet" color='secondary'
+                    onClick={()=>clickAutoBetBtn()}>
+                <span>Start Autobet</span></MDBBtn>
             }
-            
+            {
+                btnState.stopBtn.display &&
+                <MDBBtn disabled={btnState.stopBtn.disable} className="play-button start-auto-bet" color='secondary'
+                    onClick={()=>clickStopBtn()}>
+                <span>Stop Autobet</span></MDBBtn>
+            }
         </div>
     );
 }
 const mapStateToProps  = (state) => (
     {
-        betState: state.betData.betState,
+        autoBetState: state.betData.autoBetState,
         maxCredits: state.betData.maxCredits,
         gameResult: state.betGameData.gameResult,
-        gameState: state.betGameData.gameState
+        gameState: state.betGameData.gameState,
+        logged: state.userData.logged
     }
 )
 
-export default connect(mapStateToProps, {betRequest})(AutoBet)
+export default connect(mapStateToProps, {betRequest, setAutoBet, stopAutoBet, showLoginModal})(AutoBet)

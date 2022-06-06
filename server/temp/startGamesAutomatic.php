@@ -7,7 +7,7 @@ require('./gameProgress.php');
 
 session_write_close(); // Allow multiple requests from same user
 
-$stepsPerSecond = 5;
+$stepsPerSecond = 10;
 
 $gameStartTime;
 $gameEndMultiplier;

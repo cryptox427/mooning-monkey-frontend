@@ -7,7 +7,9 @@ import {GET_ALL_BET_SUCCESS,
     GET_GAME_HISTORY_ERROR,
     SET_POPUP,
     GET_ONLINE_PLEYERS_SUCCESS,
-    GET_ONLINE_PLEYERS_ERROR
+    GET_ONLINE_PLEYERS_ERROR,
+    SHOW_LOGIN_MODAL,
+    HIDE_LOGIN_MODAL
 } from '../../utils/types';
 
 const initialState = {
@@ -18,7 +20,8 @@ const initialState = {
     loaded: false,
     gameResult: 0,
     popup: "",
-    gameState: GAME_STATE.WAITING
+    gameState: GAME_STATE.WAITING,
+    displayLoginModal: false
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -85,6 +88,16 @@ const gameReducer = (state = initialState, action) => {
         return {
             ...state,
             onlinePlayerCount: 0
+        }
+        case SHOW_LOGIN_MODAL:
+        return {
+            ...state,
+            displayLoginModal: true
+        }
+        case HIDE_LOGIN_MODAL:
+        return {
+            ...state,
+            displayLoginModal: false
         }
         default: return state
     }

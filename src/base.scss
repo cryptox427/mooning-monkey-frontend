@@ -71,6 +71,7 @@
     font-family: Poppins-Medium;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
     color: white;
+    border: none;
 }
 .pink-monkey-text {
     background-color: rgba(0, 0, 0, 0) !important;
@@ -104,6 +105,7 @@
     gap: 5px;
     padding-left: 30px;
     padding-right: 30px;
+    border: none !important;
     &:hover {
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
     }
