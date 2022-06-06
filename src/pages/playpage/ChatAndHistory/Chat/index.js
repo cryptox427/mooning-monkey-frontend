@@ -206,7 +206,7 @@ const Chat = (props) => {
         }
         
         setMessages(res.result.split('<///***br***///>'));
-        console.log("~~~~~~~getMesssage", res.result.split('<///***br***///>'), selectedCounty)
+        
     }
     const continueGetMessage = () => {
         getMesssage()

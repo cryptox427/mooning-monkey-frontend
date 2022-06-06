@@ -64,7 +64,7 @@ const StatsModal = (props) => {
     useEffect(
         () => {
             if(show) {
-                getStats()
+                onClickMyStats()
             }
         },
         [show],

@@ -24,11 +24,11 @@ const AutoBet = (props) => {
     const [totalBets, setTotalBets] = useState(1);
     const [onWin, setOnWin] = useState({
         amount: 1,
-        type: "increase"
+        type: valueUpdateType.INCREASE
     });
     const [onLoss, setOnLoss] = useState({
         amount: 1,
-        type: "increase"
+        type: valueUpdateType.INCREASE
     });
     const [firstData, setFirstData] = useState({
         cashOut: 0
@@ -204,6 +204,62 @@ const AutoBet = (props) => {
             type: param
         })
     }
+    const changeTotalBet = (value) => {
+        if(value === "") {
+            setTotalBets(0)
+        }
+        else {
+            setTotalBets(Number(value).toString())
+        }
+    }
+    const changeBetAmount = (value) => {
+        if(value === "") {
+            setBetAmount(0)
+        }
+        else {
+            setBetAmount(Number(value).toString())
+        }
+    }
+    const changeAutoCashout = (value) => {
+        if(value === "") {
+            setAutoCashOut(0)
+        }
+        else {
+            setAutoCashOut(Number(value).toString())
+        }
+    }
+    const changeOnWinValue = (value) => {
+        if(value === "") {
+            setOnWin({...onWin, amount: 0})
+        }
+        else {
+            setOnWin({...onWin, amount: Number(value).toString()})
+        }
+    }
+    const changeOnLossValue = (value) => {
+        if(value === "") {
+            setOnLoss({...onWin, amount: 0})
+        }
+        else {
+            setOnLoss({...onWin, amount: Number(value).toString()})
+        }
+    }
+    const changeStopOnProfit = (value) => {
+        if(value === "") {
+            setStopOnProfit(0)
+        }
+        else {
+            setStopOnProfit(Number(value).toString())
+        }
+    }
+    const changeStopOnLoss = (value) => {
+        if(value === "") {
+            setStopOnLoss(0)
+        }
+        else {
+            setStopOnLoss(Number(value).toString())
+        }
+    }
     const clickChangeBetAmountBtn = (multipleAmount) => {
         let _betAmount = 0;
         switch(multipleAmount) {
@@ -230,7 +286,7 @@ const AutoBet = (props) => {
                     <BottomLineInputComponent label="Bet Amount" 
                         className="fill-input moon-bet-input purple-bg-input-child" 
                         type="number" prefix="$" 
-                        valueChangeHandler={setBetAmount} 
+                        valueChangeHandler={changeBetAmount} 
                         defaultValue={betAmount} />
                 </div>
                 
@@ -248,7 +304,7 @@ const AutoBet = (props) => {
                         <BottomLineInputComponent label="Auto Cashout" 
                             className="fill-input moon-bet-input purple-bg-input-child" 
                             type="number" prefix="$" 
-                            valueChangeHandler={setAutoCashOut} 
+                            valueChangeHandler={changeAutoCashout} 
                             defaultValue={autoCashOut} />
                     </div>
                 </Col>
@@ -258,12 +314,15 @@ const AutoBet = (props) => {
                             <BottomLineInputComponent label="Total Bets" 
                                 className="fill-input moon-bet-input purple-bg-input-child" 
                                 type="number" prefix="$" 
-                                valueChangeHandler={setTotalBets} 
+                                valueChangeHandler={changeTotalBet} 
                                 defaultValue={totalBets} />
                         </div>
-                        <div className="sub-detail-content">
-                            <span className="detail">Ꚙ</span>
-                        </div>
+                        {
+                            totalBets <= 0 &&
+                            <div className="sub-detail-content">
+                                <span className="detail">Ꚙ</span>
+                            </div>
+                        }
                     </div>
                 </Col>
                 </Row>
@@ -272,7 +331,7 @@ const AutoBet = (props) => {
                 <BottomLineInputComponent label="On Win" 
                     className="fill-input moon-bet-input purple-bg-input-child" 
                     type="number" prefix="%" 
-                    valueChangeHandler={(amount)=>setOnWin({...onWin, amount: amount})} 
+                    valueChangeHandler={changeOnWinValue} 
                     defaultValue={onWin.amount} />
                 <div className="sub-detail-content">
                 <ButtonGroup>
@@ -307,7 +366,7 @@ const AutoBet = (props) => {
                 <BottomLineInputComponent label="On Loss" 
                     className="fill-input moon-bet-input purple-bg-input-child" 
                     type="number" prefix="%" 
-                    valueChangeHandler={(amount)=>setOnWin({...onLoss, amount: amount})} 
+                    valueChangeHandler={changeOnLossValue} 
                     defaultValue={onLoss.amount} />
                 <div className="sub-detail-content">
                     <ButtonGroup>
@@ -346,7 +405,7 @@ const AutoBet = (props) => {
                         <BottomLineInputComponent label="Stop On Profit" 
                             className="fill-input moon-bet-input purple-bg-input-child" 
                             type="number" prefix="%" 
-                            valueChangeHandler={setStopOnProfit} 
+                            valueChangeHandler={changeStopOnProfit} 
                             defaultValue={stopOnProfit} />
                     </div>
                     
@@ -367,7 +426,7 @@ const AutoBet = (props) => {
                         <BottomLineInputComponent label="Stop On Loss" 
                             className="fill-input moon-bet-input purple-bg-input-child" 
                             type="number" prefix="%" 
-                            valueChangeHandler={setStopOnLoss} 
+                            valueChangeHandler={changeStopOnLoss} 
                             defaultValue={stopOnLoss} />
                         
                     </div>

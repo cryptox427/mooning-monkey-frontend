@@ -368,11 +368,11 @@ const MainChartComponent = (props) => {
                     <div  className="graph-container">
                         {   
                             gameData.currentState === GAME_STATE.RUNNING &&
-                            <ReactApexChart className="moon-graph" height="90%" options={{...chartOptions, xaxis: {categories: testData.map(data => data.time)}}} series={[
+                            <ReactApexChart className="moon-graph" height="90%" options={{...chartOptions, xaxis: {categories: gameData.displayValues.map(data => data.time)}}} series={[
                                 {
                                     type: 'line',
                                     name: "series-1",
-                                    data: testData.map(data => data.crashValue)
+                                    data: gameData.displayValues.map(data => data.crashValue)
                                 }
                             ]}/>
                         }

@@ -99,7 +99,7 @@ const HistoryTable = (props) => {
                                 gameHistory.length > 0 &&
                                 gameHistory.map((data, index) => 
                                     <HistoryCell pay_type="bnb1" h_game="Crashgame" 
-                                        h_address={data.address} 
+                                        h_address={data.address.substring(0, 8)} 
                                         h_username={data.username} 
                                         h_time={data.gameDate} 
                                         h_wager={data.bet} 

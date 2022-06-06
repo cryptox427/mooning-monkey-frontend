@@ -32,7 +32,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Total Wagered:</span>
                             <div>
-                                <span>X{stats.totalWagered}</span>
+                                <span>{stats.totalWagered}</span>
                             </div>
                         </div>
                     </li>
@@ -40,7 +40,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Net Profit:</span>
                             <div>
-                                <span>+ X{stats.netProfit}</span>
+                                <span>+ {stats.netProfit}</span>
                             </div>
                         </div>
                     </li>
@@ -48,7 +48,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time High:</span>
                             <div>
-                                <span>+ X{stats.profitATH}</span>
+                                <span>+ {stats.profitATH}</span>
                             </div>
                         </div>
                     </li>
@@ -56,7 +56,7 @@ const MyStats = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time Low:</span>
                             <div>
-                                <span>- X{stats.profitATL}</span>
+                                <span>- {stats.profitATL}</span>
                             </div>
                         </div>
                     </li>

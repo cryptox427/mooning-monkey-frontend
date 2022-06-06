@@ -109,7 +109,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Games Played:</span>
                             <div>
-                                <span>{userStats.betAmount}</span>
+                                <span>{Number(userStats.betAmount).toFixed(2)}</span>
                             </div>
                         </div>
                     </li>
@@ -117,7 +117,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Total Wagered:</span>
                             <div>
-                                <span>X{userStats.totalWagered}</span>
+                                <span>{Number(userStats.totalWagered).toFixed(2)}</span>
                             </div>
                         </div>
                     </li>
@@ -125,7 +125,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Net Profit:</span>
                             <div>
-                                <span>+ X{userStats.netProfit}</span>
+                                <span>+ {Number(userStats.netProfit).toFixed(2)}</span>
                             </div>
                         </div>
                     </li>
@@ -133,7 +133,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time High:</span>
                             <div>
-                                <span>+ X{userStats.profitATH}</span>
+                                <span>+ {Number(userStats.profitATH).toFixed(2)}</span>
                             </div>
                         </div>
                     </li>
@@ -141,7 +141,7 @@ const UserStatsModal = (props) => {
                         <div className="share_detail">
                             <span>Profit All Time Low:</span>
                             <div>
-                                <span>- X{userStats.profitATL}</span>
+                                <span>- {Number(userStats.profitATL).toFixed(2)}</span>
                             </div>
                         </div>
                     </li>

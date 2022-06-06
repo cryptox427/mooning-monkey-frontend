@@ -9,7 +9,68 @@ import {getMaxCredits, betRequest, stopBet} from '../../../actions/betActions'
 import {showLoginModal} from '../../../actions/gameActions'
 import {GAME_STATE, betAmountMultiple} from '../../../utils/types'
 
-
+const myRecentWinsTestData = [
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    },
+    {
+        bet: 1,
+        multiplier: 1,
+        payout: 1
+    }
+]
 const ManualBet = (props) => {
 
     const {maxCredits, betState, betRequest, gameState, showLoginModal, logged, gameResult, myRecentWin, stopBet, bettedMultiplier} = props;
@@ -126,8 +187,8 @@ const ManualBet = (props) => {
                     </tr>
                     <tbody>
                     {
-                        myRecentWin.length > 0 &&
-                        myRecentWin.map((data, index) => 
+                        myRecentWinsTestData.length > 0 &&
+                        myRecentWinsTestData.map((data, index) => 
                             <tr>
                                 <td>$ {data.bet}</td>
                                 <td>{data.multiplier}X</td>
