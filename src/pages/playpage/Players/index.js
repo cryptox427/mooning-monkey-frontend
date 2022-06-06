@@ -1,11 +1,17 @@
 import {connect} from 'react-redux'
+import { useState, useEffect } from 'react';
 
 import './index.scss';
 import ContainerComponent from "../../../components/ContainerComponent";
 import PlayerCell from "./PlayerCell.js";
 
 const Players = (props) => {
-    const {allBets, gameResult} = props;
+    const {allBets, gameResult, onlinePlayerCount} = props;
+    const [totalBet, setTotalBet] = useState(0)
+    useEffect(() => {
+        let _totalBet = allBets.reduce((accumulator, current) => accumulator + current.amount, 0);
+        setTotalBet(_totalBet);
+    },[allBets]);
     return (
         <ContainerComponent>
             <div className="players">
@@ -29,9 +35,9 @@ const Players = (props) => {
                     </div>
                 </div>
                 <div className="total-info">
-                    <div>Online: 816</div>
-                    <div>Playing: 455</div>
-                    <div>Total Bet Amount: $23, 000</div>
+                    <div>Online: {onlinePlayerCount}</div>
+                    <div>Playing: {allBets.length}</div>
+                    <div>Total Bet Amount: ${totalBet}</div>
                 </div>
             </div>
             
@@ -42,7 +48,8 @@ const Players = (props) => {
 const mapStateToProps  = (state) => (
     {
         allBets: state.betGameData.allBets,
-        gameResult: state.betGameData.gameResult 
+        gameResult: state.betGameData.gameResult, 
+        onlinePlayerCount: state.betGameData.onlinePlayerCount 
     }
 )
 

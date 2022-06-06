@@ -5,11 +5,14 @@ import {GET_ALL_BET_SUCCESS,
     CHANGE_GAME_STATE,
     GET_GAME_HISTORY_SUCCESS,
     GET_GAME_HISTORY_ERROR,
-    SET_POPUP
+    SET_POPUP,
+    GET_ONLINE_PLEYERS_SUCCESS,
+    GET_ONLINE_PLEYERS_ERROR
 } from '../../utils/types';
 
 const initialState = {
     allBets: [],
+    onlinePlayerCount: 0,
     gameHistory: null,
     loading: false,
     loaded: false,
@@ -54,11 +57,13 @@ const gameReducer = (state = initialState, action) => {
             ...state,
             gameHistory: action.payload.map(historyData => 
                 {
-                    return { address: historyData[0], 
-                        bet: historyData[1], 
-                        multiplier:historyData[2], 
-                        payout:historyData[3], 
-                        gameDate:historyData[4]}
+                    return { 
+                        username: historyData[0],  
+                        address: historyData[1], 
+                        bet: historyData[2], 
+                        multiplier:historyData[3], 
+                        payout:historyData[4], 
+                        gameDate:historyData[5]}
                 })
         }
         case GET_GAME_HISTORY_ERROR:
@@ -70,6 +75,16 @@ const gameReducer = (state = initialState, action) => {
         return {
             ...state,
             popup: action.payload
+        }
+        case GET_ONLINE_PLEYERS_SUCCESS:
+        return {
+            ...state,
+            onlinePlayerCount: action.payload
+        }
+        case GET_ONLINE_PLEYERS_ERROR:
+        return {
+            ...state,
+            onlinePlayerCount: 0
         }
         default: return state
     }

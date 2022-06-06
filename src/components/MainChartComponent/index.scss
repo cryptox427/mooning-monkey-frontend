@@ -130,6 +130,121 @@
             }
         }
     }
+    .anim-sound-setting {
+        .title {
+            color: #F001F4;
+            font-family: Nurom;
+            font-size: 20px;
+        }
+        .prevent-drop {
+            left: 40px;
+            bottom: 0;
+        }
+        .animation-content {
+            margin-bottom: 10px;
+        }
+        .sound-content {
+            table {
+                width: 100%;
+                tr:nth-child(odd) {
+                    background-color: transparent !important;
+                }
+                tr:nth-child(even) {
+                    background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
+                }
+                td {
+                    padding: 5px 10px;
+                    color: white;
+                    font-family: Poppins-Light !important;
+                    font-size: 12px !important;
+                    &.setting-title {
+                        width: 80%;
+                    }
+                    &.setting-checkbox {
+                        width: 50px;
+                    }
+                    label {
+                        display: flex;
+                        vertical-align: middle;
+                        input[type="checkbox"] {
+                            display: none; /*hides ugly toggle*/
+                        }
+                        input[type="checkbox"] ~ span {
+                            position: relative;
+                            display: inline-block;
+                            width: 34px;
+                            height: 16px;
+                            background-color: transparent;
+                            border-radius: 17px;
+                            border: 1px solid white;
+                        }
+                        input[type="checkbox"]:checked ~ span {
+                            position: relative;
+                            display: inline-block;
+                            width: 34px;
+                            height: 16px;
+                            
+                            background-color: #F001F4;
+                            border-radius: 17px;
+                            border: none;
+                        }
+                        /*create our new toggle*/
+                        input[type="checkbox"] ~ span:before {
+                            content: ""; /*add a new check mark*/
+                            text-align: center;
+                            font-size: 13px;
+                            position: absolute;
+                            display: block;
+                            width: 12px;
+                            height: 12px;
+                            background: #22214D;
+                            color: #fff;
+                            margin-right: 5px;
+                            
+                            border: 1px solid #ccc;
+                            border-radius: 50%;
+                            left: 2px;
+                            top: 1px;
+                            box-sizing: border-box;
+                            transition: all 100ms ease-in-out;
+                        }
+                        /*if checked do this*/
+                        input[type="checkbox"]:checked ~ span:before {
+                            border: none;
+                            left: 19px;
+                            top: 2px;
+                        }
+                    }
+                }
+            }
+            .volume {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 10px;
+                .volume-scroll {
+                    display: flex;
+                    justify-self: center;
+                }
+            }
+        }
+        .radio-button-group {
+            display: flex;
+            justify-content: stretch;
+            .radio-button {
+                font-family: Nurom;
+                font-size: 12px;
+                padding: 10px 20px;
+                background-color: #393089;
+                border: none;
+                color: white;
+
+                &.selected {
+                    background-color: #F001F4;
+                }
+            }
+            
+        }
+    }
     svg{
         width: 16px;
         height: 16px;  

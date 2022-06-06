@@ -11,7 +11,7 @@ import { AiOutlineDoubleRight, AiOutlineDoubleLeft, AiFillTwitterCircle } from "
 import { BsPlay, BsMenuButton, BsDiscord } from "react-icons/bs";
 import { BiTransferAlt, BiStar, BiPencil } from "react-icons/bi";
 
-import { SiSurveymonkey, SiLinktree, SiNotion } from "react-icons/si";
+import { SiSurveymonkey, SiLinktree, SiNotion, SiTwitter } from "react-icons/si";
 import { GiReceiveMoney, GiTrophyCup, GiSailboat } from "react-icons/gi";
 import { FiUsers } from "react-icons/fi";
 import { GrDocumentText } from "react-icons/gr";
@@ -171,10 +171,12 @@ const Sidebar = (props) => {
             }}
           >
             <a href='https://discord.gg/MooningMonkey' target="_blank" rel="noopener noreferrer"><BsDiscord className="sidebar-foot-btn"/></a>
-            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><FaDove className="sidebar-foot-btn"/></a>
+            <a href='https://twitter.com/MooningMonkeys' target="_blank" rel="noopener noreferrer"><SiTwitter className="sidebar-foot-btn"/></a>
             
-            <a href='https://opensea.io/collection/officialmooningmonkey' target="_blank" rel="noopener noreferrer"><GiSailboat className="sidebar-foot-btn"/></a>
-            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><SiLinktree className="sidebar-foot-btn"/></a>
+            <a href='https://opensea.io/collection/officialmooningmonkey' target="_blank" rel="noopener noreferrer">
+              <GiSailboat className="sidebar-foot-btn"/>
+            </a>
+            <a href='https://linktr.ee/MooningMonkeyOfficial' target="_blank" rel="noopener noreferrer"><SiLinktree className="sidebar-foot-btn"/></a>
             <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><SiNotion className="sidebar-foot-btn"/></a>
           </div>
         </CDBSidebarFooter>

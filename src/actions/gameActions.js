@@ -10,7 +10,9 @@ import {
         GET_GAME_HISTORY_ERROR,
         GET_LEADERBOARD_SUCCESS,
         GET_LEADERBOARD_ERROR ,
-        SET_POPUP
+        SET_POPUP,
+        GET_ONLINE_PLEYERS_SUCCESS,
+        GET_ONLINE_PLEYERS_ERROR
     } from '../utils/types'
 import axios from 'axios'
 
@@ -53,7 +55,24 @@ export const getAllBets = () => async dispatch => {
         })
     }
 }
-
+export const getOnlinePlayerCount = () => async dispatch => {
+    try{
+        console.log("~~~~~~~~~getOnlinePlayerCount")
+        const res = await axios.get(`${serverUrl}getOnline.php`);
+        console.log("~~~~~~~~~getOnlinePlayerCount:", res.data)
+        dispatch( {
+            type: GET_ONLINE_PLEYERS_SUCCESS,
+            payload: res.data
+        })
+        
+    }
+    catch(e){
+        dispatch( {
+            type: GET_ONLINE_PLEYERS_ERROR,
+            payload: console.log(e),
+        })
+    }
+}
 export const getHistoryData = (historyType) => async (dispatch) => {
     let apiUrl = "";
     switch(historyType) {

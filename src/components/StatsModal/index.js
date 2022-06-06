@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import {Tab, Nav} from 'react-bootstrap';
 import './index.scss';
+
+
+import MyStats from './MyStats'
+import GameStats from './GameStats'
 import {connect} from 'react-redux'
 import {getStats} from '../../actions/userActions';
 
@@ -72,92 +76,30 @@ const StatsModal = (props) => {
 
     return (
         <Modal show={show} onHide={onHide} className="monkey-modal stats-modal">
-            <Tab.Container id="left-tabs-example" defaultActiveKey="deposit">
+            <Tab.Container id="left-tabs-example" defaultActiveKey="myStats">
                 <Modal.Header closeButton closeVariant='white'>
                     <Nav variant="pills" className="nav-tabs modal-nav-tabs">
                         <Nav.Item>
-                            <Nav.Link eventKey="deposit">My Stats</Nav.Link>
+                            <Nav.Link eventKey="myStats">My Stats</Nav.Link>
                         </Nav.Item>
                         <Nav.Item>
-                            <Nav.Link eventKey="withdraw">Game Stats</Nav.Link>
+                            <Nav.Link eventKey="gameStats">Game Stats</Nav.Link>
                         </Nav.Item>
                     </Nav>
                 </Modal.Header>
+                <Modal.Body>
+                    <Tab.Content>
+                        <Tab.Pane eventKey="myStats">
+                            <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
+                        </Tab.Pane>
+                        <Tab.Pane eventKey="gameStats">
+                            <GameStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
+                        </Tab.Pane>
+                    
+                    </Tab.Content>
+                </Modal.Body>
             </Tab.Container>
-            <Modal.Body>
-                <h5 className="title-midle mb-3 poppin-bold-txt">{userName}</h5>
-                <p className="mt-3 poppin-light-txt"><span className="pink-monkey-text pr-2 poppin-light-txt">Joined:</span>Thu Oct 15 2020[11 months ago]</p>
-                
-
-                <ul className="pl-4 stauts-bullet">
-                    <li>
-                        <div className="share_detail">
-                            <span>Games Played:</span>
-                            <div>
-                                <span>{stats.users}</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="share_detail">
-                            <span>Total Wagered:</span>
-                            <div>
-                                <span>X{stats.wagered}</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="share_detail">
-                            <span>Net Profit:</span>
-                            <div>
-                                <span>+ X{stats.investorProfit}</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="share_detail">
-                            <span>Profit All Time High:</span>
-                            <div>
-                                <span>+ X{stats.investorProfitATH}</span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div className="share_detail">
-                            <span>Profit All Time Low:</span>
-                            <div>
-                                <span>- X{stats.investorProfitATH}</span>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-
-
-                <p className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
-
-
-                <div className="">
-                    <div className="chart-header">
-                        <h5 className="chart-title">Games played</h5>
-                        <div className="chart-data-type">
-                            {
-                                ChartDataType.map(data => 
-                                    <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
-                                        onClick={()=>setChartDataType(data)}>{data}</button>
-                                )
-                            }
-                        </div>
-                    </div>
-                    <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
-                
-                </div>
-
-                <div className="total-info">
-                    <p className="detail">Average daily bet: 1,387</p>
-                    <p className="detail">Average weekly bet: 9,709</p>
-                    <p className="detail">Average monthly bet: 9,709</p>
-                </div>
-            </Modal.Body>
+            
         </Modal>
     );
 }
