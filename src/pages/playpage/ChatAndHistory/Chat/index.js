@@ -12,11 +12,33 @@ import { MDBTooltip } from 'mdb-react-ui-kit';
 import {serverUrl} from '../../../../utils/constant'
 import {request} from '../../../../utils/request';
 import emoji from '../../../../assets/images/playpage/emoji.png';
-import estoniaFlag from '../../../../assets/images/playpage/country1.png';
-import englishFlag from '../../../../assets/images/flags/english.svg';
-import frenchFlag from '../../../../assets/images/flags/french.svg';
-import germanFlag from '../../../../assets/images/flags/german.svg';
-import spanishFlag from '../../../../assets/images/flags/spanish.svg';
+
+import albanian from '../../../../assets/Flags/albanian.svg';
+import arabic from '../../../../assets/Flags/arabic.svg';
+import armenian from '../../../../assets/Flags/armenian.svg';
+import bengali from '../../../../assets/Flags/bengali.svg';
+import bosnian from '../../../../assets/Flags/bosnian.svg';
+import bulgarian from '../../../../assets/Flags/bulgarian.svg';
+import estoniaFlag from '../../../../assets/Flags/albanian.svg';
+import china from '../../../../assets/Flags/china.svg';
+import croatian from '../../../../assets/Flags/croatian.svg';
+import czech from '../../../../assets/Flags/czech.svg';
+import denmark from '../../../../assets/Flags/denmark.svg';
+import dutch from '../../../../assets/Flags/dutch.svg';
+import english from '../../../../assets/Flags/english.svg';
+import estonia from '../../../../assets/Flags/estonia.svg';
+import farsi from '../../../../assets/Flags/farsi.svg';
+import filipino from '../../../../assets/Flags/filipino.svg';
+import finland from '../../../../assets/Flags/finland.svg';
+import french from '../../../../assets/Flags/french.svg';
+import german from '../../../../assets/Flags/german.svg';
+import greek from '../../../../assets/Flags/greek.svg';
+import help from '../../../../assets/Flags/help.svg';
+import hungarian from '../../../../assets/Flags/hungarian.svg';
+import india from '../../../../assets/Flags/india.svg';
+import indonesia from '../../../../assets/Flags/indonesia.svg';
+import israel from '../../../../assets/Flags/israel.svg';
+
 import './index.scss';
 import TalkCell from './TalkCell';
 import InfoBox from '../../../../components/InfoBox';
@@ -30,11 +52,32 @@ const renderTooltip = (props) => (
     </MDBTooltip>
 );
 let messageCounter = null;
+
 const countries = {
-    english: englishFlag,
-    german: germanFlag,
-    french: frenchFlag,
-    spanish: spanishFlag
+    albanian: albanian,
+    arabic: arabic,
+    armenian: armenian,
+    bengali: bengali,
+    bosnian: bosnian,
+    bulgarian: bulgarian,
+    china: china,
+    croatian: croatian,
+    czech: czech,
+    denmark: denmark,
+    dutch: dutch,
+    english: english,
+    estonia: estonia,
+    farsi: farsi,
+    filipino: filipino,
+    finland: finland,
+    french: french,
+    german: german,
+    greek: greek,
+    help: help,
+    hungarian: hungarian,
+    india: india,
+    indonesia: indonesia,
+    israel: israel
 }
 const chatTestData = [
     {
@@ -61,7 +104,7 @@ const chatTestData = [
 const testStr = ['2022-05-22 20:43:47 | ServerTest | Whats up?', '2022-05-22 20:43:47 | ServerTest | afasd', '2022-05-23 17:34:15 | ServerTest | Hi', '2022-05-23 18:24:18 | test2 | Hi', '2022-05-23 18:24:24 | test2 | afdasfasf', '2022-05-23 20:34:28 | test2 | ', '2022-05-23 20:45:11 | test2 | ', '2022-05-26 11:38:56 | Ampeldruecker | afdasfasf', '2022-05-26 11:51:21 | Ampeldruecker | sd', '2022-05-26 11:51:21 | Ampeldruecker | sd', '']
 
 const Chat = (props) => {
-    const { userName } = props;
+    const { userName, logged } = props;
     const [messages, setMessages] = useState([]);
     const [selectedCountries, setSelectedCountries] = useState([]);
     const [friends, setFriends] = useState([]);
@@ -341,10 +384,12 @@ const Chat = (props) => {
                     <FiPaperclip className="paper-clip"/>
                     
                     <input onKeyPress={(e) => {
-                        if (e.key === "Enter") {
-                            sendMessage()
-                        }
-                    }} onChange={(e) => setMessage(e.target.value)} value={meMessage} className="message-write-content" placeholder="Type something here..."></input>
+                            if (e.key === "Enter") {
+                                sendMessage()
+                            }
+                        }} 
+                        onChange={(e) => setMessage(e.target.value)} value={meMessage} className="message-write-content" 
+                        placeholder={logged?"Type something here...":"You must be logged in to chat"}></input>
                     <div className="send-button" onClick={()=>sendMessage()}>
                         <IoMdSend/>
                     </div>
@@ -362,6 +407,11 @@ const Chat = (props) => {
                             }
                         </div>
                     </InfoBox>
+                    {
+                        !logged &&
+                        <div className="input-mask"></div>
+                    }
+                    
                 </div>
             </div>
             <UserStatsModal clickAddBtn={addFriend} show={statsModalData.display} userName={statsModalData.userName} onHide={() => setShowStatsModal({...statsModalData, display: false})} />
@@ -371,7 +421,8 @@ const Chat = (props) => {
 
 const mapStateToProps  = (state) => (
     { 
-        userName: state.userData.userName
+        userName: state.userData.userName,
+        logged: state.userData.logged
     }
 )
 export default connect(mapStateToProps, {})(Chat)

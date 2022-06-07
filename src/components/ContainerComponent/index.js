@@ -2,9 +2,9 @@ import React from 'react';
 import './index.css';
 
 const ContainerComponent = (props) => {
-    const { children } = props;
+    const { children, className } = props;
     return (
-        <div className='custom-container'>
+        <div className={`custom-container ${className}`}>
             {children}
         </div>
     )

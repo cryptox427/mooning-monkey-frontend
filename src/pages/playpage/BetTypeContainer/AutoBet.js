@@ -29,7 +29,7 @@ function usePrevious(value) {
     return ref.current;
   }
 const AutoBet = (props) => {
-    const {gameState, maxCredits, autoBetState, gameResult, showLoginModal, setAutoBet, betRequest, stopAutoBet, logged} = props;
+    const {gameState, maxCredits, autoBetState, gameResult, showLoginModal, myRecentWin, setAutoBet, betRequest, stopAutoBet, logged} = props;
     
     const [betAmount, setBetAmount] = useState(1);
     const [autoCashOut, setAutoCashOut] = useState(1);
@@ -331,7 +331,7 @@ const AutoBet = (props) => {
     return (
         <div className="auto-bet bet-info">
             <div className="bet-amount bet-detail">
-                <div className="auto-cashout bet-detail">
+                <div className="auto-cashout">
                     <BottomLineInputComponent label="Bet Amount" 
                         className="fill-input moon-bet-input purple-bg-input-child" 
                         type="number" prefix="$" 
@@ -346,7 +346,7 @@ const AutoBet = (props) => {
                     <span className="detail amount-change-btn" tabindex="4" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.min)}>Min</span>
                 </div>
             </div>
-            <div className="bet-detail">
+            <div className="">
                 <Row>
                 <Col>
                     <div className="auto-cashout bet-detail">
@@ -446,7 +446,7 @@ const AutoBet = (props) => {
                 </div>
             </div>
             
-            <div className="bet-detail">
+            <div className="">
                 <Row>
                 <Col>
                 <div className="bet-detail">
@@ -503,6 +503,34 @@ const AutoBet = (props) => {
                     onClick={()=>clickStopBtn()}>
                 <span>Stop Autobet</span></MDBBtn>
             }
+            <div className="my-recent-wins">
+                <div className="title"><span>My Recent Wins</span></div>
+                <div className="data-content">
+                    <div className="data-header">
+                        <div className="detail">Wager</div>
+                        <div className="detail">Multi</div>
+                        <div className="detail">Payout</div>
+                    </div>
+                    <div className="data-list">
+                        <table className="table">
+                            <tbody>
+                            {
+                                myRecentWin.length > 0 &&
+                                myRecentWin.map((data, index) => 
+                                    <tr>
+                                        <td>$ {data.bet}</td>
+                                        <td>{data.multiplier}X</td>
+                                        <td>$ {Number(data.payout).toFixed(2)}</td>
+                                    </tr>
+                                )
+                            }
+                            
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
@@ -512,6 +540,7 @@ const mapStateToProps  = (state) => (
         maxCredits: state.betData.maxCredits,
         gameResult: state.betGameData.gameResult,
         gameState: state.betGameData.gameState,
+        myRecentWin: state.userData.myRecentWin,
         logged: state.userData.logged
     }
 )

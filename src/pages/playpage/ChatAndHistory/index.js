@@ -16,7 +16,7 @@ const ChatAndHistory = (props) => {
         setScamed(false);
     }
     return (
-        <ContainerComponent>
+        <ContainerComponent className="height-100-p">
             <div className="chat-and-history">
                 <Tab.Container id="left-tabs-example" defaultActiveKey="chat">
                     <div className="left-btns">

@@ -13,16 +13,16 @@ const Players = (props) => {
         setTotalBet(_totalBet);
     },[allBets]);
     return (
-        <ContainerComponent>
+        <ContainerComponent className="height-100-p">
             <div className="players">
                 <div>
-                    <div className="title">players</div>
+                    <div className="title">Players</div>
                     <div className="player-table">
                         <table className="table">
                             <tr>
                                 <th className="h-player">Players: {allBets.length}</th>
                                 <th className="h-wager">Wager</th>
-                                <th className="h-multi">Multiplayer</th>
+                                <th className="h-multi">Mult</th>
                                 <th className="h-payout">Payout</th>
                             </tr>
                             {

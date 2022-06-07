@@ -8,7 +8,7 @@ import './index.scss';
 
 const BetTypeContainer = (props) => {
     return (
-      <ContainerComponent>
+      <ContainerComponent className="height-100-p">
         <div className="w-80 m-auto flex flex-col bet-type">
             <div className="title">Bet Type</div>
 

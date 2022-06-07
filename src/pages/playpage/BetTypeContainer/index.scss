@@ -32,93 +32,97 @@ $scale-var: 1600 / 2560;
 }
 .moon-bet-input {
 	.md-form.md-bg .form-control {
-		padding-bottom: 5px !important;
-		padding-left: 24px !important;
+		padding-bottom: 4px !important;
+		padding-left: 26px !important;
+		padding-top: 16px !important;
 		color: white;
+		font-size: 14px;
+		font-family: Poppins-Regular;
 	}
 }
 .bet-type {
 	
 	align-items: center;
 	padding: 10px 5% !important;
-	.manual-bet {
-		.my-recent-wins {
-			margin-top: 15px * $scale-var;
-			overflow-y: auto;
-			overflow-x: hidden;
-			.title {
-				color: white;
-				border: none;
+	.auto-bet {
+
+	}
+	.my-recent-wins {
+		margin-top: 15px * $scale-var;
+		overflow-y: auto;
+		overflow-x: hidden;
+		.title {
+			color: white;
+			border: none;
+			font-size: 12px;
+			font-weight: bold;
+			text-align: center;
+			background: linear-gradient(90deg, #3C3C97 0%, #363075 100%);
+			height: 30px;
+			position: relative;
+			margin: 0;
+			span {
+				font-family: Nurom;
 				font-size: 12px;
-				font-weight: bold;
-				text-align: center;
-				background: linear-gradient(90deg, #3C3C97 0%, #363075 100%);
-				height: 30px;
-				position: relative;
-				margin: 0;
-				span {
-					font-family: Nurom;
+				position: absolute;
+				transform: translate(-50%, -50%);
+				top: 50%;
+				left: 50%;
+				white-space: nowrap;
+			}
+		}
+		.data-content {
+			.data-header {
+				margin-top: 10px;
+				display: flex;
+				.detail {
+					padding: 0 10px;
+					width: 33%;
+					color: white;
+					font-family: Poppins-SemiBold;
 					font-size: 12px;
-					position: absolute;
-					transform: translate(-50%, -50%);
-					top: 50%;
-					left: 50%;
-					white-space: nowrap;
 				}
 			}
-			.data-content {
-				.data-header {
-					margin-top: 10px;
-					display: flex;
-					.detail {
-						padding: 0 10px;
-						width: 33%;
-						color: white;
+			.data-list {
+				margin-top: 10px;
+				overflow-y: auto;
+				.table {
+					
+					width: 100%;
+					margin-bottom: 0 !important;
+					th {
 						font-family: Poppins-SemiBold;
-						font-size: 12px;
+						font-weight: semi-bold;
+						font-size: 17px * $scale-var;
+						height: 50px * $scale-var;
+						padding-left: 15px;
+						border: none;
 					}
-				}
-				.data-list {
-					margin-top: 10px;
-					overflow-y: auto;
-					.table {
+					tr {
+						border: none;
+						color: white;
+						height: 42px * $scale-var;
 						
-						width: 100%;
-						margin-bottom: 0 !important;
-						th {
-							font-family: Poppins-SemiBold;
-							font-weight: semi-bold;
-							font-size: 17px * $scale-var;
-							height: 50px * $scale-var;
-							padding-left: 15px;
-							border: none;
-						}
-						tr {
-							border: none;
-							color: white;
-							height: 42px * $scale-var;
-							
-						}
-						td {
-							width: 33%;
-							padding: 6px;
-							padding-left: 15px;
-							border: none;
-							font-family: Poppins-Regular;
-							font-size: 17px * $scale-var;
-						}
-						tr:nth-child(odd) {
-							background-color: #3C3C97;
-						}
-						td:nth-child(even) {
-							color: #78FF15;
-						}
+					}
+					td {
+						width: 33%;
+						padding: 6px;
+						padding-left: 15px;
+						border: none;
+						font-family: Poppins-Regular;
+						font-size: 17px * $scale-var;
+					}
+					tr:nth-child(odd) {
+						
+					}
+					td:nth-child(even) {
+						color: #78FF15;
 					}
 				}
-				
 			}
 			
 		}
+		
 	}
 	
 	@media only screen and (min-width: 992px)
@@ -148,7 +152,26 @@ $scale-var: 1600 / 2560;
 				
 			}
 		}
-		
+		.auto-bet {
+			display: flex;
+			flex-direction: column;
+			justify-content: stretch;
+			.my-recent-wins {
+				
+				.data-content {
+					
+					.data-list {
+						position: absolute;
+						left: 5%;
+						right: 5%;
+						bottom: 10px;
+						top: 456px;
+					}
+					
+				}
+				
+			}
+		}
 	}
 	.title {
 		color: #5C52C6;
@@ -172,9 +195,10 @@ $scale-var: 1600 / 2560;
 	.nav-tabs {
 		.nav-item {
 			width: 50%;
-			height: 47px * $scale-var;
+			height: 36px;
 			border: none;
 			.nav-link {
+				padding: 0;
 				height: 100%;
 				width: 100%;
 				background-color: #322C76 !important;
@@ -196,7 +220,6 @@ $scale-var: 1600 / 2560;
 	.tab-content {
 		width: 100%;
 		.tab-pane {
-			margin-top: 24px * $scale-var;
 			width: 100%;
 		}
 	}
@@ -206,7 +229,7 @@ $scale-var: 1600 / 2560;
 	.bet-detail {
 		width: 100%;
 		position: relative;
-		
+		margin-top: 10px;
 		.title {
 			color: white;
 			font-family: Poppins-Regular;
@@ -328,13 +351,12 @@ $scale-var: 1600 / 2560;
 	}
 	.bet-amount {
 		
-		background-color: #3C3C97;
+		
 		width: 100%;
 		height: 66px * $scale-var;
 	}
 	.auto-cashout {
-		margin-top: 15px * $scale-var;
-		background-color: #3C3C97;
+		
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;
@@ -370,7 +392,7 @@ $scale-var: 1600 / 2560;
 	}
 	.bet-info-detail {
 		margin-top: 15px * $scale-var;
-		background-color: #3C3C97;
+		
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;
@@ -378,7 +400,7 @@ $scale-var: 1600 / 2560;
 	}
 	.total-bet {
 		margin-top: 15px * $scale-var;
-		background-color: #3C3C97;
+		
 		width: 100%;
 		color: white;
 		height: 66px * $scale-var;

@@ -74,7 +74,7 @@ const GameStats = (props) => {
                 </li>
                 <li key={8}>
                     <div className="share_detail">
-                        <span>Commission:</span>
+                        <span>Refferal Comissions:</span>
                         <div>
                             <span>x</span>
                         </div>
@@ -106,25 +106,6 @@ const GameStats = (props) => {
                 </li>
             </ul>
 
-
-            <p className="mt-4"><span className="pink-monkey-text pr-2">Hint:</span>Click and drag to zoom, hold shift to pan.</p>
-
-
-            <div className="">
-                <div className="chart-header">
-                    <h5 className="chart-title">Games played</h5>
-                    <div className="chart-data-type">
-                        {
-                            ChartDataType.map(data => 
-                                <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
-                                    onClick={()=>setChartDataType(data)}>{data}</button>
-                            )
-                        }
-                    </div>
-                </div>
-                <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
-            
-            </div>
 
             <div className="total-info">
                 <p className="detail">Average daily bet: 1,387</p>
