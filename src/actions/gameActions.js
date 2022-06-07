@@ -52,8 +52,7 @@ export const getAllBets = () => async dispatch => {
     }
     catch(e){
         dispatch( {
-            type: GET_ALL_BET_ERROR,
-            payload: console.log(e),
+            type: GET_ALL_BET_ERROR
         })
     }
 }
@@ -70,8 +69,7 @@ export const getOnlinePlayerCount = () => async dispatch => {
     }
     catch(e){
         dispatch( {
-            type: GET_ONLINE_PLEYERS_ERROR,
-            payload: console.log(e),
+            type: GET_ONLINE_PLEYERS_ERROR
         })
     }
 }

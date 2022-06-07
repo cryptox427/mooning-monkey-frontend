@@ -154,52 +154,57 @@ const ManualBet = (props) => {
 
     return (
         <div className="manual-bet">
-            <div className="bet-amount bet-detail">
-                <BottomLineInputComponent label="Bet Amount" className="fill-input moon-bet-input purple-bg-input-child" type="number" prefix="$" valueChangeHandler={setBetAmount} defaultValue={betAmount} />
-                <div className="sub-detail-content">
-                    <span className="detail amount-change-btn" tabindex="1" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.half)}>1/2</span>
-                    <span className="detail amount-change-btn" tabindex="2"  onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.double)}>Double</span>
-                    <span className="detail amount-change-btn" tabindex="3" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.max)}>Max</span>
-                    <span className="detail amount-change-btn" tabindex="4" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.min)}>Min</span>
+            <div className="bet-setting">
+                <div className="bet-amount bet-detail">
+                    <BottomLineInputComponent label="Bet Amount" className="fill-input moon-bet-input purple-bg-input-child" type="number" prefix="$" valueChangeHandler={setBetAmount} defaultValue={betAmount} />
+                    <div className="sub-detail-content">
+                        <span className="detail amount-change-btn" tabindex="1" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.half)}>1/2</span>
+                        <span className="detail amount-change-btn" tabindex="2"  onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.double)}>Double</span>
+                        <span className="detail amount-change-btn" tabindex="3" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.max)}>Max</span>
+                        <span className="detail amount-change-btn" tabindex="4" onClick={()=>clickChangeBetAmountBtn(betAmountMultiple.min)}>Min</span>
+                    </div>
                 </div>
-            </div>
-           
-            <div className="auto-cashout bet-detail">
-                <BottomLineInputComponent label="Auto Cashout" 
-                    className="fill-input moon-bet-input purple-bg-input-child" 
-                    type="number" prefix="x" 
-                    valueChangeHandler={setMultiplier} 
-                    defaultValue={multiplier} />
-                
-            </div>
-       
-            <MDBBtn className="play-button" color='secondary' disabled={playerButtonStyle.disableBtn}
-                    onClick={playerButtonStyle.buttonName === "Play"?()=>clickPlayBtn():()=>clickStopBtn()}>
-                <span>{playerButtonStyle.buttonName}</span></MDBBtn>
             
+                <div className="auto-cashout bet-detail">
+                    <BottomLineInputComponent label="Auto Cashout" 
+                        className="fill-input moon-bet-input purple-bg-input-child" 
+                        type="number" prefix="x" 
+                        valueChangeHandler={setMultiplier} 
+                        defaultValue={multiplier} />
+                    
+                </div>
+        
+                <MDBBtn className="play-button" color='secondary' disabled={playerButtonStyle.disableBtn}
+                        onClick={playerButtonStyle.buttonName === "Play"?()=>clickPlayBtn():()=>clickStopBtn()}>
+                    <span>{playerButtonStyle.buttonName}</span></MDBBtn>
+            </div>
             <div className="my-recent-wins">
                 <div className="title"><span>My Recent Wins</span></div>
-                <table className="table">
-                    <tr>
-                        <th>Wager</th>
-                        <th>Mult</th>
-                        <th>Payout</th>
-                    </tr>
-                    <tbody>
-                    {
-                        myRecentWin.length > 0 &&
-                        myRecentWin.map((data, index) => 
-                            <tr>
-                                <td>$ {data.bet}</td>
-                                <td>{data.multiplier}X</td>
-                                <td>$ {Number(data.payout).toFixed(2)}</td>
-                            </tr>
-                        )
-                    }
-                    
-                    </tbody>
-                    
-                </table>
+                <div className="data-content">
+                    <div className="data-header">
+                        <div className="detail">Wager</div>
+                        <div className="detail">Multi</div>
+                        <div className="detail">Payout</div>
+                    </div>
+                    <div className="data-list">
+                        <table className="table">
+                            <tbody>
+                            {
+                                myRecentWin.length > 0 &&
+                                myRecentWin.map((data, index) => 
+                                    <tr>
+                                        <td>$ {data.bet}</td>
+                                        <td>{data.multiplier}X</td>
+                                        <td>$ {Number(data.payout).toFixed(2)}</td>
+                                    </tr>
+                                )
+                            }
+                            
+                            </tbody>
+                            
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     );

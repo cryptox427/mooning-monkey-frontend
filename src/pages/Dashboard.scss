@@ -110,6 +110,7 @@ $scale-var: 1600 / 2560;
 // }
 .dashboard {
 	padding: 20px;
+	padding-bottom: 0px;
 	display: flex;
 	flex-wrap: wrap;
 	min-height: 100%;
@@ -128,6 +129,7 @@ $scale-var: 1600 / 2560;
 				display: flex;
 				flex-direction: column;
 				padding-bottom: 10px;
+				min-height: 40vw;
 			}
 			.bet {
 				width: 100%;
@@ -136,6 +138,7 @@ $scale-var: 1600 / 2560;
 	}
 	.players-content {
 		width: 100%;
+		padding-bottom: 20px;
 	}
 	.game-content {
 		img {
@@ -151,11 +154,13 @@ $scale-var: 1600 / 2560;
 			padding-bottom: 10px;
 			.game-bet {
 				padding-bottom: 10px;
+				min-height: 40vw;
 				.game {
 					height: auto;
 					width: 70%;
 					padding-right: 10px;
 					padding-bottom: 0px;
+					min-height: auto;
 				}
 				.bet {
 					width: 30%;
@@ -186,6 +191,7 @@ $scale-var: 1600 / 2560;
 				}
 				.bet {
 					width: 30%;
+					height: 100%;
 				}
 			}
 		}

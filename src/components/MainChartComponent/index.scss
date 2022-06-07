@@ -8,6 +8,16 @@
         background: transparent !important;
     }
 }
+.chart {
+    height: 100%;
+    position: relative;
+    .current-value-displayer {
+        position: absolute;
+        transform: translateY(-50%);
+        top: 50%;
+        left: calc(50% - 150px);
+    }
+}
 .play-chart {
     height: 100%;
     .bg {
@@ -37,8 +47,8 @@
     position: relative;
     .game-value {
         position: absolute;
-        transform: translate(-50%, -50%);
-        left: 50%;
+        transform: translate(0, -50%);
+        left: calc(50% - 100px);
         top: 50%;
         color: white;
         

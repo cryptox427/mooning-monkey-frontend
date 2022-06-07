@@ -21,6 +21,8 @@ const initialState = {
     gameResult: 0,
     popup: "",
     gameState: GAME_STATE.WAITING,
+    crashValues: [],
+    displayValues: [],
     displayLoginModal: false
 }
 
@@ -46,11 +48,35 @@ const gameReducer = (state = initialState, action) => {
             loaded: false
         }
         case SET_GAME_RESULT:
-        return {
-            ...state,
-            gameResult: action.payload
-        }
+            let timeValue = 1
+            let crashValues = []
+            let displayValues = [];
+            if(state.gameState === GAME_STATE.RUNNING) {
+                timeValue = state.crashValues.length > 0 ? state.crashValues[state.crashValues.length-1].time+1 : 1;
+                crashValues = [...state.crashValues, 
+                    {
+                        time: timeValue,
+                        crashValue: action.payload
+                    }]
+                
+                if(crashValues.length > 8) {
+                    for(let i = 0 ; i < 7 ; i ++) {
+                        displayValues = [...displayValues, crashValues[parseInt(i * crashValues.length / 8)]]
+                    }
+                    displayValues = [...displayValues, crashValues[crashValues.length - 1]]
+                }
+                else {
+                    displayValues = [...crashValues];
+                }
+            }
+            return {
+                ...state,
+                gameResult: action.payload,
+                crashValues: crashValues,
+                displayValues: displayValues
+            }
         case CHANGE_GAME_STATE:
+            console.log("CHANGE_GAME_STATE", action)
         return {
             ...state,
             gameState: action.payload
