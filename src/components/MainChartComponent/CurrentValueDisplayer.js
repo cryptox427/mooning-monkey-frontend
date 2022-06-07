@@ -17,7 +17,7 @@ const CurrentValueDisplayer = (props) => {
             fontSize: 100,
             color: "white"
           }}
-          duration={800}
+          duration={1000}
           formatValue={(n) => n.toFixed(2)}
         />
     </div>

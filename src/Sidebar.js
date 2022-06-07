@@ -177,7 +177,7 @@ const Sidebar = (props) => {
               <GiSailboat className="sidebar-foot-btn"/>
             </a>
             <a href='https://linktr.ee/MooningMonkeyOfficial' target="_blank" rel="noopener noreferrer"><SiLinktree className="sidebar-foot-btn"/></a>
-            <a href='https://www.notion.so/' target="_blank" rel="noopener noreferrer"><SiNotion className="sidebar-foot-btn"/></a>
+            <a href='https://www.notion.so/mooningmonkey' target="_blank" rel="noopener noreferrer"><SiNotion className="sidebar-foot-btn"/></a>
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>

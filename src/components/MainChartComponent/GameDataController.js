@@ -42,8 +42,9 @@ const GameDataController = (props) => {
 
     const waitGame = () => {
         removeAllBets();
-        setGameResult(-1);
+        setGameResult(0);
         changeGameState(GAME_STATE.WAITING);
+        document.getElementById('bgVideo').currentTime = 0
     }
 
     const gameValueHandler = (eventData) => {
