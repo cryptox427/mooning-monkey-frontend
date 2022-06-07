@@ -6,28 +6,39 @@ import {MY_STATS_CHART_TYPE} from '../../utils/types';
 
 import './index.scss';
 
-const ChartDataType = [
+const ChartTimeFrame = [
     'ALL',
     'H',
     'D',
     'W',
     'M'
 ];
-
+const testData = [[4,"22-05-22"],[64,"22-05-23"],[8,"22-06-06"]];
 const MyStats = (props) => {
     const { stats, userName, chartOptions, chartSeries } = props;
-    const [chartDataType, setChartDataType] = useState(ChartDataType[0])
+    const [chartTimeFrame, setChartTimeFrame] = useState(ChartTimeFrame[0])
     const [chartData, setChartData] = useState({
         dataType: '',
+        timeFrame: ChartTimeFrame[0],
         data: []
     })
     const onClickChartBtn = async (chartType) => {
-        const _chartData = await getMyStatsChartData(chartType)
+        const _chartData = testData//await getMyStatsChartData(chartType, chartData.timeFrame)
         setChartData({
+            ...chartData,
             dataType: chartType,
             data: _chartData
         })
     }
+    const onClickTimeFrameBtn = async (timeFrame) => {
+        const _chartData = await getMyStatsChartData(chartData.dataType, timeFrame)
+        setChartData({
+            ...chartData,
+            timeFrame: timeFrame,
+            data: _chartData
+        })
+    }
+    
     useEffect(
         () => {
             onClickChartBtn(MY_STATS_CHART_TYPE.GAME_PLAYED)
@@ -105,9 +116,9 @@ const MyStats = (props) => {
                             }
                             <div className="chart-data-type">
                                 {
-                                    ChartDataType.map(data => 
-                                        <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
-                                            onClick={()=>setChartDataType(data)}>{data}</button>
+                                    ChartTimeFrame.map(data => 
+                                        <button className={`type ${chartData.timeFrame === data ? 'selected-type' : ''}`}
+                                            onClick={()=>onClickTimeFrameBtn(data)}>{data}</button>
                                     )
                                 }
                             </div>
@@ -119,7 +130,7 @@ const MyStats = (props) => {
                             height={200}
                             options={{...chartOptions, xaxis: {categories: chartData.data.map(data => data[1])}}} series={[
                                 {
-                                    type: 'line',
+                                    type: 'area',
                                     name: "",
                                     data: chartData.data.map(data => data[0])
                                 }

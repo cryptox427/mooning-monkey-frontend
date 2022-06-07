@@ -73,6 +73,7 @@ export const GAME_HISTORY_TYPE = {
     ALL: 'All',
     HIGH_WINS: 'High Wins',
     LUCKY_WINS: 'Lucky Wins',
+    MY_WAGER: 'My Wager',
     NONE: ''
 }
 

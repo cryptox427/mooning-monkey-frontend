@@ -314,7 +314,7 @@ const ChartComponent = (props) => {
                     </div>
                     <div className={`crashed-game ${gameState === GAME_STATE.CRASHED ? "show": "hidden"}`}>
                         <div className="title-top">CRASHED</div>
-                        <div className="value">{gameResult}<span>X</span></div>
+                        <div className="value">{Number(gameResult).toFixed(2)}<span>X</span></div>
                         <div className="title-bottom">Round Over</div>
                     </div>
                     <div className={`waiting-round ${gameState === GAME_STATE.WAITING ? "show": "hidden"}`}>

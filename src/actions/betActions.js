@@ -33,6 +33,14 @@ export const betRequest = ( amount, multiplier) => async dispatch => {
         const res = await axios.get(`./bet.php?amount=${amount}&multiplier=${multiplier}`);
         console.log("~~~~~~~~~betResult:", res.data)
         if(res.data === "Success"){
+            setPopUp("You bet to this round")
+            dispatch( {
+                type: BET_SUCCESS,
+                payload: {amount, multiplier}
+            })
+        }
+        else if(res.data === "Already placed a bet"){
+            setPopUp("Already placed a bet")
             dispatch( {
                 type: BET_SUCCESS,
                 payload: {amount, multiplier}
@@ -40,14 +48,14 @@ export const betRequest = ( amount, multiplier) => async dispatch => {
         }
         
         else {
-            setPopUp(res.data)
+            setPopUp("You can't bet to this round")
             dispatch( {
                 type: BET_ERROR
             })
         }
     }
     catch(e){
-        setPopUp(e.message)
+        setPopUp("You can't bet to this round")
         dispatch( {
             type: BET_ERROR,
             payload: console.log(e),

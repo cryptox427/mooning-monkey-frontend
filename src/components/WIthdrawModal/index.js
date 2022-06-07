@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import {connect} from 'react-redux'
 import { Modal } from "react-bootstrap";
 import { BSC_TOKENS, DEPOSIT_WALLET_ADDRESS } from "../../constants/tokens";
-import { tokenIDs } from "../../utils/constant";
+import { withdrawTokenIDs } from "../../utils/constant";
 
 import { AiOutlineClose } from "react-icons/ai";
 import TakCoinImg from '../../assets/images/tak-coin.svg';
@@ -19,7 +19,7 @@ import { getMaxCredits } from "../../actions/betActions";
 
 const WithdrawModal = (props) => {
     const { show, onHide, maxCredits, history, changeCurrentPage } = props;
-    const tokenNames = Object.keys(tokenIDs);
+    const tokenNames = Object.keys(withdrawTokenIDs);
     const [selectedTokenName, setSelectedTokenName] = useState(tokenNames[0]);
     const [balance, setBalance] = useState(0);
     const [showSelect, setShowSelect] = useState(false);
@@ -36,7 +36,7 @@ const WithdrawModal = (props) => {
     };
 
     const onWithdraw = async () => {
-        const result = await withdraw(tokenIDs[selectedTokenName], tokenAmount.value);
+        const result = await withdraw(withdrawTokenIDs[selectedTokenName], tokenAmount.value);
         getMaxCredits();
     }
     const handleTokenAmount = (e) => {

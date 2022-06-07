@@ -50,7 +50,7 @@ const GameDataController = (props) => {
     const gameValueHandler = (eventData) => {
         if(eventData === "Finished")
         {
-            if(gameState !== GAME_STATE.CRASHED) {
+            if(gameState === GAME_STATE.RUNNING) {
                 endGame();
             }
         }

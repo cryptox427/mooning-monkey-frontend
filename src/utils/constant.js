@@ -5,3 +5,6 @@ export const tokenIDs = {
     BUSD: 2,
     USDT: 3
 }
+export const withdrawTokenIDs = {
+    TAK: 1
+}

@@ -3,7 +3,7 @@ import { ethers } from 'ethers';
 import { BSC_TOKENS, BSC_TESTNET_TOKENS } from '../constants/tokens';
 
 const useChainID = chainId;
-const useTokens = BSC_TESTNET_TOKENS;
+const useTokens = BSC_TOKENS;
 
 export const connectWallet = async () => {
   if (window.ethereum) {

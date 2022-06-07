@@ -139,6 +139,8 @@ $scale-var: 1600 / 2560;
 	.players-content {
 		width: 100%;
 		padding-bottom: 20px;
+		height: calc(100vh - 900px);
+		min-height: 200px;
 	}
 	.game-content {
 		img {
@@ -155,7 +157,7 @@ $scale-var: 1600 / 2560;
 			.game-bet {
 				padding-bottom: 10px;
 				min-height: 500px;
-				height: 50vw;
+				height: 40vw;
 				.game {
 					height: auto;
 					width: 70%;
@@ -170,6 +172,8 @@ $scale-var: 1600 / 2560;
 		}
 		.players-content {
 			width: 100%;
+			height: calc(100vh - 40vw - 350px);
+			min-height: 200px;
 		}
 	}
 
@@ -177,7 +181,7 @@ $scale-var: 1600 / 2560;
 	{
 		height: 100%;
 		padding-bottom: 0;
-		min-height: calc(35vw + 250px);
+		min-height: calc(30vw + 250px);
 		.game-bet-chat-content {
 			height: 100%;
 			width: 70%;
@@ -185,7 +189,7 @@ $scale-var: 1600 / 2560;
 			padding-bottom: 20px;
 			.game-bet {
 				padding-bottom: 10px;
-				height: 40vw;
+				height: 30vw;
 				.game {
 					height: 100%;
 					width: 68%;
@@ -197,10 +201,16 @@ $scale-var: 1600 / 2560;
 					height: 100%;
 				}
 			}
+			.chat-container {
+				height: calc(100% - 30vw);
+				min-height: 250px;
+			}
 		}
 		.players-content {
 			width: 30%;
 			padding-bottom: 20px;
+			height: 100%;
+			min-height: 770px;
 		}
 
 	}

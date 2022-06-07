@@ -106,7 +106,7 @@ const testStr = ['2022-05-22 20:43:47 | ServerTest | Whats up?', '2022-05-22 20:
 const Chat = (props) => {
     const { userName, logged } = props;
     const [messages, setMessages] = useState([]);
-    const [selectedCountries, setSelectedCountries] = useState([]);
+    const [selectedCountries, setSelectedCountries] = useState(["english"]);
     const [friends, setFriends] = useState([]);
     const [selectedCounty, setSelectedCountry] = useState("english");
     const [selectedChanel, setSelectedChanel] = useState({

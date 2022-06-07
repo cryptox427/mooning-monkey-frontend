@@ -16,8 +16,14 @@
         transform: translateY(-50%);
         top: 50%;
         left: calc(50% - 150px);
-    }
+        .multi-icon {
+            color: white !important;
+            font-size: 50px;
+            margin-left: 10px;
+        }
+    }    
 }
+
 .play-chart {
     height: 100%;
     .bg {
@@ -93,12 +99,13 @@
             text-align: center;
             height: 100px;
             span {
-                font-family: Poppins-Light;
-                font-size: 30px;
+                font-family: Poppins-SemiBold;
+                font-size: 50px;
+                margin-left: 10px;
             }
         }
         .title-bottom {
-            font-size: 16px;
+            font-size: 20px;
             font-family: Poppins-SemiBold;
             text-align: center;
         }

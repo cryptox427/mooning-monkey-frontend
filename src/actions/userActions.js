@@ -193,7 +193,7 @@ export const getUserStats = async (userName) => {
         return []
     }
 }
-export const getMyStatsChartData = async (chartType) => {
+export const getMyStatsChartData = async (chartType, timeFrame) => {
     try{
         let url = '';
         switch(chartType) {
@@ -207,7 +207,7 @@ export const getMyStatsChartData = async (chartType) => {
                 url = 'getProfit.php'
                 break;
         }
-        const res = await axios.get(serverUrl + url);
+        const res = await axios.get(`${serverUrl}${url}?timeframe=${timeFrame}`);
         console.log("~~~~~~~~~getMyStatsChartData:", res.data)
         if(res.data.message === "Success") {
             return res.data.data

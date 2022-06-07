@@ -85,6 +85,9 @@ export const getHistoryData = (historyType) => async (dispatch) => {
         case GAME_HISTORY_TYPE.LUCKY_WINS:
             apiUrl = "getLuckyWins.php";
             break;
+        case GAME_HISTORY_TYPE.MY_WAGER:
+            apiUrl = "getWagers.php";
+            break;
     }
     try{
         const res = await axios.get(`${serverUrl}${apiUrl}`);

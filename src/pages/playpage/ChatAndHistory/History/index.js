@@ -35,7 +35,7 @@ const History = (props) => {
         {
             title: "My Wager",
             component: <HistoryTable type="wager"/>,
-            clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.ALL)
+            clickFunc: ()=>clickHistoryTab(GAME_HISTORY_TYPE.MY_WAGER)
         }
     ];
     return (

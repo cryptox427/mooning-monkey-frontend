@@ -42,17 +42,13 @@ const StatsModal = (props) => {
         xaxis: {
             categories: [17, 18, 19, 20, 21, 22, 23, 24]
         },
+        fill: {
+            colors: ['#1A73E8', '#B32824']
+        },
         stroke: {
             curve: 'straight',
             width: 1
         },
-        fill: {
-            type: 'gradient',
-            gradient: {
-              opacityFrom: 0.6,
-              opacityTo: 0.8,
-            }
-          },
         tooltip: {
             enabled: true
         },

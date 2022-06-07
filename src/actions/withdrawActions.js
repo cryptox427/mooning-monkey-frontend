@@ -17,7 +17,7 @@ export const withdraw = async (tokenId, tokenAmount) => {
         return res.data;
     }
     catch(e){
-        console.log("withdraw error")
+        setPopUp("withdraw failed")
     }
 
 }

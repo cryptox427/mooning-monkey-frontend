@@ -43,7 +43,7 @@ const DepositModal = (props) => {
                 tx = await signer.sendTransaction({to: DEPOSIT_WALLET_ADDRESS, value: ethers.utils.parseEther(tokenAmount.value.toString())});
             } else {
                 const tokenContract = getTokenContract(selectedTokenName);
-                tx = await tokenContract.transfer(DEPOSIT_WALLET_ADDRESS, ethers.utils.parseEther(tokenAmount.vale));
+                tx = await tokenContract.transfer(DEPOSIT_WALLET_ADDRESS, ethers.utils.parseEther(tokenAmount.value.toString()));
             }
             const res = await tx.wait();
             console.log(tx);
@@ -172,16 +172,9 @@ const DepositModal = (props) => {
                             </div>
                     </div>
                 </div>
-                {
-                    isLoading
-                        ?   <div className="cta-btn justify-content-center mt-3">
-                                Pending<Spinner animation="border" variant="primary" />
-                            </div>
-                            :
-                            <button disabled={tokenAmount.error ? true: false} className="cta-btn deposit-btn justify-content-center poppin-light-txt" onClick={()=>handleDeposit()}>
-                                Deposit
-                            </button>
-                }
+                <button disabled={tokenAmount.error||isLoading ? true: false} className="cta-btn deposit-btn justify-content-center poppin-light-txt" onClick={()=>handleDeposit()}>
+                    {isLoading?<><Spinner className="pending-spinner" animation="border" variant="secondary" />Pending</>:"Deposit"}
+                </button>
                 <div className="justify-content-between d-flex mt-4 mb-1">
                     <h6 className="text-light">Recent Transactions</h6>
                     <div onClick={()=>gotoHistoryPage()} className="text-light view-history-btn poppin-light-txt view-history" style={{textDecoration: "underline !important"}}>View History</div>

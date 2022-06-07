@@ -20,6 +20,7 @@ const CurrentValueDisplayer = (props) => {
           duration={1000}
           formatValue={(n) => n.toFixed(2)}
         />
+      <span className="multi-icon">X</span>
     </div>
   );
 
