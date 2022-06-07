@@ -88,3 +88,9 @@ export const betAmountMultiple = {
     max: 'max',
     min: 'min'
 };
+
+export const MY_STATS_CHART_TYPE = {
+    GAME_PLAYED: 'GAME_PLAYED',
+    TOTAL_WAGERED: 'TOTAL_WAGERED',
+    NET_PROFIT: 'NET_PROFIT'
+};

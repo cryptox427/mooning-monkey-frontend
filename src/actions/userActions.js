@@ -4,7 +4,7 @@ import {SET_PUBLICKEY, GET_MY_RECENT_WINS_SUCCESS, GET_MY_RECENT_WINS_ERROR,
     GET_REGISTERED_STATUS_REQUEST, GET_REGISTERED_STATUS_SUCCESS, GET_REGISTERED_STATUS_ERROR,
     GET_STATS_REQUEST, GET_STATS_SUCCESS, GET_STATS_ERROR,
     GET_USER_STATS_REQUEST, GET_USER_STATS_SUCCESS, GET_USER_STATS_ERROR,
-    GET_USERNAME_SUCCESS, ADD_FRIEND} from '../utils/types'
+    GET_USERNAME_SUCCESS, ADD_FRIEND, MY_STATS_CHART_TYPE} from '../utils/types'
 import axios from 'axios'
 
 import {serverUrl} from '../utils/constant'
@@ -181,6 +181,34 @@ export const getUserStats = async (userName) => {
     try{
         const res = await axios.get(`${serverUrl}getUserStats.php?username=${userName}`);
         console.log("~~~~~~~~~getUserStats:", res.data)
+        if(res.data.message === "Success") {
+            return res.data.data
+        }
+        else {
+            return []
+        }
+    }
+    catch(e){
+        console.log(e)
+        return []
+    }
+}
+export const getMyStatsChartData = async (chartType) => {
+    try{
+        let url = '';
+        switch(chartType) {
+            case MY_STATS_CHART_TYPE.GAME_PLAYED:
+                url = 'getGamesPlayed.php'
+                break;
+            case MY_STATS_CHART_TYPE.TOTAL_WAGERED:
+                url = 'getWagered.php'
+                break;
+            case MY_STATS_CHART_TYPE.NET_PROFIT:
+                url = 'getProfit.php'
+                break;
+        }
+        const res = await axios.get(serverUrl + url);
+        console.log("~~~~~~~~~getMyStatsChartData:", res.data)
         if(res.data.message === "Success") {
             return res.data.data
         }

@@ -1,5 +1,9 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, useEffect } from "react";
 import ReactApexChart from "react-apexcharts";
+
+import {getMyStatsChartData} from '../../actions/userActions';
+import {MY_STATS_CHART_TYPE} from '../../utils/types';
+
 import './index.scss';
 
 const ChartDataType = [
@@ -9,10 +13,27 @@ const ChartDataType = [
     'W',
     'M'
 ];
+
 const MyStats = (props) => {
     const { stats, userName, chartOptions, chartSeries } = props;
     const [chartDataType, setChartDataType] = useState(ChartDataType[0])
-
+    const [chartData, setChartData] = useState({
+        dataType: '',
+        data: []
+    })
+    const onClickChartBtn = async (chartType) => {
+        const _chartData = await getMyStatsChartData(chartType)
+        setChartData({
+            dataType: chartType,
+            data: _chartData
+        })
+    }
+    useEffect(
+        () => {
+            onClickChartBtn(MY_STATS_CHART_TYPE.GAME_PLAYED)
+        },
+        [],
+    );
     return (
         <div className="my-stats">
         <h5 className="title-midle mb-3 poppin-bold-txt">{userName}</h5>
@@ -22,7 +43,7 @@ const MyStats = (props) => {
                 <ul className="pl-4 stauts-bullet">
                     <li key={1}>
                         <div className="share_detail">
-                            <span>Games Played:</span>
+                            <button className="chart-data-get-btn" onClick={()=>onClickChartBtn(MY_STATS_CHART_TYPE.GAME_PLAYED)}>Games Played:</button>
                             <div>
                                 <span>{stats.betAmount}</span>
                             </div>
@@ -30,7 +51,7 @@ const MyStats = (props) => {
                     </li>
                     <li  key={2}>
                         <div className="share_detail">
-                            <span>Total Wagered:</span>
+                            <button className="chart-data-get-btn" onClick={()=>onClickChartBtn(MY_STATS_CHART_TYPE.TOTAL_WAGERED)}>Total Wagered:</button>
                             <div>
                                 <span>{stats.totalWagered}</span>
                             </div>
@@ -38,7 +59,7 @@ const MyStats = (props) => {
                     </li>
                     <li key={3}>
                         <div className="share_detail">
-                            <span>Net Profit:</span>
+                            <button className="chart-data-get-btn" onClick={()=>onClickChartBtn(MY_STATS_CHART_TYPE.NET_PROFIT)}>Net Profit:</button>
                             <div>
                                 <span>+ {stats.netProfit}</span>
                             </div>
@@ -67,19 +88,46 @@ const MyStats = (props) => {
 
 
                 <div className="">
-                    <div className="chart-header">
-                        <h5 className="chart-title">Games played</h5>
-                        <div className="chart-data-type">
+                    {
+                        chartData.dataType !== '' &&
+                        <div className="chart-header">
                             {
-                                ChartDataType.map(data => 
-                                    <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
-                                        onClick={()=>setChartDataType(data)}>{data}</button>
-                                )
+                                chartData.dataType === MY_STATS_CHART_TYPE.GAME_PLAYED &&
+                                <h5 className="chart-title">Games played</h5>
                             }
+                            {
+                                chartData.dataType === MY_STATS_CHART_TYPE.TOTAL_WAGERED &&
+                                <h5 className="chart-title">Total Wagered</h5>
+                            }
+                            {
+                                chartData.dataType === MY_STATS_CHART_TYPE.NET_PROFIT &&
+                                <h5 className="chart-title">Net Profit</h5>
+                            }
+                            <div className="chart-data-type">
+                                {
+                                    ChartDataType.map(data => 
+                                        <button className={`type ${chartDataType === data ? 'selected-type' : ''}`}
+                                            onClick={()=>setChartDataType(data)}>{data}</button>
+                                    )
+                                }
+                            </div>
                         </div>
-                    </div>
-                    <ReactApexChart type="area" options={chartOptions} series={chartSeries} height={200}/>
-                
+                    }
+                    {
+                        chartData.data.length > 0 &&
+                        <ReactApexChart type="area"
+                            height={200}
+                            options={{...chartOptions, xaxis: {categories: chartData.data.map(data => data[1])}}} series={[
+                                {
+                                    type: 'line',
+                                    name: "",
+                                    data: chartData.data.map(data => data[0])
+                                }
+                            ]}
+                        />
+                    
+                    }
+                    
                 </div>
 
                 <div className="total-info">
