@@ -38,6 +38,7 @@ export const betRequest = ( amount, multiplier) => async dispatch => {
                 type: BET_SUCCESS,
                 payload: {amount, multiplier}
             })
+            dispatch(getAllBets())
         }
         else if(res.data === "Already placed a bet"){
             setPopUp("Already placed a bet")

@@ -43,7 +43,7 @@ const StatsModal = (props) => {
             categories: [17, 18, 19, 20, 21, 22, 23, 24]
         },
         fill: {
-            colors: ['#1A73E8', '#B32824']
+            colors: ['#f401c7', '#F044E8']
         },
         stroke: {
             curve: 'straight',
