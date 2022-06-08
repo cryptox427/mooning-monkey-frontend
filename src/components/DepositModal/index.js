@@ -204,7 +204,7 @@ const DepositModal = (props) => {
                                 </div>
                                 <div className="rth-row">
                                     <div>Hash</div>
-                                    <div>{`${txHash.substring(0, 9)}...${txHash.slice(-5)}`}</div>
+                                    <div>{`rdgdfg`}</div>
                                 </div>
                             </div>
                             :
