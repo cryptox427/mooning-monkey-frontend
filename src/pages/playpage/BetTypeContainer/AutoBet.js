@@ -352,7 +352,7 @@ const AutoBet = (props) => {
                     <div className="auto-cashout bet-detail">
                         <BottomLineInputComponent label="Auto Cashout" 
                             className="fill-input moon-bet-input purple-bg-input-child" 
-                            type="number" prefix="$" 
+                            type="number" prefix="x" 
                             valueChangeHandler={changeAutoCashout} 
                             defaultValue={autoCashOut} />
                     </div>
@@ -362,7 +362,7 @@ const AutoBet = (props) => {
                         <div className="auto-cashout bet-detail">
                             <BottomLineInputComponent label="Total Bets" 
                                 className="fill-input moon-bet-input purple-bg-input-child" 
-                                type="number" prefix="$" 
+                                type="number" prefix="x" 
                                 valueChangeHandler={changeTotalBet} 
                                 defaultValue={totalBets} />
                         </div>

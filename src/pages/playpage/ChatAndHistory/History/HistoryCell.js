@@ -3,6 +3,7 @@ import React from 'react';
 
 import bnb1Img from '../../../../assets/images/playpage/bnb1.png';
 import bnb2Img from '../../../../assets/images/playpage/bnb2.png';
+import {GAME_HISTORY_TYPE} from "../../../../utils/types";
 
 const HistoryCell = (props) => {
     const { h_game, h_address, h_time, h_wager, h_mult, h_payout, pay_type, type, h_username } = props;
@@ -10,12 +11,12 @@ const HistoryCell = (props) => {
         <tr>
             <td className="game">{h_game}</td>
             {
-                type !== "wager" &&
+                type !== GAME_HISTORY_TYPE.MY_WAGER &&
                 <td className="username">{h_username}</td>
             }
             {
-                type !== "wager" &&
-                <td className="address">{h_address}</td>
+                type !== GAME_HISTORY_TYPE.MY_WAGER &&
+                <td className="address">{h_address.substring(0, 8)}</td>
             }
             
             <td className="time">{h_time}</td>

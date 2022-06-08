@@ -23,7 +23,7 @@ const MyStats = (props) => {
         data: []
     })
     const onClickChartBtn = async (chartType) => {
-        const _chartData = testData//await getMyStatsChartData(chartType, chartData.timeFrame)
+        const _chartData = await getMyStatsChartData(chartType, chartData.timeFrame)
         setChartData({
             ...chartData,
             dataType: chartType,

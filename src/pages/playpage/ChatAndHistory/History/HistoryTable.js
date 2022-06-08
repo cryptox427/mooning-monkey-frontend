@@ -2,6 +2,7 @@ import {connect} from 'react-redux'
 
 import './index.scss';
 import HistoryCell from "./HistoryCell.js";
+import {GAME_HISTORY_TYPE} from "../../../../utils/types";
 
 const testData = [
     {
@@ -77,11 +78,11 @@ const HistoryTable = (props) => {
             <div className="data-header">
                 <div className="h-game">Game</div>
                 {
-                    type !== "wager" &&
+                    type !== GAME_HISTORY_TYPE.MY_WAGER &&
                     <div className="h-username">User Name</div>
                 }
                 {
-                    type !== "wager" &&
+                    type !== GAME_HISTORY_TYPE.MY_WAGER &&
                     <div className="h-address">Address</div>
                 }
                 <div className="h-time">Time</div>
@@ -99,7 +100,7 @@ const HistoryTable = (props) => {
                                 gameHistory.length > 0 &&
                                 gameHistory.map((data, index) => 
                                     <HistoryCell pay_type="bnb1" h_game="Crashgame" 
-                                        h_address={data.address.substring(0, 8)} 
+                                        h_address={data.address} 
                                         h_username={data.username} 
                                         h_time={data.gameDate} 
                                         h_wager={data.bet} 

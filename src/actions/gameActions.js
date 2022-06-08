@@ -95,7 +95,8 @@ export const getHistoryData = (historyType) => async (dispatch) => {
         if(res.data.message === "Success") {
             dispatch( {
                 type: GET_GAME_HISTORY_SUCCESS,
-                payload: res.data.data
+                payload: res.data.data,
+                historyType: historyType
             })
         }
     }

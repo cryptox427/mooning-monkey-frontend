@@ -9,7 +9,8 @@ import {GET_ALL_BET_SUCCESS,
     GET_ONLINE_PLEYERS_SUCCESS,
     GET_ONLINE_PLEYERS_ERROR,
     SHOW_LOGIN_MODAL,
-    HIDE_LOGIN_MODAL
+    HIDE_LOGIN_MODAL,
+    GAME_HISTORY_TYPE
 } from '../../utils/types';
 
 const initialState = {
@@ -86,14 +87,26 @@ const gameReducer = (state = initialState, action) => {
             ...state,
             gameHistory: action.payload.map(historyData => 
                 {
-                    return { 
-                        username: historyData[0],  
-                        address: historyData[1], 
-                        bet: historyData[2], 
-                        multiplier:historyData[3], 
-                        payout:historyData[4], 
-                        gameDate:historyData[5]}
-                })
+                    if(action.historyType === GAME_HISTORY_TYPE.MY_WAGER) {
+                        return { 
+                            username: historyData[0],  
+                            address: historyData[1], 
+                            bet: historyData[2], 
+                            multiplier:historyData[3], 
+                            payout:historyData[4], 
+                            gameDate:historyData[5]
+                        }
+                    }
+                    else {
+                        return {
+                            bet: historyData[0],
+                            multiplier:historyData[1],
+                            payout:historyData[2],
+                            gameDate:historyData[3]
+                        }
+                    }
+                }
+            )
         }
         case GET_GAME_HISTORY_ERROR:
         return {
