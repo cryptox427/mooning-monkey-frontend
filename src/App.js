@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Routes from './Routes';
 import './App.css';
 import './base.scss';
@@ -9,7 +9,6 @@ import store from './store'
 import {Provider} from 'react-redux';
 
 function App() {
-	
   return (
     <div>
     <Provider store={store}>

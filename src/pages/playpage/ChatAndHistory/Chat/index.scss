@@ -74,7 +74,6 @@ $scale-var: 1600 / 2560;
         align-items: center;
         font-size: 14px;
         z-index: 1;
-        height: 0;
         overflow: initial;
         button {
             
@@ -127,6 +126,8 @@ $scale-var: 1600 / 2560;
         .countries-list {
             position: absolute;
             top: 50px;
+            bottom: 18px;
+            overflow-y: auto;
         }
     }
     .friends {
@@ -143,11 +144,11 @@ $scale-var: 1600 / 2560;
         align-items: center;
         font-size: 14px;
         z-index: 1;
-        height: 0;
         overflow: initial;
         .friends-list {
             position: absolute;
             top: 50px;
+            bottom: 18px;
             .friend {
                 margin-left: 20px;
                 cursor: pointer;
@@ -301,6 +302,7 @@ $scale-var: 1600 / 2560;
             right: -45px * $scale-var;
             transform: translateY(-50%);
             top: 50%;
+            z-index: 1;
             .plus-button {
                 color: white;
                 cursor: pointer;

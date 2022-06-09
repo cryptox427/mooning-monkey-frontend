@@ -70,7 +70,8 @@ const testData = [
         time: 20,
         crashValue: 40
     }];
-
+let perpareTimer = null;
+const prepareVideoTime = 5;
 const ChartComponent = (props) => {
     const { gameResult, gameState, displayValues } = props;
 
@@ -79,7 +80,32 @@ const ChartComponent = (props) => {
     //     crashValues: [],
     //     displayValues: []
     // });
+    useEffect(() => {
+        switch(gameState) {
+          case GAME_STATE.RUNNING:
+            roundStartAction()
+            break;
+          case GAME_STATE.WAITING:
+            prepareLoop()
+            break;
+        }
+    }, [gameState])
+    const prepareAction = () => {
+      document.getElementById('bgVideo').currentTime = 0
+    }
+    const prepareLoop = () => {
+        if(perpareTimer) {
+            clearInterval(perpareTimer)
+        }
+        perpareTimer = setInterval(() => prepareAction(), prepareVideoTime * 1000);
+    }
+    const roundStartAction = () => {
 
+      if(perpareTimer) {
+        clearInterval(perpareTimer)
+      }
+      document.getElementById('bgVideo').currentTime = prepareVideoTime
+    }
     const chartOptions = {
         markers: {
             size: 0
@@ -168,118 +194,6 @@ const ChartComponent = (props) => {
             }
         }
     }
-    const options = {
-        chart: {
-          height: 350,
-          type: "line",
-          stacked: false
-        },
-        dataLabels: {
-          enabled: false
-        },
-        colors: ["#FF1654", "#247BA0"],
-        series: [
-          {
-            name: "Series A",
-            data: [1.4, 2, 2.5, 1.5, 2.5, 2.8, 3.8, 4.6]
-          },
-          {
-            name: "Series B",
-            data: [20, 29, 37, 36, 44, 45, 50, 58]
-          }
-        ],
-        stroke: {
-          width: [4, 4]
-        },
-        plotOptions: {
-          bar: {
-            columnWidth: "20%"
-          }
-        },
-        xaxis: {
-          categories: [2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016]
-        },
-        yaxis: [
-          {
-            axisTicks: {
-              show: true
-            },
-            axisBorder: {
-              show: true,
-              color: "#FF1654"
-            },
-            labels: {
-              style: {
-                colors: "#FF1654"
-              }
-            },
-            title: {
-              text: "Series A",
-              style: {
-                color: "#FF1654"
-              }
-            }
-          },
-          {
-            opposite: true,
-            axisTicks: {
-              show: true
-            },
-            axisBorder: {
-              show: true,
-              color: "#247BA0"
-            },
-            labels: {
-              style: {
-                colors: "#247BA0"
-              }
-            },
-            title: {
-              text: "Series B",
-              style: {
-                color: "#247BA0"
-              }
-            }
-          }
-        ],
-        tooltip: {
-          shared: false,
-          intersect: true,
-          x: {
-            show: false
-          }
-        },
-        legend: {
-          horizontalAlign: "left",
-          offsetX: 40
-        }
-    };
-
-    
-    // useEffect(() => {
-    //     if(gameState === GAME_STATE.RUNNING) {
-    //         let timeValue = gameData.crashValues.length > 0 ? gameData.crashValues[gameData.crashValues.length-1].time+1 : 1;
-    //         let crashValues = [...gameData.crashValues, 
-    //             {
-    //                 time: timeValue,
-    //                 crashValue: gameResult
-    //             }]
-    //         let displayValues = [];
-    //         if(crashValues.length > 10) {
-    //             for(let i = 0 ; i < 9 ; i ++) {
-    //                 displayValues = [...displayValues, crashValues[parseInt(i * crashValues.length / 10)]]
-    //             }
-    //             displayValues = [...displayValues, crashValues[crashValues.length - 1]]
-    //         }
-    //         else {
-    //             displayValues = crashValues;
-    //         }
-    //         setGameData({
-    //             crashValues: crashValues,
-    //             displayValues: displayValues
-    //         })
-    //     }
-    // }, [gameResult])
     
     return (
         <>

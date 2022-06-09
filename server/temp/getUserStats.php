@@ -10,8 +10,8 @@ $response = array();
 
 $sql = "SELECT ";
 $sql = $sql. "(select count(*) from transactions where transactions.userId = users.id and information like '%crashgame%' and value < 0) as bets, ";
-$sql = $sql. "(select ABS(sum(value)) from transactions where transactions.userId = users.id and information like '%crashgame%' and value < 0) as wagered, ";
-$sql = $sql. "(select sum(value) from transactions where userId = crashgamebets.userId and information like '%crashgame%') as profit, ";
+$sql = $sql. "(select ROUND(ABS(sum(value)), 2) from transactions where transactions.userId = users.id and information like '%crashgame%' and value < 0) as wagered, ";
+$sql = $sql. "(select ROUND(sum(value), 2) from transactions where userId = crashgamebets.userId and information like '%crashgame%') as profit, ";
 $sql = $sql. "(select (select sum(value) from transactions t2 where t2.id <= t1.id and t2.userId = t1.userId) as profitATH from transactions t1 where t1.userId = crashgamebets.userId ORDER BY profitATH DESC LIMIT 1) as profitATH, ";
 $sql = $sql. "(select (select sum(value) from transactions t2 where t2.id <= t1.id and t2.userId = t1.userId) as profitATL from transactions t1 where t1.userId = crashgamebets.userId ORDER BY profitATL ASC LIMIT 1) as profitATL ";
 $sql = $sql. "FROM `crashgamebets` ";

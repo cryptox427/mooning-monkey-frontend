@@ -7,25 +7,25 @@ import {endBet} from '../../actions/betActions'
 import {GAME_STATE} from '../../utils/types'
 
 let valueTimer = null;
-let currentValue = -5;
+let currentValue = -10;
 const evtSource = new EventSource(serverUrl+"getGameProgress.php");
 
 const GameDataController = (props) => {
     const { getAllBets, getOnlinePlayerCount, setGameResult, gameState, removeAllBets, changeGameState, endBet } = props;
 
-    // useEffect(() => {
-    //     continueVauleSet()
-    // }, [])
-    // const continueVauleSet = () => {
-    //     if(valueTimer) {
-    //         clearInterval(valueTimer)
-    //     }
-    //     valueTimer = setInterval(() => valueSetter(), 200);
-    // }
-    // const valueSetter = () => {
-    //     currentValue = currentValue + 1
-    //     gameValueHandler(currentValue)
-    // }
+    useEffect(() => {
+        //continueVauleSet()
+    }, [])
+    const continueVauleSet = () => {
+        if(valueTimer) {
+            clearInterval(valueTimer)
+        }
+        valueTimer = setInterval(() => valueSetter(), 1000);
+    }
+    const valueSetter = () => {
+        currentValue = currentValue + 1
+        gameValueHandler(currentValue)
+    }
 
     const startGame = () => {
         console.log("gameState", gameState)
@@ -44,10 +44,10 @@ const GameDataController = (props) => {
         removeAllBets();
         setGameResult(0);
         changeGameState(GAME_STATE.WAITING);
-        document.getElementById('bgVideo').currentTime = 0
     }
 
     const gameValueHandler = (eventData) => {
+        console.log("eventData", eventData)
         if(eventData === "Finished")
         {
             if(gameState === GAME_STATE.RUNNING) {
@@ -70,7 +70,11 @@ const GameDataController = (props) => {
         } 
     }
     evtSource.onmessage = (event) => {
-        let eventData = event.data;
+        let eventData;
+        if(event.data !== "Finished") {
+            eventData = JSON.parse(event.data).value;
+        }
+        else eventData = event.data
         gameValueHandler(eventData)
     }
     return (

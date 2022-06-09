@@ -53,7 +53,12 @@
             curl_close($ch);
             var_dump($response);
             
-            $randomNumber = (json_decode($response)->{'result'}->{'random'}->{'data'}[0] + (rand(10,100)/100)) * 24;
+            $randomNumber = (json_decode($response)->{'result'}->{'random'}->{'data'}[0] + (rand(10,100)/100)) * 5;
+
+            if($randomNumber < 1){
+                // Min Payout is 1
+                $randomNumber = 1;
+            }
 
             $sql    = "INSERT INTO crashgame (result) VALUES(?)";
             $stmt = mysqli_stmt_init($con);

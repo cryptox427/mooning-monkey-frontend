@@ -44,6 +44,7 @@ import {showLoginModal, hideLoginModal} from '../../../actions/gameActions'
 import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../../actions/userActions'
 import {serverUrl} from '../../../utils/constant'
 import {ProfileModal} from '../ProfileModal'
+import {setPopUp} from '../../../actions/gameActions'
 
 
 const Header = (props) => {
@@ -229,7 +230,22 @@ const Header = (props) => {
             setLoginStatus(true);
         }
     }
-
+    const clickStatsBtn = () => {
+        if(logged) {
+            setShowStatsModal(true)
+        }
+        else {
+            setPopUp("Please login");
+        }
+    }
+    const clickWithdrawBtn = () => {
+        if(logged) {
+            setShowWithdrawModal(true)
+        }
+        else {
+            setPopUp("Please login");
+        }
+    }
     return (
         <>
             <LogoHeader/>
@@ -243,13 +259,13 @@ const Header = (props) => {
                         <button className="purple border-0 join-bankroll"  onClick={() => setBankrollStatus(true)}>
                             JOIN THE BANKROLL & EARN
                         </button>
-                        <button className="image-back border-0 leaderboard" onClick={() => setShowLeaderBoard(true)}>
+                        <button className="image-back border-0 leaderboard" onClick={() => clickStatsBtn()}>
                         
                             <div className='mask'>
                                 <span>LEARDERBOARD</span>
                             </div>
                         </button>
-                        <button className="image-back border-0 stats" onClick={() => setShowStatsModal(true)}>
+                        <button className="image-back border-0 stats" onClick={() => clickStatsBtn()}>
                         <div className='mask'><span>STATS</span></div>
                             
                         </button>
@@ -306,7 +322,7 @@ const Header = (props) => {
                         
                             DEPOSIT
                         </button>
-                        <button className="image-back border-0 withdraw" onClick={() => setShowWithdrawModal(true)}>
+                        <button className="image-back border-0 withdraw" onClick={() => clickWithdrawBtn()}>
                             <div className='mask'><span>WITHDRAW</span></div>
                             
                         </button>

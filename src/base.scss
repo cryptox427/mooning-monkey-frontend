@@ -124,3 +124,26 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
+.Toastify__toast {
+    border-radius: 0;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+    &-body {
+        div {
+            color: white;
+            font-family: Poppins-Medium !important;
+            font-size: 14px;
+        }
+        
+    }
+    .Toastify__close-button {
+        svg {
+
+    
+            color: white !important;
+                opacity: 1 !important;
+        }
+        opacity: 1 !important;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+}

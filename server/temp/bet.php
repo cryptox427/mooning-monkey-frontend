@@ -28,6 +28,17 @@
             break;
         }
 
+        $sql = "SELECT * FROM `crashgamebets` join users on crashgamebets.userId = users.id where gameId = (SELECT id from crashgame ORDER BY createDatetime DESC LIMIT 1) and publicKey = ?;";
+        $stmt = mysqli_stmt_init($con);
+        mysqli_stmt_prepare($stmt,$sql);
+        mysqli_stmt_bind_param($stmt, "s", $_SESSION['publicKey']);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        while($row = mysqli_fetch_assoc($result)){
+            echo "Already placed a bet";
+            die();
+        }
+
         if($userBalance < floatval($amount)) {
             echo "NOT ENOUGH CREDITS!";
         } else {
