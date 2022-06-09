@@ -71,7 +71,9 @@ const GameDataController = (props) => {
     }
     evtSource.onmessage = (event) => {
         let eventData;
+        console.log("event.data", event.data)
         if(event.data !== "Finished") {
+            console.log("event.data", JSON.parse(event.data))
             eventData = JSON.parse(event.data).value;
         }
         else eventData = event.data
