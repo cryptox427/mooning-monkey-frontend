@@ -6,9 +6,9 @@ import {GAME_HISTORY_TYPE} from "../../../../utils/types";
 
 const testData = [
     {
-        address: "1",
-        gameDate: "1",
-        bet: "5435",
+        address: "1fdgljdfgjreoijtoierj",
+        gameDate: "1asfaewkjewlkjrkerjwtkertfgdsf;gkerl;tk;erltkl",
+        bet: "5asdfasfewfwef435",
         multiplier: "1",
         payout: "341",
         username: "asdf"
@@ -91,9 +91,6 @@ const HistoryTable = (props) => {
                 <div className="h-payout">Payout</div>
             </div>
             <div className="data-container">
-                <table className="table">
-                    
-                    <tbody className="table-body">
                         {
                             gameHistory && 
                             (
@@ -110,8 +107,6 @@ const HistoryTable = (props) => {
                                 )
                             )
                         }
-                    </tbody>
-                </table>
             </div>
             
         </div>

@@ -47,36 +47,28 @@ const GameDataController = (props) => {
     }
 
     const gameValueHandler = (eventData) => {
-        console.log("eventData", eventData)
-        if(eventData === "Finished")
-        {
-            if(gameState === GAME_STATE.RUNNING) {
-                endGame();
-            }
-        }
-        else {
-            eventData = Number(eventData);
-            if(eventData <= 0) {
+        switch(eventData.status) {
+            case "Preparing":
                 if(gameState !== GAME_STATE.WAITING) {
                     waitGame();
                 }
-            }
-            else {
+                break;
+            case "Running":
                 if(gameState !== GAME_STATE.RUNNING) {
                     startGame();
+                    
                 }
-                setGameResult(eventData);
-            }
-        } 
+                setGameResult(eventData.value);
+                break;
+            case "Finished":
+                if(gameState !== GAME_STATE.CRASHED) {
+                    endGame();
+                }
+                break;
+        }
     }
     evtSource.onmessage = (event) => {
-        let eventData;
-        console.log("event.data", event.data)
-        if(event.data !== "Finished") {
-            console.log("event.data", JSON.parse(event.data))
-            eventData = JSON.parse(event.data).value;
-        }
-        else eventData = event.data
+        let eventData = JSON.parse(event.data);
         gameValueHandler(eventData)
     }
     return (

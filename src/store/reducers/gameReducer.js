@@ -10,7 +10,9 @@ import {GET_ALL_BET_SUCCESS,
     GET_ONLINE_PLEYERS_ERROR,
     SHOW_LOGIN_MODAL,
     HIDE_LOGIN_MODAL,
-    GAME_HISTORY_TYPE
+    GAME_HISTORY_TYPE,
+    HIDE_STATS_MODAL,
+    SHOW_STATS_MODAL
 } from '../../utils/types';
 
 const initialState = {
@@ -24,7 +26,7 @@ const initialState = {
     gameState: GAME_STATE.WAITING,
     crashValues: [],
     displayValues: [],
-    displayLoginModal: false
+    displayStatsModal: false
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -83,11 +85,13 @@ const gameReducer = (state = initialState, action) => {
             gameState: action.payload
         }
         case GET_GAME_HISTORY_SUCCESS:
+            console.log("GET_GAME_HISTORY_SUCCESS", action.historyType, action.payload)
         return {
             ...state,
             gameHistory: action.payload.map(historyData => 
                 {
-                    if(action.historyType === GAME_HISTORY_TYPE.MY_WAGER) {
+                    if(action.historyType !== GAME_HISTORY_TYPE.MY_WAGER) {
+                        console.log("not wager")
                         return { 
                             username: historyData[0],  
                             address: historyData[1], 
@@ -98,7 +102,9 @@ const gameReducer = (state = initialState, action) => {
                         }
                     }
                     else {
+                        console.log("wager")
                         return {
+                            
                             bet: historyData[0],
                             multiplier:historyData[1],
                             payout:historyData[2],
@@ -137,6 +143,16 @@ const gameReducer = (state = initialState, action) => {
         return {
             ...state,
             displayLoginModal: false
+        }
+        case SHOW_STATS_MODAL:
+        return {
+            ...state,
+            displayStatsModal: true
+        }
+        case HIDE_STATS_MODAL:
+        return {
+            ...state,
+            displayStatsModal: false
         }
         default: return state
     }

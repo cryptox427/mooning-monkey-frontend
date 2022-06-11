@@ -39,7 +39,7 @@ import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../../actions/betActions'
-import {showLoginModal, hideLoginModal} from '../../../actions/gameActions'
+import {showLoginModal, hideLoginModal, showStatsModal, hideStatsModal} from '../../../actions/gameActions'
 
 import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../../actions/userActions'
 import {serverUrl} from '../../../utils/constant'
@@ -144,6 +144,9 @@ const Header = (props) => {
     useEffect(() => {
         if (logged) {
             hideLoginModal()
+        }
+        else {
+            showLoginModal()
         }
     }, [logged]);
 
