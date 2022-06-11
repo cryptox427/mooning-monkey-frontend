@@ -16,7 +16,7 @@ const HistoryCell = (props) => {
             }
             {
                 type !== GAME_HISTORY_TYPE.MY_WAGER &&
-                <div className="address data-item">{h_address.substring(0, 8)}</div>
+                <div className="address data-item">{h_address ? h_address.substring(0, 8) : ""}</div>
             }
             
             <div className="time data-item">{h_time}</div>

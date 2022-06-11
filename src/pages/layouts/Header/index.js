@@ -48,10 +48,10 @@ import {setPopUp} from '../../../actions/gameActions'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins, showLoginModal, hideLoginModal, displayLoginModal, logged, getRegisteredState, history } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, showLoginModal, hideLoginModal,
+        showStatsModal, hideStatsModal, displayLoginModal, displayStatsModal, logged, getRegisteredState, history } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
-    const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
     const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
@@ -235,7 +235,7 @@ const Header = (props) => {
     }
     const clickStatsBtn = () => {
         if(logged) {
-            setShowStatsModal(true)
+            showStatsModal()
         }
         else {
             setPopUp("Please login");
@@ -374,7 +374,7 @@ const Header = (props) => {
             </div>
             <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
             <LeaderboardModal animationDirection="right"  show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
-            <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
+            <StatsModal show={displayStatsModal} onHide={() => hideStatsModal()} />
             <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
             <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
             <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
@@ -389,10 +389,13 @@ const Header = (props) => {
 const mapStateToProps  = (state) => (
     {
         logged: state.userData.logged,
-        displayLoginModal: state.betGameData.displayLoginModal
+        displayLoginModal: state.betGameData.displayLoginModal,
+        displayStatsModal: state.betGameData.displayStatsModal
+        
     }
 )
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits, showLoginModal, hideLoginModal, getMyRecentWins, getRegisteredState})(Header)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, showLoginModal, hideLoginModal, 
+    showStatsModal, hideStatsModal, getMyRecentWins, getRegisteredState})(Header)
 {/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                                         <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}

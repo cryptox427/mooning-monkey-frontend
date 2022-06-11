@@ -23,20 +23,21 @@ import {connect} from 'react-redux'
 import BankrollModal from './components/BanrollModal';
 import LeaderboardModal from './components/LeaderboardModal';
 import DepositModal from './components/DepositModal';
-import StatsModal from './components/StatsModal';
 import WithdrawModal from './components/WIthdrawModal';
 import Cell from './pages/layouts/Sidebar/Cell.js';
 import './Sidebar.scss';
 import darkLogo from './assets/images/playpage/dark-logo.png';
 import openSeaLogo from './assets/images/opensea.png';
 import {changeCurrentPage} from './actions/userActions'
+import {showStatsModal} from './actions/gameActions'
+import {setPopUp} from './actions/gameActions'
+
 
 const Sidebar = (props) => {
-  const {changeCurrentPage, history} = props;
+  const {changeCurrentPage, history, showStatsModal, logged} = props;
   
   const [bankrollStatus, setBankrollStatus] = useState(false);
   const [showLeaderBoard, setShowLeaderBoard] = useState(false);
-  const [showStatsModal, setShowStatsModal] = useState(false);
   const [showDepositModal, setShowDepositModal] = useState(false);
   const [showWithdrawModal, setShowWithdrawModal] = useState(false);
   const [currentPage, setCurrentPage] = useState("");
@@ -49,6 +50,14 @@ const Sidebar = (props) => {
     console.log("~~url", location.pathname)
     setCurrentPage(location.pathname)
   }, [location]);
+  const clickStatsBtn = () => {
+    if(logged) {
+        showStatsModal()
+    }
+    else {
+        setPopUp("Please login");
+    }
+}
   return (
     <>
     <div
@@ -147,7 +156,7 @@ const Sidebar = (props) => {
                       <span>LEARDERBOARD</span>
                   </div>
               </button>
-              <button className="image-back border-0 stats" onClick={() => setShowStatsModal(true)}>
+              <button className="image-back border-0 stats" onClick={() => clickStatsBtn()}>
               <div className='mask'><span>STATS</span></div>
                   
               </button>
@@ -185,7 +194,6 @@ const Sidebar = (props) => {
       
       <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
       <LeaderboardModal show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
-      <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
       <DepositModal show={showDepositModal} onHide={() => setShowDepositModal(false)} />
       <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
     
@@ -195,7 +203,8 @@ const Sidebar = (props) => {
 
 const mapStateToProps  = (state) => (
   {
-    currentPage: state.userData.currentPage 
+    currentPage: state.userData.currentPage,
+    logged: state.userData.logged
   }
 )
-export default withRouter(connect(mapStateToProps, {changeCurrentPage})(Sidebar))
+export default withRouter(connect(mapStateToProps, {changeCurrentPage, showStatsModal})(Sidebar))
