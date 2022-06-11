@@ -35,6 +35,10 @@
 
     }
 
+    .nft_container {
+        justify-content: start !important;
+    }
+
     .staking-container {
         display: flex;
         flex-direction: column;
@@ -42,8 +46,8 @@
         &-top {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            margin-bottom: 16px;
+            justify-content: start;
+            margin: 16px;
             flex-wrap: wrap;
             &-btns {
                 display: flex;
@@ -52,6 +56,36 @@
                 }
                 .first {
                     margin-right: 16px;
+                }
+            }
+            &-collection {
+                width: 20%;
+                margin: 20px;
+
+                &-font {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 22px;
+                }
+
+                &-image {
+                    width:100%;
+                    opacity: 0.9;
+                    border-radius: 10px;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+
+                &-btn {
+                    margin-top: 10px;
+                    text-align: center;
+                    border-radius: 10px;
+
+                    &:hover {
+                        cursor: pointer;
+                        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%) !important;
+                    }
                 }
             }
         }
