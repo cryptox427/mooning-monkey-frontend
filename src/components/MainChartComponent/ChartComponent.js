@@ -93,8 +93,9 @@ const ChartComponent = (props) => {
     }, [gameState])
     const prepareAction = () => {
         console.log("~~videoRef", videoRef)
+        //document.getElementById('bgVideo').currentTime = 0
         if(videoRef !== null) {
-            videoRef.currentTime = 0
+            videoRef.current.currentTime = 0
         }
         
     }

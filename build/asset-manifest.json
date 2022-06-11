@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.d8138e76.chunk.css",
-    "main.js": "/static/js/main.ebf4655c.chunk.js",
-    "main.js.map": "/static/js/main.ebf4655c.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.212bdd3c.js",
-    "runtime-main.js.map": "/static/js/runtime-main.212bdd3c.js.map",
+    "main.css": "/static/css/main.9b5560c3.chunk.css",
+    "main.js": "/static/js/main.a35d1aa7.chunk.js",
+    "main.js.map": "/static/js/main.a35d1aa7.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.78a90d5d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.78a90d5d.js.map",
     "static/css/2.d84db49f.chunk.css": "/static/css/2.d84db49f.chunk.css",
-    "static/js/2.693af799.chunk.js": "/static/js/2.693af799.chunk.js",
-    "static/js/2.693af799.chunk.js.map": "/static/js/2.693af799.chunk.js.map",
-    "static/js/3.b26bab7d.chunk.js": "/static/js/3.b26bab7d.chunk.js",
-    "static/js/3.b26bab7d.chunk.js.map": "/static/js/3.b26bab7d.chunk.js.map",
+    "static/js/2.73175d36.chunk.js": "/static/js/2.73175d36.chunk.js",
+    "static/js/2.73175d36.chunk.js.map": "/static/js/2.73175d36.chunk.js.map",
+    "static/js/3.777e9e94.chunk.js": "/static/js/3.777e9e94.chunk.js",
+    "static/js/3.777e9e94.chunk.js.map": "/static/js/3.777e9e94.chunk.js.map",
     "index.html": "/index.html",
     "static/css/2.d84db49f.chunk.css.map": "/static/css/2.d84db49f.chunk.css.map",
-    "static/css/main.d8138e76.chunk.css.map": "/static/css/main.d8138e76.chunk.css.map",
-    "static/js/2.693af799.chunk.js.LICENSE.txt": "/static/js/2.693af799.chunk.js.LICENSE.txt",
+    "static/css/main.9b5560c3.chunk.css.map": "/static/css/main.9b5560c3.chunk.css.map",
+    "static/js/2.73175d36.chunk.js.LICENSE.txt": "/static/js/2.73175d36.chunk.js.LICENSE.txt",
     "static/media/BUSD.600c85ea.svg": "/static/media/BUSD.600c85ea.svg",
     "static/media/App.css": "/static/media/Poppins-SemiBold.ac8d04b6.ttf",
     "static/media/MoonBackground.a8bdd89e.mp4": "/static/media/MoonBackground.a8bdd89e.mp4",
@@ -78,10 +78,10 @@
     "static/media/winning-bonus.4284acf1.svg": "/static/media/winning-bonus.4284acf1.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.212bdd3c.js",
+    "static/js/runtime-main.78a90d5d.js",
     "static/css/2.d84db49f.chunk.css",
-    "static/js/2.693af799.chunk.js",
-    "static/css/main.d8138e76.chunk.css",
-    "static/js/main.ebf4655c.chunk.js"
+    "static/js/2.73175d36.chunk.js",
+    "static/css/main.9b5560c3.chunk.css",
+    "static/js/main.a35d1aa7.chunk.js"
   ]
 }

@@ -125,6 +125,35 @@
                     }
                 }
             }
+
+            .stake-amount {
+                background: transparent;
+                text-decoration: none;
+                color: wheat;
+                border: none;
+                -webkit-appearance: none;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                appearance: none;
+            }
+
+            .item {
+                background-color: #2A2864;
+                cursor: pointer;
+            }
+
+            .active {
+                background-color: #F001F4;
+                border-color: #F001F4 !important;
+            }
+            
+            .item:active {
+                background-color: #F001F4;
+                border-color: #F001F4 !important;
+                border-radius: 10px;
+            }
             
             .lock-component {
                 width: 100%;
