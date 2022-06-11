@@ -8,34 +8,34 @@ import {GAME_HISTORY_TYPE} from "../../../../utils/types";
 const HistoryCell = (props) => {
     const { h_game, h_address, h_time, h_wager, h_mult, h_payout, pay_type, type, h_username } = props;
     return (
-        <tr>
-            <td className="game">{h_game}</td>
+        <div className="history-cell">
+            <div className="game data-item">{h_game}</div>
             {
                 type !== GAME_HISTORY_TYPE.MY_WAGER &&
-                <td className="username">{h_username}</td>
+                <div className="username data-item">{h_username}</div>
             }
             {
                 type !== GAME_HISTORY_TYPE.MY_WAGER &&
-                <td className="address">{h_address.substring(0, 8)}</td>
+                <div className="address data-item">{h_address.substring(0, 8)}</div>
             }
             
-            <td className="time">{h_time}</td>
-            <td className="wager">
+            <div className="time data-item">{h_time}</div>
+            <div className="wager data-item">
                 <div className="wager-container">
                     <img style={{display: pay_type == "bnb1" ? "block" : "none"}} src={bnb1Img}></img>
                     <img style={{display: pay_type == "bnb2" ? "block" : "none"}} src={bnb2Img}></img>
                     <p>${h_wager}</p>
                 </div>
-            </td>
-            <td className="mult">{h_mult}x</td>
-            <td className="payout">
+            </div>
+            <div className="mult data-item">{h_mult}x</div>
+            <div className="payout data-item">
                 
                 <img style={{display: pay_type == "bnb1" ? "block" : "none"}} src={bnb1Img}></img>
                 <img style={{display: pay_type == "bnb2" ? "block" : "none"}} src={bnb2Img}></img>
                 <p>${h_payout}</p>
-            </td>
+            </div>
             
-        </tr>
+        </div>
     );
 }
 

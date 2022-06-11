@@ -47,7 +47,7 @@ const LoginModal = (props) => {
     }, [show])
     const clickRegisterBtn = async () => {
         if (userData.password === "" || userData.confirmPassword === "" || userData.userName === "" ||
-            userData.confirmPassword !== userData.password || !validator.isEmail(userData.email)) {
+            userData.confirmPassword !== userData.password) {
             setPopUp('Input all field correctly!')
             return;
         } 
@@ -76,14 +76,6 @@ const LoginModal = (props) => {
                                 ...userData,
                                 userName: value
                             })}} defaultValue={userData.userName} />
-                    }
-                    {
-                        !registered &&
-                        <BottomLineInputComponent label="email" className="fill-input moon-bet-input purple-bg-input-child" type="email" prefix=""
-                            valueChangeHandler={(value)=>{setUserData({
-                                ...userData,
-                                email: value
-                            })}} defaultValue={userData.email} />
                     }
                     <BottomLineInputComponent label="password" className="fill-input moon-bet-input purple-bg-input-child" type="password" prefix=""
                         valueChangeHandler={(value)=>{setUserData({

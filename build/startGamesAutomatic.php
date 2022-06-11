@@ -12,6 +12,7 @@ $stepsPerSecond = 10;
 $gameStartTime;
 $gameEndMultiplier;
 
+
 $sql = "SELECT * FROM `crashgame` where crashgame.endDatetime is null ORDER BY createDatetime DESC LIMIT 1";
 $stmt = mysqli_stmt_init($con);
 mysqli_stmt_prepare($stmt,$sql);
@@ -28,24 +29,16 @@ while (true) {
     // Calculate the current Game Result and out ouput it
     $currentGameResult = calculateGameProgress($gameStartTime, $gameEndMultiplier, $stepsPerSecond);
 
-    if(microtime(true) - $gameStartTime - 5 + 3590< 0){
-        $currentGameStatus = "Preparing";
-    } else if( $currentGameResult == $gameEndMultiplier){
-        $currentGameStatus = "Finished";
-    } else{
-        $currentGameStatus = "Running";
-    }
-
-    echo "data: " . '{"value": ' . $currentGameResult . ',"status": "' . $currentGameStatus . '","secondsSinceStart": "' . microtime(true) - $gameStartTime - 5 + 3590 . '","startTime": "' . $gameStartTime . '"}', "\n\n";
-
-    //echo "data: " . $currentGameResult, "\n\n";
-
     if (ob_get_contents()) ob_end_flush();
     flush();
 
     // Break the Loop if the Game Result is reached
-    if($currentGameStatus == "Finished") {
-        //echo "data: Finished", "\n\n";
+    if($currentGameResult == $gameEndMultiplier) {
+        sleep(5);
+
+        $sFile = file_get_contents("http://localhost:3005/startGame.php?apiKey=EkVqPHQhSU76YDMdGHnxSpp5TNd7Rb96n7any2PjBCXpR9QprCH3iWcUJizQvUrabgn7GKfbYg9BxgtQKQaJjxWX5h6u4PLHL9yAf4wNLHLRLc9MRCfb5q3aetWBAXPjPcpPPp6pL5AqZ7BTWdngvhjK5b3Xx8Qthxk33QRdYBC3S8k4J9vEaYmvBmfuwQ7BJRv2KbB7cVy9zPYB2gFit99wx5qMXCfmyBd7bvntE7VftYhJHNx24TiDLKQ5CQvG", False);
+
+        echo "data: Finished", "\n\n";
         break;
     }
 
@@ -53,6 +46,6 @@ while (true) {
     if ( connection_aborted() ) break;
 
     usleep( 1000000/$stepsPerSecond );
-}
 
+}
 ?>

@@ -124,26 +124,40 @@ input[type=number]::-webkit-outer-spin-button {
 input[type=number] {
     -moz-appearance:textfield;
 }
-.Toastify__toast {
-    border-radius: 0;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
-    &-body {
-        div {
-            color: white;
-            font-family: Poppins-Medium !important;
-            font-size: 14px;
+.Toastify__toast-container {
+     top: 5em;
+    .Toastify__toast {
+        box-shadow: 0 1rem 3rem rgba(0,0,0,0.375)!important;
+        border-radius: 0;
+        border: 2px solid;
+        border-image: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) 1;
+        //background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+        background-color: #1c1c40;
+        &-body {
+            div {
+
+                color: white;
+                font-family: Poppins-Medium !important;
+                font-size: 14px;
+            }
+            
+        }
+        .Toastify__close-button {
+            svg {
+                color: white !important;
+                    opacity: 1 !important;
+            }
+            opacity: 1 !important;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        &-icon {
+            svg {
+                fill: gray !important;
+                width: 12px;
+            }
         }
         
     }
-    .Toastify__close-button {
-        svg {
-
     
-            color: white !important;
-                opacity: 1 !important;
-        }
-        opacity: 1 !important;
-        margin-top: 10px;
-        margin-right: 10px;
-    }
 }

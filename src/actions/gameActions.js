@@ -14,7 +14,9 @@ import {
         GET_ONLINE_PLEYERS_SUCCESS,
         GET_ONLINE_PLEYERS_ERROR,
         SHOW_LOGIN_MODAL,
-        HIDE_LOGIN_MODAL
+        HIDE_LOGIN_MODAL,
+        HIDE_STATS_MODAL,
+        SHOW_STATS_MODAL
     } from '../utils/types'
 import axios from 'axios'
 
@@ -134,8 +136,8 @@ export const setPopUp = (popup) => {
     console.log("popup")
     toast.info(popup, {
         position: "top-right",
-        autoClose: 3000,
-        hideProgressBar: false,
+        autoClose: false,
+        hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,
         draggable: true,
@@ -156,5 +158,17 @@ export const hideLoginModal = () => dispatch => {
     console.log("hideLoginModal")
     dispatch( {
         type: HIDE_LOGIN_MODAL
+    })
+}
+export const showStatsModal = () => dispatch => {
+    console.log("showStatsModal")
+    dispatch( {
+        type: SHOW_STATS_MODAL
+    })
+}
+export const hideStatsModal = () => dispatch => {
+    console.log("hideStatsModal")
+    dispatch( {
+        type: HIDE_STATS_MODAL
     })
 }

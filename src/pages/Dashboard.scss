@@ -184,7 +184,7 @@ $scale-var: 1600 / 2560;
 		min-height: calc(30vw + 250px);
 		.game-bet-chat-content {
 			height: 100%;
-			width: 70%;
+			width: 65%;
 			padding-right: 10px;
 			padding-bottom: 20px;
 			.game-bet {
@@ -192,12 +192,12 @@ $scale-var: 1600 / 2560;
 				height: 30vw;
 				.game {
 					height: 100%;
-					width: 68%;
+					width: 75%;
 					padding-right: 10px;
 					padding-bottom: 0px;
 				}
 				.bet {
-					width: 32%;
+					width: 25%;
 					height: 100%;
 				}
 			}
@@ -207,7 +207,7 @@ $scale-var: 1600 / 2560;
 			}
 		}
 		.players-content {
-			width: 30%;
+			width: 35%;
 			padding-bottom: 20px;
 			height: 100%;
 			min-height: 775px;

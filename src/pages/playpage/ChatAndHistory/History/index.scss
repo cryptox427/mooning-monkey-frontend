@@ -58,12 +58,29 @@ $scale-var: 1600 / 2560;
 			bottom: 0;
 			top: 34px;
 			overflow-y: auto;
-			.table-header {
-				color: white;
-				background-color: #3C3C97;
+			
+			.history-table tr th , .text-blue{
+				color: #5C52C6;
+	
 			}
-			tbody {
-				margin-top: 10px;
+			.history-cell {
+				display: flex;
+				width: 100%;
+				&:nth-child(odd) {
+					background-color: transparent !important;
+				}
+				&:nth-child(even) {
+					background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
+				}
+				.data-item {
+					color: white;
+					vertical-align: middle;
+					padding: 4px 20px;
+					font-size: 12px;
+					border-bottom: none !important;
+					border-top: none !important;
+
+				}
 				.game {
 					width: 12%;
 				}
@@ -114,43 +131,7 @@ $scale-var: 1600 / 2560;
 					}
 				}
 			}
-			.history-table tr th , .text-blue{
-				color: #5C52C6;
-	
-			}
-			tr {
-				border-top: none;
-			}
-			th {
-				border-top: none;
-				border-bottom: none !important;
-				padding-top: 5px;
-				padding-bottom: 5px;
-				font-size: 12px;
-			}
-			td{
-				color: white;
-				white-space: nowrap;
-				vertical-align: middle;
-				padding: 4px 15px;
-				font-size: 12px;
-				border-bottom: none !important;
-				border-top: none !important;
-			}
-			.odd{
-				background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
-			}
-	
-			thead tr {
-				background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
-			}
-	
-			tr:nth-child(odd) {
-				background-color: transparent !important;
-			}
-			tr:nth-child(even) {
-				background: linear-gradient(90deg, #3C3C97 4.22%, #363075 100%);
-			}
+			
 			
 		}
 		
