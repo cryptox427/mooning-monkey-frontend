@@ -103,6 +103,7 @@ const ChartComponent = (props) => {
         if(perpareTimer) {
             clearInterval(perpareTimer)
         }
+        prepareAction()
         perpareTimer = setInterval(() => prepareAction(), prepareVideoTime * 1000);
     }
     const roundStartAction = () => {
