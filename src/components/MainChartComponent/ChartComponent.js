@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 
 import ReactApexChart from 'react-apexcharts';
 import {connect} from 'react-redux'
@@ -80,6 +80,7 @@ const ChartComponent = (props) => {
     //     crashValues: [],
     //     displayValues: []
     // });
+    const videoRef = useRef(null);
     useEffect(() => {
         switch(gameState) {
           case GAME_STATE.RUNNING:
@@ -91,7 +92,11 @@ const ChartComponent = (props) => {
         }
     }, [gameState])
     const prepareAction = () => {
-      document.getElementById('bgVideo').currentTime = 0
+        console.log("~~videoRef", videoRef)
+        if(videoRef !== null) {
+            videoRef.currentTime = 0
+        }
+        
     }
     const prepareLoop = () => {
         if(perpareTimer) {
@@ -199,7 +204,7 @@ const ChartComponent = (props) => {
         <>
             <div className="play-chart">
                 <div className="bg" >
-                    <video loop autoPlay muted id="bgVideo">
+                    <video ref={videoRef} loop autoPlay muted id="bgVideo">
                         <source
                         src={BackgroundVideo }
                         type="video/mp4"
