@@ -12,7 +12,11 @@ import {GET_ALL_BET_SUCCESS,
     HIDE_LOGIN_MODAL,
     GAME_HISTORY_TYPE,
     HIDE_STATS_MODAL,
-    SHOW_STATS_MODAL
+    SHOW_STATS_MODAL,
+    HIDE_HELP_MODAL,
+    SHOW_HELP_MODAL,
+    HIDE_HELP_DETAIL_MODAL,
+    SHOW_HELP_DETAIL_MODAL
 } from '../../utils/types';
 
 const initialState = {
@@ -26,7 +30,11 @@ const initialState = {
     gameState: GAME_STATE.WAITING,
     crashValues: [],
     displayValues: [],
-    displayStatsModal: false
+    displayStatsModal: false,
+    displayLoginModal: false,
+    displayHelpModal: false,
+    displayHelpDetailModal: false,
+    helpDetailData: {}
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -154,6 +162,30 @@ const gameReducer = (state = initialState, action) => {
             ...state,
             displayStatsModal: false
         }
+        case SHOW_HELP_MODAL:
+        return {
+            ...state,
+            displayHelpModal: true
+        }
+        case HIDE_HELP_MODAL:
+        return {
+            ...state,
+            displayHelpModal: false
+        }
+        case SHOW_HELP_DETAIL_MODAL:
+        return {
+            ...state,
+            helpDetailData: action.payload,
+            displayHelpDetailModal: true,
+            displayHelpModal: false
+        }
+        case HIDE_HELP_DETAIL_MODAL:
+        return {
+            ...state,
+            helpDetailData: {},
+            displayHelpDetailModal: false
+        }
+        
         default: return state
     }
 

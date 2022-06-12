@@ -116,19 +116,21 @@ export const getRegisteredState = (walletAddress) => async dispatch => {
     try{
         const res = await axios.get(`${serverUrl}account.php?publicKey=${walletAddress}`);
         console.log("~~~~~~~~~getRegisteredState:", res)
-            if (res.data === "Doesnt Exist") {
-                dispatch( {
-                    type: GET_REGISTERED_STATUS_SUCCESS,
-                    payload: false
-                })
-            }
-            
-            if (res.data === "Exists") {
-                dispatch( {
-                    type: GET_REGISTERED_STATUS_SUCCESS,
-                    payload: true
-                })
-            }
+        if (res.data === "Doesnt Exist") {
+            dispatch( {
+                type: GET_REGISTERED_STATUS_SUCCESS,
+                payload: false
+            })
+            return false;
+        }
+        
+        if (res.data === "Exists") {
+            dispatch( {
+                type: GET_REGISTERED_STATUS_SUCCESS,
+                payload: true
+            })
+            return true;
+        }
     }
     catch(e){
         dispatch( {

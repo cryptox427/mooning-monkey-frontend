@@ -18,7 +18,7 @@ const ChartDataType = [
     'M'
 ];
 const StatsModal = (props) => {
-    const { show, onHide, stats, getStats, userName } = props;
+    const { show, onHide, stats, getStats, userName, logged } = props;
     const [userStats, setUserStats] = useState({
 
     });
@@ -60,7 +60,7 @@ const StatsModal = (props) => {
     useEffect(
         () => {
             if(show) {
-                onClickMyStats()
+                onClickGameStats()
             }
         },
         [show],
@@ -90,26 +90,33 @@ const StatsModal = (props) => {
 
     return (
         <Modal show={show} onHide={onHide} className="monkey-modal stats-modal">
-            <Tab.Container id="left-tabs-example" defaultActiveKey="myStats">
+            <Tab.Container id="left-tabs-example" defaultActiveKey="gameStats">
                 <Modal.Header closeButton closeVariant='white'>
                     <Nav variant="pills" className="nav-tabs modal-nav-tabs">
-                        <Nav.Item>
-                            <Nav.Link onClick={()=>onClickMyStats()} eventKey="myStats">My Stats</Nav.Link>
-                        </Nav.Item>
+                        
                         <Nav.Item>
                             <Nav.Link onClick={()=>onClickGameStats()} eventKey="gameStats">Game Stats</Nav.Link>
                         </Nav.Item>
+                        {
+                            logged &&   
+                            <Nav.Item>
+                                <Nav.Link onClick={()=>onClickMyStats()} eventKey="myStats">My Stats</Nav.Link>
+                            </Nav.Item>
+                        }
                     </Nav>
                 </Modal.Header>
                 <Modal.Body>
                     <Tab.Content>
-                        <Tab.Pane eventKey="myStats">
-                            <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={userStats}/>
-                        </Tab.Pane>
+                        {
+                            logged &&
+                            <Tab.Pane eventKey="myStats">
+                                <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={userStats}/>
+                            </Tab.Pane>
+                        }
                         <Tab.Pane eventKey="gameStats">
                             <GameStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
                         </Tab.Pane>
-                    
+                        
                     </Tab.Content>
                 </Modal.Body>
             </Tab.Container>
@@ -120,7 +127,9 @@ const StatsModal = (props) => {
 const mapStateToProps  = (state) => (
     {
         stats: state.userData.stats,
-        userName: state.userData.userName
+        userName: state.userData.userName,
+        logged: state.userData.logged,
+        
     }
 )
 export default connect(mapStateToProps, {getStats})(StatsModal)

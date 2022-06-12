@@ -51,12 +51,7 @@ const Sidebar = (props) => {
     setCurrentPage(location.pathname)
   }, [location]);
   const clickStatsBtn = () => {
-    if(logged) {
-        showStatsModal()
-    }
-    else {
-        setPopUp("Please login");
-    }
+    showStatsModal()
 }
   return (
     <>
