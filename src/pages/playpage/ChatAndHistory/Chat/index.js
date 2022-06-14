@@ -33,11 +33,12 @@ import finland from '../../../../assets/Flags/finland.svg';
 import french from '../../../../assets/Flags/french.svg';
 import german from '../../../../assets/Flags/german.svg';
 import greek from '../../../../assets/Flags/greek.svg';
-import help from '../../../../assets/Flags/help.svg';
 import hungarian from '../../../../assets/Flags/hungarian.svg';
 import india from '../../../../assets/Flags/india.svg';
 import indonesia from '../../../../assets/Flags/indonesia.svg';
 import israel from '../../../../assets/Flags/israel.svg';
+import help from '../../../../assets/Flags/help.png';
+import spam from '../../../../assets/Flags/spam.png';
 
 import './index.scss';
 import TalkCell from './TalkCell';
@@ -77,7 +78,9 @@ const countries = {
     hungarian: hungarian,
     india: india,
     indonesia: indonesia,
-    israel: israel
+    israel: israel,
+    help: help,
+    spam: spam
 }
 const chatTestData = [
     {

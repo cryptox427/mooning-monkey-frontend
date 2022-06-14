@@ -1,6 +1,7 @@
 .help-modal {
     .modal-dialog {
         max-width: 500px !important;
+        border: 2px solid #7050CB;
         .search {
             width: 100%;
             border: 2px solid;
@@ -41,6 +42,7 @@
 .help-detail-modal {
     .modal-dialog {
         max-width: 500px !important;
+        border: 2px solid #7050CB;
         .modal-body {
             .title {
                 margin-top: 14px;
@@ -66,10 +68,20 @@
                     font-size: 14px !important;
                     width: 50%;
                     padding: 0 10px !important;
-                    text-align: center;
-                    span {
+                    border: 2px solid #7050CB;
+                    margin-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    .text {
+                        white-space: nowrap;
+                        font-family: Poppins-Regular;
+                        text-align: center;
+                    }
+                    .moonign-link {
                         white-space: nowrap;
                         color: #FF01EB;
+                        font-family: Poppins-Regular;
+                        text-align: center;
                     }
                 }
             }

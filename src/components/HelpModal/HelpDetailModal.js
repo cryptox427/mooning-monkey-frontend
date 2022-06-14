@@ -35,8 +35,10 @@ const HelpDetailModal = (props) => {
                 <div className="description">{helpDetailData.description}</div>
                 <div className="bottom-buttons">
                     <button className="cta-btn back-btn" onClick={()=>clickBackBtn()}><AiOutlineCaretLeft/>Back to support index</button>
-                    <div className="still-help">Still need help?
-                    <span>@mooning-monkeys.com</span></div>
+                    <div className="still-help">
+                        <span className="text">Still need help?</span>
+                        <span className="moonign-link">@mooning-monkeys.com</span>
+                    </div>
                 </div>
             </Modal.Body>
         </Modal>

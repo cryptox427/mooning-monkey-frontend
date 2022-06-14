@@ -70,10 +70,11 @@ const testData = [
         time: 20,
         crashValue: 40
     }];
+const testLatestResults = [4.2, 4.2,1.4, 3.2, 2.2, 4.2, 4.2,1.4, 3.2, 2.2, 4.2, 4.2,1.4, 3.2, 2.2];
 let perpareTimer = null;
 const prepareVideoTime = 5;
 const ChartComponent = (props) => {
-    const { gameResult, gameState, displayValues } = props;
+    const { gameResult, gameState, displayValues, latestResults } = props;
 
     // const [gameData, setGameData] = useState({
     //     currentState: GAME_STATE.WAITING,
@@ -254,6 +255,23 @@ const ChartComponent = (props) => {
                     </a>
                     <SettingModal/>
                 </div>
+                <div className="latest-results">
+                    {
+                        latestResults.length > 0 && 
+                        <>
+                            <p className="title">Latest Results:</p>
+                            {
+                                latestResults.map(result => {
+                                    return (
+                                        <button className={`result-btn ${result>3 ? "high-result":"low-result"}`}>
+                                            {result}
+                                        </button>
+                                    )
+                                })
+                            }
+                        </>
+                    }
+                </div>
             </div>
         </>
     );
@@ -263,8 +281,8 @@ const mapStateToProps  = (state) => (
     {
         gameResult: state.betGameData.gameResult,
         displayValues: state.betGameData.displayValues,
-        
-        gameState: state.betGameData.gameState
+        gameState: state.betGameData.gameState,
+        latestResults: state.betGameData.latestResults,
     }
 )
 

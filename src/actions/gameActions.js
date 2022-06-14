@@ -20,7 +20,8 @@ import {
         SHOW_HELP_MODAL,
         HIDE_HELP_MODAL,
         SHOW_HELP_DETAIL_MODAL,
-        HIDE_HELP_DETAIL_MODAL
+        HIDE_HELP_DETAIL_MODAL,
+        SET_LATEST_RESULTS
         
     } from '../utils/types'
 import axios from 'axios'
@@ -200,5 +201,11 @@ export const hideHelpDetailModal = () => dispatch => {
     console.log("hideHelpDetailModal")
     dispatch( {
         type: HIDE_HELP_DETAIL_MODAL
+    })
+}
+export const setLatestResults = () => dispatch => {
+    console.log("setLatestResults")
+    dispatch( {
+        type: SET_LATEST_RESULTS
     })
 }

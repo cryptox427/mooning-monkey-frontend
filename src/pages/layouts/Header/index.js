@@ -134,7 +134,11 @@ const Header = (props) => {
         setWalletAddress(address)
         addWalletListener()
     }, [])
-    
+    useEffect(() => {
+        if (logged) {
+            hideLoginModal()
+        }
+    }, [logged]);
     useEffect(() => {
         if (status) {
             notify();

@@ -16,7 +16,8 @@ import {GET_ALL_BET_SUCCESS,
     HIDE_HELP_MODAL,
     SHOW_HELP_MODAL,
     HIDE_HELP_DETAIL_MODAL,
-    SHOW_HELP_DETAIL_MODAL
+    SHOW_HELP_DETAIL_MODAL,
+    SET_LATEST_RESULTS
 } from '../../utils/types';
 
 const initialState = {
@@ -34,7 +35,8 @@ const initialState = {
     displayLoginModal: false,
     displayHelpModal: false,
     displayHelpDetailModal: false,
-    helpDetailData: {}
+    helpDetailData: {},
+    latestResults: []
 }
 
 const gameReducer = (state = initialState, action) => {
@@ -185,7 +187,11 @@ const gameReducer = (state = initialState, action) => {
             helpDetailData: {},
             displayHelpDetailModal: false
         }
-        
+        case SET_LATEST_RESULTS:
+        return {
+            ...state,
+            latestResults: [state.gameResult, ...state.latestResults].slice(0, 20)
+        }
         default: return state
     }
 

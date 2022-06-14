@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import {connect} from 'react-redux'
 import './index.scss'
 import {serverUrl} from '../../utils/constant'
-import {getAllBets, getOnlinePlayerCount, setGameResult, removeAllBets, changeGameState} from '../../actions/gameActions'
+import {getAllBets, getOnlinePlayerCount, setGameResult, setLatestResults, removeAllBets, changeGameState} from '../../actions/gameActions'
 import {endBet} from '../../actions/betActions'
 import {GAME_STATE} from '../../utils/types'
 
@@ -11,7 +11,7 @@ let currentValue = -10;
 const evtSource = new EventSource(serverUrl+"getGameProgress.php");
 
 const GameDataController = (props) => {
-    const { getAllBets, getOnlinePlayerCount, setGameResult, gameState, removeAllBets, changeGameState, endBet } = props;
+    const { getAllBets, setLatestResults, getOnlinePlayerCount, setGameResult, gameState, removeAllBets, changeGameState, endBet } = props;
 
     useEffect(() => {
         //continueVauleSet()
@@ -38,6 +38,7 @@ const GameDataController = (props) => {
     const endGame = () => {
         endBet();
         changeGameState(GAME_STATE.CRASHED);
+        setLatestResults()
     }
 
     const waitGame = () => {
@@ -85,4 +86,4 @@ const mapStateToProps  = (state) => (
     }
 )
 
-export default connect(mapStateToProps, {getAllBets, getOnlinePlayerCount, setGameResult, removeAllBets, endBet, changeGameState})(GameDataController)
+export default connect(mapStateToProps, {getAllBets, getOnlinePlayerCount, setGameResult, setLatestResults, removeAllBets, endBet, changeGameState})(GameDataController)
