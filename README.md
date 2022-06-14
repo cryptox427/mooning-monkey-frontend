@@ -1,4 +1,4 @@
-# Contrast React Admin Dashboard (Free)
+# Contrast React user Dashboard (Free)
 
 This project was with the CDBReact Package [CDBReact](https://github.com/Devwares-Team/cdbreact).
 
