@@ -1,0 +1,411 @@
+
+@media only screen and (min-width: 0) {
+    .ph-show {
+        display: flex !important;
+    }
+    .wnd-show {
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 768px) {
+    .ph-show {
+        display: none !important;
+    }
+    .wnd-show {
+        display: flex !important;
+    }
+}
+.staking-container {
+    padding: 20px 10px;
+    color: white;
+    
+    @media only screen and (min-width: 768px) {
+        padding: 20px 40px;
+    }
+    
+    .main {
+        margin-bottom: 16px;
+    }
+    
+    .pink-font {
+        color: #F001F4;
+    }
+    
+    &-title {
+        font-size: 24px;
+        margin-bottom: 8px;
+        
+        @media only screen and (min-width: 768px) {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+        @media only screen and (min-width: 1024px) {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+    }
+    
+    &-left {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        
+        &-top {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border: 2px solid #2A2864;
+            margin-bottom: 16px;
+            padding: 8px;
+            
+            @media only screen and (min-width: 768px) {
+                padding: 16px;
+                border: 4px solid #2A2864;
+            }
+            .title {
+                font-size: 16px;
+                padding-bottom: 8px;
+                
+                @media only screen and (min-width: 768px) {
+                    font-size: 24px;
+                }
+            }
+            
+            .stake-component {
+                background: rgba(0, 0, 0, 0);
+                padding: 8px 0px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                justify-content: space-between;
+                @media only screen and (min-width: 768px) {
+                    background: #322C76;
+                    font-size: 14px;
+                    flex-wrap: nowrap;
+                    padding: 12px 12px;
+                    align-items: center;
+                }
+                @media only screen and (min-width: 1024px) {
+                    padding: 8px 16px;
+                    background: #322C76;
+                    padding: 8px 16px;
+                }
+                
+
+                .title {
+                    display: flex;
+                    align-items: center;
+                    font-size: 14px;
+                    padding-bottom: 0;
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 8px;
+                    }
+                    @media only screen and (min-width: 768px) {
+                        
+                    }
+                    @media only screen and (min-width: 1024px) {
+                        
+                    }
+                }
+                
+                .info {
+                    display: flex;
+                    justify-content: space-between;
+                    flex-wrap: wrap;
+                    padding: 8px 16px;
+                    border: 2px solid #2A2864;
+                    width: 100%;
+                    @media only screen and (min-width: 768px) {
+                        border: 4px solid #2A2864;
+                        width: 60%;
+                    }
+                }
+            }
+
+            .stake-amount {
+                background: transparent;
+                text-decoration: none;
+                color: wheat;
+                border: none;
+                -webkit-appearance: none;
+            }
+
+            input::-webkit-outer-spin-button,
+            input::-webkit-inner-spin-button {
+                appearance: none;
+            }
+
+            .item {
+                background-color: #2A2864;
+                cursor: pointer;
+            }
+
+            .active {
+                background-color: #F001F4;
+                border-color: #F001F4 !important;
+            }
+            
+            .item:active {
+                background-color: #F001F4;
+                border-color: #F001F4 !important;
+                border-radius: 10px;
+            }
+            
+            .lock-component {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                padding: 8px 0px;
+                flex-wrap: wrap;
+                @media only screen and (min-width: 768px) {
+                    font-size: 14px;
+                    flex-wrap: wrap;
+                    padding: 8px 0px;
+                }
+                @media only screen and (min-width: 1024px) {
+                    padding: 12px 0px;
+                }
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                .title {
+                    display: flex;
+                    align-items: center;
+                    white-space: nowrap;
+                    font-size: 10px;
+                    @media only screen and (min-width: 768px) {
+                        font-size: 14px;
+    
+                    }
+                    @media only screen and (min-width: 1024px) {
+                        padding: 8px 16px;
+                    }
+                    img {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 8px;
+                    }
+                }
+                
+                .info {
+                    flex-wrap: nowrap;
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 8px 0;
+                    width: 100%;
+                    @media only screen and (min-width: 768px) {
+                        width: 100%;
+                        padding: 12px 0;
+                        flex-wrap: nowrap;
+                    }
+                    @media only screen and (min-width: 1024px) {
+                        width: 60%;
+                        flex-wrap: nowrap;
+                    }
+                    .item {
+                        width: 40px;
+                        height: 40px;
+                        border: 2px solid #2A2864;
+                        @media only screen and (min-width: 768px)
+                        {
+                            
+                            border: 4px solid #2A2864;
+                            width: 50px;
+                            height: 50px;
+                        }
+                        
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                    }
+                }
+            }
+
+            .explain-component {
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+                display: flex;
+                justify-content: space-between;
+                padding: 12px 0;
+                flex-direction: column;
+                align-items: center;
+                @media only screen and (min-width: 768px)
+                {
+                    flex-direction: row;
+                    padding: 24px 0;
+                    align-items: flex-start;
+                }
+                @media only screen and (min-width: 1024px)
+                {
+                    flex-direction: row;
+                    padding: 24px 0;
+                }
+                .left {
+                    font-size: 14px;
+                    @media only screen and (min-width: 768px)
+                    {
+                        font-size: 14px;
+                        flex-direction: row;
+                        align-items: center;
+                        padding-right: 20px;
+                    }
+                }
+
+                .right {
+                    display: flex;
+                    
+                    font-size: 12px;
+                    
+                    img {
+                        width: 32px;
+                        height: 32px;
+                        margin-left: 8px;
+                        justify-content: flex-end;
+                    }
+                    margin-top: 10px;
+                    justify-content: space-between;
+                    align-items: center;
+                    width: 100%;
+                    @media only screen and (min-width: 768px)
+                    {
+                        flex-direction: row;
+                        justify-content: flex-end;
+                        width: 40%;
+                    }
+                }
+            }
+        }
+
+        &-bottom {
+            padding: 16px;
+            display: none;
+            
+            @media only screen and (min-width: 768px)
+            {
+                display: flex;
+                justify-content: flex-end;
+                margin-bottom: 16px;
+            }
+            flex-direction: column;
+            border: 4px solid #2A2864;
+            padding: 16px;
+
+            .button-group {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 16px;
+                flex-wrap: wrap;
+                .button {
+                    @media only screen and (min-width: 768px)
+                    {
+                        padding: 8px 16px;
+                    }
+                    @media only screen and (min-width: 1024px)
+                    {
+                        padding: 8px 24px;
+                    }
+                    margin-top: 10px;
+                    padding: 8px 24px;
+                    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+                    cursor: pointer;
+                    &:hover {
+                        background: linear-gradient(0deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), linear-gradient(293.51deg, #7050CB 19.42%, #FF01EB 73.36%);
+                    }
+                }
+                
+            }
+
+            .view-history {
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+    }
+
+    &-right {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        &-top {
+            flex: 1;
+            border: 4px solid #2A2864;
+            padding: 16px;
+            margin-bottom: 16px;
+            
+            @media only screen and (min-width: 768px)
+            {
+                font-size: 12px;
+            }
+            @media only screen and (min-width: 1024px)
+            {
+                font-size: 14px;
+            }
+            .title {
+                margin-bottom: 16px;
+            }
+
+            .detail {
+                margin-bottom: 8px;
+
+                .sub-title {
+                    color: #F001F4;
+                }
+            }
+
+            .chart-option {
+                flex-wrap: wrap;
+                display: flex;
+                justify-content: space-between;
+                margin: 16px 0;
+
+                .item-list {
+                    .item {
+                        padding: 8px;
+                        cursor: pointer;
+                        &:hover {
+                            color: #F001F4;
+                        }
+                        &:active {
+                            color: #F001F4;   
+                        }
+                        &:visited {
+                            color: #F001F4;   
+                        }
+                    }
+                }
+            }
+
+            svg {
+                background: transparent !important;
+            }
+        }
+
+        &-bottom {
+            border: 4px solid #2A2864;
+            padding: 16px;
+            position: relative;
+
+            .button {
+                width: 75%;
+                padding: 16px;
+                background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+            }
+
+            img {
+                position: absolute;
+                left: 75%;
+                height: 100%;
+                top: 0;
+                transform: translate(-50%);
+            }
+        }
+    }
+}

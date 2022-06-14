@@ -1,0 +1,91 @@
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+::-webkit-scrollbar {
+  width:5px;
+  height:5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius:5px;
+  background-color: #515189 !important;
+}
+.sidebar-content a {
+	text-transform:capitalize;
+}
+
+@font-face {
+  font-family: "Nurom";
+  src: local("Nurom"),
+    url("./assets/font/Nurom-Bold.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Poppins-Regular";
+  src: local("Poppins"),
+    url("./assets/font/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "Poppins-SemiBold";
+  src: local("Poppins"),
+    url("./assets/font/Poppins-SemiBold.ttf") format("truetype");
+  font-weight: semi-bold;
+}
+
+@font-face {
+  font-family: "Poppins-Medium";
+  src: local("Poppins-Medium"),
+    url("./assets/font/Poppins-Medium.ttf") format("truetype");
+  font-weight: medium;
+}
+
+
+@font-face {
+  font-family: "Poppins-Light";
+  src: local("Poppins-Light"),
+    url("./assets/font/Poppins-Light.ttf") format("truetype");
+  font-weight: medium;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("./assets/images/Bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+.full-relative {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+
+.gradient-font {
+  width: fit-content;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.white-btn {
+  font-weight: bold;
+  cursor: pointer;
+  background: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.white-btn:hover {
+  background: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

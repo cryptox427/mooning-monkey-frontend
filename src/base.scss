@@ -1,0 +1,163 @@
+.purple {
+    text-align: center;
+    color: white;
+    font-family: Nurom;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+}
+.image-back {
+    background-image: url("./assets/images/playpage/background.png");
+    background-color: rgba(42, 46, 104, 0.93);
+    .mask {
+        
+        width: 100%;
+        height: 100%;
+        background-color: rgba(42, 46, 104, 0.93);
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        span {
+            position: absolute;
+            transform: translate(-50%, -50%);
+            top: 50%;
+            left: 50%;
+            text-align: center;
+            color: white;
+            font-family: Nurom;
+        }
+    }
+}
+.liner-purple-background {
+    background: linear-gradient(90deg, #3C3C97 0%, #363075 100%);
+}
+.tooltip-monkey-top {
+    position: relative;
+    display: inline-block;
+    border-top: 1px dotted black;
+    .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 150%;
+        left: 50%;
+        margin-left: -60px;
+      }
+      .tooltiptext::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        margin-left: -5px;
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent black transparent;
+      }
+      &:hover {
+        .tooltiptext {
+            visibility: visible;
+          }
+      }
+}
+.purple-gradient-btn {
+    width: 100%;
+    padding: 10px;
+    font-family: Poppins-Medium;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+    color: white;
+    border: none;
+}
+.pink-monkey-text {
+    background-color: rgba(0, 0, 0, 0) !important;
+    color: #FF01EB;
+}
+.display-under-error {
+    display: none;
+}
+.err-field {
+    .red-under-error {
+        color: red;
+    }
+    .display-under-error {
+        display: block;
+    }
+    .red-border-under-error {
+        border-color: red !important;
+    }
+    .red-outline-under-error {
+        outline-color: red !important;
+    }
+}
+.cta-btn{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    color: white !important;
+    display: flex;
+    padding: 8px 15px;
+    text-align: center;
+    line-height: 20px;
+    align-items: center;
+    gap: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border: none !important;
+    &:hover {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    }
+    &:disabled {
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), linear-gradient(90deg, #4f3d81 4.11%, #913e8a 100%) !important;
+    }
+}
+.height-100-p {
+    height: 100%;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none !important; 
+  margin: 0; 
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}
+.Toastify__toast-container {
+     top: 5em;
+    .Toastify__toast {
+        box-shadow: 0 1rem 3rem rgba(0,0,0,0.375)!important;
+        border-radius: 0;
+        border: 2px solid;
+        border-image: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) 1;
+        //background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+        background-color: #1c1c40;
+        &-body {
+            div {
+
+                color: white;
+                font-family: Poppins-Medium !important;
+                font-size: 14px;
+            }
+            
+        }
+        .Toastify__close-button {
+            svg {
+                color: white !important;
+                    opacity: 1 !important;
+            }
+            opacity: 1 !important;
+            margin-top: 10px;
+            margin-right: 10px;
+        }
+        &-icon {
+            svg {
+                fill: gray !important;
+                width: 12px;
+            }
+        }
+        
+    }
+    
+}

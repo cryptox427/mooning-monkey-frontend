@@ -1,0 +1,236 @@
+$scale-var: 1600 / 2560;
+
+.left-sidebar {
+    position: absolute;
+    @media only screen and (min-width: 768px) {
+        position: unset;
+    }
+    .pro-sidebar {
+        background: #232151;
+        min-width: 280px;
+        &.toggled {
+            min-width: 0;
+            width: 0;
+        }
+        @media only screen and (min-width: 768px) {
+            &.toggled {
+                min-width: 80px;
+                width: 80px;
+            }
+            background: linear-gradient(350.48deg, rgba(255, 1, 199, 0.11) 4.34%, rgba(13, 12, 30, 0.45) 31.98%);
+        }
+        @media only screen and (min-width: 1600px) {
+            min-width: 320px;
+            
+        }
+
+        .sidebar-content {
+            margin-top: 38px * $scale-var;
+            padding: 0;
+            .pro-menu {
+                margin-top: 0;
+                padding: 0;
+            }
+        }
+        
+        .monkey-sidebar-item {
+            .iytIZQ {
+                
+            }
+            margin-left: 27px;
+            margin-top: 0;
+            padding: 0;
+            margin-bottom: 7px * $scale-var;
+            background-color: rgba(0, 0, 0, 0);
+            div {
+                height: 36px;
+                @media only screen and (min-width: 1600px) {
+                    height: 42px;
+                }
+                padding: 0;
+                .item-content {   
+                    position: relative;
+                    display: flex;
+                    .icon {
+                        font-size: 16px;
+                        width: 36px;
+                        height: 36px;
+                        margin-right: 10px;
+                        padding: 8px;
+                    }
+                    .detail-str {
+                        font-family: Nurom;
+                        font-size: 16px;
+                        font-weight: bold;
+                        position: absolute;
+                        left: 52px;
+                        transform: translateY(-50%);
+                        top: 50%;
+                    }   
+                    @media only screen and (min-width: 1600px) {
+                        .icon {
+                            font-size: 20px;
+                            width: 43px;
+                            height: 43px;
+                            margin-right: 10px;
+                            padding: 8px;
+                        }
+                        .detail-str {
+                            font-family: Nurom;
+                            font-size: 20px;
+                            font-weight: bold;
+                            position: absolute;
+                            left: 66px;
+                        }   
+                    }
+                }
+            }
+            
+            
+        }
+        .normal {
+            .icon {
+                background-color: rgba(0, 0, 0, 0);
+                color: #515189;
+            }
+            .detail-str {
+                color: white;
+            }
+        }
+        .selected {
+            .icon {
+                background-color: #201C4A;
+                color: #F001F4;
+            }
+            .detail-str {
+                color: #F001F4;
+            }
+        }
+    }
+    .toggled {
+        .monkey-sidebar-item {
+            margin: 0;
+            .item-content {
+                justify-content: center;
+                .icon {
+                    margin: 0 !important;
+                }
+            }
+            .detail-str {
+                display: none;
+            }
+        }
+        .buttons {
+            display: none !important;
+        }
+        
+    }
+    .display-button {
+        width: 29px * $scale-var;
+        height: 28px * $scale-var;
+        position: fixed;
+        left: 26px;
+        top: 20px;
+        @media only screen and (min-width: 1600px) {
+            left: 153px * $scale-var;
+            top: 64px * $scale-var;
+        }
+
+        border: none;
+        .icon-suffix {
+            margin: 0 !important;
+            border: none;
+        }
+        
+        .head-div {
+            padding: 0;
+            font-size: larger;
+            .oc-icon {
+                color: #515189;
+                stroke: #170F26;
+                stroke-width: 1px;
+            }
+            .right-icon {
+                
+                display: none;    
+            }
+            .left-icon {
+                
+                display: block;
+            }
+        }
+        .toggled {
+            .right-icon {
+                
+                display: block !important;    
+            }
+            .left-icon {
+                
+                display: none !important;
+            }
+        }
+    }
+    .sidebar-btn-wrapper {
+        .sidebar-foot-btn {
+            width: 40px;
+            padding-left: 10px;
+            padding-right: 10px;
+            height: 20px;
+            margin: 5px;
+            margin-right: 5px;
+            color: #7050CB;
+            &.opensea-btn {
+                background-image:
+                    url('./assets/images/opensea.png');
+                //background-color: rgb(92, 92, 236);
+            }
+        }
+    }
+    .buttons {
+        display: flex !important;
+        @media only screen and (min-width: 1200px) {
+            display: none !important;
+        }
+        flex-direction: column;
+        button {
+            font-size: 12px;
+            position: relative;
+            
+            margin-bottom: 10px;
+            margin-left: 30px;
+            margin-right: 30px;
+            padding: 10px;
+            align-items: center;
+            height: 40px;
+            justify-content: center;
+            .mask {
+                background-color: #2A2E68;
+                opacity: 0.93;
+                span {
+                    width: fit-content !important;
+                }
+            }
+        }
+        .wallet-address {
+            display: block !important;
+            @media only screen and (min-width: 768px) {
+                display: none !important;
+            }
+        }
+        .buy-now {
+            display: block !important;
+            @media only screen and (min-width: 768px) {
+                display: none !important;
+            }    
+            align-items: center;
+            white-space: nowrap;
+            box-sizing: border-box;
+            img {
+                width: 24px;
+                height: 24px;
+                margin-right: 6px;
+            }
+             
+        }
+    }
+}

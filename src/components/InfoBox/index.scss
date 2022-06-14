@@ -1,0 +1,122 @@
+.bank-roll-modal {
+.underline {
+    height: 2px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+}
+
+.select-item {
+    cursor: pointer;
+}
+
+.share_detail {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5px;
+}
+
+.tab-pane .row > div{
+    padding-right: 10px;
+    padding-left: 10px;
+}
+.tab-pane .row > div{
+    margin-bottom: 20px;
+}
+
+.modal-dialog {
+    max-width: 750px !important;
+}
+
+.chat-history-tabContent  ul {
+    padding-left: 17px;
+    list-style: none; /* Remove default bullets */
+}
+.chat-history-tabContent  ul li{  margin-bottom: 10px;}
+.chat-history-tabContent  ul li::before {
+    position: absolute;
+    content: "\2022";  
+    color: #FF01EB ; 
+    font-weight: bold; 
+    display: inline-block; 
+    width: 1.2em; 
+    margin-left: -1em; 
+}
+.pink{
+    color: #FF01EB !important; 
+}
+
+.change-box{
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    justify-content: space-between;
+}
+
+.change-box-left{
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+.change-box{
+    border: 2px solid #2A2E68;
+    padding: 1rem;
+}
+.change-box-bottom-btn{
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+.change-box-bottom-btn > a{
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+}
+
+.change-box.filled{
+    background-color: #322C76;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 8px;
+}
+.change-box.odd{
+    margin-bottom: 8px;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    background-color: transparent;
+    border: none;
+}
+
+.c-box-title-img{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.right-bet-box{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.change-box-bottom-btn{
+    display: flex;
+    gap: 10px;
+    flex-grow: 1;
+}
+.change-box-bottom-btn > a{
+    flex-grow: 1;
+    text-align: center;
+    justify-content: center;
+}
+
+.cta-btn{
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) !important;
+    color: var(--main-white) !important;
+    display: flex;
+    padding: 8px 15px;
+    text-align: center;
+    line-height: 20px;
+    height: 56px;
+    align-items: center;
+    gap: 5px;
+}
+}

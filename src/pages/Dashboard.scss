@@ -1,0 +1,227 @@
+$scale-var: 1600 / 2560;
+
+.content {
+	position: fixed;
+	top: 155px * $scale-var;
+	bottom: 0;
+}
+.dashboard .cards-container {
+	margin:25px auto;
+	width:100%;
+}
+
+.dashboard .card-bg {
+	border:1px solid #f2f2f2;
+	box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.dashboard .wide {
+	grid-column:span 2;
+}
+
+.dashboard .c-p {
+	cursor:pointer;
+}
+
+.bet-wrapper {
+	height: 100%;
+}
+
+.dashboard .pane-image {
+	min-width:3rem;
+	height:3rem;
+	margin-right:1rem;
+}
+
+.dashboard .card-section {
+	padding:0 1.5rem;
+	box-sizing: border-box;
+}
+
+.dashboard .footer {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	padding:1.5rem 0;
+	width:80%;
+	margin:0 auto;
+}
+
+.dashboard .footer-link {
+	display:flex;
+	align-items:center;
+	padding:0;
+	color:#333;
+}
+
+// @media (max-width:1320px) {
+// 	.dashboard .cards-container {
+// 		grid-gap: 15px;
+// 		grid-template-columns: repeat(2, minmax(270px, 1fr));
+// 	}
+// 	.dashboard .wide {
+// 		grid-column:span 1;
+// 	}
+// 	.dashboard .card-section {
+// 		padding:0 0.5rem;
+// 	}
+// 	.dashboard .table-rem {
+// 		display:none !important;
+// 	}
+// 	.dashboard .footer {
+// 		width:90%;
+// 	}
+// }
+
+// @media (max-width:920px) {
+// 	.dashboard .cards-container {
+// 		max-width:500px;
+// 		width:90%;
+// 		font-size: 0.85rem;
+// 		grid-template-columns: repeat(1, minmax(220px, 100%));
+// 	}
+// 	.dashboard .msg-rem {
+// 		display:none !important;
+// 	}
+// 	.dashboard .p-4 {
+// 		padding:1rem !important;
+// 	}
+
+// 	.dashboard .pane-image {
+// 		min-width:2rem;
+// 		height:2rem;
+// 		margin-right:0.5rem;
+// 	}
+// 	.dashboard .footer-rem, .dashboard .footer-link {
+// 		display:none !important;
+// 	}
+// 	.dashboard .footer .d-flex{
+// 		margin:0 auto;
+// 		text-align: center;
+// 	}
+// }
+// @media (max-width:375px) {
+// 	.dashboard .h5 {
+// 		font-size:1rem;
+// 	}
+// 	.dashboard .cards-container {
+// 		margin:10px 0;
+// 	}
+// }
+.dashboard {
+	padding: 20px;
+	padding-bottom: 0px;
+	display: flex;
+	flex-wrap: wrap;
+	min-height: 100%;
+	.game-bet-chat-content {
+		width: 100%;
+		padding-bottom: 10px;
+		display: flex;
+		flex-direction: column;
+		.game-bet {
+			display: flex;
+			flex-wrap: wrap;
+			padding-bottom: 10px;
+			.game {
+				height: 300px;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				padding-bottom: 10px;
+				min-height: 40vw;
+			}
+			.bet {
+				width: 100%;
+			}
+		}
+	}
+	.players-content {
+		width: 100%;
+		padding-bottom: 20px;
+		height: calc(100vh - 900px);
+		min-height: 200px;
+	}
+	.game-content {
+		img {
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	@media only screen and (min-width: 992px)
+	{
+		.game-bet-chat-content {
+			width: 100%;
+			padding-bottom: 10px;
+			.game-bet {
+				padding-bottom: 10px;
+				min-height: 500px;
+				height: 40vw;
+				.game {
+					height: auto;
+					width: 70%;
+					padding-right: 10px;
+					padding-bottom: 0px;
+					min-height: auto;
+				}
+				.bet {
+					width: 30%;
+				}
+			}
+		}
+		.players-content {
+			width: 100%;
+			height: calc(100vh - 40vw - 350px);
+			min-height: 200px;
+		}
+	}
+
+	@media only screen and (min-width: 1500px)
+	{
+		height: 100%;
+		padding-bottom: 0;
+		min-height: calc(30vw + 250px);
+		.game-bet-chat-content {
+			height: 100%;
+			width: 65%;
+			padding-right: 10px;
+			padding-bottom: 20px;
+			.game-bet {
+				padding-bottom: 10px;
+				height: 30vw;
+				.game {
+					height: 100%;
+					width: 75%;
+					padding-right: 10px;
+					padding-bottom: 0px;
+				}
+				.bet {
+					width: 25%;
+					height: 100%;
+				}
+			}
+			.chat-container {
+				height: calc(100% - 30vw);
+				min-height: 255px;
+			}
+		}
+		.players-content {
+			width: 35%;
+			padding-bottom: 20px;
+			height: 100%;
+			min-height: 775px;
+		}
+
+	}
+
+}
+
+.bg {
+	background-image: url('../assets/images/playpage/game.png');
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+}
+
+

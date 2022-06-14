@@ -1,0 +1,30 @@
+.footer {
+    color: white;
+    border: 2px solid #322C76;
+    padding: 16px;
+    display: none;
+    flex-direction: column;
+    @media only screen and (min-width: 768px)
+    {
+        border: 2px solid #322C76;
+        display: flex;
+    }
+    @media only screen and (min-width: 1024px)
+    {
+        border: 2px solid #322C76;
+        display: flex;
+    }
+    &-logo {
+        width: 50%;
+        img {
+            width: 100%;
+        }
+    }
+    
+    &-info {
+        margin-top: -24px;
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+    }
+}

@@ -1,0 +1,48 @@
+.login-modal {
+    .modal-dialog {
+        max-width: 400px !important;
+        // margin-right: 30px;
+        margin-top: 150px;
+        div {
+            font-family: Poppins-Light;
+        }
+        span, td, select, option, p {
+            font-family: Poppins-Light;
+        }
+        .right-headre-section {
+            position: absolute;
+            right: 100px;
+            top: 23px;
+            font-size: 14px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .time-select {
+                background-color: #2A2864;
+                color: white;
+                padding: 10px;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                border: none;
+                text-align: center;
+                align-items: center;
+            }
+            .reload-btn {
+                margin-left: 10px;
+                cursor: pointer;
+            }
+        }
+        .custom-table-bottom-left {
+            &-select {
+                .dropdown {
+                    button {
+                        font-size: 14px;
+                    }
+                }
+            }
+            &-status {
+                font-size: 14px;
+            }
+        }
+    }
+}

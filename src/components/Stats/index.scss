@@ -1,0 +1,71 @@
+.modal-header{
+    padding-bottom: 10px;
+}
+
+.modal-title{
+    color: #FF01EB;
+}
+
+.right-headre-section{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.top-select , option , option:focus , .top-select:focus{
+    background-color: #2A2E68;
+    color: white;
+    border: none  !important;
+    box-shadow: none !important;
+}
+
+.leaderboard-table thead tr{
+    border: 2px solid #2A2E68;
+}
+
+.leaderboard-table tr{
+    color: white;
+}
+
+.table .odd{
+    background-color: #22214D;
+}
+
+.bottom-part-leaderboard{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.table-records{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bottom-select ,  .bottom-select:focus{
+    background-color: transparent;
+    border: 1px solid var(--main-blue) !important;
+}
+
+.pagination{
+    gap: 5px;
+}
+
+.pagination .page-item a{
+    background-color: #22214D !important;
+    border: none !important;
+    box-shadow: none  !important;
+    color: var(--main-white);
+}
+
+.page-item.active a{
+    background-color: #FF01EB !important;
+}
+
+.page-link > svg {
+    width: 20px;
+    height: 15px;
+}

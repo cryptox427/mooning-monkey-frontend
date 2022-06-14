@@ -1,0 +1,13 @@
+$scale-var: 1600 / 2560;
+
+.content {
+	top: 62px;
+    
+    @media only screen and (min-width: 1600px) {
+        top: 155px * $scale-var;
+    }
+	position: fixed;
+	
+	bottom: 0;
+    width: 100%;
+}

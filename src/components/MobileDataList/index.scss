@@ -1,0 +1,156 @@
+.mobile-data-list {
+    font-family: Poppins-Medium !important;
+    &-header {
+        /* c */
+        margin: 0;
+        border: 1px solid #6968B8;
+        padding: 8px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        box-sizing: border-box;
+        color: white;
+    }
+    &-main {
+        .data-list {
+            padding: 0;
+            .data-cell {
+                margin-top: 6px;
+                border: 1px solid #6968B8;
+                padding: 8px;
+                .main-data {
+                    margin: 0;
+                    flex-wrap: nowrap;
+                    div {
+                        font-family: Poppins-Light !important;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                    }
+                    .status {
+                        color: #78FF15;
+                    }
+                    .switch-button {
+                        cursor: pointer;
+                        background: #515189;
+                        border-radius: 50%;    
+                        width: 30px;
+                        height: 30px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        
+                        font-size: 24px;
+                        &::after {
+                            content: "+";
+                        }
+                        &.active {
+                            background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%);
+                            &::after {
+                                content: "-";
+                            }
+                        }
+                    }
+                    
+                }
+                .extra-data {
+                    border-top: 1px solid #6968B8;
+                    margin-top: 10px;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                    padding-top: 10px;
+                    div {
+                        font-family: Poppins-Light !important;
+                        color: white;
+                    }
+                    .fee {
+                        .title {
+                            font-family: Poppins-Medium !important;
+                        }
+                    }
+                    .txn-hash {
+                        .title {
+                            font-family: Poppins-Medium !important;
+                        }    
+                    }
+                    .created-at {
+                        .title {
+                            font-family: Poppins-SemiBold !important;
+                        }
+                    }
+                }
+                
+            }
+        }
+        
+    }
+    .green-font {
+        color: lightgreen;
+    }
+
+    thead tr {
+        border: 5px solid #2A2864
+    }
+
+    tbody tr {
+        border-style: none;
+    }
+    
+    tr {
+        color: white;
+    }
+
+    tr.obb {
+        background: #322C76
+    }
+
+    .table td {
+        border-top: none;
+        white-space: nowrap;
+    }
+
+    &-bottom {
+        display: flex;
+        justify-content: space-between;
+
+        .dropdown button {
+            background-color: transparent;
+            border: 1px solid #515189;
+            color: white;
+        }
+
+        .btn-primary:not(:disabled):not(.disabled):active, .btn-primary:not(:disabled):not(.disabled).active, .show > .btn-primary.dropdown-toggle {
+            background-color: transparent;
+            border: 1px solid #515189;
+        }
+
+        &-left {
+            display: flex;
+            align-items: center;
+
+            &-status {
+                margin-left: 24px;
+                color: white;
+            }
+        }
+
+        .pagination {
+            .page-item {
+                a {
+                    background-color: #27235A;
+                    color: white;
+                    margin: 0 8px;
+                    border: none;
+                }
+                &.disabled span {
+                    background-color: #27235A;
+                    color: white;
+                    border: none;
+                }
+            }
+
+            .page-item.active .page-link {
+                background: #F843EA;
+            }
+        }
+    }
+}
