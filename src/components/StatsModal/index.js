@@ -18,11 +18,7 @@ const ChartDataType = [
     'M'
 ];
 const StatsModal = (props) => {
-<<<<<<< HEAD
-    const { show, onHide, stats, getStats, userName } = props;
-=======
     const { show, onHide, stats, getStats, userName, logged } = props;
->>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
     const [userStats, setUserStats] = useState({
 
     });
@@ -64,11 +60,7 @@ const StatsModal = (props) => {
     useEffect(
         () => {
             if(show) {
-<<<<<<< HEAD
-                onClickMyStats()
-=======
                 onClickGameStats()
->>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
             }
         },
         [show],
@@ -98,17 +90,6 @@ const StatsModal = (props) => {
 
     return (
         <Modal show={show} onHide={onHide} className="monkey-modal stats-modal">
-<<<<<<< HEAD
-            <Tab.Container id="left-tabs-example" defaultActiveKey="myStats">
-                <Modal.Header closeButton closeVariant='white'>
-                    <Nav variant="pills" className="nav-tabs modal-nav-tabs">
-                        <Nav.Item>
-                            <Nav.Link onClick={()=>onClickMyStats()} eventKey="myStats">My Stats</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link onClick={()=>onClickGameStats()} eventKey="gameStats">Game Stats</Nav.Link>
-                        </Nav.Item>
-=======
             <Tab.Container id="left-tabs-example" defaultActiveKey="gameStats">
                 <Modal.Header closeButton closeVariant='white'>
                     <Nav variant="pills" className="nav-tabs modal-nav-tabs">
@@ -122,20 +103,10 @@ const StatsModal = (props) => {
                                 <Nav.Link onClick={()=>onClickMyStats()} eventKey="myStats">My Stats</Nav.Link>
                             </Nav.Item>
                         }
->>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
                     </Nav>
                 </Modal.Header>
                 <Modal.Body>
                     <Tab.Content>
-<<<<<<< HEAD
-                        <Tab.Pane eventKey="myStats">
-                            <MyStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={userStats}/>
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="gameStats">
-                            <GameStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
-                        </Tab.Pane>
-                    
-=======
                         {
                             logged &&
                             <Tab.Pane eventKey="myStats">
@@ -146,7 +117,6 @@ const StatsModal = (props) => {
                             <GameStats chartOptions={chartOptions} chartSeries={chartSeries} userName={userName} stats={stats}/>
                         </Tab.Pane>
                         
->>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
                     </Tab.Content>
                 </Modal.Body>
             </Tab.Container>
@@ -157,13 +127,9 @@ const StatsModal = (props) => {
 const mapStateToProps  = (state) => (
     {
         stats: state.userData.stats,
-<<<<<<< HEAD
-        userName: state.userData.userName
-=======
         userName: state.userData.userName,
         logged: state.userData.logged,
         
->>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
     }
 )
 export default connect(mapStateToProps, {getStats})(StatsModal)
