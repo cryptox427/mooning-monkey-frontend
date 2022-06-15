@@ -7,6 +7,8 @@ import DepositModal from '../../../components/DepositModal';
 import StatsModal from '../../../components/StatsModal';
 import WithdrawModal from '../../../components/WIthdrawModal';
 import LoginModal from '../../../components/LoginModal';
+import HelpModal from '../../../components/HelpModal';
+import HelpDetailModal from '../../../components/HelpModal/HelpDetailModal';
 
 import InfoBox from '../../../components/InfoBox';
 import { connectWallet, getCurrentWalletConnected } from '../../../utils/interact';
@@ -39,7 +41,8 @@ import { Row, Col, ToastBody } from 'react-bootstrap';
 import SelectNetworkModal from '../../../components/SelectNetworkModal';
 import 'react-toastify/dist/ReactToastify.css';
 import {getMaxCredits} from '../../../actions/betActions'
-import {showLoginModal, hideLoginModal, showStatsModal, hideStatsModal} from '../../../actions/gameActions'
+import {showLoginModal, hideLoginModal, showStatsModal, hideStatsModal,
+     showHelpModal, hideHelpModal, hideHelpDetailModal} from '../../../actions/gameActions'
 
 import {setPublicKey, getMyRecentWins, getRegisteredState} from '../../../actions/userActions'
 import {serverUrl} from '../../../utils/constant'
@@ -48,10 +51,12 @@ import {setPopUp} from '../../../actions/gameActions'
 
 
 const Header = (props) => {
-    const { children, setPublicKey, getMaxCredits, getMyRecentWins, showLoginModal, hideLoginModal, displayLoginModal, logged, getRegisteredState, history } = props;
+    const { children, setPublicKey, getMaxCredits, getMyRecentWins, showLoginModal, hideLoginModal,
+        showStatsModal, hideStatsModal, displayLoginModal, displayStatsModal, logged, 
+        displayHelpModal, getRegisteredState, history, showHelpModal, hideHelpModal, 
+        hideHelpDetailModal, displayHelpDetailModal } = props;
     const [bankrollStatus, setBankrollStatus] = useState(false);
     const [showLeaderBoard, setShowLeaderBoard] = useState(false);
-    const [showStatsModal, setShowStatsModal] = useState(false);
     const [showDepositModal, setShowDepositModal] = useState(false);
     const [showWithdrawModal, setShowWithdrawModal] = useState(false);
     const [showSelectNetworkModal, setShowSelectNetworkModal] = useState(false);
@@ -73,7 +78,6 @@ const Header = (props) => {
     
     const handleConnectWallet = async () => {
         const walletResponse = await connectWallet();
-        setStatus(walletResponse.status);
         setWalletAddress(walletResponse.address);
     }
 
@@ -92,15 +96,14 @@ const Header = (props) => {
         }
     };
 
+    
     const addWalletListener = () => {
         if (window.ethereum) {
           window.ethereum.on("accountsChanged", (accounts) => {
             if (accounts.length > 0) {
               setWalletAddress(accounts[0]);
-              setStatus("👆🏽 Please Sign in/up now.");
             } else {
               setWalletAddress(null);
-              setStatus("🦊 Connect to Metamask using the top right button.");
             }
           });
           window.ethereum.on("chainChanged", (chain) => {
@@ -124,36 +127,36 @@ const Header = (props) => {
     
     const connectWalletPressed = async () => {
         const walletResponse = await connectWallet();
-        setStatus(walletResponse.status);
-        setWalletAddress(walletResponse.address);
     };
     
     useEffect(async () => {
         const { address, status } = await getCurrentWalletConnected()
         setWalletAddress(address)
-        setStatus(status)
         addWalletListener()
     }, [])
-    
+    useEffect(() => {
+        if (logged) {
+            hideLoginModal()
+        }
+    }, [logged]);
     useEffect(() => {
         if (status) {
             notify();
           setStatus(null)
         }
     }, [status]);
-    useEffect(() => {
-        if (logged) {
-            hideLoginModal()
-        }
-        else {
-            showLoginModal()
-        }
-    }, [logged]);
 
     useEffect(async () => {
         if (walletAddress) {
             setPublicKey(walletAddress);
-            getRegisteredState(walletAddress)
+            const isRegistered = await getRegisteredState(walletAddress)
+            if(isRegistered) {
+                setPopUp("Please login");
+            }
+            else {
+                setPopUp("Please register");
+            }
+            showLoginModal()
             // const url = `${serverUrl}account.php?publicKey=${walletAddress}`;
             // const res = await request('get', url);
 
@@ -170,76 +173,14 @@ const Header = (props) => {
             //     setStatus('Network is not worked')
             // }
         }
+        else {
+            setPopUp("🦊 Connect to Metamask using the top right button.");
+        }
     }, [walletAddress]);
 
-    const handleUserName = (e) => {
-        setUserName(e.target.value);
-    }
-
-    const handlePassword = (e) => {
-        setPassword(e.target.value);
-    }
-
-    const handleRePassword = (e) => {
-        if (password !== e.target.value) {
-            setPwdNotMatch(true);
-        } else {
-            setPwdNotMatch(false);
-        }
-        setRePassword(e.target.value);
-    }
-
-    const onLogin = async () => {
-        if (!password) {
-            setStatus('Input all field correctly!');
-            return;
-        } 
-        const data = {
-            userName: null,
-            password,
-            publicKey: walletAddress,
-            refCode: null
-        }
-        localStorage.setItem('publicKey', walletAddress);
-        // const res = await request('post', url, data);
-        const checkSessionRes = await postRequest(checkAPIUrl, data);
-        console.log("session:", checkSessionRes);
-
-        if (checkSessionRes.data === 'login success') {
-            console.log("success")
-            
-            getMaxCredits(walletAddress);
-            getMyRecentWins();
-            setLoginStatus(true);
-        }
-    }
-
-    const onRegister = async () => {
-        if (!userName || !password || pwdNotMatch) {
-            setStatus('Input all field correctly!');
-            return;
-        }
-        const data = {
-            userName,
-            password,
-            publicKey: walletAddress,
-            refCode: null
-        }
-        const checkSessionRes = await postRequest(checkAPIUrl, data);
-        console.log("session:", checkSessionRes);
-        // const res = await request('post', url, data);
-
-        if (checkSessionRes.data === 'register success') {
-            setLoginStatus(true);
-        }
-    }
+    
     const clickStatsBtn = () => {
-        if(logged) {
-            setShowStatsModal(true)
-        }
-        else {
-            setPopUp("Please login");
-        }
+        showStatsModal()
     }
     const clickWithdrawBtn = () => {
         if(logged) {
@@ -272,8 +213,8 @@ const Header = (props) => {
                         <div className='mask'><span>STATS</span></div>
                             
                         </button>
-                        <button className="image-back border-0 help">
-                        <div className='mask'><span>HELP</span></div>
+                        <button className="image-back border-0 help" onClick={()=>showHelpModal()}>
+                            <div className='mask'><span>HELP</span></div>
                             
                         </button>
                     </div>
@@ -374,12 +315,14 @@ const Header = (props) => {
             </div>
             <BankrollModal show={bankrollStatus} onHide={() => setBankrollStatus(false)} />
             <LeaderboardModal animationDirection="right"  show={showLeaderBoard} onHide={() => setShowLeaderBoard(false)} />
-            <StatsModal show={showStatsModal} onHide={() => setShowStatsModal(false)} />
+            <StatsModal show={displayStatsModal} onHide={() => hideStatsModal()} />
             <DepositModal walletAddress={walletAddress} show={showDepositModal} onHide={() => setShowDepositModal(false)} />
             <WithdrawModal show={showWithdrawModal} onHide={() => setShowWithdrawModal(false)} />
             <SelectNetworkModal show={showSelectNetworkModal} onHide={() => setShowSelectNetworkModal(false)} />
             <LoginModal show={displayLoginModal} onHide={() => hideLoginModal()} />
-            
+            <HelpModal show={displayHelpModal} onHide={() => hideHelpModal()} />
+            <HelpDetailModal show={displayHelpDetailModal} onHide={() => hideHelpDetailModal()} />
+        
             <ToastContainer />
             
         </>
@@ -389,10 +332,16 @@ const Header = (props) => {
 const mapStateToProps  = (state) => (
     {
         logged: state.userData.logged,
-        displayLoginModal: state.betGameData.displayLoginModal
+        displayLoginModal: state.betGameData.displayLoginModal,
+        displayStatsModal: state.betGameData.displayStatsModal,
+        displayHelpModal: state.betGameData.displayHelpModal,
+        displayHelpDetailModal: state.betGameData.displayHelpDetailModal
+        
     }
 )
-export default connect(mapStateToProps, {setPublicKey, getMaxCredits, showLoginModal, hideLoginModal, getMyRecentWins, getRegisteredState})(Header)
+export default connect(mapStateToProps, {setPublicKey, getMaxCredits, showLoginModal, hideLoginModal, 
+    showStatsModal, hideStatsModal, showHelpModal, hideHelpModal, hideHelpDetailModal,
+    getMyRecentWins, getRegisteredState})(Header)
 {/* <InfoBox className='relative' outSideClickFunc={setShowProfile}>
                                         <button className="purple border-0 wallet-address" onClick={() => setShowLoginModal(true)}>
                                             {`${walletAddress.substring(0, 9)}...${walletAddress.slice(-5)}`}

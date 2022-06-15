@@ -129,6 +129,39 @@
     padding: 3px;
     position: relative;
     margin-top: -40px;
+<<<<<<< HEAD
+=======
+    display: flex;
+    justify-content: space-between;
+    .latest-results {
+        display: flex;
+        justify-content: left;
+        overflow: hidden;
+        max-width: calc(100% - 100px);
+        .title {
+            color: white;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            font-family: Nurom;
+            margin-right: 10px;
+            white-space: nowrap;
+        }
+        .result-btn {
+            background-color: transparent;
+            border: none;
+            font-family: Nurom;
+            &.high-result {
+                color: rgb(65, 235, 65);
+            }
+            &.low-result {
+                color: rgb(235, 65, 65);
+            }
+        }
+    }
+>>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
 }
 
 .left-three-btns {
@@ -266,6 +299,10 @@
             
         }
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 0e97ed38460346099c5d585c06b769ec1c6b349e
     svg{
         width: 16px;
         height: 16px;  

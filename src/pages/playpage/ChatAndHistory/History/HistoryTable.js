@@ -87,7 +87,7 @@ const HistoryTable = (props) => {
                 }
                 <div className="h-time">Time</div>
                 <div className="h-wager">Wager</div>
-                <div className="h-multi">Multi</div>
+                <div className="h-multi">Mult</div>
                 <div className="h-payout">Payout</div>
             </div>
             <div className="data-container">

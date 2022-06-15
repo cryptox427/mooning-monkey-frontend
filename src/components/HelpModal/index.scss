@@ -1,0 +1,91 @@
+.help-modal {
+    .modal-dialog {
+        max-width: 500px !important;
+        border: 2px solid #7050CB;
+        .search {
+            width: 100%;
+            border: 2px solid;
+            border-image: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) 1;
+            background-color: transparent;
+            color: white;
+            padding: 5px 15px;
+            font-family: Poppins-Regular;
+            &:focus {
+                outline: none !important;
+                border: 2px solid;
+                border-image: linear-gradient(90deg, #7050CB 4.11%, #FF01EB 100%) 1;
+            }
+        }
+        .search-result {
+            margin-top: 14px;
+            &-item {
+                position: relative;
+                border: 2px solid #7050CB;
+                margin-bottom: 6px;
+                padding: 5px 15px;
+                font-size: 12px;
+                font-family: Poppins-Regular;
+                background-color: transparent;
+                color: white !important;
+                width: 100%;
+                .go-icon {
+                    position: absolute;
+                    right: 10px;
+                    transform: translateY(-50%);
+                    top: 50%;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+.help-detail-modal {
+    .modal-dialog {
+        max-width: 500px !important;
+        border: 2px solid #7050CB;
+        .modal-body {
+            .title {
+                margin-top: 14px;
+                font-family: Nurom;
+                font-size: 18px;
+            }
+            .description {
+                margin-top: 12px;
+                font-family: Poppins-Regular;
+                font-size: 12px;
+            }
+            .bottom-buttons {
+                margin-top: 20px;
+                display: flex;
+                justify-content: space-between;
+                .back-btn {
+                    font-family: Poppins-Regular;
+                    font-size: 12px !important;
+                    width: 50%;
+                }
+                .still-help {
+                    font-family: Poppins-Regular;
+                    font-size: 14px !important;
+                    width: 50%;
+                    padding: 0 10px !important;
+                    border: 2px solid #7050CB;
+                    margin-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    .text {
+                        white-space: nowrap;
+                        font-family: Poppins-Regular;
+                        text-align: center;
+                    }
+                    .moonign-link {
+                        white-space: nowrap;
+                        color: #FF01EB;
+                        font-family: Poppins-Regular;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+    }
+}
+

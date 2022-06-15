@@ -16,7 +16,13 @@ import {
         SHOW_LOGIN_MODAL,
         HIDE_LOGIN_MODAL,
         HIDE_STATS_MODAL,
-        SHOW_STATS_MODAL
+        SHOW_STATS_MODAL,
+        SHOW_HELP_MODAL,
+        HIDE_HELP_MODAL,
+        SHOW_HELP_DETAIL_MODAL,
+        HIDE_HELP_DETAIL_MODAL,
+        SET_LATEST_RESULTS
+        
     } from '../utils/types'
 import axios from 'axios'
 
@@ -170,5 +176,36 @@ export const hideStatsModal = () => dispatch => {
     console.log("hideStatsModal")
     dispatch( {
         type: HIDE_STATS_MODAL
+    })
+}
+export const showHelpModal = () => dispatch => {
+    console.log("showHelpModal")
+    dispatch( {
+        type: SHOW_HELP_MODAL
+    })
+}
+export const hideHelpModal = () => dispatch => {
+    console.log("hideHelpModal")
+    dispatch( {
+        type: HIDE_HELP_MODAL
+    })
+}
+export const showHelpDetailModal = (data) => dispatch => {
+    console.log("showHelpDetailModal")
+    dispatch( {
+        type: SHOW_HELP_DETAIL_MODAL,
+        payload: data
+    })
+}
+export const hideHelpDetailModal = () => dispatch => {
+    console.log("hideHelpDetailModal")
+    dispatch( {
+        type: HIDE_HELP_DETAIL_MODAL
+    })
+}
+export const setLatestResults = () => dispatch => {
+    console.log("setLatestResults")
+    dispatch( {
+        type: SET_LATEST_RESULTS
     })
 }
